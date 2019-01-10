@@ -26,3 +26,35 @@ g <- extract.network()
 
 # analyze network
 
+
+
+# TODO
+# Instead of assigning attributes to links, just create distinct links with a "type" attribute (?)
+# Then extract separate graphs, as Gephi doesn't allow multiple links.
+
+# Notes
+# - All ;-separated values are in chronological order, but almost no dates are available.
+# - Maybe we could merge PolitSenat/DerPolitSenat, same for PolitEques/DerPolitEques.
+# - Cannot merge PolitSenat with PolitEques (or DerPolit variants) because some exceptional people can have both (successively).
+# - Same for MilitSenat and MilitEques (probably, TBC).
+# - Circles are not mutually exclusive.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

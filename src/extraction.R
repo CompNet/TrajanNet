@@ -121,6 +121,7 @@ split.attribute.by.value <- function(g, values, name, nodes)
 #############################################################
 extract.network <- function()
 {	############
+	cat("Extracting nodes and their information\n")
 	# load node attributes
 	attr.file <- file.path(table.folder,"trajan_attributes.csv")
 	attr.data <- as.matrix(read.csv(file=attr.file,header=TRUE,check.names=FALSE))
@@ -133,7 +134,7 @@ extract.network <- function()
 #	V(g)$label <- attr.data[,"Nom"] #TODO
 	
 	# add chronological (or single) nominal node attributes
-	att.names <- c("Senat", "DerSenat","Eques","DerEques","MilitSenat","MilitEques","DestVoy","MotifVoy","RelTrajan")
+	att.names <- c("PolitSenat", "DerPolitSenat","PolitEques","DerPolitEques","MilitSenat","MilitEques","DestVoy","MotifVoy","RelTrajan")
 	for(att.name in att.names)
 		g <- split.attribute.by.order(g, attr.data[,att.name], name=att.name)
 	
@@ -158,7 +159,9 @@ extract.network <- function()
 #	print(m)
 #	write.csv(x=m,file=file.path(table.folder,"verification.csv"))
 	
+	
 	############
+	cat("Adding links and their information\n")
 	# load relations
 	rel.file <- file.path(table.folder,"trajan_relations.csv")
 	rel.data <- as.matrix(read.csv(file=rel.file,header=TRUE,check.names=FALSE))
@@ -177,9 +180,13 @@ extract.network <- function()
 		g <- set_edge_attr(graph=g, name=att.name, 
 				value=rel.data[,att.name])
 	
+	
+	############
 	# record graph
 	graph.file <- file.path(net.folder,"all.graphml")
+	cat("Recording graph in",graph.file,"\n")
 	write.graph(graph=g,file=graph.file,format="graphml")
+	
 	
 	return(g)
 }

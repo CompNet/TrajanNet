@@ -1,4 +1,4 @@
-Id,Nom,Senat,DerSenat,Eques,DerEques,Adelectio,MilitSenat,MilitEques,NbrVoy,DestVoy,MotifVoy,RelTrajan,SoutHadrien,Cercles,Espagnol
+Id,Nom,PolitSenat,DerPolitSenat,PolitEques,DerPolitEques,Adelectio,MilitSenat,MilitEques,NbrVoy,DestVoy,MotifVoy,RelTrajan,SoutHadrien,Cercles,Espagnol
 P0,,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 P1,,NA,NA,NA,NA,Non,NA,NA,1,Syrie,Personnel,G1,Oui,NA,Oui
 P2,,Questeur;Tribun de la plèbe;Préteur,Consul,NA,NA,Non,Tribun de légion;Légat de légion;Légat d'Auguste propréteur,NA,4,Pannonie;Germanie;Dacie;Syrie,Militaire;Personnel,G1,Non,NA,Oui
