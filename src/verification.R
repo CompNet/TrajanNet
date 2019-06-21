@@ -36,7 +36,7 @@ rel.data <- as.matrix(read.csv(file=rel.file,header=TRUE,check.names=FALSE))
 #################################
 cat(">>>>>>>>>>> Checking individual attributes\n")
 
-# unique values in Senat after splitting multiple values
+# unique values in PolitSenat after splitting multiple values
 u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"PolitSenat"], split=";"))))
 cat("PolitSenat:\n");print(u.vals);cat("\n")
 
@@ -52,10 +52,12 @@ cat("PolitEques:\n");print(u.vals);cat("\n")
 u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"DerPolitEques"], split=";"))))
 cat("DerPolitEques:\n");print(u.vals);cat("\n")
 
-# compare DerPolitSenat and DerPolitEques (supposedly mutually exclusive)
+# compare DerPolitSenat and DerPolitEques (supposedly mutually exclusive, except if Adelectio)
 m <- cbind(attr.data[,"DerPolitSenat"],attr.data[,"DerPolitEques"],
-		(is.na(attr.data[,"DerPolitSenat"]) & is.na(attr.data[,"DerPolitEques"])) | xor(is.na(attr.data[,"DerPolitSenat"]),is.na(attr.data[,"DerPolitEques"])))
-cat("Comparison:\n");print(m);cat("\n")
+		(is.na(attr.data[,"DerPolitSenat"]) & is.na(attr.data[,"DerPolitEques"])) | xor(is.na(attr.data[,"DerPolitSenat"]),is.na(attr.data[,"DerPolitEques"])),
+		attr.data[,"Adelectio"]
+	)
+cat("Comparison Polit:\n");print(m);cat("\n")
 
 # unique values in Adelectio after splitting multiple values
 u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"Adelectio"], split=";"))))
@@ -68,6 +70,13 @@ cat("MilitSenat:\n");print(u.vals);cat("\n")
 # unique values in MilitEques after splitting multiple values
 u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"MilitEques"], split=";"))))
 cat("MilitEques:\n");print(u.vals);cat("\n")
+
+# compare MilitSenat and MilitEques (supposedly mutually exclusive, except if Adelectio)
+m <- cbind(attr.data[,"MilitSenat"],attr.data[,"MilitEques"],
+		(is.na(attr.data[,"MilitSenat"]) & is.na(attr.data[,"MilitEques"])) | xor(is.na(attr.data[,"MilitSenat"]),is.na(attr.data[,"MilitEques"])),
+		attr.data[,"Adelectio"]
+)
+cat("Comparison Milit:\n");print(m);cat("\n")
 
 # unique values in NbrVoy after splitting multiple values
 u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"NbrVoy"], split=";"))))
