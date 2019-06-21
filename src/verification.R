@@ -9,28 +9,52 @@
 #############################################################################################
 
 
+
+
+#################################
+# loading data
+#################################
+cat(">>>>>>>>>>> Loading data\n")
+
+# setup folder
+data.folder <- "data"
+table.folder <- file.path(data.folder,"tables")
+
+# load node attributes
+attr.file <- file.path(table.folder,"trajan_attributes.csv")
+attr.data <- as.matrix(read.csv(file=attr.file,header=TRUE,check.names=FALSE))
+
+# load relations
+rel.file <- file.path(table.folder,"trajan_relations.csv")
+rel.data <- as.matrix(read.csv(file=rel.file,header=TRUE,check.names=FALSE))
+
+
+
+
 #################################
 # checking individual attributes
 #################################
+cat(">>>>>>>>>>> Checking individual attributes\n")
+
 # unique values in Senat after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"Senat"], split=";"))))
-cat("Senat:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"PolitSenat"], split=";"))))
+cat("PolitSenat:\n");print(u.vals);cat("\n")
 
-# unique values in DerSenat after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"DerSenat"], split=";"))))
-cat("DerSenat:\n");print(u.vals);cat("\n")
+# unique values in DerPolitSenat after splitting multiple values
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"DerPolitSenat"], split=";"))))
+cat("DerPolitSenat:\n");print(u.vals);cat("\n")
 
-# unique values in Eques after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"Eques"], split=";"))))
-cat("Eques:\n");print(u.vals);cat("\n")
+# unique values in PolitEques after splitting multiple values
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"PolitEques"], split=";"))))
+cat("PolitEques:\n");print(u.vals);cat("\n")
 
-# unique values in DerEques after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"DerEques"], split=";"))))
-cat("DerEques:\n");print(u.vals);cat("\n")
+# unique values in DerPolitEques after splitting multiple values
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"DerPolitEques"], split=";"))))
+cat("DerPolitEques:\n");print(u.vals);cat("\n")
 
-# compare DerSenat and DerEques (supposedly mutually exclusive)
-m <- cbind(attr.data[,"DerSenat"],attr.data[,"DerEques"],
-		(is.na(attr.data[,"DerSenat"]) & is.na(attr.data[,"DerEques"])) | xor(is.na(attr.data[,"DerSenat"]),is.na(attr.data[,"DerEques"])))
+# compare DerPolitSenat and DerPolitEques (supposedly mutually exclusive)
+m <- cbind(attr.data[,"DerPolitSenat"],attr.data[,"DerPolitEques"],
+		(is.na(attr.data[,"DerPolitSenat"]) & is.na(attr.data[,"DerPolitEques"])) | xor(is.na(attr.data[,"DerPolitSenat"]),is.na(attr.data[,"DerPolitEques"])))
 cat("Comparison:\n");print(m);cat("\n")
 
 # unique values in Adelectio after splitting multiple values
@@ -92,6 +116,8 @@ cat("Espagnol:\n");print(u.vals);cat("\n")
 #################################
 # checking interaction attributes
 #################################
+cat(">>>>>>>>>>> Checking interaction attributes\n")
+
 # unique node ids
 u.vals <- sort(unique(c(rel.data[,c("Id1","Id2")])))
 cat("Ids:\n");print(u.vals);cat("\n")

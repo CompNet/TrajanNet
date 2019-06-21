@@ -5,18 +5,14 @@
          http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
 <!-- Created by igraph -->
   <key id="v_name" for="node" attr.name="name" attr.type="string"/>
-  <key id="v_label" for="node" attr.name="label" attr.type="string"/>
   <key id="v_PolitSenat1" for="node" attr.name="PolitSenat1" attr.type="string"/>
   <key id="v_PolitSenat2" for="node" attr.name="PolitSenat2" attr.type="string"/>
   <key id="v_PolitSenat3" for="node" attr.name="PolitSenat3" attr.type="string"/>
   <key id="v_PolitSenat4" for="node" attr.name="PolitSenat4" attr.type="string"/>
   <key id="v_PolitSenat5" for="node" attr.name="PolitSenat5" attr.type="string"/>
-  <key id="v_PolitSenat6" for="node" attr.name="PolitSenat6" attr.type="string"/>
   <key id="v_DerPolitSenat" for="node" attr.name="DerPolitSenat" attr.type="string"/>
   <key id="v_PolitEques1" for="node" attr.name="PolitEques1" attr.type="string"/>
   <key id="v_PolitEques2" for="node" attr.name="PolitEques2" attr.type="string"/>
-  <key id="v_PolitEques3" for="node" attr.name="PolitEques3" attr.type="string"/>
-  <key id="v_PolitEques4" for="node" attr.name="PolitEques4" attr.type="string"/>
   <key id="v_DerPolitEques" for="node" attr.name="DerPolitEques" attr.type="string"/>
   <key id="v_MilitSenat1" for="node" attr.name="MilitSenat1" attr.type="string"/>
   <key id="v_MilitSenat2" for="node" attr.name="MilitSenat2" attr.type="string"/>
@@ -47,18 +43,14 @@
   <graph id="G" edgedefault="undirected">
     <node id="n0">
       <data key="v_name">P0</data>
-      <data key="v_label">Trajan</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -85,18 +77,14 @@
     </node>
     <node id="n1">
       <data key="v_name">P1</data>
-      <data key="v_label">Plotine</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -123,18 +111,14 @@
     </node>
     <node id="n2">
       <data key="v_name">P2</data>
-      <data key="v_label">Hadrien</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plèbe</data>
       <data key="v_PolitSenat3">Préteur</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Tribun de légion</data>
       <data key="v_MilitSenat2">Légat de légion</data>
@@ -161,18 +145,14 @@
     </node>
     <node id="n3">
       <data key="v_name">P3</data>
-      <data key="v_label">Marciana</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -199,18 +179,14 @@
     </node>
     <node id="n4">
       <data key="v_name">P4</data>
-      <data key="v_label">Matidia</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -237,24 +213,20 @@
     </node>
     <node id="n5">
       <data key="v_name">P5</data>
-      <data key="v_label">Sabine</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Syrie</data>
+      <data key="v_DestVoy1">Syre</data>
       <data key="v_DestVoy2">NA</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
@@ -275,18 +247,14 @@
     </node>
     <node id="n6">
       <data key="v_name">P6</data>
-      <data key="v_label">Lycormas</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -313,18 +281,14 @@
     </node>
     <node id="n7">
       <data key="v_name">P7</data>
-      <data key="v_label">Caius Matidius Patruinus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -351,18 +315,14 @@
     </node>
     <node id="n8">
       <data key="v_name">P8</data>
-      <data key="v_label">Publius Acilius Attianus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">Préfet du prétoire</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">Préfet du prétoire</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -389,18 +349,14 @@
     </node>
     <node id="n9">
       <data key="v_name">P9</data>
-      <data key="v_label">Glitius Atilius Agricola</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Édile</data>
-      <data key="v_PolitSenat3">Préteur</data>
-      <data key="v_PolitSenat4">Consul suffect</data>
-      <data key="v_PolitSenat5">Consul</data>
-      <data key="v_PolitSenat6">NA</data>
+      <data key="v_PolitSenat3">Consul suffect</data>
+      <data key="v_PolitSenat4">NA</data>
+      <data key="v_PolitSenat5">NA</data>
       <data key="v_DerPolitSenat">Préfet de la ville</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
@@ -427,18 +383,14 @@
     </node>
     <node id="n10">
       <data key="v_name">P10</data>
-      <data key="v_label">Cnaeus Arrius Antonius</data>
-      <data key="v_PolitSenat1">Consul</data>
+      <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
-      <data key="v_DerPolitSenat">Proconsul</data>
+      <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Proconsul</data>
       <data key="v_MilitSenat2">NA</data>
@@ -465,18 +417,14 @@
     </node>
     <node id="n11">
       <data key="v_name">P11</data>
-      <data key="v_label">Caius Avidius Nigrinus</data>
       <data key="v_PolitSenat1">Tribun de la plèbe</data>
-      <data key="v_PolitSenat2">Préteur</data>
-      <data key="v_PolitSenat3">Propréteur</data>
+      <data key="v_PolitSenat2">NA</data>
+      <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -503,18 +451,14 @@
     </node>
     <node id="n12">
       <data key="v_name">P12</data>
-      <data key="v_label">Lucius Catilius Severus</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plèbe</data>
       <data key="v_PolitSenat3">Préteur</data>
-      <data key="v_PolitSenat4">Propréteur</data>
-      <data key="v_PolitSenat5">Consul suffect</data>
-      <data key="v_PolitSenat6">Consul</data>
+      <data key="v_PolitSenat4">Consul suffect</data>
+      <data key="v_PolitSenat5">Consul</data>
       <data key="v_DerPolitSenat">Préfet de la ville</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
@@ -541,18 +485,14 @@
     </node>
     <node id="n13">
       <data key="v_name">P13</data>
-      <data key="v_label">Caius Cilnius Procolus</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
@@ -579,18 +519,14 @@
     </node>
     <node id="n14">
       <data key="v_name">P14</data>
-      <data key="v_label">Tiberius Claudius Livianus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">Préfet du prétoire</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">NA</data>
@@ -617,23 +553,19 @@
     </node>
     <node id="n15">
       <data key="v_name">P15</data>
-      <data key="v_label">Tiberius Claudius Maximus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
-      <data key="v_MilitEques">Préfet de cohorte</data>
+      <data key="v_MilitEques">Chef d&apos;unités auxiliaires</data>
       <data key="v_DestVoy1">Dacie</data>
       <data key="v_DestVoy2">Parthie</data>
       <data key="v_DestVoy3">Babylone</data>
@@ -655,18 +587,14 @@
     </node>
     <node id="n16">
       <data key="v_name">P16</data>
-      <data key="v_label">Aulus Cornelius Palma Frontianus</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -693,18 +621,14 @@
     </node>
     <node id="n17">
       <data key="v_name">P17</data>
-      <data key="v_label">Publius Cornelius Tacitus</data>
       <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
+      <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -731,21 +655,17 @@
     </node>
     <node id="n18">
       <data key="v_name">P18</data>
-      <data key="v_label">Caius Iulius Bassus Quatradus</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Préteur</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
-      <data key="v_MilitSenat1">Tribun de légion</data>
-      <data key="v_MilitSenat2">Légat de légion</data>
+      <data key="v_MilitSenat1">Légat de légion</data>
+      <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Dacie</data>
@@ -769,18 +689,14 @@
     </node>
     <node id="n19">
       <data key="v_name">P19</data>
-      <data key="v_label">Lucius Iulius Ursus Servianus</data>
-      <data key="v_PolitSenat1">Questeur</data>
-      <data key="v_PolitSenat2">Préteur</data>
-      <data key="v_PolitSenat3">Propréteur</data>
-      <data key="v_PolitSenat4">Consul suffect</data>
+      <data key="v_PolitSenat1">Préteur</data>
+      <data key="v_PolitSenat2">Consul suffect</data>
+      <data key="v_PolitSenat3">NA</data>
+      <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -807,18 +723,14 @@
     </node>
     <node id="n20">
       <data key="v_name">P20</data>
-      <data key="v_label">Caius Octavius Tidius Tossianus Javolenus Priscus</data>
       <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
-      <data key="v_PolitSenat3">Consul suffect</data>
-      <data key="v_PolitSenat4">Consul</data>
+      <data key="v_PolitSenat2">Consul</data>
+      <data key="v_PolitSenat3">NA</data>
+      <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
-      <data key="v_DerPolitSenat">Proconsul</data>
+      <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">Proconsul</data>
@@ -845,18 +757,14 @@
     </node>
     <node id="n21">
       <data key="v_name">P21</data>
-      <data key="v_label">Manius Laberius Maximus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
-      <data key="v_PolitEques1">Procuratèle</data>
+      <data key="v_PolitEques1">Procurateur</data>
       <data key="v_PolitEques2">Préfet de l&apos;annone</data>
-      <data key="v_PolitEques3">Préfet d&apos;Égypte</data>
-      <data key="v_PolitEques4">Préfet du prétoire</data>
       <data key="v_DerPolitEques">Préfet du prétoire</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
@@ -883,18 +791,14 @@
     </node>
     <node id="n22">
       <data key="v_name">P22</data>
-      <data key="v_label">Lucius Licinius Sura</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">NA</data>
@@ -921,18 +825,14 @@
     </node>
     <node id="n23">
       <data key="v_name">P23</data>
-      <data key="v_label">Lucius Neratius Priscus</data>
-      <data key="v_PolitSenat1">Questeur</data>
-      <data key="v_PolitSenat2">Préteur</data>
-      <data key="v_PolitSenat3">Propréteur</data>
-      <data key="v_PolitSenat4">Consul suffect</data>
+      <data key="v_PolitSenat1">Préteur</data>
+      <data key="v_PolitSenat2">Consul suffect</data>
+      <data key="v_PolitSenat3">NA</data>
+      <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -959,18 +859,14 @@
     </node>
     <node id="n24">
       <data key="v_name">P24</data>
-      <data key="v_label">Cnaeus Octavius Titinius Capito</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">Préfet des vigiles</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -997,18 +893,14 @@
     </node>
     <node id="n25">
       <data key="v_name">P25</data>
-      <data key="v_label">Pline le Jeune</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plèbe</data>
       <data key="v_PolitSenat3">Préteur</data>
-      <data key="v_PolitSenat4">Propréteur</data>
-      <data key="v_PolitSenat5">Consul suffect</data>
-      <data key="v_PolitSenat6">NA</data>
+      <data key="v_PolitSenat4">Consul suffect</data>
+      <data key="v_PolitSenat5">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1035,18 +927,14 @@
     </node>
     <node id="n26">
       <data key="v_name">P26</data>
-      <data key="v_label">Caius Pompeius Planta</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
-      <data key="v_PolitEques1">Procuratèle</data>
-      <data key="v_PolitEques2">Préfet d&apos;Égypte</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
+      <data key="v_PolitEques1">Procurateur</data>
+      <data key="v_PolitEques2">NA</data>
       <data key="v_DerPolitEques">Préfet d&apos;Égypte</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1073,18 +961,14 @@
     </node>
     <node id="n27">
       <data key="v_name">P27</data>
-      <data key="v_label">Lucius Publius Celsus</data>
       <data key="v_PolitSenat1">Consul suffect</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1111,18 +995,14 @@
     </node>
     <node id="n28">
       <data key="v_name">P28</data>
-      <data key="v_label">Marcus Rutilius Luous</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">Préfet de l&apos;annone</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">Préfet d&apos;Égypte</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1149,18 +1029,14 @@
     </node>
     <node id="n29">
       <data key="v_name">P29</data>
-      <data key="v_label">Luciius Silius Decianus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1187,19 +1063,15 @@
     </node>
     <node id="n30">
       <data key="v_name">P30</data>
-      <data key="v_label">Titus Statilius Crito</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
-      <data key="v_DerPolitEques">Procuratèle</data>
+      <data key="v_DerPolitEques">Procurateur</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
@@ -1225,18 +1097,14 @@
     </node>
     <node id="n31">
       <data key="v_name">P31</data>
-      <data key="v_label">Quintus Sosius Senecio</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Préteur</data>
-      <data key="v_PolitSenat3">Propréteur</data>
+      <data key="v_PolitSenat3">Consul</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
@@ -1263,18 +1131,14 @@
     </node>
     <node id="n32">
       <data key="v_name">P32</data>
-      <data key="v_label">Titus Spurinna Vestricius</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1301,18 +1165,14 @@
     </node>
     <node id="n33">
       <data key="v_name">P33</data>
-      <data key="v_label">Sextus Attius Suburanus Aemilianus</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
-      <data key="v_PolitEques1">Procuratèle</data>
+      <data key="v_PolitEques1">Procurateur</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">Préfet du prétoire</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1339,18 +1199,14 @@
     </node>
     <node id="n34">
       <data key="v_name">P34</data>
-      <data key="v_label">Decimus Terentius Gentianus</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plèbe</data>
-      <data key="v_PolitSenat3">Préteur</data>
-      <data key="v_PolitSenat4">Propréteur</data>
+      <data key="v_PolitSenat3">NA</data>
+      <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1377,18 +1233,14 @@
     </node>
     <node id="n35">
       <data key="v_name">P35</data>
-      <data key="v_label">Marcus Annius Verus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1415,20 +1267,16 @@
     </node>
     <node id="n36">
       <data key="v_name">P36</data>
-      <data key="v_label">Arrianus Maturus</data>
       <data key="v_PolitSenat1">Consul suffect</data>
       <data key="v_PolitSenat2">Consul</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Préfet de la ville</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
-      <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
+      <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
@@ -1453,18 +1301,14 @@
     </node>
     <node id="n37">
       <data key="v_name">P37</data>
-      <data key="v_label">Titus Aurelius Fulvus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1491,18 +1335,14 @@
     </node>
     <node id="n38">
       <data key="v_name">P38</data>
-      <data key="v_label">Quintus Baebius Macer</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1529,21 +1369,17 @@
     </node>
     <node id="n39">
       <data key="v_name">P39</data>
-      <data key="v_label">Aulus Caecilius Faustinus</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
-      <data key="v_PolitSenat3">Consul suffect</data>
-      <data key="v_PolitSenat4">Consul</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
+      <data key="v_PolitSenat3">NA</data>
+      <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
-      <data key="v_DerPolitSenat">Proconsul</data>
+      <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
-      <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
-      <data key="v_MilitSenat2">Proconsul</data>
+      <data key="v_MilitSenat1">Proconsul</data>
+      <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Mésie inférieure</data>
@@ -1567,18 +1403,14 @@
     </node>
     <node id="n40">
       <data key="v_name">P40</data>
-      <data key="v_label">Lucius Ceionnus Commodus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1605,18 +1437,14 @@
     </node>
     <node id="n41">
       <data key="v_name">P41</data>
-      <data key="v_label">Caius Claudius Severus</data>
-      <data key="v_PolitSenat1">Préteur</data>
+      <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
-      <data key="v_DerPolitSenat">Propréteur</data>
+      <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1643,24 +1471,20 @@
     </node>
     <node id="n42">
       <data key="v_name">P42</data>
-      <data key="v_label">Sextus Erucius Clarus </data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plèbe</data>
       <data key="v_PolitSenat3">Préteur</data>
-      <data key="v_PolitSenat4">Propréteur</data>
+      <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Parthie</data>
+      <data key="v_DestVoy1">Pathie</data>
       <data key="v_DestVoy2">NA</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
@@ -1681,18 +1505,14 @@
     </node>
     <node id="n43">
       <data key="v_name">P43</data>
-      <data key="v_label">Lucius Fabius Iustus</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1719,18 +1539,14 @@
     </node>
     <node id="n44">
       <data key="v_name">P44</data>
-      <data key="v_label">Quintus Fabius Postumus</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1757,18 +1573,14 @@
     </node>
     <node id="n45">
       <data key="v_name">P45</data>
-      <data key="v_label">Crassus Frugi Licianus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1795,18 +1607,14 @@
     </node>
     <node id="n46">
       <data key="v_name">P46</data>
-      <data key="v_label">Titus Haterius Nepos</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
-      <data key="v_PolitEques1">Procuratèle</data>
+      <data key="v_PolitEques1">Procurateur</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1833,22 +1641,18 @@
     </node>
     <node id="n47">
       <data key="v_name">P47</data>
-      <data key="v_label">Lucius Herennius Saturnius</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
-      <data key="v_PolitSenat3">Consul suffect</data>
-      <data key="v_PolitSenat4">Consul</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
+      <data key="v_PolitSenat3">NA</data>
+      <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
-      <data key="v_DerPolitSenat">Proconsul</data>
+      <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
-      <data key="v_MilitSenat1">Légat de légion</data>
+      <data key="v_MilitSenat1">Proconsul</data>
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
-      <data key="v_MilitSenat3">Proconsul</data>
+      <data key="v_MilitSenat3">Légat de légion</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Achaïe</data>
       <data key="v_DestVoy2">Mésie supérieure</data>
@@ -1871,24 +1675,20 @@
     </node>
     <node id="n48">
       <data key="v_name">P48</data>
-      <data key="v_label">Iulius Tiberius Alexander Berenicianus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Parthie</data>
+      <data key="v_DestVoy1">Pathie</data>
       <data key="v_DestVoy2">NA</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
@@ -1909,19 +1709,15 @@
     </node>
     <node id="n49">
       <data key="v_name">P49</data>
-      <data key="v_label">Lucius Iulius Vestinus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
-      <data key="v_DerPolitEques">Procuratèle</data>
+      <data key="v_DerPolitEques">Procurateur</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
@@ -1947,18 +1743,14 @@
     </node>
     <node id="n50">
       <data key="v_name">P50</data>
-      <data key="v_label">Tiberius Iulius Ferox</data>
       <data key="v_PolitSenat1">Édile</data>
-      <data key="v_PolitSenat2">Consul suffect</data>
-      <data key="v_PolitSenat3">Consul</data>
+      <data key="v_PolitSenat2">NA</data>
+      <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
-      <data key="v_DerPolitSenat">Proconsul</data>
+      <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Proconsul</data>
       <data key="v_MilitSenat2">NA</data>
@@ -1985,18 +1777,14 @@
     </node>
     <node id="n51">
       <data key="v_name">P51</data>
-      <data key="v_label">Frontin</data>
       <data key="v_PolitSenat1">Édile</data>
       <data key="v_PolitSenat2">Consul suffect</data>
-      <data key="v_PolitSenat3">Consul</data>
+      <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
-      <data key="v_DerPolitSenat">Proconsul</data>
+      <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">Proconsul</data>
@@ -2023,18 +1811,14 @@
     </node>
     <node id="n52">
       <data key="v_name">P52</data>
-      <data key="v_label">Aulus Larcius Priscus</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plèbe</data>
       <data key="v_PolitSenat3">Préteur</data>
-      <data key="v_PolitSenat4">Propréteur</data>
+      <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">NA</data>
@@ -2061,18 +1845,14 @@
     </node>
     <node id="n53">
       <data key="v_name">P53</data>
-      <data key="v_label">Lusius Quietus</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
@@ -2099,18 +1879,14 @@
     </node>
     <node id="n54">
       <data key="v_name">P54</data>
-      <data key="v_label">Appius Maximus Santra</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
-      <data key="v_DerPolitSenat">Préteur</data>
+      <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">NA</data>
@@ -2137,18 +1913,14 @@
     </node>
     <node id="n55">
       <data key="v_name">P55</data>
-      <data key="v_label">Publius Metilius Sabinus Nepos</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -2175,22 +1947,18 @@
     </node>
     <node id="n56">
       <data key="v_name">P56</data>
-      <data key="v_label">Lucius Minicius Natalis</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plèbe</data>
       <data key="v_PolitSenat3">Préteur</data>
-      <data key="v_PolitSenat4">Propréteur</data>
-      <data key="v_PolitSenat5">Consul suffect</data>
-      <data key="v_PolitSenat6">Consul</data>
-      <data key="v_DerPolitSenat">Proconsul</data>
-      <data key="v_PolitEques1">Procuratèle</data>
+      <data key="v_PolitSenat4">NA</data>
+      <data key="v_PolitSenat5">NA</data>
+      <data key="v_DerPolitSenat">Consul suffect</data>
+      <data key="v_PolitEques1">Procurateur</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
-      <data key="v_MilitSenat1">Légat de légion</data>
-      <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
-      <data key="v_MilitSenat3">Proconsul</data>
+      <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
+      <data key="v_MilitSenat2">Proconsul</data>
+      <data key="v_MilitSenat3">Légat de légion</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Dacie</data>
       <data key="v_DestVoy2">Numidie</data>
@@ -2213,18 +1981,14 @@
     </node>
     <node id="n57">
       <data key="v_name">P57</data>
-      <data key="v_label">Sosius Papus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -2251,18 +2015,14 @@
     </node>
     <node id="n58">
       <data key="v_name">P58</data>
-      <data key="v_label">Cnaeus Pinarius Aemilius Cicatricula Pompeius Longinus</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul suffect</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
@@ -2289,18 +2049,14 @@
     </node>
     <node id="n59">
       <data key="v_name">P59</data>
-      <data key="v_label">Alfius Publius Maximus</data>
-      <data key="v_PolitSenat1">Préteur</data>
+      <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
-      <data key="v_DerPolitSenat">Propréteur</data>
+      <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
@@ -2327,23 +2083,19 @@
     </node>
     <node id="n60">
       <data key="v_name">P60</data>
-      <data key="v_label">Sextus Quinctilius Valerius Maximus</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plèbe</data>
-      <data key="v_PolitSenat3">Préteur</data>
+      <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
-      <data key="v_DerPolitSenat">Propréteur</data>
-      <data key="v_PolitEques1">Procuratèle</data>
+      <data key="v_DerPolitSenat">Préteur</data>
+      <data key="v_PolitEques1">Préfet des ouvriers</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
-      <data key="v_MilitEques">Tribun angusticlave</data>
+      <data key="v_MilitEques">Tribun militaire</data>
       <data key="v_DestVoy1">Dacie</data>
       <data key="v_DestVoy2">Mésie</data>
       <data key="v_DestVoy3">Achaïe</data>
@@ -2365,23 +2117,19 @@
     </node>
     <node id="n61">
       <data key="v_name">P61</data>
-      <data key="v_label">Caius Licinius Voconius Romanus</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Édile</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
-      <data key="v_MilitEques">Tribun angusticlave</data>
+      <data key="v_MilitEques">Tribun militaire</data>
       <data key="v_DestVoy1">Tarraconaise</data>
       <data key="v_DestVoy2">NA</data>
       <data key="v_DestVoy3">NA</data>
@@ -2403,18 +2151,14 @@
     </node>
     <node id="n62">
       <data key="v_name">P62</data>
-      <data key="v_label">Lucius Roscius Caelius Murena</data>
-      <data key="v_PolitSenat1">Tribun de la plèbe</data>
+      <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
-      <data key="v_DerPolitSenat">Préteur</data>
+      <data key="v_DerPolitSenat">Tribun de la plèbe</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">NA</data>
@@ -2441,18 +2185,14 @@
     </node>
     <node id="n63">
       <data key="v_name">P63</data>
-      <data key="v_label">Caius Septicius Clarus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">Préfet du prétoire</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -2479,18 +2219,14 @@
     </node>
     <node id="n64">
       <data key="v_name">P64</data>
-      <data key="v_label">Servius Sulpicius Similis</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">Préfet de l&apos;annone</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">Préfet du prétoire</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>
@@ -2517,18 +2253,14 @@
     </node>
     <node id="n65">
       <data key="v_name">P65</data>
-      <data key="v_label">Decimus Terentius Scaurianus</data>
-      <data key="v_PolitSenat1">Préteur</data>
-      <data key="v_PolitSenat2">Propréteur</data>
+      <data key="v_PolitSenat1">NA</data>
+      <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">Consul</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitSenat1">Légat de légion</data>
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
@@ -2555,18 +2287,14 @@
     </node>
     <node id="n66">
       <data key="v_name">P66</data>
-      <data key="v_label">Caius Vibius Maximus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
       <data key="v_PolitSenat4">NA</data>
       <data key="v_PolitSenat5">NA</data>
-      <data key="v_PolitSenat6">NA</data>
       <data key="v_DerPolitSenat">NA</data>
       <data key="v_PolitEques1">NA</data>
       <data key="v_PolitEques2">NA</data>
-      <data key="v_PolitEques3">NA</data>
-      <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">Préfet d&apos;Égypte</data>
       <data key="v_MilitSenat1">NA</data>
       <data key="v_MilitSenat2">NA</data>

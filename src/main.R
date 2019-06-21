@@ -29,8 +29,8 @@ g <- extract.network()
 p1 <- ggraph(g, layout="focus", v=1) +
 		draw_circle(use = "focus", max.circle = 3)+
 		geom_edge_link(edge_color="black",edge_width=0.3)+
-#		geom_node_point(aes(fill=as.factor(Faction)),size=2,shape=21)+
-		scale_fill_manual(values=c("#8B2323", "#EEAD0E"))+
+		geom_node_point(aes(fill=as.factor(V(g)$RelTrajan)),size=2,shape=21)+
+		scale_fill_manual(values=c("#8B2323", "#EEAD0E", "#34CB34", "#3366FF"))+
 		theme_graph()+
 		theme(legend.position = "none")+
 		coord_fixed()+

@@ -1,0 +1,27 @@
+Poste,Sphère,Statut,Identifiant,Rang,Localisation
+Questeur,Sénatorial,Politique,spol1,1,Rome ou Province
+Édile,Sénatorial,Politique,spol2,2,Rome ou Province
+Tribun de la plèbe,Sénatorial,Politique,spol3,3,Rome ou Province
+Préteur,Sénatorial,Politique,spol4,4,Rome ou Province
+Propréteur,Sénatorial,Politique,spol5,5,Rome ou Province
+Consul suffect,Sénatorial,Politique,spol6,6,Rome
+Consul,Sénatorial,Politique,spol7,7,Rome
+Proconsul,Sénatorial,Politique,spol8,8,Rome ou Province
+Préfet de la ville,Sénatorial,Politique,spol9,9,Rome
+Tribun lacticlave,Sénatorial,Militaire,smil1-1,1,Province
+Tribun de légion,Sénatorial,Militaire,smil1-2,1,Province
+Tribun Militaire,Sénatorial,Militaire,smil1-3,1,Province
+Légat de légion,Sénatorial,Militaire,smil2,2,Province
+Légat d'Auguste propréteur,Sénatorial,Militaire,smil3,3,Province
+Procuratèle,Équestre,Politique,cpol1,1,Rome ou Province
+Préfet de la flotte,Équestre,Politique,cpol2,2,Rome
+Préfet des vigiles,Équestre,Politique,cpol3,3,Rome
+Préfet de l'annone,Équestre,Politique,cpol4,4,Rome
+Préfet d'Égypte,Équestre,Politique,cpol5,5,Égypte
+Préfet du prétoire,Équestre,Politique,cpol6,6,Rome
+Préfet de cohorte,Équestre,Militaire,cmil1,1,Province
+Tribun angusticlave,Équestre,Militaire,cmil2,2,Province
+Préfet d'ailes,Équestre,Militaire,cmil3,3,Province
+Tribun des vigiles,Équestre,Militaire,cmil4,4,Rome
+Tribun d'une cohorte urbaine,Équestre,Militaire,cmil5,5,Rome
+Tribun d'une cohorte prétorienne,Équestre,Militaire,cmil6,6,Rome

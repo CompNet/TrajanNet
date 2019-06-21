@@ -131,7 +131,7 @@ extract.network <- function()
 	
 	# add personal node attributes 
 	V(g)$name <- attr.data[,"Id"]
-#	V(g)$label <- attr.data[,"Nom"] #TODO
+	V(g)$label <- attr.data[,"Nom"]
 	
 	# add chronological (or single) nominal node attributes
 	att.names <- c("PolitSenat", "DerPolitSenat","PolitEques","DerPolitEques","MilitSenat","MilitEques","DestVoy","MotifVoy","RelTrajan")
