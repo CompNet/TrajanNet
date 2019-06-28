@@ -28,8 +28,14 @@
   <key id="v_DestVoy4" for="node" attr.name="DestVoy4" attr.type="string"/>
   <key id="v_DestVoy5" for="node" attr.name="DestVoy5" attr.type="string"/>
   <key id="v_DestVoy6" for="node" attr.name="DestVoy6" attr.type="string"/>
+  <key id="v_DestVoy7" for="node" attr.name="DestVoy7" attr.type="string"/>
   <key id="v_MotifVoy1" for="node" attr.name="MotifVoy1" attr.type="string"/>
   <key id="v_MotifVoy2" for="node" attr.name="MotifVoy2" attr.type="string"/>
+  <key id="v_MotifVoy3" for="node" attr.name="MotifVoy3" attr.type="string"/>
+  <key id="v_MotifVoy4" for="node" attr.name="MotifVoy4" attr.type="string"/>
+  <key id="v_MotifVoy5" for="node" attr.name="MotifVoy5" attr.type="string"/>
+  <key id="v_MotifVoy6" for="node" attr.name="MotifVoy6" attr.type="string"/>
+  <key id="v_MotifVoy7" for="node" attr.name="MotifVoy7" attr.type="string"/>
   <key id="v_RelTrajan" for="node" attr.name="RelTrajan" attr.type="string"/>
   <key id="v_Cercles_Antonins" for="node" attr.name="Cercles_Antonins" attr.type="boolean"/>
   <key id="v_Cercles_Nigrinus" for="node" attr.name="Cercles_Nigrinus" attr.type="boolean"/>
@@ -41,7 +47,7 @@
   <key id="v_Espagnol" for="node" attr.name="Espagnol" attr.type="boolean"/>
   <key id="v_NbrVoy" for="node" attr.name="NbrVoy" attr.type="double"/>
   <key id="e_Nature_Amicale" for="edge" attr.name="Nature_Amicale" attr.type="boolean"/>
-  <key id="e_Nature_Famille" for="edge" attr.name="Nature_Famille" attr.type="boolean"/>
+  <key id="e_Nature_Familiale" for="edge" attr.name="Nature_Familiale" attr.type="boolean"/>
   <key id="e_Nature_Professionnelle" for="edge" attr.name="Nature_Professionnelle" attr.type="boolean"/>
   <key id="e_Polarité" for="edge" attr.name="Polarité" attr.type="string"/>
   <graph id="G" edgedefault="undirected">
@@ -70,8 +76,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">NA</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -108,8 +120,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Personnel</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -140,14 +158,20 @@
       <data key="v_MilitSenat2">Légat de légion</data>
       <data key="v_MilitSenat3">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Pannonie</data>
-      <data key="v_DestVoy2">Germanie</data>
-      <data key="v_DestVoy3">Dacie</data>
-      <data key="v_DestVoy4">Syrie</data>
-      <data key="v_DestVoy5">NA</data>
-      <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy1">Germanie</data>
+      <data key="v_DestVoy2">Mésie</data>
+      <data key="v_DestVoy3">Pannonie</data>
+      <data key="v_DestVoy4">Dacie</data>
+      <data key="v_DestVoy5">Germanie</data>
+      <data key="v_DestVoy6">Pannonie</data>
+      <data key="v_DestVoy7">Syrie</data>
       <data key="v_MotifVoy1">Militaire</data>
-      <data key="v_MotifVoy2">Personnel</data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">Militaire</data>
+      <data key="v_MotifVoy4">Militaire</data>
+      <data key="v_MotifVoy5">Militaire</data>
+      <data key="v_MotifVoy6">Militaire</data>
+      <data key="v_MotifVoy7">Polotico-militaire</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -157,7 +181,7 @@
       <data key="v_Adelectio">false</data>
       <data key="v_SoutHadrien">false</data>
       <data key="v_Espagnol">true</data>
-      <data key="v_NbrVoy">4</data>
+      <data key="v_NbrVoy">7</data>
     </node>
     <node id="n3">
       <data key="v_name">P3</data>
@@ -178,14 +202,20 @@
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">NA</data>
+      <data key="v_DestVoy1">Grèce</data>
       <data key="v_DestVoy2">NA</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Personnel</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -216,14 +246,20 @@
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Syrie</data>
+      <data key="v_DestVoy1">Cilicie</data>
       <data key="v_DestVoy2">NA</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Personnel</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -254,14 +290,20 @@
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Syrie</data>
+      <data key="v_DestVoy1">Cilicie</data>
       <data key="v_DestVoy2">NA</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Personnel</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -298,8 +340,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">NA</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -336,8 +384,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -374,8 +428,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Personnel</data>
+      <data key="v_MotifVoy2">Politique</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -406,14 +466,20 @@
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Dacie</data>
-      <data key="v_DestVoy2">Pannonie</data>
-      <data key="v_DestVoy3">Belgique</data>
-      <data key="v_DestVoy4">NA</data>
+      <data key="v_DestVoy1">Mésie</data>
+      <data key="v_DestVoy2">Dacie</data>
+      <data key="v_DestVoy3">Pannonie</data>
+      <data key="v_DestVoy4">Belgique</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Militaire</data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">Politico-militaire</data>
+      <data key="v_MotifVoy4">Politico-militaire</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -423,7 +489,7 @@
       <data key="v_Adelectio">false</data>
       <data key="v_SoutHadrien">true</data>
       <data key="v_Espagnol">false</data>
-      <data key="v_NbrVoy">3</data>
+      <data key="v_NbrVoy">4</data>
     </node>
     <node id="n10">
       <data key="v_name">P10</data>
@@ -450,8 +516,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">true</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -483,13 +555,19 @@
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Grèce</data>
-      <data key="v_DestVoy2">Dacie</data>
-      <data key="v_DestVoy3">Mésie</data>
+      <data key="v_DestVoy2">Mésie </data>
+      <data key="v_DestVoy3">Dacie</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique</data>
+      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy3">Politico-militaire</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">true</data>
@@ -520,14 +598,20 @@
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Germanie</data>
-      <data key="v_DestVoy2">Asie</data>
-      <data key="v_DestVoy3">Cappadoce</data>
-      <data key="v_DestVoy4">Arménie</data>
-      <data key="v_DestVoy5">Syrie</data>
-      <data key="v_DestVoy6">Afrique</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_DestVoy1">Asie </data>
+      <data key="v_DestVoy2">Germanie</data>
+      <data key="v_DestVoy3">Asie</data>
+      <data key="v_DestVoy4">Cappadoce</data>
+      <data key="v_DestVoy5">Arménie</data>
+      <data key="v_DestVoy6">Syrie</data>
+      <data key="v_DestVoy7">Afrique</data>
+      <data key="v_MotifVoy1">Politique</data>
+      <data key="v_MotifVoy2">Militaire </data>
+      <data key="v_MotifVoy3">Politico-militaire</data>
+      <data key="v_MotifVoy4">Politico-militaire</data>
+      <data key="v_MotifVoy5">Politico-militaire</data>
+      <data key="v_MotifVoy6">Politico-militaire</data>
+      <data key="v_MotifVoy7">Politico-militaire</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -537,7 +621,7 @@
       <data key="v_Adelectio">false</data>
       <data key="v_SoutHadrien">true</data>
       <data key="v_Espagnol">false</data>
-      <data key="v_NbrVoy">6</data>
+      <data key="v_NbrVoy">7</data>
     </node>
     <node id="n13">
       <data key="v_name">P13</data>
@@ -558,14 +642,20 @@
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Dacie</data>
-      <data key="v_DestVoy2">Dalmatie</data>
-      <data key="v_DestVoy3">Mésie</data>
+      <data key="v_DestVoy1">Dalmatie</data>
+      <data key="v_DestVoy2">Mésie</data>
+      <data key="v_DestVoy3">Dacie</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy3">Militaire</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -602,8 +692,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -634,14 +730,20 @@
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">Préfet de cohorte</data>
-      <data key="v_DestVoy1">Dacie</data>
-      <data key="v_DestVoy2">Parthie</data>
-      <data key="v_DestVoy3">Babylone</data>
-      <data key="v_DestVoy4">Achaïe</data>
-      <data key="v_DestVoy5">NA</data>
+      <data key="v_DestVoy1">Mésie</data>
+      <data key="v_DestVoy2">Achaïe</data>
+      <data key="v_DestVoy3">Dacie</data>
+      <data key="v_DestVoy4">Parthie</data>
+      <data key="v_DestVoy5">Babylone</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">Militaire</data>
+      <data key="v_MotifVoy4">Militaire</data>
+      <data key="v_MotifVoy5">Militaire</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -651,7 +753,7 @@
       <data key="v_Adelectio">false</data>
       <data key="v_SoutHadrien">true</data>
       <data key="v_Espagnol">false</data>
-      <data key="v_NbrVoy">4</data>
+      <data key="v_NbrVoy">5</data>
     </node>
     <node id="n16">
       <data key="v_name">P16</data>
@@ -678,8 +780,14 @@
       <data key="v_DestVoy4">Tarraconaise</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Militaire</data>
+      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy3">Politico-militaire</data>
+      <data key="v_MotifVoy4">Personnel</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">true</data>
@@ -716,8 +824,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">true</data>
@@ -748,14 +862,20 @@
       <data key="v_MilitSenat2">Légat de légion</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Dacie</data>
-      <data key="v_DestVoy2">Cappadoce</data>
-      <data key="v_DestVoy3">Galatie</data>
-      <data key="v_DestVoy4">Judée</data>
-      <data key="v_DestVoy5">Syrie</data>
-      <data key="v_DestVoy6">Germanie</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_DestVoy1">Mésie</data>
+      <data key="v_DestVoy2">Dacie</data>
+      <data key="v_DestVoy3">Judée</data>
+      <data key="v_DestVoy4">Cappadoce</data>
+      <data key="v_DestVoy5">Galatie</data>
+      <data key="v_DestVoy6">Syrie</data>
+      <data key="v_DestVoy7">Dacie</data>
+      <data key="v_MotifVoy1">Militaire</data>
+      <data key="v_MotifVoy2">Militaire:Politico-militaire</data>
+      <data key="v_MotifVoy3">Politico-militaire</data>
+      <data key="v_MotifVoy4">Politico-militaire</data>
+      <data key="v_MotifVoy5">Politico-militaire</data>
+      <data key="v_MotifVoy6">Politico-militaire</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -765,7 +885,7 @@
       <data key="v_Adelectio">false</data>
       <data key="v_SoutHadrien">true</data>
       <data key="v_Espagnol">false</data>
-      <data key="v_NbrVoy">6</data>
+      <data key="v_NbrVoy">7</data>
     </node>
     <node id="n19">
       <data key="v_name">P19</data>
@@ -786,14 +906,20 @@
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Germanie</data>
-      <data key="v_DestVoy2">Pannonie</data>
-      <data key="v_DestVoy3">Dacie</data>
+      <data key="v_DestVoy1">Germanie supérieure</data>
+      <data key="v_DestVoy2">Dacie</data>
+      <data key="v_DestVoy3">Pannonie</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">Politico-militaire</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -826,12 +952,18 @@
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Mésie</data>
       <data key="v_DestVoy2">Dacie</data>
-      <data key="v_DestVoy3">Germanie supérieure</data>
-      <data key="v_DestVoy4">NA</data>
-      <data key="v_DestVoy5">NA</data>
-      <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_DestVoy3">Afrique</data>
+      <data key="v_DestVoy4">Germanie supérieure</data>
+      <data key="v_DestVoy5">Syrie</data>
+      <data key="v_DestVoy6">Afrique</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1"></data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">Militaire</data>
+      <data key="v_MotifVoy4">Politico-militaire</data>
+      <data key="v_MotifVoy5">Politico-militaire</data>
+      <data key="v_MotifVoy6">Politico-militaire</data>
+      <data key="v_MotifVoy7">Politico-militaire</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -841,7 +973,7 @@
       <data key="v_Adelectio">true</data>
       <data key="v_SoutHadrien">true</data>
       <data key="v_Espagnol">false</data>
-      <data key="v_NbrVoy">3</data>
+      <data key="v_NbrVoy">6</data>
     </node>
     <node id="n21">
       <data key="v_name">P21</data>
@@ -863,13 +995,19 @@
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Judée</data>
-      <data key="v_DestVoy2">Dacie</data>
-      <data key="v_DestVoy3">Mésie inférieure</data>
+      <data key="v_DestVoy2">Mésie inférieure</data>
+      <data key="v_DestVoy3">Dacie</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Militaire</data>
-      <data key="v_MotifVoy2">Politique</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique</data>
+      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy3">Militaire</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -900,14 +1038,20 @@
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Tarraconaise</data>
-      <data key="v_DestVoy2">Dacie</data>
+      <data key="v_DestVoy1">Dacie</data>
+      <data key="v_DestVoy2">NA</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">true</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -917,7 +1061,7 @@
       <data key="v_Adelectio">false</data>
       <data key="v_SoutHadrien">true</data>
       <data key="v_Espagnol">true</data>
-      <data key="v_NbrVoy">2</data>
+      <data key="v_NbrVoy">1</data>
     </node>
     <node id="n23">
       <data key="v_name">P23</data>
@@ -938,14 +1082,20 @@
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Pannonie inférieure</data>
-      <data key="v_DestVoy2">Pannonie supérieure</data>
-      <data key="v_DestVoy3">Germanie inférieure</data>
+      <data key="v_DestVoy1">Germanie inférieure</data>
+      <data key="v_DestVoy2">Dacie</data>
+      <data key="v_DestVoy3">Pannonie</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Personnel</data>
-      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politico-militaire</data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">Politico-militaire</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">true</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -982,8 +1132,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1020,8 +1176,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1058,8 +1220,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique</data>
+      <data key="v_MotifVoy2">Politique</data>
+      <data key="v_MotifVoy3">Politico-militaire</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1096,8 +1264,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">true</data>
@@ -1134,8 +1308,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1172,8 +1352,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1205,13 +1391,19 @@
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Dacie</data>
-      <data key="v_DestVoy2">Parthie</data>
-      <data key="v_DestVoy3">Syrie</data>
+      <data key="v_DestVoy2">NA</data>
+      <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Professionnel</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1242,14 +1434,20 @@
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Belgique</data>
+      <data key="v_DestVoy1">Achaïe</data>
       <data key="v_DestVoy2">Germanie</data>
-      <data key="v_DestVoy3">Mésie supérieure</data>
-      <data key="v_DestVoy4">NA</data>
-      <data key="v_DestVoy5">NA</data>
-      <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_DestVoy3">Belgique</data>
+      <data key="v_DestVoy4">Germanie</data>
+      <data key="v_DestVoy5">Mésie supérieure</data>
+      <data key="v_DestVoy6">Dacie</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique</data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">Politico-militaire</data>
+      <data key="v_MotifVoy4">Politico-militaire</data>
+      <data key="v_MotifVoy5">Politico-militaire</data>
+      <data key="v_MotifVoy6">Militaire</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1259,7 +1457,7 @@
       <data key="v_Adelectio">false</data>
       <data key="v_SoutHadrien">true</data>
       <data key="v_Espagnol">true</data>
-      <data key="v_NbrVoy">3</data>
+      <data key="v_NbrVoy">6</data>
     </node>
     <node id="n32">
       <data key="v_name">P32</data>
@@ -1286,8 +1484,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1324,8 +1528,14 @@
       <data key="v_DestVoy4">Hispanie citérieure</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique</data>
+      <data key="v_MotifVoy2">Politique</data>
+      <data key="v_MotifVoy3">Politique</data>
+      <data key="v_MotifVoy4">Politico-militaire</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1362,8 +1572,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique </data>
+      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1400,8 +1616,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles_Antonins">true</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1438,8 +1660,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1476,8 +1704,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1514,8 +1748,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1549,11 +1789,17 @@
       <data key="v_DestVoy1">Mésie inférieure</data>
       <data key="v_DestVoy2">Pannonie</data>
       <data key="v_DestVoy3">Afrique</data>
-      <data key="v_DestVoy4">Dacie</data>
+      <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy3">Politico-militaire</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1563,7 +1809,7 @@
       <data key="v_Adelectio">false</data>
       <data key="v_SoutHadrien">false</data>
       <data key="v_Espagnol">false</data>
-      <data key="v_NbrVoy">4</data>
+      <data key="v_NbrVoy">3</data>
     </node>
     <node id="n40">
       <data key="v_name">P40</data>
@@ -1590,8 +1836,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">true</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1618,7 +1870,7 @@
       <data key="v_PolitEques3">NA</data>
       <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
-      <data key="v_MilitSenat1">Légat propréteur</data>
+      <data key="v_MilitSenat1">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
@@ -1628,8 +1880,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1666,8 +1924,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1704,8 +1968,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">Politico-militaire</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1742,8 +2012,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1780,8 +2056,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1818,8 +2100,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique</data>
+      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1856,8 +2144,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1894,8 +2188,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1932,8 +2232,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Militaire</data>
-      <data key="v_MotifVoy2">Personnel</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique</data>
+      <data key="v_MotifVoy2">Politique</data>
+      <data key="v_MotifVoy3">Personnel</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -1964,14 +2270,20 @@
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Asie</data>
-      <data key="v_DestVoy2">Parthie</data>
+      <data key="v_DestVoy1">Parthie</data>
+      <data key="v_DestVoy2">Asie</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Militaire</data>
+      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles_Antonins">true</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2002,14 +2314,20 @@
       <data key="v_MilitSenat2">Proconsul</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Bretagne</data>
+      <data key="v_DestVoy1">Bertagne</data>
       <data key="v_DestVoy2">Germanie inférieure</data>
       <data key="v_DestVoy3">Asie</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Militaire</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politico-militaireMilitaire</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2042,12 +2360,18 @@
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Asie</data>
       <data key="v_DestVoy2">Syrie</data>
-      <data key="v_DestVoy3">Bretagne</data>
-      <data key="v_DestVoy4">Afrique</data>
+      <data key="v_DestVoy3">Syrie</data>
+      <data key="v_DestVoy4">Bretagne</data>
       <data key="v_DestVoy5">Bétique</data>
       <data key="v_DestVoy6">Narbonnaise</data>
-      <data key="v_MotifVoy1">Militaire</data>
-      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_DestVoy7">Afrique</data>
+      <data key="v_MotifVoy1">Politique</data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">Militiaire</data>
+      <data key="v_MotifVoy4">Politico-militaire</data>
+      <data key="v_MotifVoy5">Politico-militiare</data>
+      <data key="v_MotifVoy6">Politico-militiaire</data>
+      <data key="v_MotifVoy7">Politico-militaire</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2057,7 +2381,7 @@
       <data key="v_Adelectio">false</data>
       <data key="v_SoutHadrien">false</data>
       <data key="v_Espagnol">false</data>
-      <data key="v_NbrVoy">6</data>
+      <data key="v_NbrVoy">7</data>
     </node>
     <node id="n53">
       <data key="v_name">P53</data>
@@ -2078,14 +2402,20 @@
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Palestine</data>
-      <data key="v_DestVoy2">Dacie</data>
-      <data key="v_DestVoy3">Parthie</data>
+      <data key="v_DestVoy1">Dacie</data>
+      <data key="v_DestVoy2">Parthie</data>
+      <data key="v_DestVoy3">Palestine</data>
       <data key="v_DestVoy4">Cyrénaïque</data>
       <data key="v_DestVoy5">Mésopotamie</data>
       <data key="v_DestVoy6">Judée</data>
-      <data key="v_MotifVoy1">Militaire</data>
-      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Militiaire</data>
+      <data key="v_MotifVoy2">Militiaire</data>
+      <data key="v_MotifVoy3">Politico-militaire</data>
+      <data key="v_MotifVoy4">Militaire</data>
+      <data key="v_MotifVoy5">Militaire</data>
+      <data key="v_MotifVoy6">Politico-militaire</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2116,14 +2446,20 @@
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Pathie</data>
-      <data key="v_DestVoy2">Mésopotamie</data>
+      <data key="v_DestVoy1">Mésopotamie</data>
+      <data key="v_DestVoy2">Parthie</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2160,8 +2496,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2192,14 +2534,20 @@
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat3">Proconsul</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Dacie</data>
-      <data key="v_DestVoy2">Numidie</data>
-      <data key="v_DestVoy3">Afrique</data>
-      <data key="v_DestVoy4">Pannonie supérieure</data>
-      <data key="v_DestVoy5">NA</data>
-      <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy1">Afrique</data>
+      <data key="v_DestVoy2">Dacie</data>
+      <data key="v_DestVoy3">Mésie</data>
+      <data key="v_DestVoy4">Numidie</data>
+      <data key="v_DestVoy5">Pannonie supérieure</data>
+      <data key="v_DestVoy6">Afrique</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">Militaire</data>
+      <data key="v_MotifVoy4">Militaire</data>
+      <data key="v_MotifVoy5">Politico-militaire</data>
+      <data key="v_MotifVoy6">Politico-militaire</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2209,7 +2557,7 @@
       <data key="v_Adelectio">true</data>
       <data key="v_SoutHadrien">false</data>
       <data key="v_Espagnol">true</data>
-      <data key="v_NbrVoy">4</data>
+      <data key="v_NbrVoy">6</data>
     </node>
     <node id="n57">
       <data key="v_name">P57</data>
@@ -2236,8 +2584,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2268,14 +2622,20 @@
       <data key="v_MilitSenat2">Légat d&apos;Auguste propréteur</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Dacie</data>
-      <data key="v_DestVoy2">Mésie supérieure</data>
-      <data key="v_DestVoy3">Pannonie</data>
+      <data key="v_DestVoy1">Mésie supérieure</data>
+      <data key="v_DestVoy2">Pannonie</data>
+      <data key="v_DestVoy3">Dacie</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Militaire</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy3">Militaire</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2306,14 +2666,20 @@
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Pannonie enitère</data>
+      <data key="v_DestVoy1">Pannonie </data>
       <data key="v_DestVoy2">NA</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2344,14 +2710,20 @@
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">Tribun angusticlave</data>
-      <data key="v_DestVoy1">Dacie</data>
+      <data key="v_DestVoy1">Achaïe</data>
       <data key="v_DestVoy2">Mésie</data>
-      <data key="v_DestVoy3">Achaïe</data>
-      <data key="v_DestVoy4">Asie</data>
-      <data key="v_DestVoy5">NA</data>
+      <data key="v_DestVoy3">Dacie</data>
+      <data key="v_DestVoy4">Achaïe</data>
+      <data key="v_DestVoy5">Asie</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Militaire</data>
-      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique</data>
+      <data key="v_MotifVoy2">Militaire</data>
+      <data key="v_MotifVoy3">Militaire</data>
+      <data key="v_MotifVoy4">Politico-militaire</data>
+      <data key="v_MotifVoy5">Politique</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2361,7 +2733,7 @@
       <data key="v_Adelectio">true</data>
       <data key="v_SoutHadrien">true</data>
       <data key="v_Espagnol">false</data>
-      <data key="v_NbrVoy">4</data>
+      <data key="v_NbrVoy">5</data>
     </node>
     <node id="n61">
       <data key="v_name">P61</data>
@@ -2388,8 +2760,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">Personnel</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2426,8 +2804,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2464,8 +2848,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2496,14 +2886,20 @@
       <data key="v_MilitSenat2">NA</data>
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">NA</data>
+      <data key="v_DestVoy1">Égypte</data>
       <data key="v_DestVoy2">NA</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
-      <data key="v_MotifVoy1">NA</data>
+      <data key="v_DestVoy7">NA</data>
+      <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2535,13 +2931,19 @@
       <data key="v_MilitSenat3">NA</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Dacie</data>
-      <data key="v_DestVoy2">NA</data>
+      <data key="v_DestVoy2">Dacie</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2578,8 +2980,14 @@
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
+      <data key="v_DestVoy7">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy6">NA</data>
+      <data key="v_MotifVoy7">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles_Antonins">false</data>
       <data key="v_Cercles_Nigrinus">false</data>
@@ -2593,1033 +3001,1033 @@
     </node>
     <edge source="n0" target="n1">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n2">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n3">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n4">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n5">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
+      <data key="e_Polarité">Positive</data>
+    </edge>
+    <edge source="n0" target="n6">
+      <data key="e_Nature_Amicale">true</data>
+      <data key="e_Nature_Familiale">false</data>
+      <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n7">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n0" target="n8">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n9">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n10">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n11">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n12">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n13">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n14">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n15">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n16">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
-      <data key="e_Nature_Professionnelle">true</data>
-      <data key="e_Polarité">Positive</data>
-    </edge>
-    <edge source="n0" target="n16">
-      <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n17">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n0" target="n18">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n19">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n20">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n21">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n22">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n23">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n24">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n25">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n26">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n27">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n28">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n29">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n30">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n31">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n32">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n33">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n34">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n35">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n0" target="n36">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n37">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n0" target="n38">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n39">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n40">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n41">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n42">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n43">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n44">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n45">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n0" target="n46">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n0" target="n47">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n48">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n49">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n0" target="n50">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n0" target="n51">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n52">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n53">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n54">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n55">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n56">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n57">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n0" target="n58">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n59">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n60">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n61">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n62">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n63">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n64">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n65">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n0" target="n66">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n1" target="n2">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n1" target="n3">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n1" target="n4">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n1" target="n6">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n1" target="n7">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n1" target="n8">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n1" target="n23">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n1" target="n25">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n1" target="n61">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n3">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n4">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n5">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n2" target="n6">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n2" target="n8">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n11">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n2" target="n12">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n14">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n16">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n2" target="n18">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n19">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n21">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n2" target="n22">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n23">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n2" target="n27">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n2" target="n28">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n2" target="n31">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n34">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n2" target="n36">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n39">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n2" target="n40">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n42">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n2" target="n45">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n2" target="n46">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n49">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n53">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n2" target="n55">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n56">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n57">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n60">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n63">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n2" target="n64">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n3" target="n4">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n3" target="n5">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n3" target="n6">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n3" target="n6">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n3" target="n7">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n4" target="n5">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n4" target="n6">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n4" target="n7">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n5" target="n6">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n5" target="n7">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n5" target="n63">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n5" target="n63">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n6" target="n7">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n6" target="n25">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n8" target="n11">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n8" target="n16">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n8" target="n27">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n8" target="n53">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n10" target="n35">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n10" target="n50">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n11" target="n16">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n11" target="n17">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n11" target="n19">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n11" target="n27">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n11" target="n53">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n11" target="n64">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n12" target="n25">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n14" target="n22">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n16" target="n19">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n16" target="n27">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n16" target="n53">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n17" target="n25">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n17" target="n43">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n17" target="n51">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n19" target="n22">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n19" target="n25">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n19" target="n27">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n19" target="n40">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n20" target="n25">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n20" target="n25">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n22" target="n25">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n22" target="n33">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n22" target="n56">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n23" target="n27">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n24" target="n25">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n31">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n32">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n36">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n36">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n38">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n42">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n42">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n43">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n43">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n50">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n51">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n61">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n63">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n63">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n66">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n26" target="n66">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Négative</data>
     </edge>
     <edge source="n27" target="n53">
       <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n28" target="n53">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
     <edge source="n42" target="n48">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">false</data>
+      <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n42" target="n63">
       <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Famille">true</data>
+      <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
