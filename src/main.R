@@ -25,6 +25,7 @@ net.folder <- file.path(data.folder,"nets")
 # extract network
 g <- extract.network()
 
+
 # plot network
 p1 <- ggraph(g, layout="focus", v=1) +
 		draw_circle(use = "focus", max.circle = 3)+
@@ -52,22 +53,3 @@ p1 <- ggraph(g, layout="focus", v=1) +
 # Notes
 # - All ;-separated values are in chronological order, but almost no dates are available.
 # - We could merge PolitSenat/DerPolitSenat, same for PolitEques/DerPolitEques.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
