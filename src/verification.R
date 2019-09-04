@@ -3,7 +3,7 @@
 # 
 # 01/2019 Vincent Labatut
 #
-# setwd("D:/Eclipse/workspaces/Networks/TrajanNet")
+# setwd("C:/users/Vincent/Eclipse/workspaces/Networks/TrajanNet")
 # setwd("~/eclipse/workspaces/Networks/TrajanNet")
 # source("src/verification.R")
 #############################################################################################
