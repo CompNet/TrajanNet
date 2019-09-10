@@ -27,9 +27,11 @@ myplot <- function(g, paths, file)
 	ecols[E(g)$Type=="Nature_Professionnelle"] <- "#c27604"	# orange
 	# set edge style
 	elty <- rep(1,gsize(g))										# solid
-	elty[!is.na(E(g)$"Polarité") & E(g)$"Polarité"=="Négative"] <- 3			# dotted
+	elty[!is.na(E(g)$Polarite) & E(g)$"Polarité"=="Négative"] <- 3			# dotted
 	# set edge width
 	ewidth <- rep(1,gsize(g))
+	# set node outline color
+	outline.cols <- rep("BLACK",gorder(g))
 	
 	# possibly change the color of the highlighted path
 	if(hasArg(paths))
@@ -39,7 +41,9 @@ myplot <- function(g, paths, file)
 		{	v <- NA
 			for(n in path)
 			{	if(is.na(v))
-					v <- n
+				{	v <- n
+					outline.cols[v] <- "RED"
+				}
 				else
 				{	u <- v
 					v <- n
@@ -48,6 +52,7 @@ myplot <- function(g, paths, file)
 					ewidth[idx] <- 2
 				}
 			}
+			outline.cols[v] <- "RED"
 		}
 	}
 	
@@ -57,6 +62,7 @@ myplot <- function(g, paths, file)
 		layout=lay,
 		vertex.size=5, 
 		vertex.color="GREY",
+		vertex.frame.color=outline.cols,
 		edge.color=ecols,
 		edge.lty=elty,
 		edge.width=ewidth
@@ -122,34 +128,39 @@ g <- read.graph(graph.file,format="graphml")
 #coord <- tk_coords(3)
 #write.table(x=coord,file="data/nets/all_layout.txt")
 
-# read the layout and plot
-lay <- as.matrix(read.table(file="data/nets/all_layout.txt"))
-myplot(g, file=file.path(net.folder,"all.pdf"))
-myplot(g)
-
 # only keep certain types of links / possibly duplicate certain links
 g <- clean.links(g, link.types=c("Nature_Amicale",
 				"Nature_Familiale",
 				"Nature_Professionnelle"))	# Nature_Amicale Nature_Familiale Nature_Professionnelle
 
+# read the layout and plot
+lay <- as.matrix(read.table(file="data/nets/all_layout.txt"))
+myplot(g, file=file.path(net.folder,"all.pdf"))
+myplot(g)
+
 # delete trajan's links for better visibility
 # TODO maybe better to just draw them using a light color?
-#g0 <- delete_vertices(g,1)	# delete trajan
-neis <- as.integer(ego(graph=g,nodes=1,mindist=1)[[1]])
-es <- c(rbind(rep(1,length(neis)), neis))
-g0 <- delete.edges(g,es)	# delete traj's links
-myplot(g0, file=file.path(net.folder,"all_0.pdf"))
-myplot(g0) # TODO pb: ne supprime pas tous les liens !
+g0 <- g
+#g0 <- delete_vertices(g,1)		# delete trajan
+es <- incident(graph=g0, v=1, mode="all")
+g0 <- delete.edges(g0,es)	# delete traj's links
+myplot(g0, file=file.path(net.folder,"all0.pdf"))
+myplot(g0)
 
 # work on the diameter
 diam <- diameter(g0)					# get the network diameter
 dd <- distances(graph=g0)				# compute all inter-node distances
 idx <- which(dd==diam, arr.ind=TRUE)	# retrieve pairs of node matching the diameter 
-idx <- idx[idx[,1]<idx[,2],]			# filter (each pair appears twice du to symmetric matrix)
-
+idx <- idx[idx[,1]<idx[,2],]			# filter (each pair appears twice due to symmetric matrix)
+# plot diameter
+diameter.folder <- file.path(net.folder,"diameter")
+dir.create(path=diameter.folder, showWarnings=TRUE, recursive=TRUE)
 diam.paths <- lapply(1:nrow(idx), function(r) all_shortest_paths(graph=g0, from=idx[r,1], to=idx[r,2])$res)
-myplot(g0, diam.paths[[1]][[1]])
-myplot(g0, diam.paths[[1]])
+for(pp in 1:length(diam.paths))
+{	for(p in 1:length(diam.paths[[pp]]))
+		myplot(g0, diam.paths[[pp]][[p]], file=file.path(diameter.folder,paste0("all0_diam_",pp,"_",p,".pdf")))
+	myplot(g0, diam.paths[[pp]], file=file.path(diameter.folder,paste0("all0_diam_",pp,".pdf")))
+}
 
 # TODO
 # prétraitement
