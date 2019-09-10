@@ -104,3 +104,8 @@ diam.paths <- lapply(1:nrow(idx), function(r) all_shortest_paths(graph=g0, from=
 myplot(g0, diam.paths[[1]][[1]])
 myplot(g0, diam.paths[[1]])
 
+# TODO
+# prétraitement
+# - fonction qui extrait un graphe avec un seul type de lien
+# - même chose mais avec plusieurs types, avec liens multiples pour qu'ils apparaissent séparément dans les graphiques
+# analyse : regarder plutot l'excentricité ?
