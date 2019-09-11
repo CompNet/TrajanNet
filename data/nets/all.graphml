@@ -3659,12 +3659,6 @@
       <data key="e_Nature_Professionnelle">true</data>
       <data key="e_Polarité">NA</data>
     </edge>
-    <edge source="n3" target="n6">
-      <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Familiale">true</data>
-      <data key="e_Nature_Professionnelle">true</data>
-      <data key="e_Polarité">NA</data>
-    </edge>
     <edge source="n3" target="n7">
       <data key="e_Nature_Amicale">false</data>
       <data key="e_Nature_Familiale">true</data>
@@ -3700,12 +3694,6 @@
       <data key="e_Nature_Familiale">true</data>
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">NA</data>
-    </edge>
-    <edge source="n5" target="n63">
-      <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Familiale">false</data>
-      <data key="e_Nature_Professionnelle">false</data>
-      <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n5" target="n63">
       <data key="e_Nature_Amicale">true</data>
@@ -3875,12 +3863,6 @@
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Négative</data>
     </edge>
-    <edge source="n20" target="n25">
-      <data key="e_Nature_Amicale">false</data>
-      <data key="e_Nature_Familiale">false</data>
-      <data key="e_Nature_Professionnelle">false</data>
-      <data key="e_Polarité">Négative</data>
-    </edge>
     <edge source="n22" target="n25">
       <data key="e_Nature_Amicale">true</data>
       <data key="e_Nature_Familiale">false</data>
@@ -3929,12 +3911,6 @@
       <data key="e_Nature_Professionnelle">false</data>
       <data key="e_Polarité">Positive</data>
     </edge>
-    <edge source="n25" target="n36">
-      <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Familiale">false</data>
-      <data key="e_Nature_Professionnelle">false</data>
-      <data key="e_Polarité">Positive</data>
-    </edge>
     <edge source="n25" target="n38">
       <data key="e_Nature_Amicale">true</data>
       <data key="e_Nature_Familiale">false</data>
@@ -3942,18 +3918,6 @@
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n42">
-      <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Familiale">false</data>
-      <data key="e_Nature_Professionnelle">false</data>
-      <data key="e_Polarité">Positive</data>
-    </edge>
-    <edge source="n25" target="n42">
-      <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Familiale">false</data>
-      <data key="e_Nature_Professionnelle">false</data>
-      <data key="e_Polarité">Positive</data>
-    </edge>
-    <edge source="n25" target="n43">
       <data key="e_Nature_Amicale">true</data>
       <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
@@ -3978,12 +3942,6 @@
       <data key="e_Polarité">Positive</data>
     </edge>
     <edge source="n25" target="n61">
-      <data key="e_Nature_Amicale">true</data>
-      <data key="e_Nature_Familiale">false</data>
-      <data key="e_Nature_Professionnelle">false</data>
-      <data key="e_Polarité">Positive</data>
-    </edge>
-    <edge source="n25" target="n63">
       <data key="e_Nature_Amicale">true</data>
       <data key="e_Nature_Familiale">false</data>
       <data key="e_Nature_Professionnelle">false</data>
