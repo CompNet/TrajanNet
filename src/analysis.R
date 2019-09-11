@@ -154,7 +154,7 @@ idx <- which(dd==diam, arr.ind=TRUE)	# retrieve pairs of node matching the diame
 idx <- idx[idx[,1]<idx[,2],]			# filter (each pair appears twice due to symmetric matrix)
 # plot diameter
 diameter.folder <- file.path(net.folder,"diameter")
-dir.create(path=diameter.folder, showWarnings=TRUE, recursive=TRUE)
+dir.create(path=diameter.folder, showWarnings=FALSE, recursive=TRUE)
 diam.paths <- lapply(1:nrow(idx), function(r) all_shortest_paths(graph=g0, from=idx[r,1], to=idx[r,2])$res)
 for(pp in 1:length(diam.paths))
 {	for(p in 1:length(diam.paths[[pp]]))
