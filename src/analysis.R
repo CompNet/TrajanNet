@@ -60,7 +60,8 @@ myplot <- function(g, paths, file)
 	}
 	
 	if(hasArg(file))
-		pdf(file, width=25, height=25)
+#		pdf(paste0(file,".pdf"), width=25, height=25)
+		png(paste0(file,".png"), width=1024, height=1024)
 	plot(g,
 		layout=lay,
 		vertex.size=5, 
@@ -114,19 +115,28 @@ clean.links <- function(g, link.types)
 # xxx:xxx.
 #############################################################
 analyze.net.diameter <- function(g)
-{	# work on the diameter
-	diam <- diameter(g)					# get the network diameter
+{	# compute diameter
+	diam <- diameter(g)						# get the network diameter
 	dd <- distances(graph=g)				# compute all inter-node distances
 	idx <- which(dd==diam, arr.ind=TRUE)	# retrieve pairs of node matching the diameter 
 	idx <- idx[idx[,1]<idx[,2],]			# filter (each pair appears twice due to symmetric matrix)
-	# plot diameter
-	diameter.folder <- file.path(net.folder,"diameter")
+	
+	# possibly create folder
+	diameter.folder <- file.path(net.folder,g$name,"diameter")
 	dir.create(path=diameter.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	# plot diameter
 	diam.paths <- lapply(1:nrow(idx), function(r) all_shortest_paths(graph=g, from=idx[r,1], to=idx[r,2])$res)
 	for(pp in 1:length(diam.paths))
-	{	for(p in 1:length(diam.paths[[pp]]))
-			myplot(g, diam.paths[[pp]][[p]], file=file.path(diameter.folder,paste0("all0_diam_",pp,"_",p,".pdf")))
-		myplot(g, diam.paths[[pp]], file=file.path(diameter.folder,paste0("all0_diam_",pp,".pdf")))
+	{	myplot(g, diam.paths[[pp]], file=file.path(diameter.folder,paste0("graph0_diam_",pp)))
+		
+		q <- 1
+		for(p in 1:length(diam.paths[[pp]]))
+		{	if(p==1 || !all(diam.paths[[pp]][[p]]==diam.paths[[pp]][[p-1]]))
+			{	myplot(g, diam.paths[[pp]][[p]], file=file.path(diameter.folder,paste0("graph0_diam_",pp,"_",q)))
+				q <- q + 1
+			}
+		}
 	}
 }
 
@@ -140,8 +150,8 @@ analyze.net.diameter <- function(g)
 #############################################################
 analyze.network <- function(g)
 {	# read the original graph
-	graph.file <- file.path(net.folder,"all.graphml")
-	g <- read.graph(graph.file,format="graphml")
+#	graph.file <- file.path(net.folder,"all.graphml")
+#	g <- read.graph(graph.file,format="graphml")
 	
 	# tentative of using predefined layouts
 #	lay <- layout_with_fr(g)
@@ -152,34 +162,48 @@ analyze.network <- function(g)
 #	coord <- tk_coords(3)
 #	write.table(x=coord,file="data/nets/all_layout.txt")
 	
-	# only keep certain types of links / possibly duplicate certain links
-	g <- clean.links(g, link.types=c("Nature_Amicale",
-					"Nature_Familiale",
-					"Nature_Professionnelle"))	# Nature_Amicale Nature_Familiale Nature_Professionnelle
-	
-	# read the layout and plot full graph
+	# read the layout
 	lay <- as.matrix(read.table(file="data/nets/all_layout.txt"))
-	myplot(g, file=file.path(net.folder,"all.pdf"))
-	myplot(g)
 	
-	# delete trajan's links for better visibility
-	# TODO maybe better to just draw them using a light color?
-	g0 <- g
-#	g0 <- delete_vertices(g,1)		# delete trajan (not good, plot-wise)
-	es <- incident(graph=g0, v=1, mode="all")
-	g0 <- delete.edges(g0,es)	# delete traj's links
-	myplot(g0, file=file.path(net.folder,"all0.pdf"))
-	myplot(g0)
+	# set up list of graphs
+	g.lst <- list()
 	
-	# plot diameters
-	analyze.net.diameter(g0)
+	# only keep certain types of links / possibly duplicate certain links
+	{	g.lst[["all"]] <- clean.links(g, link.types=c("Nature_Amicale","Nature_Familiale","Nature_Professionnelle"))
+		g.lst[["all"]]$name <- "all"
+		g.lst[["friend"]] <- clean.links(g, link.types="Nature_Amicale")
+		g.lst[["friend"]]$name <- "friend"
+		g.lst[["family"]] <- clean.links(g, link.types="Nature_Familiale")
+		g.lst[["family"]]$name <- "family"
+		g.lst[["pro"]] <- clean.links(g, link.types="Nature_Professionnelle")
+		g.lst[["pro"]]$name <- "pro"
+	}
+	
+	# process each graph
+	for(g in g.lst)
+	{	tmp.folder <- file.path(net.folder, g$name)
+		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
+		
+		# plot full graph
+		myplot(g, file=file.path(tmp.folder,"graph"))
+		myplot(g)
+		
+		# delete trajan's links for better visibility
+		# TODO maybe better to just draw them using a light color?
+		g0 <- g
+#		g0 <- delete_vertices(g,1)		# delete trajan (not good, plot-wise)
+		es <- incident(graph=g0, v=1, mode="all")
+		g0 <- delete.edges(g0,es)	# delete traj's links
+		myplot(g0, file=file.path(tmp.folder,"graph0"))
+		myplot(g0)
+		
+		# plot diameters
+		analyze.net.diameter(g0)
+	}
 }
 
 
 
 
 # TODO
-# loop over all types of links in the main function (as well as with/without Trajan)
-# maybe extract them in the main.R file instead, pass them to the analysis script 
-# setup folders for each type of link+all
 # analysis: focus on eccentricity rather than diameter?
