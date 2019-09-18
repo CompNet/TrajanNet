@@ -7,6 +7,8 @@
 # setwd("~/eclipse/workspaces/Networks/TrajanNet")
 # source("src/verification.R")
 #############################################################################################
+# load other scripts
+source("src/constants.R")
 
 
 
@@ -16,16 +18,12 @@
 #################################
 cat(">>>>>>>>>>> Loading data\n")
 
-# setup folder
-data.folder <- "data"
-table.folder <- file.path(data.folder,"tables")
-
 # load node attributes
-attr.file <- file.path(table.folder,"trajan_attributes.csv")
+attr.file <- file.path(TABLE_FOLDER,"trajan_attributes.csv")
 attr.data <- as.matrix(read.csv(file=attr.file,header=TRUE,check.names=FALSE))
 
 # load relations
-rel.file <- file.path(table.folder,"trajan_relations.csv")
+rel.file <- file.path(TABLE_FOLDER,"trajan_relations.csv")
 rel.data <- as.matrix(read.csv(file=rel.file,header=TRUE,check.names=FALSE))
 
 

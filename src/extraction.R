@@ -123,7 +123,7 @@ extract.network <- function()
 {	############
 	cat("Extracting nodes and their information\n")
 	# load node attributes
-	attr.file <- file.path(table.folder,"trajan_attributes.csv")
+	attr.file <- file.path(TABLE_FOLDER,"trajan_attributes.csv")
 	attr.data <- as.matrix(read.csv(file=attr.file,header=TRUE,check.names=FALSE))
 	
 	# create empty graph
@@ -157,13 +157,13 @@ extract.network <- function()
 	
 #	m <- sapply(list.vertex.attributes(g),function(str) get.vertex.attribute(g,str))
 #	print(m)
-#	write.csv(x=m,file=file.path(table.folder,"verification.csv"))
+#	write.csv(x=m,file=file.path(TABLE_FOLDER,"verification.csv"))
 	
 	
 	############
 	cat("Adding links and their information\n")
 	# load relations
-	rel.file <- file.path(table.folder,"trajan_relations.csv")
+	rel.file <- file.path(TABLE_FOLDER,"trajan_relations.csv")
 	rel.data <- as.matrix(read.csv(file=rel.file,header=TRUE,check.names=FALSE))
 	
 	# add links
@@ -183,7 +183,7 @@ extract.network <- function()
 	
 	############
 	# record graph
-	graph.file <- file.path(net.folder,"all.graphml")
+	graph.file <- file.path(NET_FOLDER,"all.graphml")
 	cat("Recording graph in",graph.file,"\n")
 	write.graph(graph=g,file=graph.file,format="graphml")
 	

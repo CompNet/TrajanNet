@@ -12,73 +12,6 @@
 
 
 #############################################################
-# Displays the specified graph in an appropraite way, taking
-# into account the previously set link and node attributes.
-#
-# g: graph to plot.
-# paths: (optional) paths to highlight while plotting. This parameter
-# 		 is either a list of integer vectors (node sequences), or
-# 		 an integer vector if there is only one path to plot.
-# file: (optional) file name, to record the plot.
-#############################################################
-myplot <- function(g, paths, file)
-{	
-	# set edge colors
-	ecols <- rep("BLACK", gsize(g))
-	ecols[E(g)$Type=="Nature_Amicale"] <- "#1a8f39"			# green
-	ecols[E(g)$Type=="Nature_Familiale"] <- "#9c1699"		# purple
-	ecols[E(g)$Type=="Nature_Professionnelle"] <- "#c27604"	# orange
-	# set edge style
-	elty <- rep(1,gsize(g))										# solid
-	elty[!is.na(E(g)$Polarite) & E(g)$"Polarité"=="Négative"] <- 3			# dotted
-	# set edge width
-	ewidth <- rep(1,gsize(g))
-	# set node outline color
-	outline.cols <- rep("BLACK",gorder(g))
-	
-	# possibly change the color of the highlighted path
-	if(hasArg(paths))
-	{	if(!is.list(paths))
-			paths <- list(paths)
-		for(path in paths)
-		{	v <- NA
-			for(n in path)
-			{	if(is.na(v))
-				{	v <- n
-					outline.cols[v] <- "RED"
-				}
-				else
-				{	u <- v
-					v <- n
-					idx <- as.integer(E(g)[u %--% v])
-					ecols[idx] <- "RED"
-					ewidth[idx] <- 2
-				}
-			}
-			outline.cols[v] <- "RED"
-		}
-	}
-	
-	if(hasArg(file))
-#		pdf(paste0(file,".pdf"), width=25, height=25)
-		png(paste0(file,".png"), width=1024, height=1024)
-	plot(g,
-		layout=lay,
-		vertex.size=5, 
-		vertex.color="GREY",
-		vertex.frame.color=outline.cols,
-		edge.color=ecols,
-		edge.lty=elty,
-		edge.width=ewidth
-	)
-	if(hasArg(file))
-		dev.off()
-}
-
-
-
-
-#############################################################
 # Transform the received graph so that instead of having multitype
 # links, each type occurrence is represented by a distinct link.
 # Parameter link.types lists the types to retain in the result
@@ -110,9 +43,9 @@ clean.links <- function(g, link.types)
 
 
 #############################################################
-# xxx
+# Computes the diameter, the corresponding paths, and plots them.
 #
-# xxx:xxx.
+# g: graph to process.
 #############################################################
 analyze.net.diameter <- function(g)
 {	# compute diameter
@@ -122,18 +55,18 @@ analyze.net.diameter <- function(g)
 	idx <- idx[idx[,1]<idx[,2],]			# filter (each pair appears twice due to symmetric matrix)
 	
 	# possibly create folder
-	diameter.folder <- file.path(net.folder,g$name,"diameter")
+	diameter.folder <- file.path(NET_FOLDER,g$name,"diameter")
 	dir.create(path=diameter.folder, showWarnings=FALSE, recursive=TRUE)
 	
 	# plot diameter
 	diam.paths <- lapply(1:nrow(idx), function(r) all_shortest_paths(graph=g, from=idx[r,1], to=idx[r,2])$res)
 	for(pp in 1:length(diam.paths))
-	{	myplot(g, diam.paths[[pp]], file=file.path(diameter.folder,paste0("graph0_diam_",pp)))
+	{	custom.gplot(g, paths=diam.paths[[pp]], file=file.path(diameter.folder,paste0("graph0_diam_",pp)))
 		
 		q <- 1
 		for(p in 1:length(diam.paths[[pp]]))
 		{	if(p==1 || !all(diam.paths[[pp]][[p]]==diam.paths[[pp]][[p-1]]))
-			{	myplot(g, diam.paths[[pp]][[p]], file=file.path(diameter.folder,paste0("graph0_diam_",pp,"_",q)))
+			{	custom.gplot(g, paths=diam.paths[[pp]][[p]], file=file.path(diameter.folder,paste0("graph0_diam_",pp,"_",q)))
 				q <- q + 1
 			}
 		}
@@ -144,13 +77,54 @@ analyze.net.diameter <- function(g)
 
 
 #############################################################
-# xxx
+# Main method for the graph analysis. Uses a predefined layout.
+# Generates a bunch of plots and CSV files.
 #
-# xxx:xxx.
+# g: graph to process.
+# g0: same graph without the main node.
+#############################################################
+analyze.net.degree <- function(g, g0)
+{	# possibly create folder
+	degree.folder <- file.path(NET_FOLDER,g$name,"degree")
+	dir.create(path=degree.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(g,g0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	g <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# degree distribution
+		vals <- degree(g)
+		custom.hist(vals, name="Degree", file=file.path(degree.folder,paste0("degree_histo",sufx)))
+			
+		# export CSV with degree
+		df <- data.frame(V(g)$name,V(g)$label,vals)
+		colnames(df) <- c("Name","Label","Degree") 
+		write.csv(df, file=file.path(degree.folder,paste0("degree_values",sufx,".csv")))
+		
+		# plot graph using color for degree
+		custom.gplot(g,vvals=vals,file=file.path(degree.folder,paste0("degree_graph",sufx)))
+		custom.gplot(g,vvals=vals)
+		
+		# also add (a node attribute) to the graph file
+		V(g)$degree <- vals
+		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+	}
+}
+
+
+
+
+#############################################################
+# Main method for the graph analysis. Uses a predefined layout.
+# Generates a bunch of plots and CSV files.
+#
+# g: graph to process.
 #############################################################
 analyze.network <- function(g)
 {	# read the original graph
-#	graph.file <- file.path(net.folder,"all.graphml")
+#	graph.file <- file.path(NET_FOLDER,"all.graphml")
 #	g <- read.graph(graph.file,format="graphml")
 	
 	# tentative of using predefined layouts
@@ -163,12 +137,12 @@ analyze.network <- function(g)
 #	write.table(x=coord,file="data/nets/all_layout.txt")
 	
 	# read the layout
-	lay <- as.matrix(read.table(file="data/nets/all_layout.txt"))
+	lay <- as.matrix(read.table(file=file.path(NET_FOLDER,"all_layout.txt")))
 	
 	# set up list of graphs
 	g.lst <- list()
 	
-	# only keep certain types of links / possibly duplicate certain links
+	# extract various graphs depending on link types
 	{	g.lst[["all"]] <- clean.links(g, link.types=c("Nature_Amicale","Nature_Familiale","Nature_Professionnelle"))
 		g.lst[["all"]]$name <- "all"
 		g.lst[["friend"]] <- clean.links(g, link.types="Nature_Amicale")
@@ -181,12 +155,16 @@ analyze.network <- function(g)
 	
 	# process each graph
 	for(g in g.lst)
-	{	tmp.folder <- file.path(net.folder, g$name)
+	{	# create graph-specific folder
+		tmp.folder <- file.path(NET_FOLDER, g$name)
 		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
 		
+		# record graph as a graphml file
+		write.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
+		
 		# plot full graph
-		myplot(g, file=file.path(tmp.folder,"graph"))
-		myplot(g)
+		custom.gplot(g, file=file.path(tmp.folder,"graph"))
+		custom.gplot(g)
 		
 		# delete trajan's links for better visibility
 		# TODO maybe better to just draw them using a light color?
@@ -194,11 +172,18 @@ analyze.network <- function(g)
 #		g0 <- delete_vertices(g,1)		# delete trajan (not good, plot-wise)
 		es <- incident(graph=g0, v=1, mode="all")
 		g0 <- delete.edges(g0,es)	# delete traj's links
-		myplot(g0, file=file.path(tmp.folder,"graph0"))
-		myplot(g0)
+		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
+		custom.gplot(g0)
+		write.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
 		
-		# plot diameters
+		# compute diameters
 		analyze.net.diameter(g0)
+		
+		# compute eccentricity
+		# TODO
+		
+		# compute degree
+		analyze.net.degree(g, g0)
 	}
 }
 

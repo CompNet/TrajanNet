@@ -12,19 +12,22 @@ library("igraph")
 library("graphlayouts")
 library("ggraph")
 
+
+
+
 # load other scripts
+source("src/constants.R")
 source("src/extraction.R")
+source("src/plot.R")
 source("src/analysis.R")
 
 
-# folder names
-data.folder <- "data"
-table.folder <- file.path(data.folder,"tables")
-net.folder <- file.path(data.folder,"nets")
 
 
 # extract network
 g <- extract.network()
+
+
 
 
 # plot network
@@ -40,6 +43,8 @@ g <- extract.network()
 # https://cran.r-project.org/web/packages/graphlayouts/vignettes/introduction.html
 # https://cran.r-project.org/web/packages/graphlayouts/index.html
 # https://cran.r-project.org/web/packages/ggraph/index.html
+
+
 
 
 # analyze network
