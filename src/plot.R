@@ -121,12 +121,12 @@ custom.gplot <- function(g, paths, col.att, file)
 	{	fine = 500 # this will adjust the resolving power.
 		pal = colorRampPalette(c("yellow",'red'))
 		vvals <- get.vertex.attribute(graph=g, name=col.att)
-		vcols = pal(fine)[as.numeric(cut(vvals,breaks=fine))]
+		vcols <- "WHITE"		# isolates have no color
+		vcols[which(degree(g)>0)] = pal(fine)[as.numeric(cut(vvals[which(degree(g)>0)],breaks=fine))]
 		# see https://stackoverflow.com/questions/27004167/coloring-vertexes-according-to-their-centrality
 	}
 	else
 		vcols <- rep("GREY",gorder(g))
-	vcols[which(degree(g)==0)] <- "WHITE"		# isolates have no color
 	
 	# main plot
 	if(hasArg(file))

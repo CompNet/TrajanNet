@@ -58,9 +58,8 @@ analyze.network(g)
 
 #############################################################################################
 # TODO
-# Instead of assigning attributes to links, just create distinct links with a "type" attribute (?)
-# Then extract separate graphs, as Gephi doesn't allow multiple links.
-# Check the thorough analysis in Rochat2014, see if appropriate here.
+# - Check the thorough analysis in Rochat2014, see if appropriate here.
+# - Fix the problem with gradient color legends (plot as a single file, not two separate ones) 
 #############################################################################################
 # Notes
 # - All ;-separated values are in chronological order, but almost no dates are available.

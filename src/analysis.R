@@ -103,7 +103,7 @@ analyze.net.eccentricity <- function(g0)
 	# compute radius
 	rad <- min(vals[vals>0])
 	
-	# add radius and diameter (as graph attributes) to the graph file
+	# add radius and diameter to the graph (as attributes) and record
 	g0$diameter <- diam
 	g0$radius <- rad
 	cat("    Diameter=",diam,"\n",sep="")
@@ -141,7 +141,8 @@ analyze.net.eccentricity <- function(g0)
 # g0: same graph without the main node.
 #############################################################
 analyze.net.degree <- function(g, g0)
-{	# possibly create folder
+{	cat("  Computing degree\n")
+	# possibly create folder
 	degree.folder <- file.path(NET_FOLDER,g$name,"degree")
 	dir.create(path=degree.folder, showWarnings=FALSE, recursive=TRUE)
 	
@@ -160,8 +161,10 @@ analyze.net.degree <- function(g, g0)
 		colnames(df) <- c("Name","Label","Degree") 
 		write.csv(df, file=file.path(degree.folder,paste0("degree_values",sufx,".csv")))
 		
-		# also add (a node attribute) to the graph file
-		V(g)$degree <- vals
+		# add results to the graph (as attributes) and record
+		V(g)$Degree <- vals
+		g$DegreeAvg <- mean(vals)
+		g$DegreeStdv <- sd(vals)
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# plot graph using color for degree
@@ -246,9 +249,3 @@ analyze.network <- function(g)
 		g0 <- tmp[[2]]
 	}
 }
-
-
-
-
-# TODO
-# analysis: focus on eccentricity rather than diameter?
