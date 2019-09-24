@@ -97,7 +97,7 @@ analyze.net.eccentricity <- function(g0)
 	
 	# plot graph using color for eccentricity
 	custom.gplot(g0,col.att="Eccentricity",file=file.path(eccentricity.folder,"eccentricity_graph0"))
-	custom.gplot(g0,col.att="Eccentricity")
+#	custom.gplot(g0,col.att="Eccentricity")
 	
 	###########################
 	# compute radius
@@ -169,7 +169,7 @@ analyze.net.degree <- function(g, g0)
 		
 		# plot graph using color for degree
 		custom.gplot(g,col.att="Degree",file=file.path(degree.folder,paste0("degree_graph",sufx)))
-		custom.gplot(g,col.att="Degree")
+#		custom.gplot(g,col.att="Degree")
 		
 		# export CSV with average degree
 		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
@@ -225,7 +225,7 @@ analyze.network <- function(g)
 		
 		# plot full graph
 		custom.gplot(g, file=file.path(tmp.folder,"graph"))
-		custom.gplot(g)
+#		custom.gplot(g)
 		
 		# delete trajan's links for better visibility
 		# TODO maybe better to just draw them using a light color?
@@ -234,7 +234,7 @@ analyze.network <- function(g)
 		es <- incident(graph=g0, v=1, mode="all")
 		g0 <- delete.edges(g0,es)	# delete trajan's links
 		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
-		custom.gplot(g0)
+#		custom.gplot(g0)
 		write.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
 		
 		# compute diameters, eccentricity, radius

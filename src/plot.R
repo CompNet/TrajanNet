@@ -136,6 +136,7 @@ custom.gplot <- function(g, paths, col.att, file)
 			png(paste0(file,".png"), width=1024, height=1024)
 	}
 	plot(g,
+#		axes=TRUE,
 		layout=LAYOUT,
 		vertex.size=5, 
 		vertex.color=vcols,
@@ -144,6 +145,16 @@ custom.gplot <- function(g, paths, col.att, file)
 		edge.lty=elty,
 		edge.width=ewidth
 	)
+	if(hasArg(col.att))
+	{	width <- 0.05
+		height <- 0.3
+		x1 <- -1
+		x2 <- x1 + width
+		y2 <- -1
+		y1 <- y2 + height
+		leg.loc <- cbind(x=c(x1, x2, x2, x1), y=c(y1, y1, y2, y2))
+		legend.gradient(pnts=leg.loc, cols=pal(25), limits=range(vvals[which(degree(g)>0)]), title=col.att, cex=0.8)
+	}
 	# legend for vertex sizes: https://stackoverflow.com/questions/38451431/add-legend-in-igraph-to-annotate-difference-vertices-size
 	if(hasArg(file))
 		dev.off()
