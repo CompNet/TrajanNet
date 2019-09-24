@@ -25,7 +25,7 @@ source("src/analysis.R")
 
 
 # extract network
-g <- extract.network()
+#g <- extract.network()
 
 
 
@@ -44,6 +44,7 @@ g <- extract.network()
 # https://cran.r-project.org/web/packages/graphlayouts/index.html
 # https://cran.r-project.org/web/packages/ggraph/index.html
 
+# TODO lay should be loaded here
 
 
 
