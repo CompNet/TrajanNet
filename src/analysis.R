@@ -92,12 +92,12 @@ analyze.net.eccentricity <- function(g0)
 	colnames(df) <- c("Name","Label","Eccentricity") 
 	write.csv(df, file=file.path(eccentricity.folder,"eccentricity_values.csv"))
 	
-	# plot graph using color for eccentricity
-	custom.gplot(g0,vvals=vals,file=file.path(eccentricity.folder,"eccentricity_graph0"))
-	custom.gplot(g0,vvals=vals)
+	# add eccentricity (as node attributes) to the graph
+	V(g0)$Eccentricity <- vals
 	
-	# add eccentricity (as node attributes) to the graph file
-	V(g0)$eccentricity <- vals
+	# plot graph using color for eccentricity
+	custom.gplot(g0,col.att="Eccentricity",file=file.path(eccentricity.folder,"eccentricity_graph0"))
+	custom.gplot(g0,col.att="Eccentricity")
 	
 	###########################
 	# compute radius
@@ -160,13 +160,13 @@ analyze.net.degree <- function(g, g0)
 		colnames(df) <- c("Name","Label","Degree") 
 		write.csv(df, file=file.path(degree.folder,paste0("degree_values",sufx,".csv")))
 		
-		# plot graph using color for degree
-		custom.gplot(g,vvals=vals,file=file.path(degree.folder,paste0("degree_graph",sufx)))
-		custom.gplot(g,vvals=vals)
-		
 		# also add (a node attribute) to the graph file
 		V(g)$degree <- vals
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# plot graph using color for degree
+		custom.gplot(g,col.att="Degree",file=file.path(degree.folder,paste0("degree_graph",sufx)))
+		custom.gplot(g,col.att="Degree")
 		
 		# export CSV with average degree
 		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")

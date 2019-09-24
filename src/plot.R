@@ -75,10 +75,10 @@ setup.graph.layout <- function(g)
 # paths: (optional) paths to highlight while plotting. This parameter
 # 		 is either a list of integer vectors (node sequences), or
 # 		 an integer vector if there is only one path to plot.
-# vvals: (optional) vertex values, used to determine node color.
+# col.att: (optional) name of a vertex attribute, used to determine node color.
 # file: (optional) file name, to record the plot.
 #############################################################
-custom.gplot <- function(g, paths, vvals, file)
+custom.gplot <- function(g, paths, col.att, file)
 {	
 	# set edge colors
 	ecols <- rep("BLACK", gsize(g))
@@ -117,16 +117,18 @@ custom.gplot <- function(g, paths, vvals, file)
 	}
 	
 	# vertex color
-	if(hasArg(vvals))
+	if(hasArg(col.att))
 	{	fine = 500 # this will adjust the resolving power.
 		pal = colorRampPalette(c("yellow",'red'))
+		vvals <- get.vertex.attribute(graph=g, name=col.att)
 		vcols = pal(fine)[as.numeric(cut(vvals,breaks=fine))]
 		# see https://stackoverflow.com/questions/27004167/coloring-vertexes-according-to-their-centrality
 	}
 	else
 		vcols <- rep("GREY",gorder(g))
-	vcols[degree(g)==0] <- "WHITE"		# isolates have no color
+	vcols[which(degree(g)==0)] <- "WHITE"		# isolates have no color
 	
+	# main plot
 	if(hasArg(file))
 	{	if(FORMAT=="pdf")
 			pdf(paste0(file,".pdf"), width=25, height=25)
@@ -142,8 +144,25 @@ custom.gplot <- function(g, paths, vvals, file)
 		edge.lty=elty,
 		edge.width=ewidth
 	)
+	# legend for vertex sizes: https://stackoverflow.com/questions/38451431/add-legend-in-igraph-to-annotate-difference-vertices-size
 	if(hasArg(file))
 		dev.off()
+	
+	# color legend must be plotted separately, unfortunately
+	if(hasArg(col.att) && hasArg(file))
+	{	file.legend <- paste0(file,"_legend")
+		if(FORMAT=="pdf")
+			pdf(paste0(file.legend,".pdf"), width=3, height=12)
+		else if(FORMAT=="png")
+			png(paste0(file.legend,".png"), width=200, height=512)
+		
+		legend.image <- as.raster(matrix(rev(pal(20)), ncol=1))
+		plot(c(0,2),c(0,1), type="n", axes=F, xlab="", ylab="", main=col.att)
+		text(x=1.5, y=seq(0,1,l=5), labels=format(seq(min(vvals[which(degree(g)>0)]),max(vvals[which(degree(g)>0)]),l=5), digits=2, nsmall=2))
+		rasterImage(legend.image, 0,0, 1,1)
+		
+		dev.off()
+	}
 }
 
 
