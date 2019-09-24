@@ -8,6 +8,61 @@
 # source("src/analysis.R")
 #############################################################################################
 FORMAT <- "png"	# pdf png
+LAYOUT <- NA	# graph layout
+
+
+
+
+#############################################################
+# Displays the specified graph in an appropraite way, taking
+# into account the previously set link and node attributes.
+#
+# g: graph to plot.
+# paths: (optional) paths to highlight while plotting. This parameter
+# 		 is either a list of integer vectors (node sequences), or
+# 		 an integer vector if there is only one path to plot.
+# vvals: (optional) vertex values, used to determine node color.
+# file: (optional) file name, to record the plot.
+#############################################################
+setup.graph.layout <- function(g)
+{
+	# try to use ego-network layout, but not appropriate here
+#	p1 <- ggraph(g, layout="focus", v=1) +
+#		draw_circle(use = "focus", max.circle = 3)+
+#		geom_edge_link(edge_color="black",edge_width=0.3)+
+#		geom_node_point(aes(fill=as.factor(V(g)$RelTrajan)),size=2,shape=21)+
+#		scale_fill_manual(values=c("#8B2323", "#EEAD0E", "#34CB34", "#3366FF"))+
+#		theme_graph()+
+#		theme(legend.position = "none")+
+#		coord_fixed()+
+#		labs(title= "Trajan's ego-network")
+#		# https://cran.r-project.org/web/packages/graphlayouts/vignettes/introduction.html
+#		# https://cran.r-project.org/web/packages/graphlayouts/index.html
+#		# https://cran.r-project.org/web/packages/ggraph/index.html
+	
+	# try to read the layout if the file exists
+	lay.file <- file.path(NET_FOLDER,"all_layout.txt")
+	if(file.exists(lay.file))
+	{	cat("Loading layout file \"",lay.file,"\"\n",sep="")
+		LAYOUT <<- as.matrix(read.table(file=lay.file))
+	}
+	
+	# otherwise, compute the layout
+	else
+	{	cat("Layout file \"",lay.file,"\" not found: computing and recording it\n",sep="")
+		
+		# use a  predefined layout
+#		LAYOUT <<- layout_with_fr(g)
+		LAYOUT <<- layout_with_fr(g, kkconst=0)
+		
+		# old code used to manually refine the layout
+#		tkplot(g, layout=LAYOUT)
+#		LAYOUT <<- tk_coords(3)
+		
+		write.table(x=LAYOUT,file=lay.file)
+	}	
+	
+}
 
 
 
@@ -78,7 +133,7 @@ custom.gplot <- function(g, paths, vvals, file)
 			png(paste0(file,".png"), width=1024, height=1024)
 	}
 	plot(g,
-		layout=lay,
+		layout=LAYOUT,
 		vertex.size=5, 
 		vertex.color=vcols,
 		vertex.frame.color=outline.cols,
