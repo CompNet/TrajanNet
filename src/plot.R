@@ -125,6 +125,7 @@ custom.gplot <- function(g, paths, vvals, file)
 	}
 	else
 		vcols <- rep("GREY",gorder(g))
+	vcols[degree(g)==0] <- "WHITE"		# isolates have no color
 	
 	if(hasArg(file))
 	{	if(FORMAT=="pdf")
