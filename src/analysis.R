@@ -49,10 +49,10 @@ clean.links <- function(g, link.types)
 # g: graph to process.
 #############################################################
 analyze.net.eccentricity <- function(g0)
-{	# compute diameter and radius
+{	###########################
+	# compute diameter
 	cat("  Computing diameter & radius\n")
 	diam <- diameter(g0)					# get the network diameter
-	rad <- radius(g0)					# get the network radius
 	dd <- distances(graph=g0)				# compute all inter-node distances
 	idx <- which(dd==diam, arr.ind=TRUE)	# retrieve pairs of node matching the diameter 
 	idx <- idx[idx[,1]<idx[,2],]			# filter (each pair appears twice due to symmetric matrix)
@@ -74,14 +74,7 @@ analyze.net.eccentricity <- function(g0)
 			}
 		}
 	}
-	
-	# also add (a graph attribute) to the graph file
-	g0$diameter <- diam
-	cat("    Diameter=",diam,"\n",sep="")
-	g0$radius <- rad
-	cat("    Radius=",rad,"\n",sep="")
-	write.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,"graph0.graphml"), format="graphml")
-	
+		
 	###########################
 	# compute eccentricity
 	cat("  Computing eccentricity\n")
@@ -103,8 +96,35 @@ analyze.net.eccentricity <- function(g0)
 	custom.gplot(g0,vvals=vals,file=file.path(eccentricity.folder,"eccentricity_graph0"))
 	custom.gplot(g0,vvals=vals)
 	
-	# also add (a node attribute) to the graph file
+	# add eccentricity (as node attributes) to the graph file
 	V(g0)$eccentricity <- vals
+	
+	###########################
+	# compute radius
+	rad <- min(vals[vals>0])
+	
+	# add radius and diameter (as graph attributes) to the graph file
+	g0$diameter <- diam
+	g0$radius <- rad
+	cat("    Diameter=",diam,"\n",sep="")
+	cat("    Radius=",rad,"\n",sep="")
+	
+	# export CSV with radius and diameter
+	stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+	if(file.exists(stat.file))
+	{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+		df["Diameter", ] <- list(Value=diam, Mean=NA, Stdv=NA)
+		df["Radius", ] <- list(Value=rad, Mean=NA, Stdv=NA)
+		df["Eccentricity", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+	}
+	else
+	{	df <- data.frame(Value=c(diam,rad,NA),Mean=c(NA,NA,mean(vals)),Stdv=c(NA,NA,sd(vals)))
+		row.names(df) <- c("Diameter","Radius","Eccentricity")
+	}
+	write.csv(df, file=stat.file, row.names=TRUE)
+	
+	###########################
+	# record graph and return it
 	write.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,"graph0.graphml"), format="graphml")
 	
 	return(g0)
@@ -147,6 +167,18 @@ analyze.net.degree <- function(g, g0)
 		# also add (a node attribute) to the graph file
 		V(g)$degree <- vals
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# export CSV with average degree
+		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df["Degree", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+		}
+		else
+		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
+			row.names(df) <- c("Degree")
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
 		
 		lst[[i]] <- g
 	}
