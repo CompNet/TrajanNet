@@ -164,23 +164,7 @@ analyze.net.degree <- function(g, g0)
 # g: graph to process.
 #############################################################
 analyze.network <- function(g)
-{	# read the original graph
-#	graph.file <- file.path(NET_FOLDER,"all.graphml")
-#	g <- read.graph(graph.file,format="graphml")
-	
-	# tentative of using predefined layouts
-#	lay <- layout_with_fr(g)
-#	lay <- layout_with_fr(g, kkconst=0)
-	
-	# old code used to setup the layout
-#	tkplot(g)
-#	coord <- tk_coords(3)
-#	write.table(x=coord,file="data/nets/all_layout.txt")
-	
-	# read the layout
-	lay <- as.matrix(read.table(file=file.path(NET_FOLDER,"all_layout.txt")))
-	
-	# set up list of graphs
+{	# set up list of graphs
 	g.lst <- list()
 	
 	# extract various graphs depending on link types
