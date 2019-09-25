@@ -134,8 +134,7 @@ analyze.net.eccentricity <- function(g0)
 
 
 #############################################################
-# Main method for the graph analysis. Uses a predefined layout.
-# Generates a bunch of plots and CSV files.
+# Computes degree and generates plots and CSV files.
 #
 # g: graph to process.
 # g0: same graph without the main node.
@@ -149,7 +148,8 @@ analyze.net.degree <- function(g, g0)
 	lst <- list(g, g0)
 	sufxx <- c("","0")
 	for(i in 1:length(lst))
-	{	g <- lst[[i]]
+	{	cat("  Processing graph",i,"/",length(lst),"\n",sep="")
+		g <- lst[[i]]
 		sufx <- sufxx[i]
 		
 		# degree distribution
@@ -180,6 +180,69 @@ analyze.net.degree <- function(g, g0)
 		else
 		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
 			row.names(df) <- c("Degree")
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		lst[[i]] <- g
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
+# Computes average distances and generates plots and CSV files.
+#
+# g: graph to process.
+# g0: same graph without the main node.
+#############################################################
+analyze.net.distance <- function(g, g0)
+{	cat("  Computing average distances\n")
+	# possibly create folder
+	distance.folder <- file.path(NET_FOLDER,g$name,"distance")
+	dir.create(path=distance.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(g, g0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("  Processing graph",i,"/",length(lst),"\n",sep="")
+		g <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# distance distribution
+		vals <- distances(graph=g)
+		flat.vals <- vals[upper.tri(vals)]
+		custom.hist(vals=flat.vals, name="Distance", file=file.path(distance.folder,paste0("distance_histo",sufx)))
+		# average distance distribution
+		avg.vals <- apply(X=vals,MARGIN=1,FUN=function(v) mean(v[!is.infinite(v)]))
+		custom.hist(vals=avg.vals, name="Average distance", file=file.path(distance.folder,paste0("distance_avg_histo",sufx)))
+		
+		# export CSV with average distance
+		df <- data.frame(V(g)$name,V(g)$label,avg.vals)
+		colnames(df) <- c("Name","Label","AverageDistance") 
+		write.csv(df, file=file.path(distance.folder,paste0("distance_avg_values",sufx,".csv")))
+		
+		# add results to the graph (as attributes) and record
+		V(g)$AverageDistance <- avg.vals
+		g$DistanceAvg <- mean(flat.vals)
+		g$DistanceStdv <- sd(flat.vals)
+		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# plot graph using color for average distance
+		custom.gplot(g,col.att="AverageDistance",file=file.path(distance.folder,paste0("distance_avg_graph",sufx)))
+#		custom.gplot(g,col.att="AverageDistance")
+		
+		# export CSV with average distance
+		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df["Distance", ] <- list(Value=NA, Mean=mean(flat.vals), Stdv=sd(flat.vals))
+		}
+		else
+		{	df <- data.frame(Value=c(NA),Mean=c(mean(flat.vals)),Stdv=c(sd(flat.vals)))
+			row.names(df) <- c("Distance")
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
@@ -240,12 +303,16 @@ analyze.network <- function(g)
 		# compute diameters, eccentricity, radius
 		g0 <- analyze.net.eccentricity(g0)
 		
-		# compute xxxx
-		# TODO
-	
 		# compute degree
 		tmp <- analyze.net.degree(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
+		
+		# compute average distances
+		tmp <- analyze.net.distance(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# TODO		
 	}
 }

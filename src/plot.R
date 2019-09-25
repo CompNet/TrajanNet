@@ -159,21 +159,22 @@ custom.gplot <- function(g, paths, col.att, file)
 	if(hasArg(file))
 		dev.off()
 	
-	# color legend must be plotted separately, unfortunately
-	if(hasArg(col.att) && hasArg(file))
-	{	file.legend <- paste0(file,"_legend")
-		if(FORMAT=="pdf")
-			pdf(paste0(file.legend,".pdf"), width=3, height=12)
-		else if(FORMAT=="png")
-			png(paste0(file.legend,".png"), width=200, height=512)
-		
-		legend.image <- as.raster(matrix(rev(pal(20)), ncol=1))
-		plot(c(0,2),c(0,1), type="n", axes=F, xlab="", ylab="", main=col.att)
-		text(x=1.5, y=seq(0,1,l=5), labels=format(seq(min(vvals[which(degree(g)>0)]),max(vvals[which(degree(g)>0)]),l=5), digits=2, nsmall=2))
-		rasterImage(legend.image, 0,0, 1,1)
-		
-		dev.off()
-	}
+#	#### old code	
+#	# color legend must be plotted separately, unfortunately
+#	if(hasArg(col.att) && hasArg(file))
+#	{	file.legend <- paste0(file,"_legend")
+#		if(FORMAT=="pdf")
+#			pdf(paste0(file.legend,".pdf"), width=3, height=12)
+#		else if(FORMAT=="png")
+#			png(paste0(file.legend,".png"), width=200, height=512)
+#		
+#		legend.image <- as.raster(matrix(rev(pal(20)), ncol=1))
+#		plot(c(0,2),c(0,1), type="n", axes=F, xlab="", ylab="", main=col.att)
+#		text(x=1.5, y=seq(0,1,l=5), labels=format(seq(min(vvals[which(degree(g)>0)]),max(vvals[which(degree(g)>0)]),l=5), digits=2, nsmall=2))
+#		rasterImage(legend.image, 0,0, 1,1)
+#		
+#		dev.off()
+#	}
 }
 
 

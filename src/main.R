@@ -60,7 +60,7 @@ analyze.network(g)
 #############################################################################################
 # TODO
 # - Check the thorough analysis in Rochat2014, see if appropriate here.
-# - Fix the problem with gradient color legends (plot as a single file, not two separate ones) 
+# - Problem with relation whose type is NA: they do not appear in the graph (at least the filtered one)
 #############################################################################################
 # Notes
 # - All ;-separated values are in chronological order, but almost no dates are available.
