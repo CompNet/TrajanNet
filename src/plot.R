@@ -82,12 +82,14 @@ custom.gplot <- function(g, paths, col.att, file)
 {	
 	# set edge colors
 	ecols <- rep("BLACK", gsize(g))
-	ecols[E(g)$Type=="Nature_Amicale"] <- "#1a8f39"			# green
-	ecols[E(g)$Type=="Nature_Familiale"] <- "#9c1699"		# purple
-	ecols[E(g)$Type=="Nature_Professionnelle"] <- "#c27604"	# orange
+	ecols[E(g)$Type=="Friend"] <- "#1A8F39"		# green
+	ecols[E(g)$Type=="Family"] <- "#9C1699"		# purple
+	ecols[E(g)$Type=="Pro"] <- "#C27604"		# orange
+	ecols[E(g)$Type=="Unknown"] <- "#222222"	# dark grey
 	# set edge style
-	elty <- rep(1,gsize(g))										# solid
-	elty[!is.na(E(g)$Polarite) & E(g)$"Polarité"=="Négative"] <- 3			# dotted
+	elty <- rep(1,gsize(g))								# positive=solid
+	elty[!is.na(E(g)$Polarity) & !E(g)$Polarity] <- 3	# negative=dotted
+	elty[is.na(E(g)$Polarity)] <- 5						# unknown=long-dashed
 	# set edge width
 	ewidth <- rep(1,gsize(g))
 	# set node outline color

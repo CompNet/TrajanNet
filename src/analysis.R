@@ -24,14 +24,53 @@ clean.links <- function(g, link.types)
 {	res <- delete_edges(g, edges=E(g))
 	for(ea in list.edge.attributes(g))
 		res <- delete_edge_attr(res, ea)
+
+	# possibly remove NA from list of link types
+	idx <- which(is.na(link.types))
+	if(length(idx)>0)
+		link.types0 <- link.types[-idx]
+	else
+		link.types0 <- link.types
 	
+	# process each edge
 	for(e in E(g))
-	{	for(lt in link.types)
-		{	if(get.edge.attribute(g,lt,e))
-			{	uv = ends(g, E(g)[e], names=FALSE)
+	{	uv = ends(g, E(g)[e], names=FALSE)
+		
+		# process each specified link type (except NA)
+		for(lt in link.types0)
+		{	# convert attribute values
+			vv <- as.logical(get.edge.attribute(g,lt,e))
+			pol <- as.logical(get.edge.attribute(g,"Polarité",e))
+			
+			if(!is.na(vv) && vv)
+			{	# convert link nature
+				if(lt=="Nature_Amicale")
+					ltp <- "Friend"
+				else if(lt=="Nature_Familiale")
+					ltp <- "Family"
+				else if (lt=="Nature_Professionnelle")
+					ltp <- "Pro"
+				
+				# add to new graph
 				res <- add_edges(res, edges=uv, attr=list(
-								"Polarité"=get.edge.attribute(g,lt,e),
-								"Type"=lt))
+								"Polarity"=pol,
+								"Type"=ltp))
+			}
+		}
+		
+		# handle unknown links
+		if(any(is.na(link.types)))
+		{	unk <- TRUE
+			for(lt in c("Nature_Amicale","Nature_Familiale","Nature_Professionnelle"))
+				unk <- unk && is.na(get.edge.attribute(g,lt,e))
+			if(unk)
+			{	ltp <- "Unknown"
+				pol <- as.logical(get.edge.attribute(g,"Polarité",e))
+				
+				# add to new graph
+				res <- add_edges(res, edges=uv, attr=list(
+								"Polarity"=pol,
+								"Type"=ltp))
 			}
 		}
 	}
@@ -266,7 +305,7 @@ analyze.network <- function(g)
 	g.lst <- list()
 	
 	# extract various graphs depending on link types
-	{	g.lst[["all"]] <- clean.links(g, link.types=c("Nature_Amicale","Nature_Familiale","Nature_Professionnelle"))
+	{	g.lst[["all"]] <- clean.links(g, link.types=c("Nature_Amicale","Nature_Familiale","Nature_Professionnelle",NA))
 		g.lst[["all"]]$name <- "all"
 		g.lst[["friend"]] <- clean.links(g, link.types="Nature_Amicale")
 		g.lst[["friend"]]$name <- "friend"
@@ -274,6 +313,8 @@ analyze.network <- function(g)
 		g.lst[["family"]]$name <- "family"
 		g.lst[["pro"]] <- clean.links(g, link.types="Nature_Professionnelle")
 		g.lst[["pro"]]$name <- "pro"
+		g.lst[["unk"]] <- clean.links(g, link.types=NA)
+		g.lst[["unk"]]$name <- "unknown"
 	}
 	
 	# process each graph

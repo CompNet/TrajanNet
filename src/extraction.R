@@ -27,13 +27,6 @@
 split.attribute.by.order <- function(g, values, name)
 {	# break down the attribute values
 	atts <- strsplit(x=values, split=";")
-#	atts <- lapply(X=atts, function(vect) 
-#		{	if(all(vect=="NA"))
-#				res <- NA
-#			else
-#				res <- vect
-#			return(res)
-#		})
 	
 	# determine the max multiplicity of the attribute
 	nval <- max(sapply(atts,length))
@@ -50,12 +43,6 @@ split.attribute.by.order <- function(g, values, name)
 							res <- a[i]
 						else
 							res <- NA
-#						if(!is.na(res))
-#						{	if(res=="Non")
-#								res <- FALSE
-#							else if(res=="Oui")
-#								res <- TRUE
-#						}
 						return(res)
 					}))
 	}
@@ -88,7 +75,7 @@ split.attribute.by.value <- function(g, values, name, nodes)
 	u.vals <- sort(unique(unlist(atts)))
 	nval <- length(u.vals)
 	
-	# add them to the graph as nodal attributes
+	# add them to the graph as nodal or edge attributes
 	for(u.val in u.vals)
 	{	if(nval>1)
 			nm <- paste0(name,"_",u.val)
@@ -97,14 +84,24 @@ split.attribute.by.value <- function(g, values, name, nodes)
 		if(nodes)
 		{	g <- set_vertex_attr(graph=g, name=nm, 
 				value=sapply(atts,function(a)
-						{	res <- u.val %in% a
+						{	if(all(is.na(a)))
+								res <- NA
+							else if(u.val %in% a)
+								res <- "TRUE"
+							else
+								res <- "FALSE"
 							return(res)
 						}))
 		}
 		else
 		{	g <- set_edge_attr(graph=g, name=nm, 
 				value=sapply(atts,function(a)
-						{	res <- u.val %in% a
+						{	if(all(is.na(a)))
+								res <- NA
+							else if(u.val %in% a)
+								res <- "TRUE"
+							else
+								res <- "FALSE"
 							return(res)
 						}))
 		}
@@ -143,17 +140,23 @@ extract.network <- function()
 	for(att.name in att.names)
 		g <- split.attribute.by.value(g, attr.data[,att.name], name=att.name, nodes=TRUE)
 	
-	# add single boolean attributes
+	# add single boolean attributes (as strings, to handle NAs)
 	att.names <- c("Adelectio","SoutHadrien","Espagnol")
 	for(att.name in att.names)
+	{	vals <- attr.data[,att.name]
+		vals[vals=="Oui"] <- "TRUE"
+		vals[vals=="Non"] <- "FALSE"
 		g <- set_vertex_attr(graph=g, name=att.name, 
-				value=attr.data[,att.name]=="Oui")
+#				value=attr.data[,att.name]=="Oui")
+				value=vals)
+	}
 	
-	# add single numerical attributes
+	# add single numerical attributes (as strings, to handle NAs) 
 	att.names <- c("NbrVoy")
 	for(att.name in att.names)
 		g <- set_vertex_attr(graph=g, name=att.name, 
-			value=as.integer(attr.data[,att.name]))
+#			value=as.integer(attr.data[,att.name]))
+			value=attr.data[,att.name])
 	
 #	m <- sapply(list.vertex.attributes(g),function(str) get.vertex.attribute(g,str))
 #	print(m)
@@ -177,8 +180,13 @@ extract.network <- function()
 	# add single nominal attributes
 	att.names <- c("Polarité")
 	for(att.name in att.names)
+	{	vals <- rel.data[,att.name]
+		vals[vals=="Positive"] <- "TRUE"
+		vals[vals=="Négative"] <- "FALSE"
 		g <- set_edge_attr(graph=g, name=att.name, 
-				value=rel.data[,att.name])
+#				value=rel.data[,att.name])
+				value=vals)
+	}
 	
 	
 	############
