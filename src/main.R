@@ -65,7 +65,6 @@ analyze.network(g)
 #   - set only 2 decimal digits
 #	- add edge color code (top left ?)
 #   - add edge line type code
-# - PROBLEM WITH THE CONVERSION, P0--P45 STILL MISSING IN ALL-GRAPH
 #############################################################################################
 # Notes
 # - All ;-separated values are in chronological order, but almost no dates are available.

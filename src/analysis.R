@@ -94,9 +94,10 @@ analyze.net.eccentricity <- function(g0)
 	# compute diameter
 	cat("  Computing diameter & radius\n")
 	diam <- diameter(g0)					# get the network diameter
+	cat("    Diameter=",diam,"\n",sep="")
 	dd <- distances(graph=g0)				# compute all inter-node distances
-	idx <- which(dd==diam, arr.ind=TRUE)	# retrieve pairs of node matching the diameter 
-	idx <- idx[idx[,1]<idx[,2],]			# filter (each pair appears twice due to symmetric matrix)
+	idx <- which(dd==diam, arr.ind=TRUE)	# retrieve pairs of nodes matching the diameter
+	idx <- idx[idx[,1]<idx[,2],,drop=FALSE]	# filter (each pair appears twice due to symmetric matrix)
 	
 	# possibly create folder
 	diameter.folder <- file.path(NET_FOLDER,g0$name,"diameter")
@@ -147,7 +148,6 @@ analyze.net.eccentricity <- function(g0)
 	# add radius and diameter to the graph (as attributes) and record
 	g0$diameter <- diam
 	g0$radius <- rad
-	cat("    Diameter=",diam,"\n",sep="")
 	cat("    Radius=",rad,"\n",sep="")
 	
 	# export CSV with radius and diameter
