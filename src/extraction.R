@@ -135,13 +135,13 @@ read.network <- function()
 	for(att in vertex_attr_names(g))
 	{	# boolean attributes
 		if(att %in% c("Adelectio","SoutHadrien","Espagnol","Cercles_Antonins","Cercles_Nigrinus","Cercles_Pline","Cercles_Regulus","Cercles_Septicius Clarus"))
-		{	x <- as.logical(vertex_attr(g,att))
+		{	x <- suppressWarnings(as.logical(vertex_attr(g,att)))
 			g <- delete_vertex_attr(g,att)
 			g <- set_vertex_attr(g,att,value=x)
 		}
 		# integer attributes
 		else if(att %in% c("NbrVoy"))
-		{	x <- as.integer(vertex_attr(g,att))
+		{	x <- suppressWarnings(as.integer(vertex_attr(g,att)))
 			g <- delete_vertex_attr(g,att)
 			g <- set_vertex_attr(g,att,value=x)
 		}
@@ -149,7 +149,7 @@ read.network <- function()
 		else
 		{	x <- vertex_attr(g,att)
 			x[which(x=="NA")] <- NA
-			g <- delete_vertex_attr(g,att)
+			g <- suppressWarnings(delete_vertex_attr(g,att))
 			g <- set_vertex_attr(g,att,value=x)
 		}
 	}
@@ -158,13 +158,13 @@ read.network <- function()
 	for(att in edge_attr_names(g))
 	{	# boolean attributes
 		if(att %in% c("Nature_Amicale","Nature_Familiale","Nature_Professionnelle","Polarite"))
-		{	x <- as.logical(edge_attr(g,att))
+		{	x <- suppressWarnings(as.logical(edge_attr(g,att)))
 			g <- delete_edge_attr(g,att)
 			g <- set_edge_attr(g,att,value=x)
 		}
 #		# integer attributes
 #		else if(att %in% c())
-#		{	x <- as.integer(edge_attr(g,att))
+#		{	x <- suppressWarnings(as.integer(edge_attr(g,att)))
 #			g <- delete_edge_attr(g,att)
 #			g <- set_edge_attr(g,att,value=x)
 #		}
