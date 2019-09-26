@@ -39,8 +39,8 @@ clean.links <- function(g, link.types)
 		# process each specified link type (except NA)
 		for(lt in link.types0)
 		{	# convert attribute values
-			vv <- as.logical(get.edge.attribute(g,lt,e))
-			pol <- as.logical(get.edge.attribute(g,"Polarité",e))
+			vv <- get.edge.attribute(g,lt,e)
+			pol <- get.edge.attribute(g,"Polarite",e)
 			
 			if(!is.na(vv) && vv)
 			{	# convert link nature
@@ -62,10 +62,12 @@ clean.links <- function(g, link.types)
 		if(any(is.na(link.types)))
 		{	unk <- TRUE
 			for(lt in c("Nature_Amicale","Nature_Familiale","Nature_Professionnelle"))
-				unk <- unk && is.na(get.edge.attribute(g,lt,e))
+			{	unk <- unk && is.na(get.edge.attribute(g,lt,e))
+#				print(get.edge.attribute(g,lt,e))				
+			}
 			if(unk)
 			{	ltp <- "Unknown"
-				pol <- as.logical(get.edge.attribute(g,"Polarité",e))
+				pol <- get.edge.attribute(g,"Polarite",e)
 				
 				# add to new graph
 				res <- add_edges(res, edges=uv, attr=list(

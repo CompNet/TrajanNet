@@ -31,7 +31,7 @@ source("src/analysis.R")
 graph.file <- file.path(NET_FOLDER,"all.graphml")
 if(file.exists(graph.file))
 {	cat("Loading graph file \"",graph.file,"\"\n",sep="")
-	g <- read.graph(graph.file,format="graphml")
+	g <- read.network()
 # otherwise, extract the network from the tables
 }else
 {	cat("Graph file \"",graph.file,"\" not found: extracting and recording the it\n",sep="")
@@ -65,9 +65,6 @@ analyze.network(g)
 #   - set only 2 decimal digits
 #	- add edge color code (top left ?)
 #   - add edge line type code
-# - check numbers of link
-#   - uncleaned graph vs. row in table
-#   - cleaned "all" graph vs. total number of links
 # - PROBLEM WITH THE CONVERSION, P0--P45 STILL MISSING IN ALL-GRAPH
 #############################################################################################
 # Notes

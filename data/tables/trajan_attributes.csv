@@ -19,7 +19,7 @@ P16,Aulus Cornelius Palma Frontianus,Préteur;Propréteur,Consul,NA,NA,Non,Léga
 P17,Publius Cornelius Tacitus,Préteur;Propréteur,Consul,NA,NA,Non,Légat d'Auguste propréteur,NA,1,Asie,Politico-militaire,G2,Non,Pline;Nigrinus,Non
 P18,Caius Iulius Bassus Quatradus,Questeur;Préteur,Consul suffect,NA,NA,Non,Tribun de légion;Légat de légion,NA,7,Mésie;Dacie;Judée;Cappadoce;Galatie;Syrie;Dacie,Militaire;Militaire;Politico-militaire;Politico-militaire;Politico-militaire;Politico-militaire;Politico-militaire,G2,Oui,NA,Non
 P19,Lucius Iulius Ursus Servianus,Questeur;Préteur;Propréteur;Consul suffect,Consul,NA,NA,Non,Légat d'Auguste propréteur,NA,3,Germanie supérieure;Dacie;Pannonie,Politico-militaire;Militaire;Politico-militaire,G2,Non,Pline,Non
-P20,Caius Octavius Tidius Tossianus Javolenus Priscus,Préteur;Propréteur;Consul suffect;Consul,Proconsul,NA,NA,Oui,Légat de légion;Proconsul,NA,6,Mésie;Dacie;Afrique;Germanie supérieure;Syrie;Afrique,Militaire;Militaire;Politico-militaire;Politico-militaire;Politico-militaire;Politico-militaire,G2,NA,Régulus,Non
+P20,Caius Octavius Tidius Tossianus Javolenus Priscus,Préteur;Propréteur;Consul suffect;Consul,Proconsul,NA,NA,Oui,Légat de légion;Proconsul,NA,6,Mésie;Dacie;Afrique;Germanie supérieure;Syrie;Afrique,Militaire;Militaire;Politico-militaire;Politico-militaire;Politico-militaire;Politico-militaire,G2,NA,Regulus,Non
 P21,Manius Laberius Maximus,NA,Consul,Procuratèle;Préfet de l'annone;Préfet d'Égypte;Préfet du prétoire,Préfet du prétoire,Oui,Légat de légion;Légat d'Auguste propréteur,NA,3,Judée;Mésie inférieure;Dacie,Politique;Politico-militaire;Militaire,G2,Non,NA,Non
 P22,Lucius Licinius Sura,Questeur,Consul,NA,NA,Non,Légat de légion,NA,1,Dacie,Militaire,G2,Oui,Antonins,Oui
 P23,Lucius Neratius Priscus,Questeur;Préteur;Propréteur;Consul suffect,Consul,NA,NA,Non,Légat d'Auguste propréteur,NA,3,Germanie inférieure;Dacie;Pannonie,Politico-militaire;Militaire;Politico-militaire,G2,Non,Antonins,Non
@@ -43,7 +43,7 @@ P40,Lucius Ceionnus Commodus,NA,Consul,NA,NA,Non,NA,NA,NA,NA,NA,G3,Non,Antonins,
 P41,Caius Claudius Severus,Préteur,Propréteur,NA,NA,Non,Légat d'Auguste propréteur,NA,1,Arabie,Politico-militaire,G3,NA,NA,Non
 P42,Sextus Erucius Clarus ,Questeur;Tribun de la plèbe;Préteur;Propréteur,Consul,NA,NA,Non,Légat de légion,NA,1,Parthie,Militaire,G3,Oui,NA,Non
 P43,Lucius Fabius Iustus,Préteur;Propréteur,Consul suffect,NA,NA,Non,Légat d'Auguste propréteur,NA,3,Mésie inférieure;Dacie;Syrie,Politico-militaire;Militaire;Politico-militaire,G3,NA,Pline,Oui
-P44,Quintus Fabius Postumus,Préteur;Propréteur,Consul,NA,NA,Non,Légat d'Auguste propréteur,NA,1,Mésie inférieure,Politico-militaire,G3,NA,Régulus,Oui
+P44,Quintus Fabius Postumus,Préteur;Propréteur,Consul,NA,NA,Non,Légat d'Auguste propréteur,NA,1,Mésie inférieure,Politico-militaire,G3,NA,Regulus,Oui
 P45,Crassus Frugi Licianus,NA,Consul suffect,NA,NA,Non,NA,NA,NA,NA,NA,G4,Non,NA,Non
 P46,Titus Haterius Nepos,Préteur;Propréteur,Consul,Procuratèle,NA,Oui,Légat d'Auguste propréteur,NA,2,Arménie;Arabie,Politique;Politico-militaire,G4,Oui,NA,Non
 P47,Lucius Herennius Saturnius,Préteur;Propréteur;Consul suffect;Consul,Proconsul,NA,NA,Non,Légat de légion;Légat d'Auguste propréteur;Proconsul,NA,2,Achaïe;Mésie supérieure,Politico-militaire;Politico-militaire,G3,NA,NA,Non

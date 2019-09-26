@@ -134,6 +134,6 @@ u.vals <- sort(unique(unlist(strsplit(x=rel.data[,"Nature"], split=";"))))
 cat("Nature:\n");print(u.vals);cat("\n")
 
 # unique link polarities
-u.vals <- sort(unique(c(rel.data[,"Polarité"])))
+u.vals <- sort(unique(c(rel.data[,"Polarite"])))
 cat("Polarité:\n");print(u.vals);cat("\n")
 

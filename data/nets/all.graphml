@@ -40,7 +40,7 @@
   <key id="v_Cercles_Antonins" for="node" attr.name="Cercles_Antonins" attr.type="string"/>
   <key id="v_Cercles_Nigrinus" for="node" attr.name="Cercles_Nigrinus" attr.type="string"/>
   <key id="v_Cercles_Pline" for="node" attr.name="Cercles_Pline" attr.type="string"/>
-  <key id="v_Cercles_Régulus" for="node" attr.name="Cercles_Régulus" attr.type="string"/>
+  <key id="v_Cercles_Regulus" for="node" attr.name="Cercles_Regulus" attr.type="string"/>
   <key id="v_Cercles_Septicius Clarus" for="node" attr.name="Cercles_Septicius Clarus" attr.type="string"/>
   <key id="v_Adelectio" for="node" attr.name="Adelectio" attr.type="string"/>
   <key id="v_SoutHadrien" for="node" attr.name="SoutHadrien" attr.type="string"/>
@@ -49,7 +49,7 @@
   <key id="e_Nature_Amicale" for="edge" attr.name="Nature_Amicale" attr.type="string"/>
   <key id="e_Nature_Familiale" for="edge" attr.name="Nature_Familiale" attr.type="string"/>
   <key id="e_Nature_Professionnelle" for="edge" attr.name="Nature_Professionnelle" attr.type="string"/>
-  <key id="e_Polarité" for="edge" attr.name="Polarité" attr.type="string"/>
+  <key id="e_Polarite" for="edge" attr.name="Polarite" attr.type="string"/>
   <graph id="G" edgedefault="undirected">
     <node id="n0">
       <data key="v_name">P0</data>
@@ -88,7 +88,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">NA</data>
       <data key="v_SoutHadrien">NA</data>
@@ -132,7 +132,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -176,7 +176,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -220,7 +220,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -264,7 +264,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -308,7 +308,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -352,7 +352,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -396,7 +396,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -440,7 +440,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -484,7 +484,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -528,7 +528,7 @@
       <data key="v_Cercles_Antonins">TRUE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">FALSE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -572,7 +572,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">TRUE</data>
       <data key="v_Cercles_Pline">FALSE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -616,7 +616,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -660,7 +660,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -704,7 +704,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -748,7 +748,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -792,7 +792,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">TRUE</data>
       <data key="v_Cercles_Pline">FALSE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -836,7 +836,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">TRUE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -880,7 +880,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -924,7 +924,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -968,7 +968,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">FALSE</data>
-      <data key="v_Cercles_Régulus">TRUE</data>
+      <data key="v_Cercles_Regulus">TRUE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1012,7 +1012,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -1056,7 +1056,7 @@
       <data key="v_Cercles_Antonins">TRUE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">FALSE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -1100,7 +1100,7 @@
       <data key="v_Cercles_Antonins">TRUE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">FALSE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -1144,7 +1144,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1188,7 +1188,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1232,7 +1232,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1276,7 +1276,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">TRUE</data>
       <data key="v_Cercles_Pline">FALSE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -1320,7 +1320,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -1364,7 +1364,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1408,7 +1408,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1452,7 +1452,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -1496,7 +1496,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1540,7 +1540,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1584,7 +1584,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -1628,7 +1628,7 @@
       <data key="v_Cercles_Antonins">TRUE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">FALSE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1672,7 +1672,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1716,7 +1716,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1760,7 +1760,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1804,7 +1804,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -1848,7 +1848,7 @@
       <data key="v_Cercles_Antonins">TRUE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">FALSE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -1892,7 +1892,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -1936,7 +1936,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -1980,7 +1980,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -2024,7 +2024,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">FALSE</data>
-      <data key="v_Cercles_Régulus">TRUE</data>
+      <data key="v_Cercles_Regulus">TRUE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -2068,7 +2068,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -2112,7 +2112,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -2156,7 +2156,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -2200,7 +2200,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -2244,7 +2244,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -2288,7 +2288,7 @@
       <data key="v_Cercles_Antonins">TRUE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">FALSE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -2332,7 +2332,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -2376,7 +2376,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -2420,7 +2420,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -2464,7 +2464,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">NA</data>
       <data key="v_SoutHadrien">NA</data>
@@ -2508,7 +2508,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -2552,7 +2552,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -2596,7 +2596,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">NA</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -2640,7 +2640,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -2684,7 +2684,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">NA</data>
       <data key="v_SoutHadrien">NA</data>
@@ -2728,7 +2728,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -2772,7 +2772,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -2816,7 +2816,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -2860,7 +2860,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">TRUE</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">FALSE</data>
@@ -2904,7 +2904,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">TRUE</data>
@@ -2948,7 +2948,7 @@
       <data key="v_Cercles_Antonins">NA</data>
       <data key="v_Cercles_Nigrinus">NA</data>
       <data key="v_Cercles_Pline">NA</data>
-      <data key="v_Cercles_Régulus">NA</data>
+      <data key="v_Cercles_Regulus">NA</data>
       <data key="v_Cercles_Septicius Clarus">NA</data>
       <data key="v_Adelectio">FALSE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -2992,7 +2992,7 @@
       <data key="v_Cercles_Antonins">FALSE</data>
       <data key="v_Cercles_Nigrinus">FALSE</data>
       <data key="v_Cercles_Pline">TRUE</data>
-      <data key="v_Cercles_Régulus">FALSE</data>
+      <data key="v_Cercles_Regulus">FALSE</data>
       <data key="v_Cercles_Septicius Clarus">FALSE</data>
       <data key="v_Adelectio">TRUE</data>
       <data key="v_SoutHadrien">NA</data>
@@ -3003,991 +3003,991 @@
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n2">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n3">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n4">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n5">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n6">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n7">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n0" target="n8">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n9">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n10">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n11">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n12">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n13">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n14">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n15">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n16">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n17">
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n0" target="n18">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n19">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n20">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n21">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n22">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n23">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n24">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n25">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n26">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n27">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n28">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n29">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n30">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n31">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n32">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n33">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n34">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n35">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n0" target="n36">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n37">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n0" target="n38">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n39">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n40">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n41">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n42">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n43">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n44">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n45">
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n0" target="n46">
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n0" target="n47">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n48">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n49">
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n0" target="n50">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n0" target="n51">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n52">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n53">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n54">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n55">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n56">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n57">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n0" target="n58">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n59">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n60">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n61">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n62">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n63">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n64">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n65">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n0" target="n66">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n1" target="n2">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n1" target="n3">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n1" target="n4">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n1" target="n6">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n1" target="n7">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n1" target="n8">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n1" target="n23">
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n1" target="n25">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n1" target="n61">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n3">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n4">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n5">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n2" target="n6">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n2" target="n8">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n11">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n2" target="n12">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n14">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n16">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n2" target="n18">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n19">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n21">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n2" target="n22">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n23">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n2" target="n27">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n2" target="n28">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n2" target="n31">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n34">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n2" target="n36">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n39">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n2" target="n40">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n42">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n2" target="n45">
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n2" target="n46">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n49">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n53">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n2" target="n55">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n56">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n57">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n60">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n63">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n2" target="n64">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n3" target="n4">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n3" target="n5">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n3" target="n6">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n3" target="n7">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n4" target="n5">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n4" target="n6">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n4" target="n7">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n5" target="n6">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n5" target="n7">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n5" target="n63">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n6" target="n7">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n6" target="n25">
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n8" target="n11">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n8" target="n16">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n8" target="n27">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n8" target="n53">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n10" target="n35">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n10" target="n50">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n11" target="n16">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n11" target="n17">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n11" target="n19">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n11" target="n27">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n11" target="n53">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n11" target="n64">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n12" target="n25">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n14" target="n22">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n16" target="n19">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n16" target="n27">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n16" target="n53">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n17" target="n25">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n17" target="n43">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n17" target="n51">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n19" target="n22">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n19" target="n25">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n19" target="n27">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n19" target="n40">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n20" target="n25">
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n22" target="n25">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n22" target="n33">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n22" target="n56">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n23" target="n27">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n24" target="n25">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n25" target="n31">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n25" target="n32">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n25" target="n36">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n25" target="n38">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n25" target="n42">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n25" target="n43">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n25" target="n50">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n25" target="n51">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n25" target="n61">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n25" target="n63">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n25" target="n66">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n26" target="n66">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">FALSE</data>
+      <data key="e_Polarite">Négative</data>
     </edge>
     <edge source="n27" target="n53">
       <data key="e_Nature_Amicale">TRUE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n28" target="n53">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">NA</data>
+      <data key="e_Polarite">NA</data>
     </edge>
     <edge source="n42" target="n48">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
     <edge source="n42" target="n63">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarité">TRUE</data>
+      <data key="e_Polarite">TRUE</data>
     </edge>
   </graph>
 </graphml>
