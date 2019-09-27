@@ -147,6 +147,26 @@ custom.gplot <- function(g, paths, col.att, file)
 		edge.lty=elty,
 		edge.width=ewidth
 	)
+	legend(
+		title="Edge types",								# title of the legend box
+		x="topright",									# position
+		legend=c("Friend","Family","Pro","Unknown"),	# text of the legend
+		col=c("#1A8F39","#9C1699","#C27604","#222222"),	# color of the lines
+		lty=1,											# type of lines
+		lwd=2,											# line thickness
+		bty="n",										# no box around the legend
+		cex=0.8
+	)
+	legend(
+		title="Edge polarities",						# title of the legend box
+		x="bottomright",								# position
+		legend=c("Positive","Negative","Unknown"),		# text of the legend
+		col="BLACK",									# color of the lines
+		lty=c(1,3,5),									# type of lines
+		lwd=2,											# line thickness
+		bty="n",										# no box around the legend
+		cex=0.8
+	)
 	if(hasArg(col.att))
 	{	width <- 0.05
 		height <- 0.3
@@ -155,7 +175,13 @@ custom.gplot <- function(g, paths, col.att, file)
 		y2 <- -1
 		y1 <- y2 + height
 		leg.loc <- cbind(x=c(x1, x2, x2, x1), y=c(y1, y1, y2, y2))
-		legend.gradient(pnts=leg.loc, cols=pal(25), limits=range(vvals[which(degree(g)>0)]), title=col.att, cex=0.8)
+		legend.gradient(
+				pnts=leg.loc, 
+				cols=pal(25), 
+				limits=format(range(vvals[which(degree(g)>0)]), digits=2, nsmall=2), 
+				title=col.att, 
+				cex=0.8
+		)
 	}
 	# legend for vertex sizes: https://stackoverflow.com/questions/38451431/add-legend-in-igraph-to-annotate-difference-vertices-size
 	if(hasArg(file))
