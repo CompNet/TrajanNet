@@ -189,7 +189,7 @@ analyze.net.degree <- function(g, g0)
 	lst <- list(g, g0)
 	sufxx <- c("","0")
 	for(i in 1:length(lst))
-	{	cat("  Processing graph",i,"/",length(lst),"\n",sep="")
+	{	cat("  Processing graph ",i,"/",length(lst),"\n",sep="")
 		g <- lst[[i]]
 		sufx <- sufxx[i]
 		
@@ -234,6 +234,124 @@ analyze.net.degree <- function(g, g0)
 
 
 #############################################################
+# Computes Eigencentrality and generates plots and CSV files.
+#
+# g: graph to process.
+# g0: same graph without the main node.
+#############################################################
+analyze.net.eigen <- function(g, g0)
+{	cat("  Computing Eigencentrality\n")
+	# possibly create folder
+	eigen.folder <- file.path(NET_FOLDER,g$name,"eigen")
+	dir.create(path=eigen.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(g, g0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("  Processing graph ",i,"/",length(lst),"\n",sep="")
+		g <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# Eigencentrality distribution
+		vals <- eigen_centrality(graph=g, scale=FALSE)$vector
+		custom.hist(vals, name="Eigencentrality", file=file.path(eigen.folder,paste0("eigen_histo",sufx)))
+		
+		# export CSV with Eigencentrality
+		df <- data.frame(V(g)$name,V(g)$label,vals)
+		colnames(df) <- c("Name","Label","Eigencentrality") 
+		write.csv(df, file=file.path(eigen.folder,paste0("eigen_values",sufx,".csv")))
+		
+		# add results to the graph (as attributes) and record
+		V(g)$Eigencentrality <- vals
+		g$EigencentralityAvg <- mean(vals)
+		g$EigencentralityStdv <- sd(vals)
+		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# plot graph using color for Eigencentrality
+		custom.gplot(g,col.att="Eigencentrality",file=file.path(eigen.folder,paste0("eigen_graph",sufx)))
+#		custom.gplot(g,col.att="Eigencentrality")
+		
+		# export CSV with average Eigencentrality
+		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df["Eigencentrality", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+		}
+		else
+		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
+			row.names(df) <- c("Eigencentrality")
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		lst[[i]] <- g
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
+# Computes betweenness and generates plots and CSV files.
+#
+# g: graph to process.
+# g0: same graph without the main node.
+#############################################################
+analyze.net.betweenness <- function(g, g0)
+{	cat("  Computing betweenness\n")
+	# possibly create folder
+	betweenness.folder <- file.path(NET_FOLDER,g$name,"betweenness")
+	dir.create(path=betweenness.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(g, g0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("  Processing graph ",i,"/",length(lst),"\n",sep="")
+		g <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# betweenness distribution
+		vals <- betweenness(graph=g, normalized=FALSE)
+		custom.hist(vals, name="betweenness", file=file.path(betweenness.folder,paste0("betweenness_histo",sufx)))
+		
+		# export CSV with betweenness
+		df <- data.frame(V(g)$name,V(g)$label,vals)
+		colnames(df) <- c("Name","Label","betweenness") 
+		write.csv(df, file=file.path(betweenness.folder,paste0("betweenness_values",sufx,".csv")))
+		
+		# add results to the graph (as attributes) and record
+		V(g)$Betweenness <- vals
+		g$BetweennessAvg <- mean(vals)
+		g$BetweennessStdv <- sd(vals)
+		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# plot graph using color for betweenness
+		custom.gplot(g,col.att="Betweenness",file=file.path(betweenness.folder,paste0("betweenness_graph",sufx)))
+#		custom.gplot(g,col.att="Betweenness")
+		
+		# export CSV with average betweenness
+		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df["Betweenness", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+		}
+		else
+		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
+			row.names(df) <- c("Betweenness")
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		lst[[i]] <- g
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
 # Computes average distances and generates plots and CSV files.
 #
 # g: graph to process.
@@ -248,7 +366,7 @@ analyze.net.distance <- function(g, g0)
 	lst <- list(g, g0)
 	sufxx <- c("","0")
 	for(i in 1:length(lst))
-	{	cat("  Processing graph",i,"/",length(lst),"\n",sep="")
+	{	cat("  Processing graph ",i,"/",length(lst),"\n",sep="")
 		g <- lst[[i]]
 		sufx <- sufxx[i]
 		
@@ -348,6 +466,16 @@ analyze.network <- function(g)
 		
 		# compute degree
 		tmp <- analyze.net.degree(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute eigencentrality
+		tmp <- analyze.net.eigen(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute betweenness
+		tmp <- analyze.net.betweenness(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
 		

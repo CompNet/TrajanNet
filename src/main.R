@@ -61,6 +61,7 @@ analyze.network(g)
 # TODO
 # - multiplex plot of the different types of links?
 # - Check the thorough analysis in Rochat2014, see if appropriate here.
+# - Problem with the color of certain isolate nodes on the family & unknown nets
 #############################################################################################
 # Notes
 # - All ;-separated values are in chronological order, but almost no dates are available.
