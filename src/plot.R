@@ -14,6 +14,23 @@ LAYOUT <- NA	# graph layout
 
 
 #############################################################
+# see http://colorbrewer2.org/#type=qualitative&scheme=Set1&n=9
+CAT_COLORS <- c( 
+	"#E41A1C",
+	"#377EB8",
+	"#4DAF4A",
+	"#984EA3",
+	"#FF7F00",
+	"#FFFF33",
+	"#A65628",
+	"#F781BF",
+	"#999999"
+)
+
+
+
+
+#############################################################
 # Displays the specified graph in an appropraite way, taking
 # into account the previously set link and node attributes.
 #
@@ -76,9 +93,11 @@ setup.graph.layout <- function(g)
 # 		 is either a list of integer vectors (node sequences), or
 # 		 an integer vector if there is only one path to plot.
 # col.att: (optional) name of a vertex attribute, used to determine node color.
+# cat.att: (optional) if there is a vertex attribute, indicates whether
+#		   it is categorical or not.
 # file: (optional) file name, to record the plot.
 #############################################################
-custom.gplot <- function(g, paths, col.att, file)
+custom.gplot <- function(g, paths, col.att, cat.att=FALSE, file)
 {	
 	# set edge colors
 	ecols <- rep("BLACK", gsize(g))
@@ -120,12 +139,26 @@ custom.gplot <- function(g, paths, col.att, file)
 	
 	# vertex color
 	if(hasArg(col.att))
-	{	fine = 500 									# granularity of the color gradient
-		pal = colorRampPalette(c("yellow",'red'))	# extreme colors of the gradient
+	{	# get the attribute values
 		vvals <- get.vertex.attribute(graph=g, name=col.att)
-		vcols <- rep("WHITE",gorder(g))				# isolates have no color
-		vcols[which(degree(g)>0)] <- pal(fine)[as.numeric(cut(vvals[which(degree(g)>0)],breaks=fine))]
-		# see https://stackoverflow.com/questions/27004167/coloring-vertexes-according-to-their-centrality
+		# isolates have no color
+		vcols <- rep("WHITE",gorder(g))
+		idx <- which(degree(g)>0)
+		
+		# categorical attribute
+		if(cat.att)
+		{	tmp <- factor(vvals[idx])
+			vcols[idx] <- CAT_COLORS[(as.integer(tmp)-1) %% length(CAT_COLORS) + 1]
+			lgd.txt <- levels(tmp)
+			lgd.col <- CAT_COLORS[(1:length(lgd.txt)-1) %% length(CAT_COLORS) + 1]
+		}
+		# numerical attribute
+		else
+		{	fine = 500 									# granularity of the color gradient
+			pal = colorRampPalette(c("yellow",'red'))	# extreme colors of the gradient
+			vcols[idx] <- pal(fine)[as.numeric(cut(vvals[idx],breaks=fine))]
+			# see https://stackoverflow.com/questions/27004167/coloring-vertexes-according-to-their-centrality
+		}
 	}
 	else
 		vcols <- rep("GREY",gorder(g))
@@ -169,20 +202,34 @@ custom.gplot <- function(g, paths, col.att, file)
 		seg.len=3										# length of the line in the legend
 	)
 	if(hasArg(col.att))
-	{	width <- 0.05
-		height <- 0.3
-		x1 <- -1
-		x2 <- x1 + width
-		y2 <- -1
-		y1 <- y2 + height
-		leg.loc <- cbind(x=c(x1, x2, x2, x1), y=c(y1, y1, y2, y2))
-		legend.gradient(
-				pnts=leg.loc, 
-				cols=pal(25), 
-				limits=format(range(vvals[which(degree(g)>0)]), digits=2, nsmall=2), 
-				title=col.att, 
-				cex=0.8
-		)
+	{	# categorical attributes
+		if(cat.att)
+		{	legend(
+				title="Vertex types",					# title of the legend box
+				x="bottomleft",							# position
+				legend=lgd.txt,							# text of the legend
+				fill=lgd.col,							# color of the lines
+				bty="n",								# no box around the legend
+				cex=0.8									# size of the text in the legend
+			)
+		}
+		# numerical attributes
+		else
+		{	width <- 0.05
+			height <- 0.3
+			x1 <- -1
+			x2 <- x1 + width
+			y2 <- -1
+			y1 <- y2 + height
+			leg.loc <- cbind(x=c(x1, x2, x2, x1), y=c(y1, y1, y2, y2))
+			legend.gradient(
+					pnts=leg.loc, 
+					cols=pal(25), 
+					limits=format(range(vvals[which(degree(g)>0)]), digits=2, nsmall=2), 
+					title=col.att, 
+					cex=0.8
+			)
+		}
 	}
 	# legend for vertex sizes: https://stackoverflow.com/questions/38451431/add-legend-in-igraph-to-annotate-difference-vertices-size
 	if(hasArg(file))
@@ -246,6 +293,39 @@ custom.hist <- function(vals, name, file)
 			method="jitter",# noise to avoid overlaps
 			jitter=0.02, 	# noise magnitude
 			add=TRUE		# add to current plot
+	)
+	if(hasArg(file))
+		dev.off()
+}
+
+
+
+
+#############################################################
+# Custom barplot.
+#
+# vals: raw values.
+# text: name of the bars.
+# xlab: label of the x-axis.
+# ylab: label of the y-axis.
+# file: (optional) file name, to record the histogram plot.
+#############################################################
+custom.barplot <- function(vals, text, xlab, ylab, file)
+{	if(hasArg(file))
+	{	if(FORMAT=="pdf")
+			pdf(paste0(file,".pdf"), width=25, height=25)
+		else if(FORMAT=="png")
+			png(paste0(file,".png"), width=1024, height=1024)
+	}
+#	par(mar=c(5,3,1,2)+0.1)	# remove the title space Bottom Left Top Right
+	par(mar=c(5, 4, 1, 0)+0.1)
+	barplot(
+			height=vals,			# data
+			names.arg=text,
+			col="#ffd6d6",	# bar color
+			main=NA,		# no main title
+			xlab=xlab,		# x-axis label
+			ylab=ylab		# y-axis label
 	)
 	if(hasArg(file))
 		dev.off()

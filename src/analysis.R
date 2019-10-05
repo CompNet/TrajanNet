@@ -435,6 +435,69 @@ analyze.net.closeness <- function(g, g0)
 
 
 #############################################################
+# Detects the community structure of the network.
+#
+# g: graph to process.
+# g0: same graph without the main node.
+#############################################################
+analyze.net.comstruct <- function(g, g0)
+{	cat("  Detecting community structure\n")
+	# possibly create folder
+	communities.folder <- file.path(NET_FOLDER,g$name,"communities")
+	dir.create(path=communities.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(g, g0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("  Processing graph ",i,"/",length(lst),"\n",sep="")
+		g <- lst[[i]]
+		sufx <- sufxx[i]
+		idx <- which(degree(g)>0)
+		
+		# community size distribution
+#		coms <- cluster_optimal(graph=simplify(g))	# much slower, obviously
+#		coms <- cluster_spinglass(graph=simplify(g))
+		coms <- cluster_infomap(graph=simplify(g))
+		mbrs <- as.integer(membership(coms))
+		sizes <- table(mbrs[idx]) 
+		custom.barplot(sizes, text=names(sizes), xlab="Community", ylab="Size", file=file.path(communities.folder,paste0("community_size_bars",sufx)))
+		
+		# export CSV with community membership
+		df <- data.frame(V(g)$name,V(g)$label,mbrs)
+		colnames(df) <- c("Name","Label","Community") 
+		write.csv(df, file=file.path(communities.folder,paste0("community_membership",sufx,".csv")))
+		
+		# add results to the graph (as attributes) and record
+		V(g)$Communities <- mbrs
+		g$Modularity <- modularity(coms)
+		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# plot graph using color for communities
+		custom.gplot(g,col.att="Communities",cat.att=TRUE,file=file.path(communities.folder,paste0("communities_graph",sufx)))
+#		custom.gplot(g,col.att="Communities",cat.att=TRUE)
+		
+		# export CSV with modularity
+		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df["Modularity", ] <- list(Value=g$Modularity, Mean=NA, Stdv=NA)
+		}
+		else
+		{	df <- data.frame(Value=c(g$Modularity),Mean=c(NA),Stdv=c(NA))
+			row.names(df) <- c("Modularity")
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		lst[[i]] <- g
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
 # Recursively computes articulation points.
 #
 # g: graph to process.
@@ -604,7 +667,7 @@ analyze.network <- function(g)
 		
 		# delete trajan's links for better visibility
 		# TODO maybe better to just draw them using a light color?
-		g0 <- disconnect.nodes(g0, nodes=1)
+		g0 <- disconnect.nodes(g, nodes=1)
 		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
 #		custom.gplot(g0)
 		write.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
@@ -640,6 +703,10 @@ analyze.network <- function(g)
 		# compute articulation points
 		g <- analyze.net.articulation(g)
 		
-		# TODO		
+		# detect communities
+		tmp <- analyze.net.comstruct(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+
 	}
 }

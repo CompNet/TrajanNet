@@ -62,7 +62,6 @@ analyze.network(g)
 # - Topological measures
 #	- https://igraph.org/r/doc/assortativity.html
 #	- https://igraph.org/r/doc/vertex_connectivity.html
-#	- https://igraph.org/r/doc/cluster_optimal.html
 #	- https://igraph.org/r/doc/transitivity.html
 #############################################################################################
 # Notes
