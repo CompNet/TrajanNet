@@ -111,7 +111,7 @@ disconnect.nodes <- function(g, nodes)
 # Computes the diameter, the corresponding paths, and plots them.
 # Same thing for radius and eccentricity.
 #
-# g: graph to process.
+# g0: graph without the main node.
 #############################################################
 analyze.net.eccentricity <- function(g0)
 {	###########################
@@ -130,12 +130,12 @@ analyze.net.eccentricity <- function(g0)
 	# plot diameter
 	diam.paths <- lapply(1:nrow(idx), function(r) all_shortest_paths(graph=g0, from=idx[r,1], to=idx[r,2])$res)
 	for(pp in 1:length(diam.paths))
-	{	custom.gplot(g0, paths=diam.paths[[pp]], file=file.path(diameter.folder,paste0("graph0_diam_",pp)))
+	{	custom.gplot(g0, paths=diam.paths[[pp]], file=file.path(diameter.folder,paste0("diam_graph0_",pp)))
 		
 		q <- 1
 		for(p in 1:length(diam.paths[[pp]]))
 		{	if(p==1 || !all(diam.paths[[pp]][[p]]==diam.paths[[pp]][[p-1]]))
-			{	custom.gplot(g0, paths=diam.paths[[pp]][[p]], file=file.path(diameter.folder,paste0("graph0_diam_",pp,"_",q)))
+			{	custom.gplot(g0, paths=diam.paths[[pp]][[p]], file=file.path(diameter.folder,paste0("diam_graph0_",pp,"_",q)))
 				q <- q + 1
 			}
 		}
@@ -237,7 +237,7 @@ analyze.net.degree <- function(g, g0)
 #		custom.gplot(g,col.att="Degree")
 		
 		# export CSV with average degree
-		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df["Degree", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
@@ -296,7 +296,7 @@ analyze.net.eigen <- function(g, g0)
 #		custom.gplot(g,col.att="Eigencentrality")
 		
 		# export CSV with average Eigencentrality
-		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df["Eigencentrality", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
@@ -355,7 +355,7 @@ analyze.net.betweenness <- function(g, g0)
 #		custom.gplot(g,col.att="Betweenness")
 		
 		# export CSV with average betweenness
-		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df["Betweenness", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
@@ -414,7 +414,7 @@ analyze.net.closeness <- function(g, g0)
 #		custom.gplot(g,col.att="Closeness")
 		
 		# export CSV with average closeness
-		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df["Closeness", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
@@ -470,6 +470,7 @@ analyze.net.comstruct <- function(g, g0)
 		# add results to the graph (as attributes) and record
 		V(g)$Communities <- mbrs
 		g$Modularity <- modularity(coms)
+		cat("    Modularity: ",g$Modularity,"\n",sep="")
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# plot graph using color for communities
@@ -477,7 +478,7 @@ analyze.net.comstruct <- function(g, g0)
 #		custom.gplot(g,col.att="Communities",cat.att=TRUE)
 		
 		# export CSV with modularity
-		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df["Modularity", ] <- list(Value=g$Modularity, Mean=NA, Stdv=NA)
@@ -498,6 +499,119 @@ analyze.net.comstruct <- function(g, g0)
 
 
 #############################################################
+# Computes the assortativity of the network.
+#
+# g0: graph without the main node.
+#############################################################
+analyze.net.assortativity <- function(g0)
+{	cat("  Computing the assortativity\n")
+	
+	# retrieve the list of vertex attributes
+	att.list <- list.vertex.attributes(g0)
+	
+	#############################
+	# deal with categorical attributes
+	cat.data <- NA
+	
+	# gather regular categorical attributes
+	attrs <- c("RelTrajan","Adelectio","SoutHadrien","Espagnol",
+		att.list[grepl(att.list,pattern="Cercles")])
+	for(attr in attrs)
+	{	tmp <- vertex_attr(g0, attr)
+		if(all(is.na(cat.data)))
+			cat.data <- matrix(as.integer(factor(tmp)),ncol=1)
+		else
+			cat.data <- cbind(cat.data, as.integer(factor(tmp)))
+		colnames(cat.data)[ncol(cat.data)] <- attr
+	}
+	
+	# convert tag-type attributes
+	attrs <- c("PolitEques", "MilitSenat", "MilitEques", "DestVoy", "MotifVoy")
+	for(attr in attrs)
+	{	tmp <- att.list[grepl(att.list,pattern=attr)]
+		m <- sapply(tmp, function(att) vertex_attr(g0, att))
+		uvals <- sort(unique(c(m)))
+		for(uval in uvals)
+		{	cat.data <- cbind(cat.data, as.integer(factor(apply(m, 1, function(v) uval %in% v[!is.na(v)]))))
+			colnames(cat.data)[ncol(cat.data)] <- paste(attr,uval,sep="_")
+		}
+	}
+	
+	# compute the assortativity for all categorical attributes
+	vals <- c()
+	for(i in 1:ncol(cat.data))
+	{	# compute the assortativity
+		attr <- colnames(cat.data)[i]
+		ass <- assortativity_nominal(graph=g0, types=cat.data[,i])
+		cat("    Assortativity for attribute \"",attr,"\": ",ass,"\n",sep="")
+		vals <- c(vals, ass)
+		names(vals)[lengtj(vals)] <- attr
+	}
+	
+	#############################
+	# deal with categorical attributes
+	num.data <- NA
+	
+	# gather regular numerical attributes
+	attrs <- c("NbrVoy")
+	for(attr in attrs)
+	{	tmp <- vertex_attr(g0, attr)
+		if(all(is.na(num.data)))
+			num.data <- matrix(tmp,ncol=1)
+		else
+			num.data <- cbind(num.data, tmp)
+		colnames(num.data)[ncol(num.data)] <- attr
+	}
+	
+	# compute the assortativity for all numerical attributes
+	for(i in 1:ncol(num.data))
+	{	# compute the assortativity
+		attr <- colnames(num.data)[i]
+		ass <- assortativity(graph=g0, types1=num.data[,i])
+		cat("    Assortativity for attribute \"",attr,"\": ",ass,"\n",sep="")
+		vals <- c(vals, ass)
+		names(vals)[lengtj(vals)] <- attr
+	}
+	
+	#############################
+	# record the results
+	
+	# add results to the graph (as attributes) and record
+	for(i in 1:length(vals))
+	{	attr <- names(vals)[i]
+		g0 <- set_vertex_attr(graph=g0, name=attr, value=vals[i])
+	}
+	write.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,paste0("graph0.graphml")), format="graphml")
+	
+	# add assortativity to main CSV
+	stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+	if(file.exists(stat.file))
+	{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+		for(i in 1:length(vals))
+		{	attr <- names(vals)[i]
+			df[attr, ] <- list(Value=vals[i], Mean=NA, Stdv=NA)
+		}
+	}
+	else
+	{	df <- data.frame(Value=c(vals[i]),Mean=c(NA),Stdv=c(NA))
+		row.names(df) <- c(names(vals)[1])
+		for(i in 2:length(vals))
+		{	attr <- names(vals)[i]
+			df[attr, ] <- list(Value=vals[i], Mean=NA, Stdv=NA)
+		}
+		
+	}
+	write.csv(df, file=stat.file, row.names=TRUE)
+	
+	#############################
+	# assortativity over
+	return(g0)
+}
+
+
+
+
+#############################################################
 # Recursively computes articulation points.
 #
 # g: graph to process.
@@ -512,7 +626,7 @@ analyze.net.articulation <- function(g)
 	
 	# repeat until no more articulation point
 	while(length(art)>0)
-	{	cat("  Level ",level,"\n",sep="")
+	{	cat("    Level ",level,"\n",sep="")
 		# disconnect the articulation nodes
 		g1 <- disconnect.nodes(g1, nodes=art)
 		# mark them
@@ -608,7 +722,7 @@ analyze.net.distance <- function(g, g0)
 #		custom.gplot(g,col.att="AverageDistance")
 		
 		# export CSV with average distance
-		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df["Distance", ] <- list(Value=NA, Mean=mean(flat.vals), Stdv=sd(flat.vals))
@@ -707,6 +821,10 @@ analyze.network <- function(g)
 		tmp <- analyze.net.comstruct(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
-
+		
+		# compute assortativity
+		tmp <- analyze.net.assortativity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
 	}
 }
