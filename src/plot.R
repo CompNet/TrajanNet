@@ -120,11 +120,11 @@ custom.gplot <- function(g, paths, col.att, file)
 	
 	# vertex color
 	if(hasArg(col.att))
-	{	fine = 500 # this will adjust the resolving power.
-		pal = colorRampPalette(c("yellow",'red'))
+	{	fine = 500 									# granularity of the color gradient
+		pal = colorRampPalette(c("yellow",'red'))	# extreme colors of the gradient
 		vvals <- get.vertex.attribute(graph=g, name=col.att)
-		vcols <- "WHITE"		# isolates have no color
-		vcols[which(degree(g)>0)] = pal(fine)[as.numeric(cut(vvals[which(degree(g)>0)],breaks=fine))]
+		vcols <- rep("WHITE",gorder(g))				# isolates have no color
+		vcols[which(degree(g)>0)] <- pal(fine)[as.numeric(cut(vvals[which(degree(g)>0)],breaks=fine))]
 		# see https://stackoverflow.com/questions/27004167/coloring-vertexes-according-to-their-centrality
 	}
 	else
@@ -165,7 +165,8 @@ custom.gplot <- function(g, paths, col.att, file)
 		lty=c(1,3,5),									# type of lines
 		lwd=2,											# line thickness
 		bty="n",										# no box around the legend
-		cex=0.8
+		cex=0.8,										# size of the text in the legend
+		seg.len=3										# length of the line in the legend
 	)
 	if(hasArg(col.att))
 	{	width <- 0.05

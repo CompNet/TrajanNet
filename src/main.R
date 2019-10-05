@@ -55,13 +55,16 @@ analyze.network(g)
 
 
 
-
-
 #############################################################################################
 # TODO
 # - multiplex plot of the different types of links?
 # - Check the thorough analysis in Rochat2014, see if appropriate here.
-# - Problem with the color of certain isolate nodes on the family & unknown nets
+# - Topological measures
+#	- https://igraph.org/r/doc/articulation_points.html
+#	- https://igraph.org/r/doc/assortativity.html
+#	- https://igraph.org/r/doc/vertex_connectivity.html
+#	- https://igraph.org/r/doc/cluster_optimal.html
+#	- https://igraph.org/r/doc/transitivity.html
 #############################################################################################
 # Notes
 # - All ;-separated values are in chronological order, but almost no dates are available.

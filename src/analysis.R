@@ -84,6 +84,30 @@ clean.links <- function(g, link.types)
 
 
 #############################################################
+# Removes the links of the targeted nodes, in order to isolate them.
+#
+# g: graph to process.
+# nodes: nodes to isolate.
+#
+# returns: the modified graph.
+#############################################################
+disconnect.nodes <- function(g, nodes)
+{	# process each node one by one
+	for(n in nodes)
+	{	# old version: not good, plot-wise
+#		g <- delete_vertices(g,1)
+	
+		es <- incident(graph=g, v=n, mode="all")
+		g <- delete.edges(g,es)
+	}
+	
+	return(g)
+}
+
+
+
+
+#############################################################
 # Computes the diameter, the corresponding paths, and plots them.
 # Same thing for radius and eccentricity.
 #
@@ -317,7 +341,7 @@ analyze.net.betweenness <- function(g, g0)
 		
 		# export CSV with betweenness
 		df <- data.frame(V(g)$name,V(g)$label,vals)
-		colnames(df) <- c("Name","Label","betweenness") 
+		colnames(df) <- c("Name","Label","Betweenness") 
 		write.csv(df, file=file.path(betweenness.folder,paste0("betweenness_values",sufx,".csv")))
 		
 		# add results to the graph (as attributes) and record
@@ -346,6 +370,130 @@ analyze.net.betweenness <- function(g, g0)
 	}
 	
 	return(lst)
+}
+
+
+
+
+#############################################################
+# Computes closeness and generates plots and CSV files.
+#
+# g: graph to process.
+# g0: same graph without the main node.
+#############################################################
+analyze.net.closeness <- function(g, g0)
+{	cat("  Computing closeness\n")
+	# possibly create folder
+	closeness.folder <- file.path(NET_FOLDER,g$name,"closeness")
+	dir.create(path=closeness.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(g, g0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("  Processing graph ",i,"/",length(lst),"\n",sep="")
+		g <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# closeness distribution
+		vals <- closeness(graph=g, normalized=FALSE)
+		custom.hist(vals, name="closeness", file=file.path(closeness.folder,paste0("closeness_histo",sufx)))
+		
+		# export CSV with closeness
+		df <- data.frame(V(g)$name,V(g)$label,vals)
+		colnames(df) <- c("Name","Label","Closeness") 
+		write.csv(df, file=file.path(closeness.folder,paste0("closeness_values",sufx,".csv")))
+		
+		# add results to the graph (as attributes) and record
+		V(g)$Closeness <- vals
+		g$ClosenessAvg <- mean(vals)
+		g$ClosenessStdv <- sd(vals)
+		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# plot graph using color for closeness
+		custom.gplot(g,col.att="Closeness",file=file.path(closeness.folder,paste0("closeness_graph",sufx)))
+#		custom.gplot(g,col.att="Closeness")
+		
+		# export CSV with average closeness
+		stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df["Closeness", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+		}
+		else
+		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
+			row.names(df) <- c("Closeness")
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		lst[[i]] <- g
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
+# Recursively computes articulation points.
+#
+# g: graph to process.
+# g0: same graph without the main node.
+#############################################################
+analyze.net.articulation <- function(g)
+{	# init 
+	cat("  Computing articulation points\n")
+	level <- 1
+	art <- articulation_points(g)
+	
+	# repeat until no more articulation point
+	while(length(art)>0)
+	{	# disconnect the articulation nodes
+		g <- disconnect.nodes(g, nodes=art)
+		# mark them
+		vals <- apply(cbind(rep(level,length(art)),V(g)$Articulation[art]),1,function(v) min(v,na.rm=TRUE))
+		V(g)[art]$Articulation <- vals
+		# proceed with the next level
+		art <- articulation_points(g)
+		level <- level + 1
+	}
+	V(g)$Articulation[is.na(V(g)$Articulation)] <- level
+	vals <- V(g)$Articulation
+	
+	# possibly create folder
+	articulation.folder <- file.path(NET_FOLDER,g0$name,"articulation")
+	dir.create(path=articulation.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	# plot distribution
+	custom.hist(vals, name="articulation", file=file.path(articulation.folder,paste0("articulation_histo")))
+	
+	# export CSV with articulation
+	df <- data.frame(V(g)$name,V(g)$label,vals)
+	colnames(df) <- c("Name","Label","Articulation") 
+	write.csv(df, file=file.path(articulation.folder,paste0("articulation_values.csv")))
+	
+	# add results to the graph (as attributes) and record
+	g$ArticulationAvg <- mean(vals)
+	g$ArticulationStdv <- sd(vals)
+	write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph.graphml")), format="graphml")
+	
+	# plot graph using color for articulation
+	custom.gplot(g,col.att="Articulation",file=file.path(articulation.folder,paste0("articulation_graph")))
+#	custom.gplot(g,col.att="Articulation")
+	
+	# export CSV with average articulation
+	stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+	if(file.exists(stat.file))
+	{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+		df["Articulation", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+	}
+	else
+	{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
+		row.names(df) <- c("Articulation")
+	}
+	write.csv(df, file=stat.file, row.names=TRUE)
+	
+	return(g0)
 }
 
 
@@ -453,10 +601,7 @@ analyze.network <- function(g)
 		
 		# delete trajan's links for better visibility
 		# TODO maybe better to just draw them using a light color?
-		g0 <- g
-#		g0 <- delete_vertices(g,1)		# delete trajan (not good, plot-wise)
-		es <- incident(graph=g0, v=1, mode="all")
-		g0 <- delete.edges(g0,es)	# delete trajan's links
+		g0 <- disconnect.nodes(g0, nodes=1)
 		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
 #		custom.gplot(g0)
 		write.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
@@ -474,8 +619,13 @@ analyze.network <- function(g)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
 		
-		# compute betweenness
+		# compute closeness
 		tmp <- analyze.net.betweenness(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute betweenness
+		tmp <- analyze.net.closeness(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
 		
@@ -483,6 +633,9 @@ analyze.network <- function(g)
 		tmp <- analyze.net.distance(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
+		
+		# compute articulation points
+		g <- analyze.net.articulation(g)
 		
 		# TODO		
 	}
