@@ -3267,7 +3267,7 @@
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n0" target="n46">
       <data key="e_Nature_Amicale">NA</data>
@@ -3435,7 +3435,7 @@
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n1" target="n25">
       <data key="e_Nature_Amicale">TRUE</data>
@@ -3465,7 +3465,7 @@
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">TRUE</data>
       <data key="e_Nature_Professionnelle">FALSE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n2" target="n6">
       <data key="e_Nature_Amicale">FALSE</data>
@@ -3483,7 +3483,7 @@
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n2" target="n12">
       <data key="e_Nature_Amicale">FALSE</data>
@@ -3501,7 +3501,7 @@
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n2" target="n18">
       <data key="e_Nature_Amicale">TRUE</data>
@@ -3519,7 +3519,7 @@
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n2" target="n22">
       <data key="e_Nature_Amicale">TRUE</data>
@@ -3531,13 +3531,13 @@
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n2" target="n27">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n2" target="n28">
       <data key="e_Nature_Amicale">FALSE</data>
@@ -3555,7 +3555,7 @@
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n2" target="n36">
       <data key="e_Nature_Amicale">FALSE</data>
@@ -3585,7 +3585,7 @@
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n2" target="n46">
       <data key="e_Nature_Amicale">FALSE</data>
@@ -3603,7 +3603,7 @@
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n2" target="n55">
       <data key="e_Nature_Amicale">FALSE</data>
@@ -3711,31 +3711,31 @@
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n8" target="n11">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n8" target="n16">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n8" target="n27">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n8" target="n53">
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n10" target="n35">
       <data key="e_Nature_Amicale">TRUE</data>
@@ -3783,7 +3783,7 @@
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n12" target="n25">
       <data key="e_Nature_Amicale">TRUE</data>
@@ -3855,13 +3855,13 @@
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n20" target="n25">
       <data key="e_Nature_Amicale">NA</data>
       <data key="e_Nature_Familiale">NA</data>
       <data key="e_Nature_Professionnelle">NA</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n22" target="n25">
       <data key="e_Nature_Amicale">TRUE</data>
@@ -3963,7 +3963,7 @@
       <data key="e_Nature_Amicale">FALSE</data>
       <data key="e_Nature_Familiale">FALSE</data>
       <data key="e_Nature_Professionnelle">TRUE</data>
-      <data key="e_Polarite">Négative</data>
+      <data key="e_Polarite">FALSE</data>
     </edge>
     <edge source="n27" target="n53">
       <data key="e_Nature_Amicale">TRUE</data>

@@ -39,8 +39,8 @@ clean.links <- function(g, link.types)
 		# process each specified link type (except NA)
 		for(lt in link.types0)
 		{	# convert attribute values
-			vv <- get.edge.attribute(g,lt,e)
-			pol <- get.edge.attribute(g,"Polarite",e)
+			vv <- as.logical(get.edge.attribute(g,lt,e))
+			pol <- as.logical(get.edge.attribute(g,"Polarite",e))
 			
 			if(!is.na(vv) && vv)
 			{	# convert link nature
@@ -67,7 +67,7 @@ clean.links <- function(g, link.types)
 			}
 			if(unk)
 			{	ltp <- "Unknown"
-				pol <- get.edge.attribute(g,"Polarite",e)
+				pol <- as.logical(get.edge.attribute(g,"Polarite",e))
 				
 				# add to new graph
 				res <- add_edges(res, edges=uv, attr=list(
@@ -542,12 +542,37 @@ analyze.net.assortativity <- function(g0)
 	for(i in 1:ncol(cat.data))
 	{	# compute the assortativity
 		attr <- colnames(cat.data)[i]
-print(attr)
-print(cat.data[,i])
-		ass <- assortativity_nominal(graph=g0, types=cat.data[,i])
-		cat("    Assortativity for attribute \"",attr,"\": ",ass,"\n",sep="")
-		vals <- c(vals, ass)
-		names(vals)[length(vals)] <- attr
+#print(attr)
+#print(cat.data[,i])
+		# if there are some NAs
+		if(any(is.na(cat.data[,i])))
+		{	# explicitly represent them as a class
+			cd <- cat.data[,i]
+			cd[is.na(cd)] <- max(cd,na.rm=TRUE) + 1
+			ass <- assortativity_nominal(graph=g0, types=cd)
+			cat("    Assortativity for attribute \"",attr,"\" when representing NAs by 0: ",ass,"\n",sep="")
+			vals <- c(vals, ass)
+			names(vals)[length(vals)] <- paste(attr,"_explicitNA",sep="")
+			# ignore them
+			cd <- cat.data[,i]
+			cd <- cd[!is.na(cd)]
+			if(length(cd)>1)
+			{	gg <- delete_vertices(g, which(is.na(cat.data[,i])))
+				ass <- assortativity_nominal(graph=gg, types=cd)
+			}
+			else
+				ass <- NA
+			cat("    Assortativity for attribute \"",attr,"\" when ignoring NAs: ",ass,"\n",sep="")
+			vals <- c(vals, ass)
+			names(vals)[length(vals)] <- paste(attr,"_noNA",sep="")
+		}
+		# no NA at all
+		else
+		{	ass <- assortativity_nominal(graph=g0, types=cat.data[,i])
+			cat("    Assortativity for attribute \"",attr,"\": ",ass,"\n",sep="")
+			vals <- c(vals, ass)
+			names(vals)[length(vals)] <- attr
+		}
 	}
 	
 	#############################
@@ -569,10 +594,36 @@ print(cat.data[,i])
 	for(i in 1:ncol(num.data))
 	{	# compute the assortativity
 		attr <- colnames(num.data)[i]
-		ass <- assortativity(graph=g0, types1=num.data[,i])
-		cat("    Assortativity for attribute \"",attr,"\": ",ass,"\n",sep="")
-		vals <- c(vals, ass)
-		names(vals)[length(vals)] <- attr
+		
+		# if there are some NAs
+		if(any(is.na(num.data[,i])))
+		{	# explicitly represent them as zeroes
+			cd <- num.data[,i]
+			cd[is.na(cd)] <- 0
+			ass <- assortativity(graph=g0, types1=cd)
+			cat("    Assortativity for attribute \"",attr,"\" when replacing NAs by 0: ",ass,"\n",sep="")
+			vals <- c(vals, ass)
+			names(vals)[length(vals)] <- paste(attr,"_explicitNA",sep="")
+			# ignore them
+			cd <- num.data[,i]
+			cd <- cd[!is.na(cd)]
+			if(length(cd)>1)
+			{	gg <- delete_vertices(g, which(is.na(num.data[,i])))
+				ass <- assortativity(graph=gg, types1=cd)
+			}
+			else
+				ass <- NA
+			cat("    Assortativity for attribute \"",attr,"\" when ignoring NAs: ",ass,"\n",sep="")
+			vals <- c(vals, ass)
+			names(vals)[length(vals)] <- paste(attr,"_noNA",sep="")
+		}
+		# no NA at all
+		else
+		{	ass <- assortativity(graph=g0, types1=num.data[,i])
+			cat("    Assortativity for attribute \"",attr,"\": ",ass,"\n",sep="")
+			vals <- c(vals, ass)
+			names(vals)[length(vals)] <- attr
+		}
 	}
 	
 	#############################

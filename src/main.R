@@ -57,7 +57,6 @@ analyze.network(g)
 
 #############################################################################################
 # TODO
-# - Bug with NAs in assortativity: how to deal with it? 1) replace NA by new class, or 2) isolate NA nodes?
 # - Perform a basic descriptive analysis of the vertex attributes (>> add to assortativity function?)
 # - Send both graphs all the time, update even if not concerned, and record
 # - Multiplex plot of the different types of links? (didn't find an appropriate tool)
