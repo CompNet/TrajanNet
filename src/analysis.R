@@ -213,7 +213,7 @@ analyze.net.degree <- function(g, g0)
 	lst <- list(g, g0)
 	sufxx <- c("","0")
 	for(i in 1:length(lst))
-	{	cat("  Processing graph ",i,"/",length(lst),"\n",sep="")
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
 		g <- lst[[i]]
 		sufx <- sufxx[i]
 		
@@ -272,7 +272,7 @@ analyze.net.eigen <- function(g, g0)
 	lst <- list(g, g0)
 	sufxx <- c("","0")
 	for(i in 1:length(lst))
-	{	cat("  Processing graph ",i,"/",length(lst),"\n",sep="")
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
 		g <- lst[[i]]
 		sufx <- sufxx[i]
 		
@@ -331,7 +331,7 @@ analyze.net.betweenness <- function(g, g0)
 	lst <- list(g, g0)
 	sufxx <- c("","0")
 	for(i in 1:length(lst))
-	{	cat("  Processing graph ",i,"/",length(lst),"\n",sep="")
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
 		g <- lst[[i]]
 		sufx <- sufxx[i]
 		
@@ -390,7 +390,7 @@ analyze.net.closeness <- function(g, g0)
 	lst <- list(g, g0)
 	sufxx <- c("","0")
 	for(i in 1:length(lst))
-	{	cat("  Processing graph ",i,"/",length(lst),"\n",sep="")
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
 		g <- lst[[i]]
 		sufx <- sufxx[i]
 		
@@ -449,7 +449,7 @@ analyze.net.comstruct <- function(g, g0)
 	lst <- list(g, g0)
 	sufxx <- c("","0")
 	for(i in 1:length(lst))
-	{	cat("  Processing graph ",i,"/",length(lst),"\n",sep="")
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
 		g <- lst[[i]]
 		sufx <- sufxx[i]
 		idx <- which(degree(g)>0)
@@ -542,10 +542,12 @@ analyze.net.assortativity <- function(g0)
 	for(i in 1:ncol(cat.data))
 	{	# compute the assortativity
 		attr <- colnames(cat.data)[i]
+print(attr)
+print(cat.data[,i])
 		ass <- assortativity_nominal(graph=g0, types=cat.data[,i])
 		cat("    Assortativity for attribute \"",attr,"\": ",ass,"\n",sep="")
 		vals <- c(vals, ass)
-		names(vals)[lengtj(vals)] <- attr
+		names(vals)[length(vals)] <- attr
 	}
 	
 	#############################
@@ -570,7 +572,7 @@ analyze.net.assortativity <- function(g0)
 		ass <- assortativity(graph=g0, types1=num.data[,i])
 		cat("    Assortativity for attribute \"",attr,"\": ",ass,"\n",sep="")
 		vals <- c(vals, ass)
-		names(vals)[lengtj(vals)] <- attr
+		names(vals)[length(vals)] <- attr
 	}
 	
 	#############################
@@ -694,7 +696,7 @@ analyze.net.distance <- function(g, g0)
 	lst <- list(g, g0)
 	sufxx <- c("","0")
 	for(i in 1:length(lst))
-	{	cat("  Processing graph ",i,"/",length(lst),"\n",sep="")
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
 		g <- lst[[i]]
 		sufx <- sufxx[i]
 		
@@ -823,8 +825,6 @@ analyze.network <- function(g)
 		g0 <- tmp[[2]]
 		
 		# compute assortativity
-		tmp <- analyze.net.assortativity(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
+		g0 <- analyze.net.assortativity(g0)
 	}
 }
