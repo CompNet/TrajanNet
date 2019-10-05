@@ -60,7 +60,6 @@ analyze.network(g)
 # - multiplex plot of the different types of links?
 # - Check the thorough analysis in Rochat2014, see if appropriate here.
 # - Topological measures
-#	- https://igraph.org/r/doc/articulation_points.html
 #	- https://igraph.org/r/doc/assortativity.html
 #	- https://igraph.org/r/doc/vertex_connectivity.html
 #	- https://igraph.org/r/doc/cluster_optimal.html

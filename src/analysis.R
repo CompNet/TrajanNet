@@ -443,25 +443,27 @@ analyze.net.closeness <- function(g, g0)
 analyze.net.articulation <- function(g)
 {	# init 
 	cat("  Computing articulation points\n")
+	g1 <- g
 	level <- 1
-	art <- articulation_points(g)
+	art <- articulation_points(g1)
 	
 	# repeat until no more articulation point
 	while(length(art)>0)
-	{	# disconnect the articulation nodes
-		g <- disconnect.nodes(g, nodes=art)
+	{	cat("  Level ",level,"\n",sep="")
+		# disconnect the articulation nodes
+		g1 <- disconnect.nodes(g1, nodes=art)
 		# mark them
-		vals <- apply(cbind(rep(level,length(art)),V(g)$Articulation[art]),1,function(v) min(v,na.rm=TRUE))
-		V(g)[art]$Articulation <- vals
+		vals <- apply(cbind(rep(level,length(art)),V(g1)$Articulation[art]),1,function(v) min(v,na.rm=TRUE))
+		V(g1)[art]$Articulation <- vals
 		# proceed with the next level
-		art <- articulation_points(g)
+		art <- articulation_points(g1)
 		level <- level + 1
 	}
-	V(g)$Articulation[is.na(V(g)$Articulation)] <- level
-	vals <- V(g)$Articulation
+	V(g1)$Articulation[is.na(V(g1)$Articulation)] <- level
+	vals <- V(g1)$Articulation
 	
 	# possibly create folder
-	articulation.folder <- file.path(NET_FOLDER,g0$name,"articulation")
+	articulation.folder <- file.path(NET_FOLDER,g$name,"articulation")
 	dir.create(path=articulation.folder, showWarnings=FALSE, recursive=TRUE)
 	
 	# plot distribution
@@ -473,6 +475,7 @@ analyze.net.articulation <- function(g)
 	write.csv(df, file=file.path(articulation.folder,paste0("articulation_values.csv")))
 	
 	# add results to the graph (as attributes) and record
+	V(g)$Articulation <- vals
 	g$ArticulationAvg <- mean(vals)
 	g$ArticulationStdv <- sd(vals)
 	write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph.graphml")), format="graphml")
@@ -482,7 +485,7 @@ analyze.net.articulation <- function(g)
 #	custom.gplot(g,col.att="Articulation")
 	
 	# export CSV with average articulation
-	stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+	stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 	if(file.exists(stat.file))
 	{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 		df["Articulation", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
@@ -493,7 +496,7 @@ analyze.net.articulation <- function(g)
 	}
 	write.csv(df, file=stat.file, row.names=TRUE)
 	
-	return(g0)
+	return(g)
 }
 
 
