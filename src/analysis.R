@@ -263,10 +263,10 @@ analyze.net.degree <- function(g, g0)
 # g: graph to process.
 # g0: same graph without the main node.
 #############################################################
-analyze.net.eigen <- function(g, g0)
+analyze.net.eigencentrality <- function(g, g0)
 {	cat("  Computing Eigencentrality\n")
 	# possibly create folder
-	eigen.folder <- file.path(NET_FOLDER,g$name,"eigen")
+	eigen.folder <- file.path(NET_FOLDER,g$name,"eigencentrality")
 	dir.create(path=eigen.folder, showWarnings=FALSE, recursive=TRUE)
 	
 	lst <- list(g, g0)
@@ -278,12 +278,12 @@ analyze.net.eigen <- function(g, g0)
 		
 		# Eigencentrality distribution
 		vals <- eigen_centrality(graph=g, scale=FALSE)$vector
-		custom.hist(vals, name="Eigencentrality", file=file.path(eigen.folder,paste0("eigen_histo",sufx)))
+		custom.hist(vals, name="Eigencentrality", file=file.path(eigen.folder,paste0("eigencentrality_histo",sufx)))
 		
 		# export CSV with Eigencentrality
 		df <- data.frame(V(g)$name,V(g)$label,vals)
 		colnames(df) <- c("Name","Label","Eigencentrality") 
-		write.csv(df, file=file.path(eigen.folder,paste0("eigen_values",sufx,".csv")))
+		write.csv(df, file=file.path(eigen.folder,paste0("eigencentrality_values",sufx,".csv")))
 		
 		# add results to the graph (as attributes) and record
 		V(g)$Eigencentrality <- vals
@@ -292,7 +292,7 @@ analyze.net.eigen <- function(g, g0)
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# plot graph using color for Eigencentrality
-		custom.gplot(g,col.att="Eigencentrality",file=file.path(eigen.folder,paste0("eigen_graph",sufx)))
+		custom.gplot(g,col.att="Eigencentrality",file=file.path(eigen.folder,paste0("eigencentrality_graph",sufx)))
 #		custom.gplot(g,col.att="Eigencentrality")
 		
 		# export CSV with average Eigencentrality
@@ -422,6 +422,66 @@ analyze.net.closeness <- function(g, g0)
 		else
 		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
 			row.names(df) <- c("Closeness")
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		lst[[i]] <- g
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
+# Computes transitivity and generates plots and CSV files.
+#
+# g: graph to process.
+# g0: same graph without the main node.
+#############################################################
+analyze.net.transitivity <- function(g, g0)
+{	cat("  Computing transitivity\n")
+	# possibly create folder
+	transitivity.folder <- file.path(NET_FOLDER,g$name,"transitivity")
+	dir.create(path=transitivity.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(g, g0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
+		g <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# transitivity distribution
+		vals <- transitivity(graph=g, type="localundirected", isolates="zero")
+		custom.hist(vals, name="transitivity", file=file.path(transitivity.folder,paste0("transitivity_histo",sufx)))
+		
+		# export CSV with transitivity
+		df <- data.frame(V(g)$name,V(g)$label,vals)
+		colnames(df) <- c("Name","Label","Transitivity") 
+		write.csv(df, file=file.path(transitivity.folder,paste0("transitivity_values",sufx,".csv")))
+		
+		# add results to the graph (as attributes) and record
+		V(g)$Transitivity <- vals
+		g$Transitivity <- transitivity(graph=g, type="globalundirected", isolates="zero")
+		g$TransitivityAvg <- mean(vals)
+		g$TransitivityStdv <- sd(vals)
+		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# plot graph using color for transitivity
+		custom.gplot(g,col.att="Transitivity",file=file.path(transitivity.folder,paste0("transitivity_graph",sufx)))
+#		custom.gplot(g,col.att="Transitivity")
+		
+		# export CSV with average transitivity
+		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df["Transitivity", ] <- list(Value=g$Transitivity, Mean=mean(vals), Stdv=sd(vals))
+		}
+		else
+		{	df <- data.frame(Value=c(g$Transitivity),Mean=c(mean(vals)),Stdv=c(sd(vals)))
+			row.names(df) <- c("Transitivity")
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
@@ -848,16 +908,16 @@ analyze.network <- function(g)
 		g0 <- tmp[[2]]
 		
 		# compute eigencentrality
-		tmp <- analyze.net.eigen(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute closeness
-		tmp <- analyze.net.betweenness(g, g0)
+		tmp <- analyze.net.eigencentrality(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
 		
 		# compute betweenness
+		tmp <- analyze.net.betweenness(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute closeness
 		tmp <- analyze.net.closeness(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
@@ -877,5 +937,10 @@ analyze.network <- function(g)
 		
 		# compute assortativity
 		g0 <- analyze.net.assortativity(g0)
+		
+		# compute transitivity
+		tmp <- analyze.net.transitivity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
 	}
 }
