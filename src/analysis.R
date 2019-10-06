@@ -395,7 +395,7 @@ analyze.net.closeness <- function(g, g0)
 		sufx <- sufxx[i]
 		
 		# closeness distribution
-		vals <- closeness(graph=g, normalized=FALSE)
+		vals <- suppressWarnings(closeness(graph=g, normalized=FALSE))	# avoid warnings due to graph being disconnected
 		custom.hist(vals, name="closeness", file=file.path(closeness.folder,paste0("closeness_histo",sufx)))
 		
 		# export CSV with closeness
@@ -830,9 +830,18 @@ analyze.net.distance <- function(g, g0)
 		g$DistanceStdv <- sd(flat.vals)
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
-		# plot graph using color for average distance
-		custom.gplot(g,col.att="AverageDistance",file=file.path(distance.folder,paste0("distance_avg_graph",sufx)))
-#		custom.gplot(g,col.att="AverageDistance")
+		# for each node, plot graph using color for distance
+		for(n in 1:gorder(g))
+		{	nname <- V(g)$name[n]
+			V(g)$Distance <- vals[n,]
+			if(all(is.infinite(vals[n,-n])))
+				cat("    NOT plotting graph for node #",nname,", as all values are infinite\n",sep="")
+			else
+			{	cat("    Plotting graph for node #",nname,"\n",sep="")
+				custom.gplot(g,col.att="Distance",v.hl=n,file=file.path(distance.folder,paste0("distance_graph",sufx,"_",nname)))
+			}
+			g <- delete_vertex_attr(graph=g, name="Distance")
+		}
 		
 		# export CSV with average distance
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
@@ -843,6 +852,91 @@ analyze.net.distance <- function(g, g0)
 		else
 		{	df <- data.frame(Value=c(NA),Mean=c(mean(flat.vals)),Stdv=c(sd(flat.vals)))
 			row.names(df) <- c("Distance")
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		lst[[i]] <- g
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
+# Computes vertex connectivity and generates plots and CSV files.
+#
+# g: graph to process.
+# g0: same graph without the main node.
+#############################################################
+analyze.net.connectivity <- function(g, g0)
+{	cat("  Computing vertex connectivity\n")
+	# possibly create folder
+	connectivity.folder <- file.path(NET_FOLDER,g$name,"connectivity")
+	dir.create(path=connectivity.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(g, g0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
+		g <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# connectivity distribution
+		vals <- matrix(NA, nrow=gorder(g), ncol=gorder(g))
+		for(n in 1:(gorder(g)-1))
+		{	vals[n,n] <- 0
+			neigh <- neighbors(graph=g, v=n)
+			for(n2 in (n+1):gorder(g))
+			{	if(n2 %in% neigh)
+					tmp <- 1
+				else
+					tmp <- vertex_connectivity(graph=g, source=n, target=n2)
+				vals[n,n2] <- tmp
+				vals[n2,n] <- vals[n,n2]
+			}
+		}
+		vals[gorder(g),gorder(g)] <- 0
+		flat.vals <- vals[upper.tri(vals)]
+		custom.hist(vals=flat.vals, name="Connectivity", file=file.path(connectivity.folder,paste0("connectivity_histo",sufx)))
+		# connectivity distribution
+		avg.vals <- apply(X=vals,MARGIN=1,FUN=function(v) mean(v[!is.infinite(v)]))
+		custom.hist(vals=avg.vals, name="Average connectivity", file=file.path(connectivity.folder,paste0("connectivity_avg_histo",sufx)))
+		
+		# export CSV with average connectivity
+		df <- data.frame(V(g)$name,V(g)$label,avg.vals)
+		colnames(df) <- c("Name","Label","AverageConnectivity") 
+		write.csv(df, file=file.path(connectivity.folder,paste0("connectivity_avg_values",sufx,".csv")))
+		
+		# add results to the graph (as attributes) and record
+		V(g)$AverageConnectivity <- avg.vals
+		g$ConnectivityAvg <- mean(flat.vals)
+		g$ConnectivityStdv <- sd(flat.vals)
+		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# for each node, plot graph using color for connectivity
+		for(n in 1:gorder(g))
+		{	nname <- V(g)$name[n]
+			V(g)$Connectivity <- vals[n,]
+			if(all(is.infinite(vals[n,-n])))
+				cat("    NOT plotting graph for node #",nname,", as all values are infinite\n",sep="")
+			else
+			{	cat("    Plotting graph for node #",nname,"\n",sep="")
+				custom.gplot(g,col.att="Connectivity",v.hl=n,file=file.path(connectivity.folder,paste0("connectivity_graph",sufx,"_",nname)))
+			}
+			g <- delete_vertex_attr(graph=g, name="Connectivity")
+		}
+		
+		# export CSV with average connectivity
+		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df["Connectivity", ] <- list(Value=NA, Mean=mean(flat.vals), Stdv=sd(flat.vals))
+		}
+		else
+		{	df <- data.frame(Value=c(NA),Mean=c(mean(flat.vals)),Stdv=c(sd(flat.vals)))
+			row.names(df) <- c("Connectivity")
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
@@ -922,7 +1016,7 @@ analyze.network <- function(g)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
 		
-		# compute average distances
+		# compute distances
 		tmp <- analyze.net.distance(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
@@ -940,6 +1034,11 @@ analyze.network <- function(g)
 		
 		# compute transitivity
 		tmp <- analyze.net.transitivity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute vertex connectivity
+		tmp <- analyze.net.connectivity(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
 	}

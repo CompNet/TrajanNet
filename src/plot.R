@@ -95,10 +95,15 @@ setup.graph.layout <- function(g)
 # col.att: (optional) name of a vertex attribute, used to determine node color.
 # cat.att: (optional) if there is a vertex attribute, indicates whether
 #		   it is categorical or not.
+# v.hl: vertices to highlight (these are represented as squares).
 # file: (optional) file name, to record the plot.
 #############################################################
-custom.gplot <- function(g, paths, col.att, cat.att=FALSE, file)
-{	
+custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, file)
+{	# vertex shapes
+	vshapes <- rep("circle",gorder(g))
+	if(hasArg(v.hl))
+		vshapes[v.hl] <- "csquare"
+	
 	# set edge colors
 	ecols <- rep("BLACK", gsize(g))
 	ecols[E(g)$Type=="Friend"] <- "#1A8F39"		# green
@@ -124,16 +129,19 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, file)
 			{	if(is.na(v))
 				{	v <- n
 					outline.cols[v] <- "RED"
+					vshapes[v] <- "csquare"
 				}
 				else
 				{	u <- v
 					v <- n
+					outline.cols[v] <- "RED"
 					idx <- as.integer(E(g)[u %--% v])
 					ecols[idx] <- "RED"
 					ewidth[idx] <- 2
 				}
 			}
 			outline.cols[v] <- "RED"
+			vshapes[v] <- "csquare"
 		}
 	}
 	
@@ -143,12 +151,12 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, file)
 		vvals <- get.vertex.attribute(graph=g, name=col.att)
 		# isolates have no color
 		vcols <- rep("WHITE",gorder(g))
-		idx <- which(degree(g)>0)
+		connected <- degree(g)>0
 		
 		# categorical attribute
 		if(cat.att)
-		{	tmp <- factor(vvals[idx])
-			vcols[idx] <- CAT_COLORS[(as.integer(tmp)-1) %% length(CAT_COLORS) + 1]
+		{	tmp <- factor(vvals[connected])
+			vcols[connected] <- CAT_COLORS[(as.integer(tmp)-1) %% length(CAT_COLORS) + 1]
 			lgd.txt <- levels(tmp)
 			lgd.col <- CAT_COLORS[(1:length(lgd.txt)-1) %% length(CAT_COLORS) + 1]
 		}
@@ -156,7 +164,9 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, file)
 		else
 		{	fine = 500 									# granularity of the color gradient
 			pal = colorRampPalette(c("yellow",'red'))	# extreme colors of the gradient
-			vcols[idx] <- pal(fine)[as.numeric(cut(vvals[idx],breaks=fine))]
+			finite <- !is.infinite(vvals)
+			vcols[connected & finite] <- pal(fine)[as.numeric(cut(vvals[connected & finite],breaks=fine))]
+			vcols[connected & !finite] <- "#575757"		# infinite values are grey
 			# see https://stackoverflow.com/questions/27004167/coloring-vertexes-according-to-their-centrality
 		}
 	}
@@ -175,6 +185,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, file)
 		layout=LAYOUT,
 		vertex.size=5, 
 		vertex.color=vcols,
+		vertex.shape=vshapes,
 		vertex.frame.color=outline.cols,
 		edge.color=ecols,
 		edge.lty=elty,
