@@ -919,8 +919,8 @@ analyze.net.connectivity <- function(g, g0)
 		for(n in 1:gorder(g))
 		{	nname <- V(g)$name[n]
 			V(g)$Connectivity <- vals[n,]
-			if(all(is.infinite(vals[n,-n])))
-				cat("    NOT plotting graph for node #",nname,", as all values are infinite\n",sep="")
+			if(all(vals[n,]==0))
+				cat("    NOT plotting graph for node #",nname,", as all values are zero\n",sep="")
 			else
 			{	cat("    Plotting graph for node #",nname,"\n",sep="")
 				custom.gplot(g,col.att="Connectivity",v.hl=n,file=file.path(connectivity.folder,paste0("connectivity_graph",sufx,"_",nname)))
