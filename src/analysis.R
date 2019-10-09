@@ -111,9 +111,10 @@ disconnect.nodes <- function(g, nodes)
 # Computes the diameter, the corresponding paths, and plots them.
 # Same thing for radius and eccentricity.
 #
-# g0: graph without the main node.
+# g: original graph to process (ignored here).
+# g0: same graph without the main node.
 #############################################################
-analyze.net.eccentricity <- function(g0)
+analyze.net.eccentricity <- function(g, g0)
 {	###########################
 	# compute diameter
 	cat("  Computing diameter & radius\n")
@@ -159,8 +160,9 @@ analyze.net.eccentricity <- function(g0)
 	write.csv(df, file=file.path(eccentricity.folder,"eccentricity_values.csv"))
 	
 	# add eccentricity (as node attributes) to the graph
+	V(g)$Eccentricity0 <- vals
 	V(g0)$Eccentricity <- vals
-	
+
 	# plot graph using color for eccentricity
 	custom.gplot(g0,col.att="Eccentricity",file=file.path(eccentricity.folder,"eccentricity_graph0"))
 #	custom.gplot(g0,col.att="Eccentricity")
@@ -170,7 +172,9 @@ analyze.net.eccentricity <- function(g0)
 	rad <- min(vals[vals>0])
 	
 	# add radius and diameter to the graph (as attributes) and record
+	g$diameter0 <- diam
 	g0$diameter <- diam
+	g$radius0 <- rad
 	g0$radius <- rad
 	cat("    Radius=",rad,"\n",sep="")
 	
@@ -190,9 +194,11 @@ analyze.net.eccentricity <- function(g0)
 	
 	###########################
 	# record graph and return it
+	write.graph(graph=g, file=file.path(NET_FOLDER,g$name,"graph.graphml"), format="graphml")
 	write.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,"graph0.graphml"), format="graphml")
-	
-	return(g0)
+
+	lst <- list(g, g0)
+	return(lst)
 }
 
 
@@ -201,7 +207,7 @@ analyze.net.eccentricity <- function(g0)
 #############################################################
 # Computes degree and generates plots and CSV files.
 #
-# g: graph to process.
+# g: original graph to process.
 # g0: same graph without the main node.
 #############################################################
 analyze.net.degree <- function(g, g0)
@@ -260,7 +266,7 @@ analyze.net.degree <- function(g, g0)
 #############################################################
 # Computes Eigencentrality and generates plots and CSV files.
 #
-# g: graph to process.
+# g: original graph to process.
 # g0: same graph without the main node.
 #############################################################
 analyze.net.eigencentrality <- function(g, g0)
@@ -319,7 +325,7 @@ analyze.net.eigencentrality <- function(g, g0)
 #############################################################
 # Computes betweenness and generates plots and CSV files.
 #
-# g: graph to process.
+# g: original graph to process.
 # g0: same graph without the main node.
 #############################################################
 analyze.net.betweenness <- function(g, g0)
@@ -378,7 +384,7 @@ analyze.net.betweenness <- function(g, g0)
 #############################################################
 # Computes closeness and generates plots and CSV files.
 #
-# g: graph to process.
+# g: original graph to process.
 # g0: same graph without the main node.
 #############################################################
 analyze.net.closeness <- function(g, g0)
@@ -437,7 +443,7 @@ analyze.net.closeness <- function(g, g0)
 #############################################################
 # Computes transitivity and generates plots and CSV files.
 #
-# g: graph to process.
+# g: original graph to process.
 # g0: same graph without the main node.
 #############################################################
 analyze.net.transitivity <- function(g, g0)
@@ -497,7 +503,7 @@ analyze.net.transitivity <- function(g, g0)
 #############################################################
 # Detects the community structure of the network.
 #
-# g: graph to process.
+# g: original graph to process.
 # g0: same graph without the main node.
 #############################################################
 analyze.net.comstruct <- function(g, g0)
@@ -561,9 +567,10 @@ analyze.net.comstruct <- function(g, g0)
 #############################################################
 # Computes the assortativity of the network.
 #
-# g0: graph without the main node.
+# g: original graph to process (ignored here).
+# g0: same graph without the main node.
 #############################################################
-analyze.net.assortativity <- function(g0)
+analyze.net.assortativity <- function(g, g0)
 {	cat("  Computing the assortativity\n")
 	
 	# retrieve the list of vertex attributes
@@ -692,8 +699,10 @@ analyze.net.assortativity <- function(g0)
 	# add results to the graph (as attributes) and record
 	for(i in 1:length(vals))
 	{	attr <- names(vals)[i]
+		g <- set_vertex_attr(graph=g, name=attr, value=vals[i])
 		g0 <- set_vertex_attr(graph=g0, name=attr, value=vals[i])
 	}
+	write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph.graphml")), format="graphml")
 	write.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,paste0("graph0.graphml")), format="graphml")
 	
 	# add assortativity to main CSV
@@ -718,7 +727,8 @@ analyze.net.assortativity <- function(g0)
 	
 	#############################
 	# assortativity over
-	return(g0)
+	lst <- list(g, g0)
+	return(lst)
 }
 
 
@@ -727,10 +737,10 @@ analyze.net.assortativity <- function(g0)
 #############################################################
 # Recursively computes articulation points.
 #
-# g: graph to process.
-# g0: same graph without the main node.
+# g: original graph to process.
+# g0: same graph without the main node (ignored here).
 #############################################################
-analyze.net.articulation <- function(g)
+analyze.net.articulation <- function(g, g0)
 {	# init 
 	cat("  Computing articulation points\n")
 	g1 <- g
@@ -766,9 +776,13 @@ analyze.net.articulation <- function(g)
 	
 	# add results to the graph (as attributes) and record
 	V(g)$Articulation <- vals
+	V(g0)$Articulation00 <- vals
 	g$ArticulationAvg <- mean(vals)
-	g$ArticulationStdv <- sd(vals)
+	g0$ArticulationAvg00 <- mean(vals)
+	g$ArticulationAvg <- mean(vals)
+	g0$ArticulationAvg00 <- mean(vals)
 	write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph.graphml")), format="graphml")
+	write.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,paste0("graph0.graphml")), format="graphml")
 	
 	# plot graph using color for articulation
 	custom.gplot(g,col.att="Articulation",file=file.path(articulation.folder,paste0("articulation_graph")))
@@ -786,7 +800,8 @@ analyze.net.articulation <- function(g)
 	}
 	write.csv(df, file=stat.file, row.names=TRUE)
 	
-	return(g)
+	lst <- list(g, g0)
+	return(lst)
 }
 
 
@@ -795,7 +810,7 @@ analyze.net.articulation <- function(g)
 #############################################################
 # Computes average distances and generates plots and CSV files.
 #
-# g: graph to process.
+# g: original graph to process.
 # g0: same graph without the main node.
 #############################################################
 analyze.net.distance <- function(g, g0)
@@ -867,7 +882,7 @@ analyze.net.distance <- function(g, g0)
 #############################################################
 # Computes vertex connectivity and generates plots and CSV files.
 #
-# g: graph to process.
+# g: original graph to process.
 # g0: same graph without the main node.
 #############################################################
 analyze.net.connectivity <- function(g, g0)
@@ -994,7 +1009,9 @@ analyze.network <- function(g)
 		write.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
 		
 		# compute diameters, eccentricity, radius
-		g0 <- analyze.net.eccentricity(g0)
+		tmp <- analyze.net.eccentricity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
 		
 		# compute degree
 		tmp <- analyze.net.degree(g, g0)
@@ -1022,7 +1039,9 @@ analyze.network <- function(g)
 		g0 <- tmp[[2]]
 		
 		# compute articulation points
-		g <- analyze.net.articulation(g)
+		tmp <- analyze.net.articulation(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
 		
 		# detect communities
 		tmp <- analyze.net.comstruct(g, g0)
@@ -1030,7 +1049,9 @@ analyze.network <- function(g)
 		g0 <- tmp[[2]]
 		
 		# compute assortativity
-		g0 <- analyze.net.assortativity(g0)
+		tmp <- analyze.net.assortativity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
 		
 		# compute transitivity
 		tmp <- analyze.net.transitivity(g, g0)

@@ -58,7 +58,6 @@ analyze.network(g)
 #############################################################################################
 # TODO
 # - Perform a basic descriptive analysis of the vertex attributes (>> add to assortativity function?)
-# - Analysis : send both graphs all the time, update even if not concerned, and record
 # - Multiplex plot of the different types of links? (didn't find an appropriate tool)
 # - Check the thorough analysis in Rochat2014, see which parts are relevant in our case.
 # - Topological measures
