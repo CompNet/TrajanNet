@@ -9,8 +9,8 @@
 #############################################################################################
 # load libraries
 library("igraph")
-library("graphlayouts")
-library("ggraph")
+#library("graphlayouts")
+#library("ggraph")
 library("SDMTools")
 
 
@@ -57,6 +57,8 @@ analyze.network(g)
 
 #############################################################################################
 # TODO
+# - Problem with the legend of travel nbrs, also some nodes have no color (NA)
+# 
 # - Check that the relationship comments in the big file are still at the right place (e.g. P5--P63)
 # - Perform a basic descriptive analysis of the vertex attributes (>> add to assortativity function?)
 # - Multiplex plot of the different types of links? (didn't find an appropriate tool)

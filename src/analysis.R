@@ -810,24 +810,24 @@ analyze.net.attributes <- function(g, g0)
 	}
 	
 	# replace NAs by "Unknown" tags
-	cat.data[which(is.na(cat.data))] <- "Unknown"
+#	num.data[which(is.na(num.data))] <- "Unknown"
 	
 	# plot the graph using colors for attribute values
 	for(i in 1:ncol(num.data))
 	{	attr <- colnames(num.data)[i]
 		cat("    Plottig attribute \"",attr,"\"\n",sep="")
 		# with trajan
-		gg <- set_vertex_attr(graph=g, name=attr, value=cat.data[,i])
-		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(attr.folder,paste0(attr,"_graph")))
-#		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE)
+		gg <- set_vertex_attr(graph=g, name=attr, value=num.data[,i])
+		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE,file=file.path(attr.folder,paste0(attr,"_graph")))
+#		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE)
 		# without trajan
-		gg <- set_vertex_attr(graph=g0, name=attr, value=cat.data[,i])
-		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(attr.folder,paste0(attr,"_graph0")))
-#		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE)
+		gg <- set_vertex_attr(graph=g0, name=attr, value=num.data[,i])
+		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE,file=file.path(attr.folder,paste0(attr,"_graph0")))
+#		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE)
 	}
 	
 	#############################
-	# assortativity over
+	# attributes over
 	lst <- list(g, g0)
 	return(lst)
 }
@@ -1109,6 +1109,12 @@ analyze.network <- function(g)
 #		custom.gplot(g0)
 		write.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
 		
+		# compute attribute stats 
+		# (must be done first, before other results are added as attributes)
+		tmp <- analyze.net.attributes(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
 		# compute diameters, eccentricity, radius
 		tmp <- analyze.net.eccentricity(g, g0)
 		g <- tmp[[1]]
@@ -1161,11 +1167,6 @@ analyze.network <- function(g)
 		
 		# compute assortativity
 		tmp <- analyze.net.assortativity(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute attribute stats
-		tmp <- analyze.net.attributes(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
 	}

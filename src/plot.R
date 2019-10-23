@@ -238,9 +238,9 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 			y1 <- y2 + height
 			leg.loc <- cbind(x=c(x1, x2, x2, x1), y=c(y1, y1, y2, y2))
 			legend.gradient(
-					pnts=leg.loc, 
-					cols=pal(25), 
-					limits=format(range(vvals[which(degree(g)>0)]), digits=2, nsmall=2), 
+					pnts=leg.loc,
+					cols=pal(25),
+					limits=format(range(vvals[connected],na.rm=TRUE), digits=2, nsmall=2),
 					title=col.att, 
 					cex=0.8
 			)
