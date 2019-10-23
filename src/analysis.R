@@ -112,7 +112,7 @@ disconnect.nodes <- function(g, nodes)
 # Same thing for radius and eccentricity.
 #
 # g: original graph to process (ignored here).
-# g0: same graph without the main node.
+# g0: same graph except the main node is isolated.
 #############################################################
 analyze.net.eccentricity <- function(g, g0)
 {	###########################
@@ -208,7 +208,7 @@ analyze.net.eccentricity <- function(g, g0)
 # Computes degree and generates plots and CSV files.
 #
 # g: original graph to process.
-# g0: same graph without the main node.
+# g0: same graph except the main node is isolated.
 #############################################################
 analyze.net.degree <- function(g, g0)
 {	cat("  Computing degree\n")
@@ -267,7 +267,7 @@ analyze.net.degree <- function(g, g0)
 # Computes Eigencentrality and generates plots and CSV files.
 #
 # g: original graph to process.
-# g0: same graph without the main node.
+# g0: same graph except the main node is isolated.
 #############################################################
 analyze.net.eigencentrality <- function(g, g0)
 {	cat("  Computing Eigencentrality\n")
@@ -326,7 +326,7 @@ analyze.net.eigencentrality <- function(g, g0)
 # Computes betweenness and generates plots and CSV files.
 #
 # g: original graph to process.
-# g0: same graph without the main node.
+# g0: same graph except the main node is isolated.
 #############################################################
 analyze.net.betweenness <- function(g, g0)
 {	cat("  Computing betweenness\n")
@@ -385,7 +385,7 @@ analyze.net.betweenness <- function(g, g0)
 # Computes closeness and generates plots and CSV files.
 #
 # g: original graph to process.
-# g0: same graph without the main node.
+# g0: same graph except the main node is isolated.
 #############################################################
 analyze.net.closeness <- function(g, g0)
 {	cat("  Computing closeness\n")
@@ -444,7 +444,7 @@ analyze.net.closeness <- function(g, g0)
 # Computes transitivity and generates plots and CSV files.
 #
 # g: original graph to process.
-# g0: same graph without the main node.
+# g0: same graph except the main node is isolated.
 #############################################################
 analyze.net.transitivity <- function(g, g0)
 {	cat("  Computing transitivity\n")
@@ -504,7 +504,7 @@ analyze.net.transitivity <- function(g, g0)
 # Detects the community structure of the network.
 #
 # g: original graph to process.
-# g0: same graph without the main node.
+# g0: same graph except the main node is isolated.
 #############################################################
 analyze.net.comstruct <- function(g, g0)
 {	cat("  Detecting community structure\n")
@@ -568,7 +568,7 @@ analyze.net.comstruct <- function(g, g0)
 # Computes the assortativity of the network.
 #
 # g: original graph to process (ignored here).
-# g0: same graph without the main node.
+# g0: same graph except the main node is isolated.
 #############################################################
 analyze.net.assortativity <- function(g, g0)
 {	cat("  Computing the assortativity\n")
@@ -643,7 +643,7 @@ analyze.net.assortativity <- function(g, g0)
 	}
 	
 	#############################
-	# deal with categorical attributes
+	# deal with numerical attributes
 	num.data <- NA
 	
 	# gather regular numerical attributes
@@ -735,6 +735,107 @@ analyze.net.assortativity <- function(g, g0)
 
 
 #############################################################
+# Computes stats related to the node attributes.
+#
+# g: original graph to process (ignored here).
+# g0: same graph except the main node is isolated.
+#############################################################
+analyze.net.attributes <- function(g, g0)
+{	cat("  Computing nodal attribute stats\n")
+	# possibly create folder
+	attr.folder <- file.path(NET_FOLDER,g$name,"attributes")
+	dir.create(path=attr.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	# retrieve the list of vertex attributes
+	att.list <- list.vertex.attributes(g)
+	
+	#############################
+	# deal with categorical attributes
+	cat.data <- NA
+	
+	# gather regular categorical attributes
+	attrs <- c("RelTrajan","Adelectio","SoutHadrien","Espagnol",
+			att.list[grepl(att.list,pattern="Cercles")])
+	for(attr in attrs)
+	{	tmp <- vertex_attr(g, attr)
+		if(all(is.na(cat.data)))
+			cat.data <- matrix(tmp,ncol=1)
+		else
+			cat.data <- cbind(cat.data, tmp)
+		colnames(cat.data)[ncol(cat.data)] <- attr
+	}
+	
+	# convert tag-type attributes
+	attrs <- c("PolitEques", "MilitSenat", "MilitEques", "DestVoy", "MotifVoy")
+	for(attr in attrs)
+	{	tmp <- att.list[grepl(att.list,pattern=attr)]
+		m <- sapply(tmp, function(att) vertex_attr(g, att))
+		uvals <- sort(unique(c(m)))
+		for(uval in uvals)
+		{	cat.data <- cbind(cat.data, apply(m, 1, function(v) uval %in% v[!is.na(v)]))
+			colnames(cat.data)[ncol(cat.data)] <- paste(attr,uval,sep="_")
+		}
+	}
+	
+	# replace NAs by "Unknown" tags
+	cat.data[which(is.na(cat.data))] <- "Unknown"
+	
+	# plot the graph using colors for attribute values
+	for(i in 1:ncol(cat.data))
+	{	attr <- colnames(cat.data)[i]
+		cat("    Plottig attribute \"",attr,"\"\n",sep="")
+		# with trajan
+		gg <- set_vertex_attr(graph=g, name=attr, value=cat.data[,i])
+		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(attr.folder,paste0(attr,"_graph")))
+#		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE)
+		# without trajan
+		gg <- set_vertex_attr(graph=g0, name=attr, value=cat.data[,i])
+		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(attr.folder,paste0(attr,"_graph0")))
+#		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE)
+	}
+	
+	#############################
+	# deal with numerical attributes
+	num.data <- NA
+	
+	# gather regular numerical attributes
+	attrs <- c("NbrVoy")
+	for(attr in attrs)
+	{	tmp <- vertex_attr(g0, attr)
+		if(all(is.na(num.data)))
+			num.data <- matrix(tmp,ncol=1)
+		else
+			num.data <- cbind(num.data, tmp)
+		colnames(num.data)[ncol(num.data)] <- attr
+	}
+	
+	# replace NAs by "Unknown" tags
+	cat.data[which(is.na(cat.data))] <- "Unknown"
+	
+	# plot the graph using colors for attribute values
+	for(i in 1:ncol(num.data))
+	{	attr <- colnames(num.data)[i]
+		cat("    Plottig attribute \"",attr,"\"\n",sep="")
+		# with trajan
+		gg <- set_vertex_attr(graph=g, name=attr, value=cat.data[,i])
+		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(attr.folder,paste0(attr,"_graph")))
+#		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE)
+		# without trajan
+		gg <- set_vertex_attr(graph=g0, name=attr, value=cat.data[,i])
+		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(attr.folder,paste0(attr,"_graph0")))
+#		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE)
+	}
+	
+	#############################
+	# assortativity over
+	lst <- list(g, g0)
+	return(lst)
+}
+
+
+
+
+#############################################################
 # Recursively computes articulation points.
 #
 # g: original graph to process.
@@ -811,7 +912,7 @@ analyze.net.articulation <- function(g, g0)
 # Computes average distances and generates plots and CSV files.
 #
 # g: original graph to process.
-# g0: same graph without the main node.
+# g0: same graph except the main node is isolated.
 #############################################################
 analyze.net.distance <- function(g, g0)
 {	cat("  Computing average distances\n")
@@ -883,7 +984,7 @@ analyze.net.distance <- function(g, g0)
 # Computes vertex connectivity and generates plots and CSV files.
 #
 # g: original graph to process.
-# g0: same graph without the main node.
+# g0: same graph except the main node is isolated.
 #############################################################
 analyze.net.connectivity <- function(g, g0)
 {	cat("  Computing vertex connectivity\n")
@@ -1048,11 +1149,6 @@ analyze.network <- function(g)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
 		
-		# compute assortativity
-		tmp <- analyze.net.assortativity(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
 		# compute transitivity
 		tmp <- analyze.net.transitivity(g, g0)
 		g <- tmp[[1]]
@@ -1060,6 +1156,16 @@ analyze.network <- function(g)
 		
 		# compute vertex connectivity
 		tmp <- analyze.net.connectivity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute assortativity
+		tmp <- analyze.net.assortativity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute attribute stats
+		tmp <- analyze.net.attributes(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
 	}

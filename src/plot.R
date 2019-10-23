@@ -31,7 +31,7 @@ CAT_COLORS <- c(
 
 
 #############################################################
-# Displays the specified graph in an appropraite way, taking
+# Displays the specified graph in an appropriate way, taking
 # into account the previously set link and node attributes.
 #
 # g: graph to plot.
@@ -96,9 +96,10 @@ setup.graph.layout <- function(g)
 # cat.att: (optional) if there is a vertex attribute, indicates whether
 #		   it is categorical or not.
 # v.hl: vertices to highlight (these are represented as squares).
+# color.isolates: force isolates to be colored (by default they are not)
 # file: (optional) file name, to record the plot.
 #############################################################
-custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, file)
+custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=FALSE, file)
 {	# vertex shapes
 	vshapes <- rep("circle",gorder(g))
 	if(hasArg(v.hl))
@@ -151,7 +152,10 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, file)
 		vvals <- get.vertex.attribute(graph=g, name=col.att)
 		# isolates have no color
 		vcols <- rep("WHITE",gorder(g))
-		connected <- degree(g)>0
+		if(color.isolates)
+			connected <- 1:gorder(g)
+		else
+			connected <- degree(g)>0
 		
 		# categorical attribute
 		if(cat.att)
