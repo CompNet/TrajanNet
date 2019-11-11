@@ -57,9 +57,8 @@ analyze.network(g)
 
 #############################################################################################
 # TODO
-# For tag attributes, plot graph with pie-chart nodes to synthetise the whole information.
-# Produce 1 vs 1 attribute plots (bar plots)
-# Compute association measures between attributes
+# - Produce 1 vs 1 attribute plots (bar plots)
+# - Compute association measures between attributes
 # How to handle "der" attributes depends on G's answer
 # Attribute stats: circles should be in a single folder (possibly several files)
 # >> same for other tag type attributes ?

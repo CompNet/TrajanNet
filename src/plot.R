@@ -26,6 +26,26 @@ CAT_COLORS <- c(
 	"#F781BF",
 	"#999999"
 )
+CAT_COLORS_18 <- c(
+	rgb(228,26,28,maxColorValue=255),		# red
+	rgb(55,126,184,maxColorValue=255),		# light blue
+	rgb(113,219,110,maxColorValue=255),		# light green
+	rgb(152,78,163,maxColorValue=255),		# purple
+	rgb(255,127,0,maxColorValue=255),		# orange
+	rgb(166,86,40,maxColorValue=255),		# brown
+	rgb(247,129,191,maxColorValue=255),		# pink
+	rgb(153,153,153,maxColorValue=255),		# light grey
+	rgb(23,89,143,maxColorValue=255),		# dark blue
+	rgb(16,125,12,maxColorValue=255),		# dark green
+	rgb(30,30,30,maxColorValue=255),		# dark grey
+	rgb(255,255,51,maxColorValue=255),		# yellow
+	rgb(143,11,13,maxColorValue=255),		# dark red
+	rgb(0,255,255,maxColorValue=255),		# cyan
+	rgb(14,161,161,maxColorValue=255),		# dark cyan
+	rgb(255,187,120,maxColorValue=255),		# light orange
+	rgb(0,0,255,maxColorValue=255),			# straight blue
+	rgb(0,255,0,maxColorValue=255)			# straight green
+)
 
 
 
@@ -93,6 +113,9 @@ setup.graph.layout <- function(g)
 # 		 is either a list of integer vectors (node sequences), or
 # 		 an integer vector if there is only one path to plot.
 # col.att: (optional) name of a vertex attribute, used to determine node color.
+#          It is also possible to pass just the beginning of the name, common
+#		   to several binary attributes, in which case the plot will use piecharts 
+#		   to represent nodes.
 # cat.att: (optional) if there is a vertex attribute, indicates whether
 #		   it is categorical or not.
 # v.hl: vertices to highlight (these are represented as squares).
@@ -151,30 +174,63 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 	
 	# vertex color
 	if(hasArg(col.att))
-	{	# get the attribute values
-		vvals <- get.vertex.attribute(graph=g, name=col.att)
-		# isolates have no color
+	{	# isolates have no color
 		vcols <- rep("WHITE",gorder(g))
 		if(color.isolates)
-			connected <- 1:gorder(g)
+			connected <- rep(TRUE, gorder(g))
 		else
 			connected <- degree(g)>0
+		# get the attribute values
+		vvals <- get.vertex.attribute(graph=g, name=col.att)
 		
-		# categorical attribute
-		if(cat.att)
-		{	tmp <- factor(vvals[connected])
-			vcols[connected] <- CAT_COLORS[(as.integer(tmp)-1) %% length(CAT_COLORS) + 1]
-			lgd.txt <- levels(tmp)
-			lgd.col <- CAT_COLORS[(1:length(lgd.txt)-1) %% length(CAT_COLORS) + 1]
+		# just one attribute
+		if(length(vvals)>0)
+		{	# categorical attribute
+			if(cat.att)
+			{	tmp <- factor(vvals[connected])
+				vcols[connected] <- CAT_COLORS[(as.integer(tmp)-1) %% length(CAT_COLORS) + 1]
+				lgd.txt <- levels(tmp)
+				lgd.col <- CAT_COLORS[(1:length(lgd.txt)-1) %% length(CAT_COLORS) + 1]
+			}
+			# numerical attribute
+			else
+			{	fine = 500 									# granularity of the color gradient
+				pal = colorRampPalette(c("yellow",'red'))	# extreme colors of the gradient
+				finite <- !is.infinite(vvals)
+				vcols[connected & finite] <- pal(fine)[as.numeric(cut(vvals[connected & finite],breaks=fine))]
+				vcols[connected & !finite] <- "#575757"		# infinite values are grey
+				# see https://stackoverflow.com/questions/27004167/coloring-vertexes-according-to-their-centrality
+			}
 		}
-		# numerical attribute
+		# several attributes, supposedly binary ones
 		else
-		{	fine = 500 									# granularity of the color gradient
-			pal = colorRampPalette(c("yellow",'red'))	# extreme colors of the gradient
-			finite <- !is.infinite(vvals)
-			vcols[connected & finite] <- pal(fine)[as.numeric(cut(vvals[connected & finite],breaks=fine))]
-			vcols[connected & !finite] <- "#575757"		# infinite values are grey
-			# see https://stackoverflow.com/questions/27004167/coloring-vertexes-according-to-their-centrality
+		{	cat.att <- TRUE
+			att.list <- list.vertex.attributes(g)							# list of all vertex attributes
+			atts <- att.list[grepl(att.list,pattern=col.att)]				# look for the ones starting appropriately
+			m <- sapply(atts, function(att) vertex_attr(g, att))			# get attribute values as a matrix
+			are.nas <- apply(m,1,function(r) all(is.na(r)))					# detect individuals with only NAs
+			are.pie <- apply(m,1,function(r) length(r[!is.na(r)])>1)		# detect individuals with several non-NA values
+			uvals <- sort(unique(c(m)))										# get unique attribute values
+			pie.matrix <- NA
+			for(uval in uvals)												# build a column for each of them
+			{	vals <- as.integer(apply(m, 1, function(v) uval %in% v[!is.na(v)]))
+				if(all(is.na(pie.matrix)))
+					pie.matrix <- as.matrix(vals, ncol=1)
+				else
+					pie.matrix <- cbind(pie.matrix, vals)
+				colnames(pie.matrix)[ncol(pie.matrix)] <- uval
+			}
+			lgd.txt <- colnames(pie.matrix)
+			if(length(lgd.txt)<=length(CAT_COLORS))
+				lgd.col <- CAT_COLORS[(1:length(lgd.txt)-1) %% length(CAT_COLORS) + 1]
+			else
+				lgd.col <- CAT_COLORS_18[(1:length(lgd.txt)-1) %% length(CAT_COLORS_18) + 1]
+			pie.values <- unlist(apply(pie.matrix, 1, function(v) list(v)), recursive=FALSE)
+			pie.values[!are.pie | !connected] <- NA
+			vshapes[are.pie & connected] <- rep("pie",length(which(are.pie)))
+			vcols[are.pie & connected] <- NA
+			vcols[!are.nas & !are.pie & connected] <- apply(pie.matrix[!are.nas & !are.pie & connected,], 1, 
+					function(v) lgd.col[which(v>0)])
 		}
 	}
 	else
@@ -192,6 +248,8 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 		layout=LAYOUT,
 		vertex.size=5, 
 		vertex.color=vcols,
+		vertex.pie=pie.values,
+		vertex.pie.color=list(lgd.col),
 		vertex.shape=vshapes,
 		vertex.frame.color=outline.cols,
 		edge.color=ecols,
@@ -228,7 +286,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 				title=LONG_NAME[col.att],				# title of the legend box
 				x="bottomleft",							# position
 				legend=lgd.txt,							# text of the legend
-				fill=lgd.col,							# color of the lines
+				fill=lgd.col,							# color of the nodes
 				bty="n",								# no box around the legend
 				cex=0.8									# size of the text in the legend
 			)
@@ -255,23 +313,6 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 	# legend for vertex sizes: https://stackoverflow.com/questions/38451431/add-legend-in-igraph-to-annotate-difference-vertices-size
 	if(hasArg(file))
 		dev.off()
-	
-#	#### old code	
-#	# color legend must be plotted separately, unfortunately
-#	if(hasArg(col.att) && hasArg(file))
-#	{	file.legend <- paste0(file,"_legend")
-#		if(FORMAT=="pdf")
-#			pdf(paste0(file.legend,".pdf"), width=3, height=12)
-#		else if(FORMAT=="png")
-#			png(paste0(file.legend,".png"), width=200, height=512)
-#		
-#		legend.image <- as.raster(matrix(rev(pal(20)), ncol=1))
-#		plot(c(0,2),c(0,1), type="n", axes=F, xlab="", ylab="", main=col.att)
-#		text(x=1.5, y=seq(0,1,l=5), labels=format(seq(min(vvals[which(degree(g)>0)]),max(vvals[which(degree(g)>0)]),l=5), digits=2, nsmall=2))
-#		rasterImage(legend.image, 0,0, 1,1)
-#		
-#		dev.off()
-#	}
 }
 
 

@@ -56,6 +56,7 @@ ATT_VAL_FRIEND <- "Amicale"
 ATT_VAL_PRO <- "Professionnelle"
 ATT_VAL_UNK <- "Inconnue"
 ATT_VAL_UNK0 <- "Inconnu(e)"
+ATT_VAL_OTHER <- "Autre"
 
 # circle values
 ATT_VAL_CIRCLE_ANTONINS <- "Cercles_Antonins"

@@ -807,7 +807,7 @@ analyze.net.attributes <- function(g, g0)
 		nbr.nas <- length(idx.nas) 								# count them
 		dt <- c(m)[!is.na(c(m))]								# handles non-NA values
 		dt <- c(dt,rep(NA,nbr.nas))								# insert the appropriate number of NAs
-		# compute most frequent value for later use (to handle plot y-scale)
+		# compute highest frequency for later use (to handle plot y-scale)
 		tt <- table(dt, useNA="ifany")
 		if(any(is.na(names(tt))))
 			na.nbr <- tt[is.na(names(tt))]
@@ -815,6 +815,8 @@ analyze.net.attributes <- function(g, g0)
 			na.nbr <- 0
 		tmp <- sapply(tt, function(x) gorder(g)-x-na.nbr)
 		ymax <- max(tmp,na.nbr)
+		# identify least frequent values
+		unfrequent <- names(tt)[which(tt<=2)]
 		# plot tag distribution as barplot
 		cat("    Bar-plotting attributes containing \"",attr,"\"\n",sep="")
 		plot.folder <- file.path(ATT_FOLDER,attr)
@@ -829,7 +831,24 @@ analyze.net.attributes <- function(g, g0)
 		colnames(tt) <- c("Value","Frequency")
 		table.file <- file.path(plot.folder,paste0(attr,"_vals.csv"))
 		write.csv(tt, file=table.file, row.names=FALSE)
-		
+		# plot tags on a graph
+		if(attr==ATT_NODE_TRAV_DEST)
+		{	gg0 <- g0
+			gg <- g
+			for(a in colnames(m))
+			{	vals <- vertex_attr(g0,a)
+				vals[which(!is.na(match(vals,unfrequent)))] <- paste0(" ",ATT_VAL_OTHER)
+				g0 <- set_vertex_attr(g0, a, value=vals)
+				g <- set_vertex_attr(g, a, value=vals)
+			}
+		}
+		custom.gplot(g=g0, col.att=attr, cat.att=TRUE, color.isolates=TRUE, file=file.path(graph.folder,paste0(attr,"_graph0")))
+		custom.gplot(g=g, col.att=attr, cat.att=TRUE, color.isolates=TRUE, file=file.path(graph.folder,paste0(attr,"_graph")))
+		if(attr==ATT_NODE_TRAV_DEST)
+		{	g0 <- gg0
+			g <- gg
+		}
+			
 		# add to matrix
 		cat("    Adding attribute \"",attr,"\" to data matrix\n",sep="")
 		uvals <- sort(unique(c(m)))
@@ -1190,7 +1209,7 @@ analyze.network <- function(g)
 		g.lst[[GRAPH_TYPE_PRO]]$name <- GRAPH_TYPE_PRO
 		g.lst[[GRAPH_TYPE_UNK]] <- clean.links(g, link.types=NA)
 		g.lst[[GRAPH_TYPE_UNK]]$name <- GRAPH_TYPE_UNK
-	}	
+	}
 	
 	# process each graph
 	for(g in g.lst)
