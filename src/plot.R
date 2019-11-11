@@ -389,7 +389,8 @@ custom.barplot <- function(vals, text, xlab, ylab, file, ...)
 		par(mar=c(9, 4, 1, 0)+0.1)
 	else
 		par(mar=c(5, 4, 1, 0)+0.1)
-	barplot(
+	if(length(dim(vals))==1)
+	{	barplot(
 			height=vals,				# data
 			names.arg=text,				# bar names
 			col="#ffd6d6",				# bar color
@@ -398,7 +399,32 @@ custom.barplot <- function(vals, text, xlab, ylab, file, ...)
 			ylab=ylab,					# y-axis label
 			las=if(wide) 2 else 0,		# vertical label if too many bars
 			...
-	)
+		)
+	}
+	else
+	{	barcols <- CAT_COLORS[(1:nrow(vals)-1) %% length(CAT_COLORS)+1]
+		barplot(
+			height=vals,				# data
+			names.arg=text,				# bar names
+			beside=TRUE,				# grouped bars
+			col=barcols,				# bar colors
+			main=NA,					# no main title
+			xlab=if(wide) NA else xlab,	# x-axis label
+			ylab=ylab,					# y-axis label
+			las=if(wide) 2 else 0,		# vertical label if too many bars
+			...
+		)
+		text2 <- rownames(vals)
+		idx <- which(is.na(text2))
+		if(length(idx)>0)
+			text2[idx] <- ATT_VAL_UNK0
+		legend(
+			x="topleft",
+			fill=barcols,
+			title=names(dimnames(vals))[1],
+			legend=text2
+		)
+	}
 	if(hasArg(file))
 		dev.off()
 }

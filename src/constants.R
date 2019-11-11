@@ -14,9 +14,10 @@
 #############################################################################################
 # folder names
 DATA_FOLDER <- "data"
-TABLE_FOLDER <- file.path(DATA_FOLDER,"tables")
-NET_FOLDER <- file.path(DATA_FOLDER,"nets")
-ATT_FOLDER <- file.path(DATA_FOLDER,"attributes")
+	TABLE_FOLDER <- file.path(DATA_FOLDER,"tables")
+	NET_FOLDER <- file.path(DATA_FOLDER,"nets")
+	ATT_FOLDER <- file.path(DATA_FOLDER,"attributes")
+		COMP_FOLDER <- file.path(ATT_FOLDER,"comparisons")
 
 
 
@@ -27,10 +28,10 @@ ATT_NODE_ID <- "Id"
 ATT_NODE_NAME <- "Nom"
 ATT_NODE_SEN_MILIT <- "MilitSenat"
 ATT_NODE_SEN_POL <- "PolitSenat"
-ATT_NODE_SEN_POLDER <- "PolitSenatDer"
+ATT_NODE_SEN_POLDER <- "DerPolitSenat"
 ATT_NODE_EQU_MILIT <- "MilitEques"
 ATT_NODE_EQU_POL <- "PolitEques"
-ATT_NODE_EQU_POLDER <- "PolitEquesDer"
+ATT_NODE_EQU_POLDER <- "DerPolitEques"
 ATT_NODE_ADELECTIO <- "Adelectio"
 ATT_NODE_TRAV_NBR <- "NbrVoy"
 ATT_NODE_TRAV_DEST <- "DestVoy"

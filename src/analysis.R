@@ -586,7 +586,8 @@ analyze.net.assortativity <- function(g, g0)
 	cat.data <- NA
 	
 	# gather regular categorical attributes
-	attrs <- c(ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR,			# relationships 
+	attrs <- c(ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR,			# relationships
+			ATT_NODE_SEN_POLDER, ATT_NODE_EQU_POLDER,			# last political positions
 			ATT_NODE_ADELECTIO, ATT_NODE_SPANISH)				# misc
 	for(attr in attrs)
 	{	tmp <- vertex_attr(g0, attr)
@@ -598,8 +599,8 @@ analyze.net.assortativity <- function(g, g0)
 	}
 	
 	# convert tag-type attributes
-	attrs <- c(ATT_NODE_SEN_POL, ATT_NODE_SEN_MILIT,			# senatorial positions (including last position) TODO
-			ATT_NODE_EQU_POL, ATT_NODE_EQU_MILIT,				# equestrian positions (including last position) TODO
+	attrs <- c(ATT_NODE_SEN_POL, ATT_NODE_SEN_MILIT,			# senatorial positions
+			ATT_NODE_EQU_POL, ATT_NODE_EQU_MILIT,				# equestrian positions
 			ATT_NODE_TRAV_DEST, ATT_NODE_TRAV_REAS,				# travels
 			ATT_NODE_CIRCLES)									# circles
 	for(attr in attrs)
@@ -750,9 +751,10 @@ analyze.net.assortativity <- function(g, g0)
 #############################################################
 analyze.net.attributes <- function(g, g0)
 {	cat("  Computing nodal attribute stats\n")
-	# possibly create folder
+	# possibly create folders
 	graph.folder <- file.path(NET_FOLDER,g$name,"attributes")
 	dir.create(path=graph.folder, showWarnings=FALSE, recursive=TRUE)
+	dir.create(path=COMP_FOLDER, showWarnings=FALSE, recursive=TRUE)
 	
 	# retrieve the list of vertex attributes
 	att.list <- list.vertex.attributes(g)
@@ -762,8 +764,8 @@ analyze.net.attributes <- function(g, g0)
 	cat.data <- NA
 	
 	# gather regular categorical attributes
-	attrs <- c(ATT_NODE_REL_TRAJ, 										# several categories
-			ATT_NODE_ADELECTIO, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)	# only two categories (plus NA)
+	attrs <- c(ATT_NODE_REL_TRAJ, ATT_NODE_SEN_POLDER, ATT_NODE_EQU_POLDER,	# several categories
+			ATT_NODE_ADELECTIO, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)		# only two categories (plus NA)
 	for(attr in attrs)
 	{	# get values
 		tmp <- vertex_attr(g, attr)
@@ -883,9 +885,31 @@ analyze.net.attributes <- function(g, g0)
 	# replace NAs by "Unknown" tags
 #	cat.data[which(is.na(cat.data))] <- ATT_VAL_UNK
 	
-	# plot the graph using colors for attribute values
 	for(i in 1:ncol(cat.data))
 	{	attr <- colnames(cat.data)[i]
+		
+		# plot one attribute versus another
+		if(i<ncol(cat.data))
+		{	for(j in (i+1):ncol(cat.data))
+			{	attr2 <- colnames(cat.data)[j]
+				vals1 <- cat.data[,i]
+				vals2 <- cat.data[,j]
+				tt <- table(vals1, vals2, useNA="ifany")
+				names(dimnames(tt)) <- c(LONG_NAME[attr],LONG_NAME[attr2])
+				# plot file
+				plot.file <- file.path(COMP_FOLDER,paste0(attr,"_vs_",attr2,"_bars"))
+				custom.barplot(vals=tt, 
+						text=colnames(tt), 
+						xlab=LONG_NAME[attr2], ylab="Frequence",
+						file=plot.file)
+				# record tag distribution as table
+				tt <- as.data.frame(tt)
+				table.file <- file.path(COMP_FOLDER,paste0(attr,"_vs_",attr2,"_vals.csv"))
+				write.csv(tt, file=table.file, row.names=FALSE)
+			}
+		}
+		
+		# plot the graph using colors for attribute values
 		cat("    Graph-plottig attribute \"",attr,"\"\n",sep="")
 		# with trajan
 		gg <- set_vertex_attr(graph=g, name=attr, value=cat.data[,i])

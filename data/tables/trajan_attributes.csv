@@ -1,4 +1,4 @@
-Id,Nom,PolitSenat,PolitSenatDer,PolitEques,PolitEquesDer,Adelectio,MilitSenat,MilitEques,NbrVoy,DestVoy,MotifVoy,RelTrajan,SoutHadrien,Cercles,Espagnol
+Id,Nom,PolitSenat,DerPolitSenat,PolitEques,DerPolitEques,Adelectio,MilitSenat,MilitEques,NbrVoy,DestVoy,MotifVoy,RelTrajan,SoutHadrien,Cercles,Espagnol
 P0,Trajan,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 P1,Plotine,NA,NA,NA,NA,Non,NA,NA,1,Syrie,Personnel,G1,Oui,NA,Oui
 P2,Hadrien,Questeur;Tribun de la plebe;Preteur,Consul,NA,NA,Non,Tribun de legion;Legat de legion;Legat d'Auguste propreteur,NA,7,Germanie;Mesie;Pannonie;Dacie;Germanie;Pannonie;Syrie,Militaire;Militaire;Militaire;Militaire;Militaire;Militaire;Politico-militaire,G1,Non,NA,Oui
@@ -20,12 +20,12 @@ P17,Publius Cornelius Tacitus,Preteur;Propreteur,Consul,NA,NA,Non,Legat d'August
 P18,Caius Iulius Bassus Quatradus,Questeur;Preteur,Consul suffect,NA,NA,Non,Tribun de legion;Legat de legion,NA,7,Mesie;Dacie;Judee;Cappadoce;Galatie;Syrie;Dacie,Militaire;Militaire;Politico-militaire;Politico-militaire;Politico-militaire;Politico-militaire;Politico-militaire,G2,Oui,NA,Non
 P19,Lucius Iulius Ursus Servianus,Questeur;Preteur;Propreteur;Consul suffect,Consul,NA,NA,Non,Legat d'Auguste propreteur,NA,3,Germanie superieure;Dacie;Pannonie,Politico-militaire;Militaire;Politico-militaire,G2,Non,Pline,Non
 P20,Caius Octavius Tidius Tossianus Javolenus Priscus,Preteur;Propreteur;Consul suffect;Consul,Proconsul,NA,NA,Oui,Legat de legion;Proconsul,NA,6,Mesie;Dacie;Afrique;Germanie superieure;Syrie;Afrique,Militaire;Militaire;Politico-militaire;Politico-militaire;Politico-militaire;Politico-militaire,G2,NA,Regulus,Non
-P21,Manius Laberius Maximus,NA,Consul,Procuratele;Prefet de l'annone;Prefet d'Egypte;Prefet du pretoire,Prefet du pretoire,Oui,Legat de legion;Legat d'Auguste propreteur,NA,3,Judee;Mesie inferieure;Dacie,Politique;Politico-militaire;Militaire,G2,Non,NA,Non
+P21,Manius Laberius Maximus,NA,Consul,Procuratele;Prefet de l'annone;Prefet d'Egypte,Prefet du pretoire,Oui,Legat de legion;Legat d'Auguste propreteur,NA,3,Judee;Mesie inferieure;Dacie,Politique;Politico-militaire;Militaire,G2,Non,NA,Non
 P22,Lucius Licinius Sura,Questeur,Consul,NA,NA,Non,Legat de legion,NA,1,Dacie,Militaire,G2,Oui,Antonins,Oui
 P23,Lucius Neratius Priscus,Questeur;Preteur;Propreteur;Consul suffect,Consul,NA,NA,Non,Legat d'Auguste propreteur,NA,3,Germanie inferieure;Dacie;Pannonie,Politico-militaire;Militaire;Politico-militaire,G2,Non,Antonins,Non
 P24,Cnaeus Octavius Titinius Capito,NA,NA,NA,Prefet des vigiles,Non,NA,NA,NA,NA,NA,G2,NA,Pline,Non
 P25,Pline le Jeune,Questeur;Tribun de la plebe;Preteur;Propreteur;Consul suffect,Consul,NA,NA,Oui,Legat d'Auguste propreteur,NA,1,Bithynie,Politico-militaire,G2,NA,Pline,Non
-P26,Caius Pompeius Planta,NA,NA,Procuratele;Prefet d'Egypte,Prefet d'Egypte,Non,NA,NA,3,Libye;Pamphylie;Egypte,Politique;Politique;Politico-militaire,G2,NA,Pline,Non
+P26,Caius Pompeius Planta,NA,NA,Procuratele,Prefet d'Egypte,Non,NA,NA,3,Libye;Pamphylie;Egypte,Politique;Politique;Politico-militaire,G2,NA,Pline,Non
 P27,Lucius Publius Celsus,Consul suffect,Consul,NA,NA,Non,Legat de legion,NA,2,Dacie;Parthie,Militaire;Militaire,G2,Non,Nigrinus,Non
 P28,Marcus Rutilius Luous,NA,NA,Prefet de l'annone,Prefet d'Egypte,Non,NA,NA,1,Egypte,Politique,G2,Non,NA,Non
 P29,Luciius Silius Decianus,NA,Consul suffect,NA,NA,Non,NA,NA,NA,NA,NA,G2,NA,NA,Non

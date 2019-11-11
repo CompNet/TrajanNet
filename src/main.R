@@ -57,11 +57,7 @@ analyze.network(g)
 
 #############################################################################################
 # TODO
-# - Produce 1 vs 1 attribute plots (bar plots)
 # - Compute association measures between attributes
-# How to handle "der" attributes depends on G's answer
-# Attribute stats: circles should be in a single folder (possibly several files)
-# >> same for other tag type attributes ?
 # - Topological measures
 #	- Correlation clustering (is it worth it, in this case?)
 #	- Cluster analysis based on the sequences, then assortativity of the sequence classes? 
