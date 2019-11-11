@@ -14,11 +14,12 @@
 #############################################################
 # Transform the received graph so that instead of having multitype
 # links, each type occurrence is represented by a distinct link.
-# Parameter link.types lists the types to retain in the result
-# graph.
+# Parameter link.types lists the types to retain in the result graph.
 #
 # g : original graph, whose links will be cleaned to get the result graph.
 # link:types : list of link types to keep in the result graph.
+#
+# returns: graph resulting from the cleaning.
 #############################################################
 clean.links <- function(g, link.types)
 {	res <- delete_edges(g, edges=E(g))
@@ -26,53 +27,57 @@ clean.links <- function(g, link.types)
 		res <- delete_edge_attr(res, ea)
 
 	# possibly remove NA from list of link types
-	idx <- which(is.na(link.types))
+	link.types0 <- link.types
+	idx <- which(is.na(link.types0))
 	if(length(idx)>0)
-		link.types0 <- link.types[-idx]
-	else
-		link.types0 <- link.types
+		link.types0 <- link.types0[-idx]
 	
 	# process each edge
 	for(e in E(g))
-	{	uv = ends(g, E(g)[e], names=FALSE)
+	{	#print(e)
+		uv = ends(g, E(g)[e], names=FALSE)
 		
 		# process each specified link type (except NA)
 		for(lt in link.types0)
 		{	# convert attribute values
-			vv <- as.logical(get.edge.attribute(g,lt,e))
-			pol <- as.logical(get.edge.attribute(g,"Polarite",e))
+			vv <- get.edge.attribute(g,lt,e)
+			pol <- get.edge.attribute(g,ATT_EDGE_POL,e)
 			
 			if(!is.na(vv) && vv)
 			{	# convert link nature
-				if(lt=="Nature_Amicale")
-					ltp <- "Friend"
-				else if(lt=="Nature_Familiale")
-					ltp <- "Family"
-				else if (lt=="Nature_Professionnelle")
-					ltp <- "Pro"
+				if(lt==paste0(ATT_EDGE_NAT,"_",ATT_VAL_FRIEND))
+					ltp <- ATT_VAL_FRIEND
+				else if(lt==paste0(ATT_EDGE_NAT,"_",ATT_VAL_FAMILY))
+					ltp <- ATT_VAL_FAMILY
+				else if (lt==paste0(ATT_EDGE_NAT,"_",ATT_VAL_PRO))
+					ltp <- ATT_VAL_PRO
 				
 				# add to new graph
-				res <- add_edges(res, edges=uv, attr=list(
-								"Polarity"=pol,
-								"Type"=ltp))
+				lst <- list()
+				lst[[ATT_EDGE_POL]] <- pol
+				lst[[ATT_EDGE_NAT]] <- ltp
+				res <- add_edges(res, edges=uv, attr=lst)
 			}
 		}
 		
 		# handle unknown links
 		if(any(is.na(link.types)))
 		{	unk <- TRUE
-			for(lt in c("Nature_Amicale","Nature_Familiale","Nature_Professionnelle"))
+			for(lt in c(paste0(ATT_EDGE_NAT,"_",ATT_VAL_FRIEND),
+					paste0(ATT_EDGE_NAT,"_",ATT_VAL_FAMILY),
+					paste0(ATT_EDGE_NAT,"_",ATT_VAL_PRO)))
 			{	unk <- unk && is.na(get.edge.attribute(g,lt,e))
-#				print(get.edge.attribute(g,lt,e))				
+				#print(get.edge.attribute(g,lt,e))
 			}
 			if(unk)
-			{	ltp <- "Unknown"
-				pol <- as.logical(get.edge.attribute(g,"Polarite",e))
+			{	ltp <- ATT_VAL_UNK
+				pol <- get.edge.attribute(g,ATT_EDGE_POL,e)
 				
 				# add to new graph
-				res <- add_edges(res, edges=uv, attr=list(
-								"Polarity"=pol,
-								"Type"=ltp))
+				lst <- list()
+				lst[[ATT_EDGE_POL]] <- pol
+				lst[[ATT_EDGE_NAT]] <- ltp
+				res <- add_edges(res, edges=uv, attr=lst)
 			}
 		}
 	}
@@ -152,11 +157,11 @@ analyze.net.eccentricity <- function(g, g0)
 	dir.create(path=eccentricity.folder, showWarnings=FALSE, recursive=TRUE)
 	
 	# plot distribution
-	custom.hist(vals, name="Eccentricity", file=file.path(eccentricity.folder,"eccentricity_histo"))
+	custom.hist(vals, name=LONG_NAME[MEAS_ECCENTRICITY], file=file.path(eccentricity.folder,"eccentricity_histo"))
 	
 	# export CSV with eccentricity
 	df <- data.frame(V(g0)$name,V(g0)$label,vals)
-	colnames(df) <- c("Name","Label","Eccentricity") 
+	colnames(df) <- c("Name","Label",MEAS_ECCENTRICITY) 
 	write.csv(df, file=file.path(eccentricity.folder,"eccentricity_values.csv"))
 	
 	# add eccentricity (as node attributes) to the graph
@@ -164,8 +169,8 @@ analyze.net.eccentricity <- function(g, g0)
 	V(g0)$Eccentricity <- vals
 
 	# plot graph using color for eccentricity
-	custom.gplot(g0,col.att="Eccentricity",file=file.path(eccentricity.folder,"eccentricity_graph0"))
-#	custom.gplot(g0,col.att="Eccentricity")
+	custom.gplot(g0,col.att=MEAS_ECCENTRICITY,file=file.path(eccentricity.folder,"eccentricity_graph0"))
+#	custom.gplot(g0,col.att=MEAS_ECCENTRICITY)
 	
 	###########################
 	# compute radius
@@ -182,13 +187,13 @@ analyze.net.eccentricity <- function(g, g0)
 	stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
 	if(file.exists(stat.file))
 	{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-		df["Diameter", ] <- list(Value=diam, Mean=NA, Stdv=NA)
-		df["Radius", ] <- list(Value=rad, Mean=NA, Stdv=NA)
-		df["Eccentricity", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+		df[MEAS_DIAMETER, ] <- list(Value=diam, Mean=NA, Stdv=NA)
+		df[MEAS_RADIUS, ] <- list(Value=rad, Mean=NA, Stdv=NA)
+		df[MEAS_ECCENTRICITY, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
 	}
 	else
 	{	df <- data.frame(Value=c(diam,rad,NA),Mean=c(NA,NA,mean(vals)),Stdv=c(NA,NA,sd(vals)))
-		row.names(df) <- c("Diameter","Radius","Eccentricity")
+		row.names(df) <- c(MEAS_DIAMETER,MEAS_RADIUS,MEAS_ECCENTRICITY)
 	}
 	write.csv(df, file=stat.file, row.names=TRUE)
 	
@@ -225,11 +230,11 @@ analyze.net.degree <- function(g, g0)
 		
 		# degree distribution
 		vals <- degree(g)
-		custom.hist(vals, name="Degree", file=file.path(degree.folder,paste0("degree_histo",sufx)))
+		custom.hist(vals, name=LONG_NAME[MEAS_DEGREE], file=file.path(degree.folder,paste0("degree_histo",sufx)))
 			
 		# export CSV with degree
 		df <- data.frame(V(g)$name,V(g)$label,vals)
-		colnames(df) <- c("Name","Label","Degree") 
+		colnames(df) <- c("Name","Label",MEAS_DEGREE) 
 		write.csv(df, file=file.path(degree.folder,paste0("degree_values",sufx,".csv")))
 		
 		# add results to the graph (as attributes) and record
@@ -239,18 +244,18 @@ analyze.net.degree <- function(g, g0)
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# plot graph using color for degree
-		custom.gplot(g,col.att="Degree",file=file.path(degree.folder,paste0("degree_graph",sufx)))
-#		custom.gplot(g,col.att="Degree")
+		custom.gplot(g,col.att=MEAS_DEGREE,file=file.path(degree.folder,paste0("degree_graph",sufx)))
+#		custom.gplot(g,col.att=MEAS_DEGREE)
 		
 		# export CSV with average degree
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-			df["Degree", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+			df[MEAS_DEGREE, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
 		}
 		else
 		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
-			row.names(df) <- c("Degree")
+			row.names(df) <- c(MEAS_DEGREE)
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
@@ -284,11 +289,11 @@ analyze.net.eigencentrality <- function(g, g0)
 		
 		# Eigencentrality distribution
 		vals <- eigen_centrality(graph=g, scale=FALSE)$vector
-		custom.hist(vals, name="Eigencentrality", file=file.path(eigen.folder,paste0("eigencentrality_histo",sufx)))
+		custom.hist(vals, name=LONG_NAME[MEAS_EIGEN], file=file.path(eigen.folder,paste0("eigencentrality_histo",sufx)))
 		
 		# export CSV with Eigencentrality
 		df <- data.frame(V(g)$name,V(g)$label,vals)
-		colnames(df) <- c("Name","Label","Eigencentrality") 
+		colnames(df) <- c("Name","Label",MEAS_EIGEN) 
 		write.csv(df, file=file.path(eigen.folder,paste0("eigencentrality_values",sufx,".csv")))
 		
 		# add results to the graph (as attributes) and record
@@ -298,18 +303,18 @@ analyze.net.eigencentrality <- function(g, g0)
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# plot graph using color for Eigencentrality
-		custom.gplot(g,col.att="Eigencentrality",file=file.path(eigen.folder,paste0("eigencentrality_graph",sufx)))
-#		custom.gplot(g,col.att="Eigencentrality")
+		custom.gplot(g,col.att=MEAS_EIGEN,file=file.path(eigen.folder,paste0("eigencentrality_graph",sufx)))
+#		custom.gplot(g,col.att=MEAS_EIGEN)
 		
 		# export CSV with average Eigencentrality
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-			df["Eigencentrality", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+			df[MEAS_EIGEN, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
 		}
 		else
 		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
-			row.names(df) <- c("Eigencentrality")
+			row.names(df) <- c(MEAS_EIGEN)
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
@@ -343,11 +348,11 @@ analyze.net.betweenness <- function(g, g0)
 		
 		# betweenness distribution
 		vals <- betweenness(graph=g, normalized=FALSE)
-		custom.hist(vals, name="betweenness", file=file.path(betweenness.folder,paste0("betweenness_histo",sufx)))
+		custom.hist(vals, name=LONG_NAME[MEAS_BETWEENNESS], file=file.path(betweenness.folder,paste0("betweenness_histo",sufx)))
 		
 		# export CSV with betweenness
 		df <- data.frame(V(g)$name,V(g)$label,vals)
-		colnames(df) <- c("Name","Label","Betweenness") 
+		colnames(df) <- c("Name","Label",MEAS_BETWEENNESS) 
 		write.csv(df, file=file.path(betweenness.folder,paste0("betweenness_values",sufx,".csv")))
 		
 		# add results to the graph (as attributes) and record
@@ -357,18 +362,18 @@ analyze.net.betweenness <- function(g, g0)
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# plot graph using color for betweenness
-		custom.gplot(g,col.att="Betweenness",file=file.path(betweenness.folder,paste0("betweenness_graph",sufx)))
-#		custom.gplot(g,col.att="Betweenness")
+		custom.gplot(g,col.att=MEAS_BETWEENNESS,file=file.path(betweenness.folder,paste0("betweenness_graph",sufx)))
+#		custom.gplot(g,col.att=MEAS_BETWEENNESS)
 		
 		# export CSV with average betweenness
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-			df["Betweenness", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+			df[MEAS_BETWEENNESS, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
 		}
 		else
 		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
-			row.names(df) <- c("Betweenness")
+			row.names(df) <- c(MEAS_BETWEENNESS)
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
@@ -401,12 +406,12 @@ analyze.net.closeness <- function(g, g0)
 		sufx <- sufxx[i]
 		
 		# closeness distribution
-		vals <- suppressWarnings(closeness(graph=g, normalized=FALSE))	# avoid warnings due to graph being disconnected
-		custom.hist(vals, name="closeness", file=file.path(closeness.folder,paste0("closeness_histo",sufx)))
+		vals <- suppressWarnings(closeness(graph=g, normalized=TRUE))	# avoid warnings due to graph being disconnected
+		custom.hist(vals, name=LONG_NAME[MEAS_CLOSENESS], file=file.path(closeness.folder,paste0("closeness_histo",sufx)))
 		
 		# export CSV with closeness
 		df <- data.frame(V(g)$name,V(g)$label,vals)
-		colnames(df) <- c("Name","Label","Closeness") 
+		colnames(df) <- c("Name","Label",MEAS_CLOSENESS) 
 		write.csv(df, file=file.path(closeness.folder,paste0("closeness_values",sufx,".csv")))
 		
 		# add results to the graph (as attributes) and record
@@ -416,18 +421,18 @@ analyze.net.closeness <- function(g, g0)
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# plot graph using color for closeness
-		custom.gplot(g,col.att="Closeness",file=file.path(closeness.folder,paste0("closeness_graph",sufx)))
-#		custom.gplot(g,col.att="Closeness")
+		custom.gplot(g,col.att=MEAS_CLOSENESS,file=file.path(closeness.folder,paste0("closeness_graph",sufx)))
+#		custom.gplot(g,col.att=MEAS_CLOSENESS)
 		
 		# export CSV with average closeness
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-			df["Closeness", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+			df[MEAS_CLOSENESS, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
 		}
 		else
 		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
-			row.names(df) <- c("Closeness")
+			row.names(df) <- c(MEAS_CLOSENESS)
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
@@ -461,11 +466,11 @@ analyze.net.transitivity <- function(g, g0)
 		
 		# transitivity distribution
 		vals <- transitivity(graph=g, type="localundirected", isolates="zero")
-		custom.hist(vals, name="transitivity", file=file.path(transitivity.folder,paste0("transitivity_histo",sufx)))
+		custom.hist(vals, name=LONG_NAME[MEAS_TRANSITIVITY], file=file.path(transitivity.folder,paste0("transitivity_histo",sufx)))
 		
 		# export CSV with transitivity
 		df <- data.frame(V(g)$name,V(g)$label,vals)
-		colnames(df) <- c("Name","Label","Transitivity") 
+		colnames(df) <- c("Name","Label",MEAS_TRANSITIVITY) 
 		write.csv(df, file=file.path(transitivity.folder,paste0("transitivity_values",sufx,".csv")))
 		
 		# add results to the graph (as attributes) and record
@@ -476,18 +481,18 @@ analyze.net.transitivity <- function(g, g0)
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# plot graph using color for transitivity
-		custom.gplot(g,col.att="Transitivity",file=file.path(transitivity.folder,paste0("transitivity_graph",sufx)))
-#		custom.gplot(g,col.att="Transitivity")
+		custom.gplot(g,col.att=MEAS_TRANSITIVITY,file=file.path(transitivity.folder,paste0("transitivity_graph",sufx)))
+#		custom.gplot(g,col.att=MEAS_TRANSITIVITY)
 		
 		# export CSV with average transitivity
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-			df["Transitivity", ] <- list(Value=g$Transitivity, Mean=mean(vals), Stdv=sd(vals))
+			df[MEAS_TRANSITIVITY, ] <- list(Value=g$Transitivity, Mean=mean(vals), Stdv=sd(vals))
 		}
 		else
 		{	df <- data.frame(Value=c(g$Transitivity),Mean=c(mean(vals)),Stdv=c(sd(vals)))
-			row.names(df) <- c("Transitivity")
+			row.names(df) <- c(MEAS_TRANSITIVITY)
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
@@ -526,32 +531,32 @@ analyze.net.comstruct <- function(g, g0)
 		coms <- cluster_infomap(graph=simplify(g))
 		mbrs <- as.integer(membership(coms))
 		sizes <- table(mbrs[idx]) 
-		custom.barplot(sizes, text=names(sizes), xlab="Community", ylab="Size", file=file.path(communities.folder,paste0("community_size_bars",sufx)))
+		custom.barplot(sizes, text=names(sizes), xlab=LONG_NAME[MEAS_COMMUNITY], ylab="Taille", file=file.path(communities.folder,paste0("community_size_bars",sufx)))
 		
 		# export CSV with community membership
 		df <- data.frame(V(g)$name,V(g)$label,mbrs)
-		colnames(df) <- c("Name","Label","Community") 
+		colnames(df) <- c("Name","Label",MEAS_COMMUNITY) 
 		write.csv(df, file=file.path(communities.folder,paste0("community_membership",sufx,".csv")))
 		
 		# add results to the graph (as attributes) and record
-		V(g)$Communities <- mbrs
-		g$Modularity <- modularity(coms)
+		g <- set_vertex_attr(graph=g,name=MEAS_COMMUNITY,value=mbrs)
+		g <- set_graph_attr(graph=g,name=MEAS_MODULARITY,value=modularity(coms))
 		cat("    Modularity: ",g$Modularity,"\n",sep="")
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# plot graph using color for communities
-		custom.gplot(g,col.att="Communities",cat.att=TRUE,file=file.path(communities.folder,paste0("communities_graph",sufx)))
-#		custom.gplot(g,col.att="Communities",cat.att=TRUE)
+		custom.gplot(g,col.att=MEAS_COMMUNITY,cat.att=TRUE,file=file.path(communities.folder,paste0("communities_graph",sufx)))
+#		custom.gplot(g,col.att=MEAS_COMMUNITY,cat.att=TRUE)
 		
 		# export CSV with modularity
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-			df["Modularity", ] <- list(Value=g$Modularity, Mean=NA, Stdv=NA)
+			df[MEAS_MODULARITY, ] <- list(Value=g$Modularity, Mean=NA, Stdv=NA)
 		}
 		else
 		{	df <- data.frame(Value=c(g$Modularity),Mean=c(NA),Stdv=c(NA))
-			row.names(df) <- c("Modularity")
+			row.names(df) <- c(MEAS_MODULARITY)
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
@@ -581,8 +586,8 @@ analyze.net.assortativity <- function(g, g0)
 	cat.data <- NA
 	
 	# gather regular categorical attributes
-	attrs <- c("RelTrajan","Adelectio","SoutHadrien","Espagnol",
-		att.list[grepl(att.list,pattern="Cercles")])
+	attrs <- c(ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR,			# relationships 
+			ATT_NODE_ADELECTIO, ATT_NODE_SPANISH)				# misc
 	for(attr in attrs)
 	{	tmp <- vertex_attr(g0, attr)
 		if(all(is.na(cat.data)))
@@ -593,7 +598,10 @@ analyze.net.assortativity <- function(g, g0)
 	}
 	
 	# convert tag-type attributes
-	attrs <- c("PolitEques", "MilitSenat", "MilitEques", "DestVoy", "MotifVoy")
+	attrs <- c(ATT_NODE_SEN_POL, ATT_NODE_SEN_MILIT,			# senatorial positions (including last position) TODO
+			ATT_NODE_EQU_POL, ATT_NODE_EQU_MILIT,				# equestrian positions (including last position) TODO
+			ATT_NODE_TRAV_DEST, ATT_NODE_TRAV_REAS,				# travels
+			ATT_NODE_CIRCLES)									# circles
 	for(attr in attrs)
 	{	tmp <- att.list[grepl(att.list,pattern=attr)]
 		m <- sapply(tmp, function(att) vertex_attr(g0, att))
@@ -609,8 +617,7 @@ analyze.net.assortativity <- function(g, g0)
 	for(i in 1:ncol(cat.data))
 	{	# compute the assortativity
 		attr <- colnames(cat.data)[i]
-#print(attr)
-#print(cat.data[,i])
+		
 		# if there are some NAs
 		if(any(is.na(cat.data[,i])))
 		{	# explicitly represent them as a class
@@ -633,6 +640,7 @@ analyze.net.assortativity <- function(g, g0)
 			vals <- c(vals, ass)
 			names(vals)[length(vals)] <- paste(attr,"_noNA",sep="")
 		}
+		
 		# no NA at all
 		else
 		{	ass <- assortativity_nominal(graph=g0, types=cat.data[,i])
@@ -647,7 +655,7 @@ analyze.net.assortativity <- function(g, g0)
 	num.data <- NA
 	
 	# gather regular numerical attributes
-	attrs <- c("NbrVoy")
+	attrs <- c(ATT_NODE_TRAV_NBR)					# number of travels
 	for(attr in attrs)
 	{	tmp <- vertex_attr(g0, attr)
 		if(all(is.na(num.data)))
@@ -743,8 +751,8 @@ analyze.net.assortativity <- function(g, g0)
 analyze.net.attributes <- function(g, g0)
 {	cat("  Computing nodal attribute stats\n")
 	# possibly create folder
-	attr.folder <- file.path(NET_FOLDER,g$name,"attributes")
-	dir.create(path=attr.folder, showWarnings=FALSE, recursive=TRUE)
+	graph.folder <- file.path(NET_FOLDER,g$name,"attributes")
+	dir.create(path=graph.folder, showWarnings=FALSE, recursive=TRUE)
 	
 	# retrieve the list of vertex attributes
 	att.list <- list.vertex.attributes(g)
@@ -754,10 +762,30 @@ analyze.net.attributes <- function(g, g0)
 	cat.data <- NA
 	
 	# gather regular categorical attributes
-	attrs <- c("RelTrajan","Adelectio","SoutHadrien","Espagnol",
-			att.list[grepl(att.list,pattern="Cercles")])
+	attrs <- c(ATT_NODE_REL_TRAJ, 										# several categories
+			ATT_NODE_ADELECTIO, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)	# only two categories (plus NA)
 	for(attr in attrs)
-	{	tmp <- vertex_attr(g, attr)
+	{	# get values
+		tmp <- vertex_attr(g, attr)
+		
+		# plot the attribute distribution as a barplot
+		cat("    Bar-plotting attribute \"",attr,"\"\n",sep="")
+		tt <- table(tmp, useNA="ifany")
+		plot.folder <- file.path(ATT_FOLDER,attr)
+		dir.create(path=plot.folder, showWarnings=FALSE, recursive=TRUE)
+		plot.file <- file.path(plot.folder,paste0(attr,"_bars"))
+		custom.barplot(tt, 
+				text=names(tt), 
+				xlab=LONG_NAME[attr], ylab="Frequence",
+				file=plot.file)
+		# record as a table
+		tt <- as.data.frame(tt)
+		colnames(tt) <- c("Value","Frequency")
+		table.file <- file.path(plot.folder,paste0(attr,"_vals.csv"))
+		write.csv(tt, file=table.file, row.names=FALSE)
+		
+		# add to matrix
+		cat("    Adding attribute \"",attr,"\" to data matrix\n",sep="")
 		if(all(is.na(cat.data)))
 			cat.data <- matrix(tmp,ncol=1)
 		else
@@ -766,31 +794,87 @@ analyze.net.attributes <- function(g, g0)
 	}
 	
 	# convert tag-type attributes
-	attrs <- c("PolitEques", "MilitSenat", "MilitEques", "DestVoy", "MotifVoy")
+	attrs <- c(ATT_NODE_SEN_POL, ATT_NODE_SEN_MILIT,			# senatorial positions
+			ATT_NODE_EQU_POL, ATT_NODE_EQU_MILIT,				# equestrian positions
+			ATT_NODE_TRAV_DEST, ATT_NODE_TRAV_REAS,				# travels
+			ATT_NODE_CIRCLES)									# circles
 	for(attr in attrs)
 	{	tmp <- att.list[grepl(att.list,pattern=attr)]
 		m <- sapply(tmp, function(att) vertex_attr(g, att))
+		
+		# count tag distribution
+		idx.nas <- which(apply(m,1,function(r) all(is.na(r))))	# detect individuals with only NAs
+		nbr.nas <- length(idx.nas) 								# count them
+		dt <- c(m)[!is.na(c(m))]								# handles non-NA values
+		dt <- c(dt,rep(NA,nbr.nas))								# insert the appropriate number of NAs
+		# compute most frequent value for later use (to handle plot y-scale)
+		tt <- table(dt, useNA="ifany")
+		if(any(is.na(names(tt))))
+			na.nbr <- tt[is.na(names(tt))]
+		else
+			na.nbr <- 0
+		tmp <- sapply(tt, function(x) gorder(g)-x-na.nbr)
+		ymax <- max(tmp,na.nbr)
+		# plot tag distribution as barplot
+		cat("    Bar-plotting attributes containing \"",attr,"\"\n",sep="")
+		plot.folder <- file.path(ATT_FOLDER,attr)
+		dir.create(path=plot.folder, showWarnings=FALSE, recursive=TRUE)
+		plot.file <- file.path(plot.folder,paste0(attr,"_bars"))
+		custom.barplot(tt, 
+				text=names(tt), 
+				xlab=LONG_NAME[attr], ylab="Frequence", 
+				file=plot.file)
+		# record tag distribution as table
+		tt <- as.data.frame(tt)
+		colnames(tt) <- c("Value","Frequency")
+		table.file <- file.path(plot.folder,paste0(attr,"_vals.csv"))
+		write.csv(tt, file=table.file, row.names=FALSE)
+		
+		# add to matrix
+		cat("    Adding attribute \"",attr,"\" to data matrix\n",sep="")
 		uvals <- sort(unique(c(m)))
 		for(uval in uvals)
-		{	cat.data <- cbind(cat.data, apply(m, 1, function(v) uval %in% v[!is.na(v)]))
-			colnames(cat.data)[ncol(cat.data)] <- paste(attr,uval,sep="_")
+		{	# binarize tags
+			vals <- apply(m, 1, function(v) uval %in% v[!is.na(v)])
+			idxt <- which(vals)
+			idxf <- which(!vals)
+			vals[idxt] <- ATT_VAL_TRUE
+			vals[idxf] <- ATT_VAL_FALSE
+			vals[idx.nas] <- NA
+			cat.data <- cbind(cat.data, vals)
+			att_name <- paste(attr,uval,sep="_")
+			colnames(cat.data)[ncol(cat.data)] <- att_name
+			
+			# produce TRUE/FALSE barplots
+			tt <- table(vals, useNA="ifany")
+			plot.file <- file.path(plot.folder,paste0(att_name,"_bars"))
+			custom.barplot(tt, 
+					text=names(tt), 
+					xlab=LONG_NAME[att_name], ylab="Frequence", 
+					file=plot.file,
+					ylim=c(0,ymax))
+			# record values as table
+			tt <- as.data.frame(tt)
+			colnames(tt) <- c("Value","Frequency")
+			table.file <- file.path(plot.folder,paste0(att_name,"_vals.csv"))
+			write.csv(tt, file=table.file, row.names=FALSE)
 		}
 	}
 	
 	# replace NAs by "Unknown" tags
-	cat.data[which(is.na(cat.data))] <- "Unknown"
+#	cat.data[which(is.na(cat.data))] <- ATT_VAL_UNK
 	
 	# plot the graph using colors for attribute values
 	for(i in 1:ncol(cat.data))
 	{	attr <- colnames(cat.data)[i]
-		cat("    Plottig attribute \"",attr,"\"\n",sep="")
+		cat("    Graph-plottig attribute \"",attr,"\"\n",sep="")
 		# with trajan
 		gg <- set_vertex_attr(graph=g, name=attr, value=cat.data[,i])
-		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(attr.folder,paste0(attr,"_graph")))
+		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(graph.folder,paste0(attr,"_graph")))
 #		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE)
 		# without trajan
 		gg <- set_vertex_attr(graph=g0, name=attr, value=cat.data[,i])
-		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(attr.folder,paste0(attr,"_graph0")))
+		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(graph.folder,paste0(attr,"_graph0")))
 #		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE)
 	}
 	
@@ -799,9 +883,29 @@ analyze.net.attributes <- function(g, g0)
 	num.data <- NA
 	
 	# gather regular numerical attributes
-	attrs <- c("NbrVoy")
+	attrs <- c(ATT_NODE_TRAV_NBR)
 	for(attr in attrs)
-	{	tmp <- vertex_attr(g0, attr)
+	{	# get values
+		tmp <- vertex_attr(g0, attr)
+		
+		# plot the attribute distribution as a histogram 
+		# (actually a barplot, for now, as the only numeric attribute is an integer)
+		cat("    Bar-plotting attribute \"",attr,"\"\n",sep="")
+		tt <- table(tmp, useNA="ifany")
+		plot.folder <- file.path(ATT_FOLDER,attr)
+		dir.create(path=plot.folder, showWarnings=FALSE, recursive=TRUE)
+		plot.file <- file.path(plot.folder,paste0(attr,"_bars"))
+		custom.barplot(tt, 
+				text=names(tt), 
+				xlab=LONG_NAME[attr], ylab="Frequence", 
+				file=plot.file)
+		# record as a table
+		tt <- as.data.frame(tt)
+		colnames(tt) <- c("Value","Frequency")
+		table.file <- file.path(plot.folder,paste0(attr,"_vals.csv"))
+		write.csv(tt, file=table.file, row.names=FALSE)
+		
+		# add to matrix
 		if(all(is.na(num.data)))
 			num.data <- matrix(tmp,ncol=1)
 		else
@@ -810,7 +914,7 @@ analyze.net.attributes <- function(g, g0)
 	}
 	
 	# replace NAs by "Unknown" tags
-#	num.data[which(is.na(num.data))] <- "Unknown"
+#	num.data[which(is.na(num.data))] <- ATT_VAL_UNK
 	
 	# plot the graph using colors for attribute values
 	for(i in 1:ncol(num.data))
@@ -818,11 +922,11 @@ analyze.net.attributes <- function(g, g0)
 		cat("    Plottig attribute \"",attr,"\"\n",sep="")
 		# with trajan
 		gg <- set_vertex_attr(graph=g, name=attr, value=num.data[,i])
-		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE,file=file.path(attr.folder,paste0(attr,"_graph")))
+		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE,file=file.path(graph.folder,paste0(attr,"_graph")))
 #		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE)
 		# without trajan
 		gg <- set_vertex_attr(graph=g0, name=attr, value=num.data[,i])
-		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE,file=file.path(attr.folder,paste0(attr,"_graph0")))
+		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE,file=file.path(graph.folder,paste0(attr,"_graph0")))
 #		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE)
 	}
 	
@@ -868,11 +972,11 @@ analyze.net.articulation <- function(g, g0)
 	dir.create(path=articulation.folder, showWarnings=FALSE, recursive=TRUE)
 	
 	# plot distribution
-	custom.hist(vals, name="articulation", file=file.path(articulation.folder,paste0("articulation_histo")))
+	custom.hist(vals, name=LONG_NAME[MEAS_ARTICULATION], file=file.path(articulation.folder,paste0("articulation_histo")))
 	
 	# export CSV with articulation
 	df <- data.frame(V(g)$name,V(g)$label,vals)
-	colnames(df) <- c("Name","Label","Articulation") 
+	colnames(df) <- c("Name","Label",MEAS_ARTICULATION) 
 	write.csv(df, file=file.path(articulation.folder,paste0("articulation_values.csv")))
 	
 	# add results to the graph (as attributes) and record
@@ -886,18 +990,18 @@ analyze.net.articulation <- function(g, g0)
 	write.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,paste0("graph0.graphml")), format="graphml")
 	
 	# plot graph using color for articulation
-	custom.gplot(g,col.att="Articulation",file=file.path(articulation.folder,paste0("articulation_graph")))
-#	custom.gplot(g,col.att="Articulation")
+	custom.gplot(g,col.att=MEAS_ARTICULATION,file=file.path(articulation.folder,paste0("articulation_graph")))
+#	custom.gplot(g,col.att=MEAS_ARTICULATION)
 	
 	# export CSV with average articulation
 	stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 	if(file.exists(stat.file))
 	{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-		df["Articulation", ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+		df[MEAS_ARTICULATION, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
 	}
 	else
 	{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
-		row.names(df) <- c("Articulation")
+		row.names(df) <- c(MEAS_ARTICULATION)
 	}
 	write.csv(df, file=stat.file, row.names=TRUE)
 	
@@ -930,14 +1034,14 @@ analyze.net.distance <- function(g, g0)
 		# distance distribution
 		vals <- distances(graph=g)
 		flat.vals <- vals[upper.tri(vals)]
-		custom.hist(vals=flat.vals, name="Distance", file=file.path(distance.folder,paste0("distance_histo",sufx)))
+		custom.hist(vals=flat.vals, name=LONG_NAME[MEAS_DISTANCE], file=file.path(distance.folder,paste0("distance_histo",sufx)))
 		# average distance distribution
 		avg.vals <- apply(X=vals,MARGIN=1,FUN=function(v) mean(v[!is.infinite(v)]))
-		custom.hist(vals=avg.vals, name="Average distance", file=file.path(distance.folder,paste0("distance_avg_histo",sufx)))
+		custom.hist(vals=avg.vals, name=LONG_NAME[MEAS_DISTANCE_AVG], file=file.path(distance.folder,paste0("distance_avg_histo",sufx)))
 		
 		# export CSV with average distance
 		df <- data.frame(V(g)$name,V(g)$label,avg.vals)
-		colnames(df) <- c("Name","Label","AverageDistance") 
+		colnames(df) <- c("Name","Label",MEAS_DISTANCE_AVG) 
 		write.csv(df, file=file.path(distance.folder,paste0("distance_avg_values",sufx,".csv")))
 		
 		# add results to the graph (as attributes) and record
@@ -954,20 +1058,20 @@ analyze.net.distance <- function(g, g0)
 				cat("    NOT plotting graph for node #",nname,", as all values are infinite\n",sep="")
 			else
 			{	cat("    Plotting graph for node #",nname,"\n",sep="")
-				custom.gplot(g,col.att="Distance",v.hl=n,file=file.path(distance.folder,paste0("distance_graph",sufx,"_",nname)))
+				custom.gplot(g,col.att=MEAS_DISTANCE,v.hl=n,file=file.path(distance.folder,paste0("distance_graph",sufx,"_",nname)))
 			}
-			g <- delete_vertex_attr(graph=g, name="Distance")
+			g <- delete_vertex_attr(graph=g, name=MEAS_DISTANCE)
 		}
 		
 		# export CSV with average distance
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-			df["Distance", ] <- list(Value=NA, Mean=mean(flat.vals), Stdv=sd(flat.vals))
+			df[MEAS_DISTANCE, ] <- list(Value=NA, Mean=mean(flat.vals), Stdv=sd(flat.vals))
 		}
 		else
 		{	df <- data.frame(Value=c(NA),Mean=c(mean(flat.vals)),Stdv=c(sd(flat.vals)))
-			row.names(df) <- c("Distance")
+			row.names(df) <- c(MEAS_DISTANCE)
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
@@ -1015,14 +1119,14 @@ analyze.net.connectivity <- function(g, g0)
 		}
 		vals[gorder(g),gorder(g)] <- 0
 		flat.vals <- vals[upper.tri(vals)]
-		custom.hist(vals=flat.vals, name="Connectivity", file=file.path(connectivity.folder,paste0("connectivity_histo",sufx)))
+		custom.hist(vals=flat.vals, name=LONG_NAME[MEAS_CONNECTIVITY], file=file.path(connectivity.folder,paste0("connectivity_histo",sufx)))
 		# connectivity distribution
 		avg.vals <- apply(X=vals,MARGIN=1,FUN=function(v) mean(v[!is.infinite(v)]))
-		custom.hist(vals=avg.vals, name="Average connectivity", file=file.path(connectivity.folder,paste0("connectivity_avg_histo",sufx)))
+		custom.hist(vals=avg.vals, name=LONG_NAME[MEAS_CONNECTIVITY_AVG], file=file.path(connectivity.folder,paste0("connectivity_avg_histo",sufx)))
 		
 		# export CSV with average connectivity
 		df <- data.frame(V(g)$name,V(g)$label,avg.vals)
-		colnames(df) <- c("Name","Label","AverageConnectivity") 
+		colnames(df) <- c("Name","Label",MEAS_CONNECTIVITY_AVG) 
 		write.csv(df, file=file.path(connectivity.folder,paste0("connectivity_avg_values",sufx,".csv")))
 		
 		# add results to the graph (as attributes) and record
@@ -1039,7 +1143,7 @@ analyze.net.connectivity <- function(g, g0)
 				cat("    NOT plotting graph for node #",nname,", as all values are zero\n",sep="")
 			else
 			{	cat("    Plotting graph for node #",nname,"\n",sep="")
-				custom.gplot(g,col.att="Connectivity",v.hl=n,file=file.path(connectivity.folder,paste0("connectivity_graph",sufx,"_",nname)))
+				custom.gplot(g,col.att=MEAS_CONNECTIVITY,v.hl=n,file=file.path(connectivity.folder,paste0("connectivity_graph",sufx,"_",nname)))
 			}
 			g <- delete_vertex_attr(graph=g, name="Connectivity")
 		}
@@ -1048,11 +1152,11 @@ analyze.net.connectivity <- function(g, g0)
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-			df["Connectivity", ] <- list(Value=NA, Mean=mean(flat.vals), Stdv=sd(flat.vals))
+			df[MEAS_CONNECTIVITY, ] <- list(Value=NA, Mean=mean(flat.vals), Stdv=sd(flat.vals))
 		}
 		else
 		{	df <- data.frame(Value=c(NA),Mean=c(mean(flat.vals)),Stdv=c(sd(flat.vals)))
-			row.names(df) <- c("Connectivity")
+			row.names(df) <- c(MEAS_CONNECTIVITY)
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
@@ -1076,21 +1180,22 @@ analyze.network <- function(g)
 	g.lst <- list()
 	
 	# extract various graphs depending on link types
-	{	g.lst[["all"]] <- clean.links(g, link.types=c("Nature_Amicale","Nature_Familiale","Nature_Professionnelle",NA))
-		g.lst[["all"]]$name <- "all"
-		g.lst[["friend"]] <- clean.links(g, link.types="Nature_Amicale")
-		g.lst[["friend"]]$name <- "friend"
-		g.lst[["family"]] <- clean.links(g, link.types="Nature_Familiale")
-		g.lst[["family"]]$name <- "family"
-		g.lst[["pro"]] <- clean.links(g, link.types="Nature_Professionnelle")
-		g.lst[["pro"]]$name <- "pro"
-		g.lst[["unk"]] <- clean.links(g, link.types=NA)
-		g.lst[["unk"]]$name <- "unknown"
-	}
+	{	g.lst[[GRAPH_TYPE_ALL]] <- clean.links(g, link.types=c(paste0(ATT_EDGE_NAT,"_",ATT_VAL_FAMILY), paste0(ATT_EDGE_NAT,"_",ATT_VAL_FRIEND), paste0(ATT_EDGE_NAT,"_",ATT_VAL_PRO),NA))
+		g.lst[[GRAPH_TYPE_ALL]]$name <- GRAPH_TYPE_ALL
+		g.lst[[GRAPH_TYPE_FAMILY]] <- clean.links(g, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_FAMILY))
+		g.lst[[GRAPH_TYPE_FAMILY]]$name <- GRAPH_TYPE_FAMILY
+		g.lst[[GRAPH_TYPE_FRIEND]] <- clean.links(g, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_FRIEND))
+		g.lst[[GRAPH_TYPE_FRIEND]]$name <- GRAPH_TYPE_FRIEND
+		g.lst[[GRAPH_TYPE_PRO]] <- clean.links(g, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_PRO))
+		g.lst[[GRAPH_TYPE_PRO]]$name <- GRAPH_TYPE_PRO
+		g.lst[[GRAPH_TYPE_UNK]] <- clean.links(g, link.types=NA)
+		g.lst[[GRAPH_TYPE_UNK]]$name <- GRAPH_TYPE_UNK
+	}	
 	
 	# process each graph
 	for(g in g.lst)
-	{	cat("Processing graph '",g$name,"'\n",sep="")
+	{	# g <- g.lst[[1]]
+		cat("Processing graph '",g$name,"'\n",sep="")
 		# create graph-specific folder
 		tmp.folder <- file.path(NET_FOLDER, g$name)
 		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)

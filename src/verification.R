@@ -35,63 +35,65 @@ rel.data <- as.matrix(read.csv(file=rel.file,header=TRUE,check.names=FALSE))
 cat(">>>>>>>>>>> Checking individual attributes\n")
 
 # unique values in PolitSenat after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"PolitSenat"], split=";"))))
-cat("PolitSenat:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_SEN_POL], split=";"))))
+cat(ATT_NODE_SEN_POL,":\n",sep="");print(u.vals);cat("\n")
 
 # unique values in DerPolitSenat after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"DerPolitSenat"], split=";"))))
-cat("DerPolitSenat:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_SEN_POLDER], split=";"))))
+cat(ATT_NODE_SEN_POLDER,":\n",sep="");print(u.vals);cat("\n")
 
 # unique values in PolitEques after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"PolitEques"], split=";"))))
-cat("PolitEques:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_EQU_POL], split=";"))))
+cat(ATT_NODE_EQU_POL,":\n",sep="");print(u.vals);cat("\n")
 
 # unique values in DerPolitEques after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"DerPolitEques"], split=";"))))
-cat("DerPolitEques:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_EQU_POLDER], split=";"))))
+cat(ATT_NODE_EQU_POLDER,":\n",sep="");print(u.vals);cat("\n")
 
 # compare DerPolitSenat and DerPolitEques (supposedly mutually exclusive, except if Adelectio)
-m <- cbind(attr.data[,"DerPolitSenat"],attr.data[,"DerPolitEques"],
-		(is.na(attr.data[,"DerPolitSenat"]) & is.na(attr.data[,"DerPolitEques"])) | xor(is.na(attr.data[,"DerPolitSenat"]),is.na(attr.data[,"DerPolitEques"])),
-		attr.data[,"Adelectio"]
+m <- cbind(attr.data[,ATT_NODE_SEN_POLDER],attr.data[,ATT_NODE_EQU_POLDER],
+		(is.na(attr.data[,ATT_NODE_SEN_POLDER]) & is.na(attr.data[,ATT_NODE_EQU_POLDER])) 
+				| xor(is.na(attr.data[,ATT_NODE_SEN_POLDER]),is.na(attr.data[,ATT_NODE_EQU_POLDER])),
+		attr.data[,ATT_NODE_ADELECTIO]
 	)
 cat("Comparison Polit:\n");print(m);cat("\n")
 
 # unique values in Adelectio after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"Adelectio"], split=";"))))
-cat("Adelectio:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_ADELECTIO], split=";"))))
+cat(ATT_NODE_ADELECTIO,":\n",sep="");print(u.vals);cat("\n")
 
 # unique values in MilitSenat after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"MilitSenat"], split=";"))))
-cat("MilitSenat:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_SEN_MILIT], split=";"))))
+cat(ATT_NODE_SEN_MILIT,":\n",sep="");print(u.vals);cat("\n")
 
 # unique values in MilitEques after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"MilitEques"], split=";"))))
-cat("MilitEques:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_EQU_MILIT], split=";"))))
+cat(ATT_NODE_EQU_MILIT,":\n",sep="");print(u.vals);cat("\n")
 
 # compare MilitSenat and MilitEques (supposedly mutually exclusive, except if Adelectio)
-m <- cbind(attr.data[,"MilitSenat"],attr.data[,"MilitEques"],
-		(is.na(attr.data[,"MilitSenat"]) & is.na(attr.data[,"MilitEques"])) | xor(is.na(attr.data[,"MilitSenat"]),is.na(attr.data[,"MilitEques"])),
-		attr.data[,"Adelectio"]
+m <- cbind(attr.data[,ATT_NODE_SEN_MILIT],attr.data[,ATT_NODE_EQU_MILIT],
+		(is.na(attr.data[,ATT_NODE_SEN_MILIT]) & is.na(attr.data[,ATT_NODE_EQU_MILIT])) 
+				| xor(is.na(attr.data[,ATT_NODE_SEN_MILIT]),is.na(attr.data[,ATT_NODE_EQU_MILIT])),
+		attr.data[,ATT_NODE_ADELECTIO]
 )
 cat("Comparison Milit:\n");print(m);cat("\n")
 
 # unique values in NbrVoy after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"NbrVoy"], split=";"))))
-cat("NbrVoy:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_TRAV_NBR], split=";"))))
+cat(ATT_NODE_TRAV_NBR,":\n",sep="");print(u.vals);cat("\n")
 
 # unique values in DestVoy after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"DestVoy"], split=";"))))
-cat("DestVoy:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_TRAV_DEST], split=";"))))
+cat(ATT_NODE_TRAV_DEST,":\n",sep="");print(u.vals);cat("\n")
 
 # unique values in MotifVoy after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"MotifVoy"], split=";"))))
-cat("MotifVoy:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_TRAV_REAS], split=";"))))
+cat(ATT_NODE_TRAV_REAS,":\n",sep="");print(u.vals);cat("\n")
 
 # compare NbrVoy with multiplicity of DestVoy and MotifVoy
-nbr.voy <- as.integer(attr.data[,"NbrVoy"])
-nbr.loc <- sapply(strsplit(x=attr.data[,"DestVoy"], split=";"),length)
-nbr.mot <- sapply(strsplit(x=attr.data[,"MotifVoy"], split=";"),length)
+nbr.voy <- as.integer(attr.data[,ATT_NODE_TRAV_NBR])
+nbr.loc <- sapply(strsplit(x=attr.data[,ATT_NODE_TRAV_DEST], split=";"),length)
+nbr.mot <- sapply(strsplit(x=attr.data[,ATT_NODE_TRAV_REAS], split=";"),length)
 m <- cbind(
 	nbr.voy,
 	nbr.loc,
@@ -102,20 +104,20 @@ m <- cbind(
 cat("Comparison:\n");print(m);cat("\n")
 
 # unique values in RelTrajan after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"RelTrajan"], split=";"))))
-cat("RelTrajan:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_REL_TRAJ], split=";"))))
+cat(ATT_NODE_REL_TRAJ,":\n",sep="");print(u.vals);cat("\n")
 
 # unique values in SoutHadrien after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"SoutHadrien"], split=";"))))
-cat("SoutHadrien:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_REL_HADR], split=";"))))
+cat(ATT_NODE_REL_HADR,":\n",sep="");print(u.vals);cat("\n")
 
 # unique values in Cercles after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"Cercles"], split=";"))))
-cat("Cercles:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_CIRCLES], split=";"))))
+cat(ATT_NODE_CIRCLES,":\n",sep="");print(u.vals);cat("\n")
 
 # unique values in Espagnol after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,"Espagnol"], split=";"))))
-cat("Espagnol:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_SPANISH], split=";"))))
+cat(ATT_NODE_SPANISH,":\n",sep="");print(u.vals);cat("\n")
 
 
 
@@ -126,14 +128,14 @@ cat("Espagnol:\n");print(u.vals);cat("\n")
 cat(">>>>>>>>>>> Checking interaction attributes\n")
 
 # unique node ids
-u.vals <- sort(unique(c(rel.data[,c("Id1","Id2")])))
+u.vals <- sort(unique(c(rel.data[,c(ATT_EDGE_ID1,ATT_EDGE_ID2)])))
 cat("Ids:\n");print(u.vals);cat("\n")
 
 # unique link natures
-u.vals <- sort(unique(unlist(strsplit(x=rel.data[,"Nature"], split=";"))))
-cat("Nature:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=rel.data[,ATT_EDGE_NAT], split=";"))))
+cat(ATT_EDGE_NAT,":\n",sep="");print(u.vals);cat("\n")
 
 # unique link polarities
-u.vals <- sort(unique(c(rel.data[,"Polarite"])))
-cat("Polarité:\n");print(u.vals);cat("\n")
+u.vals <- sort(unique(c(rel.data[,ATT_EDGE_POL])))
+cat(ATT_EDGE_POL,":\n",sep="");print(u.vals);cat("\n")
 

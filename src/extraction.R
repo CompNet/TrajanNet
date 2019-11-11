@@ -95,9 +95,9 @@ split.attribute.by.value <- function(g, values, name, nodes)
 						{	if(all(is.na(a)))
 								res <- NA
 							else if(u.val %in% a)
-								res <- "TRUE"
+								res <- ATT_VAL_TRUE
 							else
-								res <- "FALSE"
+								res <- ATT_VAL_FALSE
 							return(res)
 						}))
 		}
@@ -107,9 +107,9 @@ split.attribute.by.value <- function(g, values, name, nodes)
 						{	if(all(is.na(a)))
 								res <- NA
 							else if(u.val %in% a)
-								res <- "TRUE"
+								res <- ATT_VAL_TRUE
 							else
-								res <- "FALSE"
+								res <- ATT_VAL_FALSE
 							return(res)
 						}))
 		}
@@ -125,26 +125,35 @@ split.attribute.by.value <- function(g, values, name, nodes)
 # Reads the previously extracted graph, converting attributes
 # types as needed.
 #
+# graph.file: graphml file containing the graph previously extracted.
+#
 # returns: the loaded graph.
 #############################################################
-read.network <- function()
+read.network <- function(graph.file)
 {	# read the graph
 	g <- read.graph(graph.file,format="graphml")
+
+	# get vertex attributes
+	att.list <- vertex_attr_names(g) 
+	bool.list <- c(ATT_NODE_ADELECTIO, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
+	int.list <- c(ATT_NODE_TRAV_NBR)
 	
-	# converts vertex attribute
-	for(att in vertex_attr_names(g))
-	{	# boolean attributes
-		if(att %in% c("Adelectio","SoutHadrien","Espagnol","Cercles_Antonins","Cercles_Nigrinus","Cercles_Pline","Cercles_Regulus","Cercles_Septicius Clarus"))
-		{	x <- suppressWarnings(as.logical(vertex_attr(g,att)))
+	# convert vertex attributes
+	for(att in att.list)
+	{	# integer attributes
+		if(att %in% int.list)
+		{	xstr <- vertex_attr(g,att)
+			x <- suppressWarnings(as.integer(xstr))
 			g <- delete_vertex_attr(g,att)
 			g <- set_vertex_attr(g,att,value=x)
+			g <- set_vertex_attr(g,paste0(att,"_str"),value=xstr)
 		}
-		# integer attributes
-		else if(att %in% c("NbrVoy"))
-		{	x <- suppressWarnings(as.integer(vertex_attr(g,att)))
-			g <- delete_vertex_attr(g,att)
-			g <- set_vertex_attr(g,att,value=x)
-		}
+		# boolean attributes
+#		else if(att %in% bool.list)
+#		{	x <- vertex_attr(g,att)==ATT_VAL_TRUE
+#			g <- delete_vertex_attr(g,att)
+#			g <- set_vertex_attr(g,att,value=x)
+#		}
 		# other attributes
 		else
 		{	x <- vertex_attr(g,att)
@@ -154,27 +163,36 @@ read.network <- function()
 		}
 	}
 	
+	# get edge attributes
+	att.list <- edge_attr_names(g)
+	bool.list <- c(#ATT_EDGE_POL, 
+			att.list[grepl(att.list,pattern=ATT_EDGE_NAT)])
+	int.list <- c()
+	
 	# convert edge attributes
-	for(att in edge_attr_names(g))
-	{	# boolean attributes
-		if(att %in% c("Nature_Amicale","Nature_Familiale","Nature_Professionnelle","Polarite"))
-		{	x <- suppressWarnings(as.logical(edge_attr(g,att)))
+	for(att in att.list)
+	{	# integer attributes
+		if(att %in% int.list)
+		{	xstr <- edge_attr(g,att)
+			x <- suppressWarnings(as.integer(xstr))
+			g <- delete_edge_attr(g,att)
+			g <- set_edge_attr(g,att,value=x)
+			g <- set_edge_attr(g,paste0(att,"_str"),value=xstr)
+		}
+		# boolean attributes
+		else if(att %in% bool.list)
+		{	x <- edge_attr(g,att)==ATT_VAL_TRUE
+			x[which(edge_attr(g,att)=="NA")] <- NA
 			g <- delete_edge_attr(g,att)
 			g <- set_edge_attr(g,att,value=x)
 		}
-#		# integer attributes
-#		else if(att %in% c())
-#		{	x <- suppressWarnings(as.integer(edge_attr(g,att)))
-#			g <- delete_edge_attr(g,att)
-#			g <- set_edge_attr(g,att,value=x)
-#		}
-#		# other attributes
-#		else
-#		{	x <- edge_attr(g,att)
-#			x[which(x=="NA")] <- NA
-#			g <- delete_edge_attr(g,att)
-#			g <- set_edge_attr(g,att,value=x)
-#		}
+		# other attributes
+		else
+		{	x <- edge_attr(g,att)
+			x[which(x=="NA")] <- NA
+			g <- delete_edge_attr(g,att)
+			g <- set_edge_attr(g,att,value=x)
+		}
 	}
 	
 	return(g)
@@ -201,41 +219,46 @@ extract.network <- function()
 	g <- graph.empty(n=nrow(attr.data),directed=FALSE)
 	
 	# add personal node attributes 
-	V(g)$name <- attr.data[,"Id"]
-	V(g)$label <- attr.data[,"Nom"]
+	V(g)$name <- attr.data[,ATT_NODE_ID]
+	V(g)$label <- attr.data[,ATT_NODE_NAME]
 	
-	# add chronological (or single) nominal node attributes
-	att.names <- c("PolitSenat", "DerPolitSenat","PolitEques","DerPolitEques","MilitSenat","MilitEques","DestVoy","MotifVoy","RelTrajan")
+	# add tag-type attributes
+	att.names <- c(ATT_NODE_SEN_POL, ATT_NODE_SEN_POLDER, ATT_NODE_SEN_MILIT, 
+			ATT_NODE_EQU_POL, ATT_NODE_EQU_POLDER, ATT_NODE_EQU_MILIT,
+			ATT_NODE_TRAV_DEST, ATT_NODE_TRAV_REAS, ATT_NODE_REL_TRAJ,
+			ATT_NODE_CIRCLES)
 	for(att.name in att.names)
 	{	cat("  Processing chronological nominal node attribute ",att.name,"\n",sep="")
 		g <- split.attribute.by.order(g, attr.data[,att.name], name=att.name)
 	}
 	
-	# add multiple nominal attributes
-	att.names <- c("Cercles")
-	for(att.name in att.names)
-	{	cat("  Processing multiple nominal node attribute ",att.name,"\n",sep="")
-		g <- split.attribute.by.value(g, attr.data[,att.name], name=att.name, nodes=TRUE)
-	}
+#	# add multiple nominal attributes
+#	att.names <- c(ATT_NODE_CIRCLES)
+#	for(att.name in att.names)
+#	{	cat("  Processing multiple nominal node attribute ",att.name,"\n",sep="")
+#		g <- split.attribute.by.value(g, attr.data[,att.name], name=att.name, nodes=TRUE)
+#	}
 	
 	# add single boolean attributes (as strings, to handle NAs)
-	att.names <- c("Adelectio","SoutHadrien","Espagnol")
+	att.names <- c(ATT_NODE_ADELECTIO, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
 	for(att.name in att.names)
 	{	cat("  Processing single boolean node attribute ",att.name,"\n",sep="")
 		vals <- attr.data[,att.name]
-		vals[vals=="Oui"] <- "TRUE"
-		vals[vals=="Non"] <- "FALSE"
+		#vals[vals=="Oui"] <- ATT_VAL_TRUE
+		#vals[vals=="Non"] <- ATT_VAL_FALSE
 		g <- set_vertex_attr(graph=g, name=att.name, 
-#				value=attr.data[,att.name]=="Oui")
+				# don't do that or the NA are lost when recording as graphml (must keep a string type)
+				#value=attr.data[,att.name]=="Oui")
 				value=vals)
 	}
 	
 	# add single numerical attributes (as strings, to handle NAs) 
-	att.names <- c("NbrVoy")
+	att.names <- c(ATT_NODE_TRAV_NBR)
 	for(att.name in att.names)
 	{	cat("  Processing single numerical node attribute ",att.name,"\n",sep="")
-		g <- set_vertex_attr(graph=g, name=att.name, 
-#			value=as.integer(attr.data[,att.name]))
+		g <- set_vertex_attr(graph=g, name=att.name,
+			# don't do that or the NA are lost when recording as graphml (must keep a string type)
+			#value=as.integer(attr.data[,att.name]))
 			value=attr.data[,att.name])
 }
 	
@@ -251,24 +274,23 @@ extract.network <- function()
 	rel.data <- as.matrix(read.csv(file=rel.file,header=TRUE,check.names=FALSE))
 	
 	# add links
-	g <- add_edges(g, edges=c(t(rel.data[,c("Id1","Id2")])))
+	g <- add_edges(g, edges=c(t(rel.data[,c(ATT_EDGE_ID1,ATT_EDGE_ID2)])))
 	
 	# add multiple nominal attributes
-	att.names <- c("Nature")
+	att.names <- c(ATT_EDGE_NAT)
 	for(att.name in att.names)
 	{	cat("  Processing multiple nominal link attribute ",att.name,"\n",sep="")
 		g <- split.attribute.by.value(g, rel.data[,att.name], name=att.name, nodes=FALSE)
 	}
 	
 	# add single nominal attributes
-	att.names <- c("Polarite")
+	att.names <- c(ATT_EDGE_POL)
 	for(att.name in att.names)
 	{	cat("  Processing single nominal link attribute ",att.name,"\n",sep="")
 		vals <- rel.data[,att.name]
-		vals[vals=="Positive"] <- "TRUE"
-		vals[vals=="Négative"] <- "FALSE"
+		#vals[vals=="Positive"] <- ATT_VAL_POSITIVE
+		#vals[vals=="Negative"] <- ATT_VAL_NEGATIVE
 		g <- set_edge_attr(graph=g, name=att.name, 
-#				value=rel.data[,att.name])
 				value=vals)
 	}
 	
@@ -277,6 +299,8 @@ extract.network <- function()
 	# record graph
 	graph.file <- file.path(NET_FOLDER,"all.graphml")
 	cat("Recording graph in",graph.file,"\n")
+#	con <- file(description=graph.file, open="wb", encoding="UTF8")
+#	write.graph(graph=g,file=con,format="graphml")
 	write.graph(graph=g,file=graph.file,format="graphml")
 	
 	

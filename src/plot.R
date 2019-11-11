@@ -106,15 +106,18 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 		vshapes[v.hl] <- "csquare"
 	
 	# set edge colors
+	nature <- edge_attr(g,ATT_EDGE_NAT)
 	ecols <- rep("BLACK", gsize(g))
-	ecols[E(g)$Type=="Friend"] <- "#1A8F39"		# green
-	ecols[E(g)$Type=="Family"] <- "#9C1699"		# purple
-	ecols[E(g)$Type=="Pro"] <- "#C27604"		# orange
-	ecols[E(g)$Type=="Unknown"] <- "#222222"	# dark grey
+	ecols[nature==ATT_VAL_FRIEND] <- "#1A8F39"		# green
+	ecols[nature==ATT_VAL_FAMILY] <- "#9C1699"		# purple
+	ecols[nature==ATT_VAL_PRO] <- "#C27604"			# orange
+	ecols[nature==ATT_VAL_UNK] <- "#222222"			# dark grey
 	# set edge style
-	elty <- rep(1,gsize(g))								# positive=solid
-	elty[!is.na(E(g)$Polarity) & !E(g)$Polarity] <- 3	# negative=dotted
-	elty[is.na(E(g)$Polarity)] <- 5						# unknown=long-dashed
+	polarity <- edge_attr(g,ATT_EDGE_POL)
+	elty <- rep(1,gsize(g))							# positive=solid
+	elty[!is.na(polarity) 
+			& polarity==ATT_VAL_NEGATIVE] <- 3		# negative=dotted
+	elty[is.na(polarity)] <- 5						# unknown=long-dashed
 	# set edge width
 	ewidth <- rep(1,gsize(g))
 	# set node outline color
@@ -196,9 +199,10 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 		edge.width=ewidth
 	)
 	legend(
-		title="Edge types",								# title of the legend box
+		title="Nature de la relation",					# title of the legend box
 		x="topright",									# position
-		legend=c("Friend","Family","Pro","Unknown"),	# text of the legend
+		legend=c(ATT_VAL_FRIEND,ATT_VAL_FAMILY,			# text of the legend
+				ATT_VAL_PRO,ATT_VAL_UNK),
 		col=c("#1A8F39","#9C1699","#C27604","#222222"),	# color of the lines
 		lty=1,											# type of lines
 		lwd=2,											# line thickness
@@ -206,9 +210,10 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 		cex=0.8
 	)
 	legend(
-		title="Edge polarities",						# title of the legend box
+		title="Polarite de la relation",				# title of the legend box
 		x="bottomright",								# position
-		legend=c("Positive","Negative","Unknown"),		# text of the legend
+		legend=c(ATT_VAL_POSITIVE,ATT_VAL_NEGATIVE,		# text of the legend
+				ATT_VAL_UNK),
 		col="BLACK",									# color of the lines
 		lty=c(1,3,5),									# type of lines
 		lwd=2,											# line thickness
@@ -220,7 +225,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 	{	# categorical attributes
 		if(cat.att)
 		{	legend(
-				title="Vertex types",					# title of the legend box
+				title=LONG_NAME[col.att],				# title of the legend box
 				x="bottomleft",							# position
 				legend=lgd.txt,							# text of the legend
 				fill=lgd.col,							# color of the lines
@@ -240,8 +245,9 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 			legend.gradient(
 					pnts=leg.loc,
 					cols=pal(25),
-					limits=format(range(vvals[connected],na.rm=TRUE), digits=2, nsmall=2),
-					title=col.att, 
+					#limits=format(range(vvals[connected],na.rm=TRUE), digits=2, nsmall=2),	# pb: uses scientific notation when numbers too small
+					limits=sprintf("%.2f", range(vvals[connected & finite],na.rm=TRUE)),
+					title=LONG_NAME[col.att], 
 					cex=0.8
 			)
 		}
@@ -324,23 +330,33 @@ custom.hist <- function(vals, name, file)
 # xlab: label of the x-axis.
 # ylab: label of the y-axis.
 # file: (optional) file name, to record the histogram plot.
+# ...: additional parameters, fetched to the barplot function.
 #############################################################
-custom.barplot <- function(vals, text, xlab, ylab, file)
-{	if(hasArg(file))
+custom.barplot <- function(vals, text, xlab, ylab, file, ...)
+{	idx <- which(is.na(text))
+	if(length(idx)>0)
+		text[idx] <- ATT_VAL_UNK0
+	wide <- length(text) > 8
+	if(hasArg(file))
 	{	if(FORMAT=="pdf")
 			pdf(paste0(file,".pdf"), width=25, height=25)
 		else if(FORMAT=="png")
 			png(paste0(file,".png"), width=1024, height=1024)
 	}
 #	par(mar=c(5,3,1,2)+0.1)	# remove the title space Bottom Left Top Right
-	par(mar=c(5, 4, 1, 0)+0.1)
+	if(wide)
+		par(mar=c(9, 4, 1, 0)+0.1)
+	else
+		par(mar=c(5, 4, 1, 0)+0.1)
 	barplot(
-			height=vals,			# data
-			names.arg=text,
-			col="#ffd6d6",	# bar color
-			main=NA,		# no main title
-			xlab=xlab,		# x-axis label
-			ylab=ylab		# y-axis label
+			height=vals,				# data
+			names.arg=text,				# bar names
+			col="#ffd6d6",				# bar color
+			main=NA,					# no main title
+			xlab=if(wide) NA else xlab,	# x-axis label
+			ylab=ylab,					# y-axis label
+			las=if(wide) 2 else 0,		# vertical label if too many bars
+			...
 	)
 	if(hasArg(file))
 		dev.off()

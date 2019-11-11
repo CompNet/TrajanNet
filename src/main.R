@@ -8,10 +8,12 @@
 # source("src/main.R")
 #############################################################################################
 # load libraries
-library("igraph")
+library("igraph")			# handles graphs
+library("signnet")			# handles signed graphs
 #library("graphlayouts")
 #library("ggraph")
-library("SDMTools")
+library("SDMTools")			# ?
+
 
 
 
@@ -27,17 +29,15 @@ source("src/analysis.R")
 
 
 #############################################################################################
-# try to load the network if the file exists
 graph.file <- file.path(NET_FOLDER,"all.graphml")
-if(file.exists(graph.file))
-{	cat("Loading graph file \"",graph.file,"\"\n",sep="")
-	g <- read.network()
-# otherwise, extract the network from the tables
-}else
-{	cat("Graph file \"",graph.file,"\" not found: extracting and recording the it\n",sep="")
-	g <- extract.network()
+# possibly extract the network from the tables
+if(!file.exists(graph.file))
+{	cat("Graph file \"",graph.file,"\" not found: extracting the network and recording it\n",sep="")
+	extract.network()
 }
-
+# load the extracted network
+cat("Loading graph file \"",graph.file,"\"\n",sep="")
+g <- read.network(graph.file)
 
 
 
@@ -57,15 +57,17 @@ analyze.network(g)
 
 #############################################################################################
 # TODO
-# - Problem with the legend of travel nbrs, also some nodes have no color (NA)
-# 
-# - Check that the relationship comments in the big file are still at the right place (e.g. P5--P63)
-# - Perform a basic descriptive analysis of the vertex attributes (>> add to assortativity function?)
-# - Multiplex plot of the different types of links? (didn't find an appropriate tool)
-# - Check the thorough analysis in Rochat2014, see which parts are relevant in our case.
+# For tag attributes, plot graph with pie-chart nodes to synthetise the whole information.
+# Produce 1 vs 1 attribute plots (bar plots)
+# Compute association measures between attributes
+# How to handle "der" attributes depends on G's answer
+# Attribute stats: circles should be in a single folder (possibly several files)
+# >> same for other tag type attributes ?
 # - Topological measures
 #	- Correlation clustering (is it worth it, in this case?)
 #	- Cluster analysis based on the sequences, then assortativity of the sequence classes? 
+# - Multiplex plot of the different types of links? (didn't find an appropriate tool)
+# - Check the thorough analysis in Rochat2014, see which parts are relevant in our case.
 #############################################################################################
 # Notes
 # - All ;-separated values are in chronological order, but almost no dates are available.
