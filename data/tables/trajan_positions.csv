@@ -10,7 +10,8 @@ Prefet de la ville,Senatorial,Politique,spol8,8,Rome
 Tribun lacticlave,Senatorial,Militaire,smil1,1,Province
 Legat de legion,Senatorial,Militaire,smil2,2,Province
 Legat d'Auguste propreteur,Senatorial,Militaire,smil3,3,Province
-Garnison de Rome,Equestre,Politique,cpol1,1,Rome
+Proconsul,Senatorial,Militaire,smil4,4,Rome ou Province
+Garnison de Rome,Equestre,Militaire,cpol1,1,Rome
 Procuratele,Equestre,Politique,cpol2,2,Rome ou Province
 Prefet de la flotte,Equestre,Politique,cpol3,3,Rome
 Prefet des vigiles,Equestre,Politique,cpol4,4,Rome
