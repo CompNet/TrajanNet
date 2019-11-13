@@ -16,9 +16,10 @@
 DATA_FOLDER <- "data"
 	TABLE_FOLDER <- file.path(DATA_FOLDER,"tables")
 	NET_FOLDER <- file.path(DATA_FOLDER,"nets")
+		SIGNED_FOLDER <- file.path(NET_FOLDER,"signed")
 	ATT_FOLDER <- file.path(DATA_FOLDER,"attributes")
 		COMP_FOLDER <- file.path(ATT_FOLDER,"comparisons")
-
+		
 
 
 
@@ -264,7 +265,6 @@ LONG_NAME[paste0(ATT_NODE_SEN_POL,"_",ATT_VAL_POS_PRVI)] <- "Poste de Prefet de 
 LONG_NAME[paste0(ATT_NODE_EQU_POL,"_",ATT_VAL_POS_PRVG)] <- "Poste de Prefet des vigiles"
 LONG_NAME[paste0(ATT_NODE_EQU_POL,"_",ATT_VAL_POS_PRPR)] <- "Poste de Prefet du pretoire"
 LONG_NAME[paste0(ATT_NODE_SEN_POL,"_",ATT_VAL_POS_PRET)] <- "Poste de Preteur"
-LONG_NAME[paste0(ATT_NODE_SEN_POL,"_",ATT_VAL_POS_PROC)] <- "Poste de Proconsul"
 LONG_NAME[paste0(ATT_NODE_EQU_POL,"_",ATT_VAL_POS_PROU)] <- "Poste de Procuratele"
 LONG_NAME[paste0(ATT_NODE_SEN_POL,"_",ATT_VAL_POS_PROP)] <- "Poste de Propreteur"
 LONG_NAME[paste0(ATT_NODE_SEN_POL,"_",ATT_VAL_POS_QUES)] <- "Poste de Questeur"
@@ -272,6 +272,7 @@ LONG_NAME[paste0(ATT_NODE_EQU_MILIT,"_",ATT_VAL_POS_TRAN)] <- "Poste de Tribun a
 LONG_NAME[paste0(ATT_NODE_EQU_MILIT,"_",ATT_VAL_POS_TRCP)] <- "Poste de Tribun d'une cohorte prétorienne"
 LONG_NAME[paste0(ATT_NODE_EQU_MILIT,"_",ATT_VAL_POS_TRCU)] <- "Poste de Tribun d'une cohorte urbaine"
 LONG_NAME[paste0(ATT_NODE_SEN_POL,"_",ATT_VAL_POS_TRPL)] <- "Poste de Tribun de la plebe"
+LONG_NAME[paste0(ATT_NODE_SEN_MILIT,"_",ATT_VAL_POS_PROC)] <- "Poste de Proconsul"
 LONG_NAME[paste0(ATT_NODE_SEN_MILIT,"_",ATT_VAL_POS_TRLE)] <- "Poste de Tribun de legion"
 LONG_NAME[paste0(ATT_NODE_EQU_MILIT,"_",ATT_VAL_POS_TRVI)] <- "Poste de Tribun des vigiles"
 LONG_NAME[paste0(ATT_NODE_SEN_MILIT,"_",ATT_VAL_POS_TRLA)] <- "Poste de Tribun lacticlave"

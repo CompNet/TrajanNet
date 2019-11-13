@@ -10,7 +10,7 @@
 # load libraries
 library("igraph")			# handles graphs
 library("signnet")			# handles signed graphs
-#library("graphlayouts")
+library("graphlayouts")		# additional graph layouts
 #library("ggraph")
 library("SDMTools")			# ?
 
@@ -62,7 +62,6 @@ analyze.network(g)
 #	- Correlation clustering (is it worth it, in this case?)
 #	- Cluster analysis based on the sequences, then assortativity of the sequence classes? 
 # - Multiplex plot of the different types of links? (didn't find an appropriate tool)
-# - Check the thorough analysis in Rochat2014, see which parts are relevant in our case.
 #############################################################################################
 # Notes
 # - All ;-separated values are in chronological order, but almost no dates are available.

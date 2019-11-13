@@ -17,12 +17,13 @@
 # Parameter link.types lists the types to retain in the result graph.
 #
 # g : original graph, whose links will be cleaned to get the result graph.
-# link:types : list of link types to keep in the result graph.
+# link.types : list of link types to keep in the result graph.
 #
 # returns: graph resulting from the cleaning.
 #############################################################
 clean.links <- function(g, link.types)
-{	res <- delete_edges(g, edges=E(g))
+{	# remove all links and link attributes 
+	res <- delete_edges(g, edges=E(g))
 	for(ea in list.edge.attributes(g))
 		res <- delete_edge_attr(res, ea)
 
@@ -82,6 +83,53 @@ clean.links <- function(g, link.types)
 		}
 	}
 	
+	return(res)
+}
+
+
+
+
+#############################################################
+# Transform the received graph in order to get a uniplex signed
+# graph.
+#
+# g : original graph, whose links will be cleaned to get the result graph.
+#
+# returns: a list of two graphs resulting from the cleaning. In the first,
+#          links whose polarity is NA are considered as positive. In the 
+#		   second they are plainly not included.
+#############################################################
+flatten.signed.graph <- function(g)
+{	# remove all links and link attributes 
+	sg1 <- delete_edges(g, edges=E(g))
+	sg2 <- delete_edges(g, edges=E(g))
+	for(ea in list.edge.attributes(g))
+	{	sg1 <- delete_edge_attr(sg1, ea)
+		sg2 <- delete_edge_attr(sg2, ea)
+	}
+	
+	# process each link
+	for(e in E(g))
+	{	# get the link
+		#print(e)
+		uv = ends(g, E(g)[e], names=FALSE)
+		# get its polarity
+		pol <- 2*as.integer(get.edge.attribute(g,ATT_EDGE_POL,e)==ATT_VAL_POSITIVE) - 1
+		
+		# add to graphs
+		lst <- list()
+		lst[["sign"]] <- pol
+		if(is.na(pol))
+		{	lst[["sign"]] <- 1
+			sg1 <- add_edges(sg1, edges=uv, attr=lst)
+		}
+		else
+		{	sg1 <- add_edges(sg1, edges=uv, attr=lst)
+			sg2 <- add_edges(sg2, edges=uv, attr=lst)
+		}
+	}
+	
+	res <- list(withNAs=sg1, withoutNAs=sg2)
 	return(res)
 }
 
@@ -1213,6 +1261,35 @@ analyze.net.connectivity <- function(g, g0)
 
 
 #############################################################
+# Compute the measures designed specifically for signed graphs.
+# 
+# signed.graphs: two signed graphs extracted using two distinct
+#                methods to handle missing sign information.
+#
+# returns: both graphs with the result of the computation included
+#		   as attributes.
+#############################################################
+analyze.net.signs <- function(sg1, sg2)
+{	
+	# structural balance
+	balance_score(res$withoutNAs)
+	
+	# correlation clustering
+	signed_blockmodel(g=res$withNAs, k=2, annealing=FALSE)
+	
+	# generalized block model
+	signed_blockmodel_general(g, blockmat, alpha = 0.5)
+	
+	# signed centrality measure
+	pn_index(g=res$withNAs, mode="all")
+	
+	result <- list(withNAs=sg1, withoutNAs=sg2)
+	return(result)
+}
+
+
+
+#############################################################
 # Main method for the graph analysis. Uses a predefined layout.
 # Generates a bunch of plots and CSV files.
 #
@@ -1317,5 +1394,23 @@ analyze.network <- function(g)
 		tmp <- analyze.net.assortativity(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
+	}
+	
+	# extract and process the signed graphs
+	sg.lst <- flatten.signed.graph(g)
+	for(sg in sg.lst)
+	{	# create graph-specific folder
+		tmp.folder <- file.path(SIGNED_FOLDER, g$name)
+		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
+		
+		# record graph as a graphml file
+		write.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
+	
+		# plot the signed graphs
+		custom.gplot(g, file=file.path(tmp.folder,"graph"))
+		#custom.gplot(g)
+	
+		# process only the signed network
+		analyze.net.signs(sg1, sg2)
 	}
 }

@@ -123,7 +123,10 @@ setup.graph.layout <- function(g)
 # file: (optional) file name, to record the plot.
 #############################################################
 custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=FALSE, file)
-{	# vertex shapes
+{	pie.values <- NA
+	lgd.col <- NA
+	
+	# vertex shapes
 	vshapes <- rep("circle",gorder(g))
 	if(hasArg(v.hl))
 		vshapes[v.hl] <- "csquare"
@@ -229,7 +232,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 			pie.values[!are.pie | !connected] <- NA
 			vshapes[are.pie & connected] <- rep("pie",length(which(are.pie)))
 			vcols[are.pie & connected] <- NA
-			vcols[!are.nas & !are.pie & connected] <- apply(pie.matrix[!are.nas & !are.pie & connected,], 1, 
+			vcols[!are.nas & !are.pie & connected] <- apply(pie.matrix[!are.nas & !are.pie & connected,,drop=FALSE], 1, 
 					function(v) lgd.col[which(v>0)])
 		}
 	}
