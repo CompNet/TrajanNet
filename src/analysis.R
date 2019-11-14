@@ -1265,25 +1265,77 @@ analyze.net.connectivity <- function(g, g0)
 #############################################################
 # Compute the measures designed specifically for signed graphs.
 # 
-# signed.graphs: two signed graphs extracted using two distinct
-#                methods to handle missing sign information.
+# sg: signed graph with Trajan.
+# sg0: signed graph without Trajan.
 #
-# returns: both graphs with the result of the computation included
+# returns: both graphs with the result of the computations included
 #		   as attributes.
 #############################################################
-analyze.net.signs <- function(sg1, sg2)
-{	
-	# structural balance
-	balance_score(res$withoutNAs)
+analyze.net.signs <- function(sg, sg0)
+{	cat("  Computing measures on signed graphs\n")
+	graph.folder <- file.path(SIGNED_FOLDER, sg$name)
 	
-	# correlation clustering
-	signed_blockmodel(g=res$withNAs, k=2, annealing=FALSE)
-	
-	# generalized block model
-	signed_blockmodel_general(g, blockmat, alpha = 0.5)
-	
-	# signed centrality measure
-	pn_index(g=res$withNAs, mode="all")
+	lst <- list(sg, sg0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
+		sg <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# graph measures 
+		bal <- balance_score(sg)		# structural balance
+		
+		# node measures
+		pos.deg <- degree_signed(sg, mode="all", type="pos")
+		neg.deg <- degree_signed(sg, mode="all", type="neg")
+		
+		
+		# add measures to the graph (as attributes) and record
+		sg$StructuralBalance <- bal
+		V(sg)$DegreePos <- pos.deg
+		V(sg)$DegreeNeg <- pos.neg
+		write.graph(graph=g, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		
+		# export CSV with graph measures
+		stat.file <- file.path(SIGNED_FOLDER,g$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df[MEAS_STRUCT_BAL, ] <- list(Value=bal, Mean=NA, Stdv=NA)
+		}
+		else
+		{	df <- data.frame(Value=bal,Mean=NA,Stdv=NA)
+			row.names(df) <- c(MEAS_STRUCT_BAL)
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		
+		
+		
+		
+		
+		# TODO décomposer comme pour les autres mesures
+		
+		# correlation clustering
+		signed_blockmodel(g=res$withNAs, k=2, annealing=FALSE)
+		
+		# generalized block model
+		signed_blockmodel_general(g, blockmat, alpha = 0.5)
+		
+		# signed centrality measure
+		pn_index(g=res$withNAs, mode="all")
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		lst[[i]] <- g
+	}
 	
 	result <- list(withNAs=sg1, withoutNAs=sg2)
 	return(result)
@@ -1402,20 +1454,26 @@ analyze.network <- function(g)
 	sg.lst <- flatten.signed.graph(g)
 	for(sg in sg.lst)
 	{	#sg <- sg.lst[[1]]
+		
 		# create graph-specific folder
 		tmp.folder <- file.path(SIGNED_FOLDER, sg$name)
 		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
 		
+		# plot the signed graph
+		custom.gplot(sg, file=file.path(tmp.folder,"graph"))
+#		custom.gplot(sg)
 		# record graph as a graphml file
 		write.graph(graph=sg, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
 		
-		#TODO distinguish sg/sg0
+		# get the version without Trajan
+		sg0 <- disconnect.nodes(g, nodes=1)
+		custom.gplot(sg0, file=file.path(tmp.folder,"graph0"))
+#		custom.gplot(sg0)
+		write.graph(graph=sg0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
 		
-		# plot the signed graphs
-		custom.gplot(sg, file=file.path(tmp.folder,"graph"))
-		#custom.gplot(sg)
-	
 		# process only the signed network
-		analyze.net.signs(sg1, sg2)
+		tmp <- analyze.net.signs(sg, sg0)
+		sg <- tmp[[1]]
+		sg0 <- tmp[[2]]
 	}
 }
