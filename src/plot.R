@@ -130,24 +130,34 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 	vshapes <- rep("circle",gorder(g))
 	if(hasArg(v.hl))
 		vshapes[v.hl] <- "csquare"
+	# vertex outline color
+	outline.cols <- rep("BLACK",gorder(g))
 	
 	# set edge colors
 	nature <- edge_attr(g,ATT_EDGE_NAT)
-	ecols <- rep("BLACK", gsize(g))
-	ecols[nature==ATT_VAL_FRIEND] <- "#1A8F39"		# green
-	ecols[nature==ATT_VAL_FAMILY] <- "#9C1699"		# purple
-	ecols[nature==ATT_VAL_PRO] <- "#C27604"			# orange
-	ecols[nature==ATT_VAL_UNK] <- "#222222"			# dark grey
-	# set edge style
-	polarity <- edge_attr(g,ATT_EDGE_POL)
-	elty <- rep(1,gsize(g))							# positive=solid
-	elty[!is.na(polarity) 
-			& polarity==ATT_VAL_NEGATIVE] <- 3		# negative=dotted
-	elty[is.na(polarity)] <- 5						# unknown=long-dashed
-	# set edge width
-	ewidth <- rep(1,gsize(g))
-	# set node outline color
-	outline.cols <- rep("BLACK",gorder(g))
+	only.signed <- length(nature)==0
+	if(!only.signed)
+	{	ecols <- rep("BLACK", gsize(g))
+		ecols[nature==ATT_VAL_FRIEND] <- "#1A8F39"		# green
+		ecols[nature==ATT_VAL_FAMILY] <- "#9C1699"		# purple
+		ecols[nature==ATT_VAL_PRO] <- "#C27604"			# orange
+		ecols[nature==ATT_VAL_UNK] <- "#222222"			# dark grey
+		# set edge style
+		polarity <- edge_attr(g,ATT_EDGE_POL)
+		elty <- rep(1,gsize(g))							# positive=solid
+		elty[!is.na(polarity) 
+				& polarity==ATT_VAL_NEGATIVE] <- 3		# negative=dotted
+		elty[is.na(polarity)] <- 5						# unknown=long-dashed
+		# set edge width
+		ewidth <- rep(1,gsize(g))
+	}
+	else
+	{	signs <- edge_attr(g,ATT_EDGE_SIGN)
+		ecols <- rep("GREEN", gsize(g))					# positive=green
+		ecols[signs<0] <- "RED"							# negative=red
+		elty <- rep(1,gsize(g))							# only solid line
+		ewidth <- rep(1,gsize(g))						# same edge width
+	}
 	
 	# possibly change the color of the highlighted path
 	if(hasArg(paths))
@@ -259,29 +269,44 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 		edge.lty=elty,
 		edge.width=ewidth
 	)
-	legend(
-		title="Nature de la relation",					# title of the legend box
-		x="topright",									# position
-		legend=c(ATT_VAL_FRIEND,ATT_VAL_FAMILY,			# text of the legend
-				ATT_VAL_PRO,ATT_VAL_UNK),
-		col=c("#1A8F39","#9C1699","#C27604","#222222"),	# color of the lines
-		lty=1,											# type of lines
-		lwd=2,											# line thickness
-		bty="n",										# no box around the legend
-		cex=0.8
-	)
-	legend(
-		title="Polarite de la relation",				# title of the legend box
-		x="bottomright",								# position
-		legend=c(ATT_VAL_POSITIVE,ATT_VAL_NEGATIVE,		# text of the legend
-				ATT_VAL_UNK),
-		col="BLACK",									# color of the lines
-		lty=c(1,3,5),									# type of lines
-		lwd=2,											# line thickness
-		bty="n",										# no box around the legend
-		cex=0.8,										# size of the text in the legend
-		seg.len=3										# length of the line in the legend
-	)
+	if(!only.signed)
+	{	legend(
+			title="Nature de la relation",					# title of the legend box
+			x="topright",									# position
+			legend=c(ATT_VAL_FRIEND,ATT_VAL_FAMILY,			# text of the legend
+					ATT_VAL_PRO,ATT_VAL_UNK),
+			col=c("#1A8F39","#9C1699","#C27604","#222222"),	# color of the lines
+			lty=1,											# type of lines
+			lwd=2,											# line thickness
+			bty="n",										# no box around the legend
+			cex=0.8
+		)
+		legend(
+			title="Polarite de la relation",				# title of the legend box
+			x="bottomright",								# position
+			legend=c(ATT_VAL_POSITIVE,ATT_VAL_NEGATIVE,		# text of the legend
+					ATT_VAL_UNK),
+			col="BLACK",									# color of the lines
+			lty=c(1,3,5),									# type of lines
+			lwd=2,											# line thickness
+			bty="n",										# no box around the legend
+			cex=0.8,										# size of the text in the legend
+			seg.len=3										# length of the line in the legend
+		)
+	}
+	else
+	{	legend(
+			title="Polarite de la relation",				# title of the legend box
+			x="bottomright",								# position
+			legend=c(ATT_VAL_POSITIVE,ATT_VAL_NEGATIVE),	# text of the legend
+			col=c("GREEN","RED"),							# color of the lines
+			lty=c(1,1),										# type of lines
+			lwd=2,											# line thickness
+			bty="n",										# no box around the legend
+			cex=0.8,										# size of the text in the legend
+			seg.len=3										# length of the line in the legend
+		)
+	}
 	if(hasArg(col.att))
 	{	# categorical attributes
 		if(cat.att)

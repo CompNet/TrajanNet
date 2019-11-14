@@ -47,6 +47,7 @@ ATT_EDGE_ID1 <- "Id1"
 ATT_EDGE_ID2 <- "Id2"
 ATT_EDGE_NAT <- "Nature"
 ATT_EDGE_POL <- "Polarite"
+ATT_EDGE_SIGN <- "sign"
 
 # attribute values
 ATT_VAL_TRUE <- "Oui"

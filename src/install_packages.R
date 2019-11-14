@@ -14,6 +14,6 @@
 install.packages("devtools")
 install.packages("igraph")
 devtools::install_github("schochastics/signnet")
-#install.packages("graphlayouts")
+install.packages("graphlayouts")
 #install.packages("ggraph")
 install.packages("SDMTools")

@@ -118,9 +118,9 @@ flatten.signed.graph <- function(g)
 		
 		# add to graphs
 		lst <- list()
-		lst[["sign"]] <- pol
+		lst[[ATT_EDGE_SIGN]] <- pol
 		if(is.na(pol))
-		{	lst[["sign"]] <- 1
+		{	lst[[ATT_EDGE_SIGN]] <- 1
 			sg1 <- add_edges(sg1, edges=uv, attr=lst)
 		}
 		else
@@ -129,6 +129,8 @@ flatten.signed.graph <- function(g)
 		}
 	}
 	
+	sg1$name <- "withNAs"
+	sg2$name <- "withoutNAs"
 	res <- list(withNAs=sg1, withoutNAs=sg2)
 	return(res)
 }
@@ -1399,16 +1401,19 @@ analyze.network <- function(g)
 	# extract and process the signed graphs
 	sg.lst <- flatten.signed.graph(g)
 	for(sg in sg.lst)
-	{	# create graph-specific folder
-		tmp.folder <- file.path(SIGNED_FOLDER, g$name)
+	{	#sg <- sg.lst[[1]]
+		# create graph-specific folder
+		tmp.folder <- file.path(SIGNED_FOLDER, sg$name)
 		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
 		
 		# record graph as a graphml file
-		write.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
-	
+		write.graph(graph=sg, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
+		
+		#TODO distinguish sg/sg0
+		
 		# plot the signed graphs
-		custom.gplot(g, file=file.path(tmp.folder,"graph"))
-		#custom.gplot(g)
+		custom.gplot(sg, file=file.path(tmp.folder,"graph"))
+		#custom.gplot(sg)
 	
 		# process only the signed network
 		analyze.net.signs(sg1, sg2)
