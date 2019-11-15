@@ -260,7 +260,7 @@ analyze.net.eccentricity <- function(g, g0)
 
 
 #############################################################
-# Computes degree and generates plots and CSV files.
+# Computes the degree and generates plots and CSV files.
 #
 # g: original graph to process.
 # g0: same graph except the main node is isolated.
@@ -1263,6 +1263,234 @@ analyze.net.connectivity <- function(g, g0)
 
 
 #############################################################
+# Computes the signed degree and generates plots and CSV files.
+#
+# sg: signed graph to process.
+# sg0: same graph except the main node is isolated.
+#############################################################
+analyze.net.signed.degree <- function(sg, sg0)
+{	cat("  Computing signed degree\n")
+	# possibly create folder
+	degree.folder <- file.path(SIGNED_FOLDER,sg$name,"degree")
+	dir.create(path=degree.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(sg, sg0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
+		sg <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# degree distribution
+		pos.deg <- degree_signed(sg, mode="all", type="pos")
+		neg.deg <- degree_signed(sg, mode="all", type="neg")
+#sgg <- delete_edges(sg, which(E(sg)$sign==-1))
+#pos.deg <- degree(sgg)
+#sgg <- delete_edges(sg, which(E(sg)$sign==1))
+#neg.deg <- degree(sgg)
+		custom.hist(pos.deg, name=LONG_NAME[MEAS_DEGREE_POS], file=file.path(degree.folder,paste0("degree_pos_histo",sufx)))
+		custom.hist(neg.deg, name=LONG_NAME[MEAS_DEGREE_NEG], file=file.path(degree.folder,paste0("degree_neg_histo",sufx)))
+		
+		# export CSV with degree
+		df <- data.frame(V(sg)$name,V(sg)$label,pos.deg,neg.deg)
+		colnames(df) <- c("Name","Label",MEAS_DEGREE_POS,MEAS_DEGREE_NEG) 
+		write.csv(df, file=file.path(degree.folder,paste0("degree_values",sufx,".csv")))
+		
+		# add results to the graph (as attributes) and record
+		V(sg)$DegreePos <- pos.deg
+		V(sg)$DegreeNeg <- neg.deg
+		sg$DegreePosAvg <- mean(pos.deg)
+		sg$DegreeNegAvg <- mean(neg.deg)
+		sg$DegreePosStdv <- sd(pos.deg)
+		sg$DegreeNegStdv <- sd(neg.deg)
+		write.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# plot graph using color for degree
+		custom.gplot(sg,col.att=MEAS_DEGREE_POS,file=file.path(degree.folder,paste0("degree_pos_graph",sufx)))
+#		custom.gplot(sg,col.att=MEAS_DEGREE_POS)
+		custom.gplot(sg,col.att=MEAS_DEGREE_NEG,file=file.path(degree.folder,paste0("degree_neg_graph",sufx)))
+#		custom.gplot(sg,col.att=MEAS_DEGREE_NEG)
+		
+		# export CSV with average degree
+		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df[MEAS_DEGREE_POS, ] <- list(Value=NA, Mean=mean(pos.deg), Stdv=sd(pos.deg))
+		}
+		else
+		{	df <- data.frame(Value=c(NA),Mean=c(mean(pos.deg)),Stdv=c(sd(pos.deg)))
+			row.names(df) <- c(MEAS_DEGREE_POS)
+		}
+		df[MEAS_DEGREE_NEG, ] <- list(Value=NA, Mean=mean(neg.deg), Stdv=sd(neg.deg))
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		lst[[i]] <- sg
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
+# Computes the signed triangles, structural balance, and generates 
+# plots and CSV files.
+#
+# sg: signed graph to process.
+# sg0: same graph except the main node is isolated.
+#############################################################
+analyze.net.signed.triangles <- function(sg, sg0)
+{	cat("  Computing signed triangles\n")
+	# possibly create folder
+	triangles.folder <- file.path(SIGNED_FOLDER,sg$name,"triangles")
+	dir.create(path=triangles.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(sg, sg0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
+		sg <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# signed triangle distribution
+		triangles <- get_signed_triangles(sg)
+		tri.classes <- c("---","--+","-++","+++")
+		cls <- tri.classes[triangles[,"Class"]+1]
+		counts <- table(factor(cls,levels=tri.classes))
+		custom.barplot(
+				vals=counts, 
+				text=tri.classes, 
+				xlab=LONG_NAME[MEAS_TRI_SIGNED], ylab="Frequence",
+				file=file.path(triangles.folder,paste0("triangle_bars",sufx)))
+		
+		# export CSV with triangle counts
+		df <- data.frame(names(counts),counts)
+		colnames(df) <- c("Class","Number") 
+		write.csv(df, file=file.path(triangles.folder,paste0("triangle_values",sufx,".csv")))
+		
+		# compute structural balance
+		str.struct.bal <- (counts["--+"]+counts["+++"])/sum(counts)
+		gen.struct.bal <- (counts["---"]+counts["--+"]+counts["+++"])/sum(counts)
+		
+		# add results to the graph (as attributes) and record
+		sg$StrStructBal <- str.struct.bal
+		sg$GenStructBal <- gen.struct.bal
+		write.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# export CSV with structural balance values
+		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df[MEAS_STR_STRUCT_BAL, ] <- list(Value=str.struct.bal, Mean=NA, Stdv=NA)
+		}
+		else
+		{	df <- data.frame(Value=str.struct.bal,Mean=NA,Stdv=NA)
+			row.names(df) <- c(MEAS_STR_STRUCT_BAL)
+		}
+		df[MEAS_GEN_STRUCT_BAL, ] <- list(Value=gen.struct.bal, Mean=NA, Stdv=NA)
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		# plot graph with strict unbalanced triangles
+		idx <- which(cls=="---" | cls=="-++")
+		for(t in 1:length(idx))
+		{	tri <- idx[t]
+			imb.edges <- c(get.edge.ids(sg,triangles[tri,1:2]),
+					get.edge.ids(sg,triangles[tri,2:3]),
+					get.edge.ids(sg,triangles[tri,c(3,1)]))
+			custom.gplot(sg,e.hl=imb.edges,file=file.path(triangles.folder,paste0("triangles_str_imb_graph",sufx,"_",t)))
+#			custom.gplot(sg,e.hl=imb.edges)
+		}
+		
+		# plot graph with generalized unbalanced triangles
+		idx <- which(cls=="-++")
+		for(t in 1:length(idx))
+		{	tri <- idx[t]
+			imb.edges <- c(get.edge.ids(sg,triangles[tri,1:2]),
+					get.edge.ids(sg,triangles[tri,2:3]),
+					get.edge.ids(sg,triangles[tri,c(3,1)]))
+			custom.gplot(sg,e.hl=imb.edges,file=file.path(triangles.folder,paste0("triangles_gen_imb_graph",sufx,"_",t)))
+#			custom.gplot(sg,e.hl=imb.edges)
+		}
+		
+		lst[[i]] <- sg
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
+# Compute the structural balance of the signed graph.
+#
+# sg: original signed graph to process.
+# sg0: same graph except the main node is isolated.
+#############################################################
+analyze.net.structbal <- function(sg, sg0)
+{	cat("  Computing structural balance\n")
+	# possibly create folder
+	structbal.folder <- file.path(SIGNED_FOLDER,sg$name,"structbal")
+	dir.create(path=structbal.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(g, g0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
+		sg <- lst[[i]]
+		sufx <- sufxx[i]
+		idx <- which(degree(sg)>0)
+		
+		# compute balance
+		bal <- balance_score(sg)
+		
+		# detecting clusters
+		signed_blockmodel(g=res$withNAs, k=2, annealing=TRUE)
+		
+		
+		coms <- cluster_infomap(graph=simplify(g))
+		mbrs <- as.integer(membership(coms))
+		sizes <- table(mbrs[idx]) 
+		custom.barplot(sizes, text=names(sizes), xlab=LONG_NAME[MEAS_COMMUNITY], ylab="Taille", file=file.path(communities.folder,paste0("community_size_bars",sufx)))
+		
+		# export CSV with community membership
+		df <- data.frame(V(g)$name,V(g)$label,mbrs)
+		colnames(df) <- c("Name","Label",MEAS_COMMUNITY) 
+		write.csv(df, file=file.path(structbal.folder,paste0("community_membership",sufx,".csv")))
+		
+		# add results to the graph (as attributes) and record
+		g <- set_vertex_attr(graph=g,name=MEAS_COMMUNITY,value=mbrs)
+		g <- set_graph_attr(graph=g,name=MEAS_MODULARITY,value=modularity(coms))
+		cat("    Modularity: ",g$Modularity,"\n",sep="")
+		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# plot graph using color for communities
+		custom.gplot(g,col.att=MEAS_COMMUNITY,cat.att=TRUE,file=file.path(structbal.folder,paste0("communities_graph",sufx)))
+#		custom.gplot(g,col.att=MEAS_COMMUNITY,cat.att=TRUE)
+		
+		# export CSV with modularity
+		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df[MEAS_MODULARITY, ] <- list(Value=g$Modularity, Mean=NA, Stdv=NA)
+		}
+		else
+		{	df <- data.frame(Value=c(g$Modularity),Mean=c(NA),Stdv=c(NA))
+			row.names(df) <- c(MEAS_MODULARITY)
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		lst[[i]] <- g
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
 # Compute the measures designed specifically for signed graphs.
 # 
 # sg: signed graph with Trajan.
@@ -1283,19 +1511,12 @@ analyze.net.signs <- function(sg, sg0)
 		sufx <- sufxx[i]
 		
 		# graph measures 
-		bal <- balance_score(sg)		# structural balance
-		
-		# node measures
-		pos.deg <- degree_signed(sg, mode="all", type="pos")
-		neg.deg <- degree_signed(sg, mode="all", type="neg")
-		
 		
 		# add measures to the graph (as attributes) and record
 		sg$StructuralBalance <- bal
 		V(sg)$DegreePos <- pos.deg
 		V(sg)$DegreeNeg <- pos.neg
 		write.graph(graph=g, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")), format="graphml")
-		
 		
 		# export CSV with graph measures
 		stat.file <- file.path(SIGNED_FOLDER,g$name,"stats.csv")
@@ -1317,7 +1538,6 @@ analyze.net.signs <- function(sg, sg0)
 		# TODO décomposer comme pour les autres mesures
 		
 		# correlation clustering
-		signed_blockmodel(g=res$withNAs, k=2, annealing=FALSE)
 		
 		# generalized block model
 		signed_blockmodel_general(g, blockmat, alpha = 0.5)
@@ -1351,104 +1571,104 @@ analyze.net.signs <- function(sg, sg0)
 #############################################################
 analyze.network <- function(g)
 {	# set up list of graphs
-	g.lst <- list()
-	
-	# extract various graphs depending on link types
-	{	g.lst[[GRAPH_TYPE_ALL]] <- clean.links(g, link.types=c(paste0(ATT_EDGE_NAT,"_",ATT_VAL_FAMILY), paste0(ATT_EDGE_NAT,"_",ATT_VAL_FRIEND), paste0(ATT_EDGE_NAT,"_",ATT_VAL_PRO),NA))
-		g.lst[[GRAPH_TYPE_ALL]]$name <- GRAPH_TYPE_ALL
-		g.lst[[GRAPH_TYPE_FAMILY]] <- clean.links(g, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_FAMILY))
-		g.lst[[GRAPH_TYPE_FAMILY]]$name <- GRAPH_TYPE_FAMILY
-		g.lst[[GRAPH_TYPE_FRIEND]] <- clean.links(g, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_FRIEND))
-		g.lst[[GRAPH_TYPE_FRIEND]]$name <- GRAPH_TYPE_FRIEND
-		g.lst[[GRAPH_TYPE_PRO]] <- clean.links(g, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_PRO))
-		g.lst[[GRAPH_TYPE_PRO]]$name <- GRAPH_TYPE_PRO
-		g.lst[[GRAPH_TYPE_UNK]] <- clean.links(g, link.types=NA)
-		g.lst[[GRAPH_TYPE_UNK]]$name <- GRAPH_TYPE_UNK
-	}
-	
-	# process each graph
-	for(g in g.lst)
-	{	# g <- g.lst[[1]]
-		cat("Processing graph '",g$name,"'\n",sep="")
-		# create graph-specific folder
-		tmp.folder <- file.path(NET_FOLDER, g$name)
-		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
-		
-		# record graph as a graphml file
-		write.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
-		
-		# plot full graph
-		custom.gplot(g, file=file.path(tmp.folder,"graph"))
-#		custom.gplot(g)
-		
-		# delete trajan's links for better visibility
-		# TODO maybe better to just draw them using a light color?
-		g0 <- disconnect.nodes(g, nodes=1)
-		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
-#		custom.gplot(g0)
-		write.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
-		
-		# compute attribute stats 
-		# (must be done first, before other results are added as attributes)
-		tmp <- analyze.net.attributes(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute diameters, eccentricity, radius
-		tmp <- analyze.net.eccentricity(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute degree
-		tmp <- analyze.net.degree(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute eigencentrality
-		tmp <- analyze.net.eigencentrality(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute betweenness
-		tmp <- analyze.net.betweenness(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute closeness
-		tmp <- analyze.net.closeness(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute distances
-		tmp <- analyze.net.distance(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute articulation points
-		tmp <- analyze.net.articulation(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# detect communities
-		tmp <- analyze.net.comstruct(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute transitivity
-		tmp <- analyze.net.transitivity(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute vertex connectivity
-		tmp <- analyze.net.connectivity(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute assortativity
-		tmp <- analyze.net.assortativity(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-	}
+#	g.lst <- list()
+#	
+#	# extract various graphs depending on link types
+#	{	g.lst[[GRAPH_TYPE_ALL]] <- clean.links(g, link.types=c(paste0(ATT_EDGE_NAT,"_",ATT_VAL_FAMILY), paste0(ATT_EDGE_NAT,"_",ATT_VAL_FRIEND), paste0(ATT_EDGE_NAT,"_",ATT_VAL_PRO),NA))
+#		g.lst[[GRAPH_TYPE_ALL]]$name <- GRAPH_TYPE_ALL
+#		g.lst[[GRAPH_TYPE_FAMILY]] <- clean.links(g, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_FAMILY))
+#		g.lst[[GRAPH_TYPE_FAMILY]]$name <- GRAPH_TYPE_FAMILY
+#		g.lst[[GRAPH_TYPE_FRIEND]] <- clean.links(g, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_FRIEND))
+#		g.lst[[GRAPH_TYPE_FRIEND]]$name <- GRAPH_TYPE_FRIEND
+#		g.lst[[GRAPH_TYPE_PRO]] <- clean.links(g, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_PRO))
+#		g.lst[[GRAPH_TYPE_PRO]]$name <- GRAPH_TYPE_PRO
+#		g.lst[[GRAPH_TYPE_UNK]] <- clean.links(g, link.types=NA)
+#		g.lst[[GRAPH_TYPE_UNK]]$name <- GRAPH_TYPE_UNK
+#	}
+#	
+#	# process each graph
+#	for(g in g.lst)
+#	{	# g <- g.lst[[1]]
+#		cat("Processing graph '",g$name,"'\n",sep="")
+#		# create graph-specific folder
+#		tmp.folder <- file.path(NET_FOLDER, g$name)
+#		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
+#		
+#		# record graph as a graphml file
+#		write.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
+#		
+#		# plot full graph
+#		custom.gplot(g, file=file.path(tmp.folder,"graph"))
+##		custom.gplot(g)
+#		
+#		# delete trajan's links for better visibility
+#		# TODO maybe better to just draw them using a light color?
+#		g0 <- disconnect.nodes(g, nodes=1)
+#		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
+##		custom.gplot(g0)
+#		write.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
+#		
+#		# compute attribute stats 
+#		# (must be done first, before other results are added as attributes)
+#		tmp <- analyze.net.attributes(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute diameters, eccentricity, radius
+#		tmp <- analyze.net.eccentricity(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute degree
+#		tmp <- analyze.net.degree(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute eigencentrality
+#		tmp <- analyze.net.eigencentrality(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute betweenness
+#		tmp <- analyze.net.betweenness(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute closeness
+#		tmp <- analyze.net.closeness(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute distances
+#		tmp <- analyze.net.distance(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute articulation points
+#		tmp <- analyze.net.articulation(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# detect communities
+#		tmp <- analyze.net.comstruct(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute transitivity
+#		tmp <- analyze.net.transitivity(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute vertex connectivity
+#		tmp <- analyze.net.connectivity(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute assortativity
+#		tmp <- analyze.net.assortativity(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#	}
 	
 	# extract and process the signed graphs
 	sg.lst <- flatten.signed.graph(g)
@@ -1466,13 +1686,18 @@ analyze.network <- function(g)
 		write.graph(graph=sg, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
 		
 		# get the version without Trajan
-		sg0 <- disconnect.nodes(g, nodes=1)
+		sg0 <- disconnect.nodes(sg, nodes=1)
 		custom.gplot(sg0, file=file.path(tmp.folder,"graph0"))
 #		custom.gplot(sg0)
 		write.graph(graph=sg0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
 		
-		# process only the signed network
-		tmp <- analyze.net.signs(sg, sg0)
+		# compute signed degree
+		tmp <- analyze.net.signed.degree(sg, sg0)
+		sg <- tmp[[1]]
+		sg0 <- tmp[[2]]
+		
+		# compute signed triangles
+		tmp <- analyze.net.signed.triangles(sg, sg0)
 		sg <- tmp[[1]]
 		sg0 <- tmp[[2]]
 	}

@@ -174,8 +174,9 @@ MEAS_DISTANCE <- "Distance"
 MEAS_DISTANCE_AVG <- "AverageDistance"
 MEAS_CONNECTIVITY <- "Connectivity"
 MEAS_CONNECTIVITY_AVG <- "AverageConnectivity"
-MEAS_STRUCT_BAL <- "StructuralBalance"
-
+MEAS_STR_STRUCT_BAL <- "StrictStructuralBalance"
+MEAS_GEN_STRUCT_BAL <- "GeneralizedStructuralBalance"
+MEAS_TRI_SIGNED <- "TriangleSigned"
 
 
 
@@ -303,4 +304,6 @@ LONG_NAME[MEAS_DISTANCE] <- "Distance"
 LONG_NAME[MEAS_DISTANCE_AVG] <- "Distance moyenne"
 LONG_NAME[MEAS_CONNECTIVITY] <- "Connectivite"
 LONG_NAME[MEAS_CONNECTIVITY_AVG] <- "Connectivite moyenne"
-LONG_NAME[MEAS_STRUCT_BAL] <- "Equilibre structurel"
+LONG_NAME[MEAS_STR_STRUCT_BAL] <- "Equilibre structurel strict"
+LONG_NAME[MEAS_GEN_STRUCT_BAL] <- "Equilibre structurel généralisé"
+LONG_NAME[MEAS_TRI_SIGNED] <- "Triangles signes"

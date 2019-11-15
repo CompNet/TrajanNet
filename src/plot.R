@@ -119,10 +119,11 @@ setup.graph.layout <- function(g)
 # cat.att: (optional) if there is a vertex attribute, indicates whether
 #		   it is categorical or not.
 # v.hl: vertices to highlight (these are represented as squares).
+# e.hl: edges to highlight (these are represented as thick lines).
 # color.isolates: force isolates to be colored (by default they are not)
 # file: (optional) file name, to record the plot.
 #############################################################
-custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=FALSE, file)
+custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.isolates=FALSE, file)
 {	pie.values <- NA
 	lgd.col <- NA
 	
@@ -153,7 +154,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 	}
 	else
 	{	signs <- edge_attr(g,ATT_EDGE_SIGN)
-		ecols <- rep("GREEN", gsize(g))					# positive=green
+		ecols <- rep("#1A8F39", gsize(g))				# positive=green
 		ecols[signs<0] <- "RED"							# negative=red
 		elty <- rep(1,gsize(g))							# only solid line
 		ewidth <- rep(1,gsize(g))						# same edge width
@@ -183,6 +184,12 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, color.isolates=
 			outline.cols[v] <- "RED"
 			vshapes[v] <- "csquare"
 		}
+	}
+	
+	# possibly highlight certain links
+	if(hasArg(e.hl))
+	{	if(length(e.hl)>0)
+			ewidth[e.hl] <- ewidth[e.hl]*3
 	}
 	
 	# vertex color
@@ -417,7 +424,7 @@ custom.barplot <- function(vals, text, xlab, ylab, file, ...)
 		par(mar=c(9, 4, 1, 0)+0.1)
 	else
 		par(mar=c(5, 4, 1, 0)+0.1)
-	if(length(dim(vals))==1)
+	if(length(dim(vals))<=1)
 	{	barplot(
 			height=vals,				# data
 			names.arg=text,				# bar names

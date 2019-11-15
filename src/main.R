@@ -24,6 +24,7 @@ source("src/constants.R")
 source("src/extraction.R")
 source("src/plot.R")
 source("src/analysis.R")
+source("src/signed_graph_functions.R")
 
 
 
@@ -58,9 +59,8 @@ analyze.network(g)
 #############################################################################################
 # TODO
 # - Compute association measures between attributes
-# - Topological measures
-#	- Correlation clustering (is it worth it, in this case?)
-#	- Cluster analysis based on the sequences, then assortativity of the sequence classes? 
+# - Signed nets: consider the evolution of the relationships
+# - Cluster analysis based on the sequences, then assortativity of the sequence classes? 
 # - Multiplex plot of the different types of links? (didn't find an appropriate tool)
 #############################################################################################
 # Notes
