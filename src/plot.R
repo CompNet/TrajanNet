@@ -16,15 +16,15 @@ LAYOUT <- NA	# graph layout
 #############################################################
 # see http://colorbrewer2.org/#type=qualitative&scheme=Set1&n=9
 CAT_COLORS <- c( 
-	"#E41A1C",
-	"#377EB8",
-	"#4DAF4A",
-	"#984EA3",
-	"#FF7F00",
-	"#FFFF33",
-	"#A65628",
-	"#F781BF",
-	"#999999"
+	"#E41A1C",	# red
+	"#377EB8",	# blue
+	"#4DAF4A",	# green
+	"#984EA3",	# purple
+	"#FF7F00",	# orange
+	"#FFFF33",	# yellow
+	"#A65628",	# brown
+	"#F781BF",	# pink
+	"#999999"	# grey
 )
 CAT_COLORS_18 <- c(
 	rgb(228,26,28,maxColorValue=255),		# red
@@ -155,7 +155,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 	else
 	{	signs <- edge_attr(g,ATT_EDGE_SIGN)
 		ecols <- rep("#1A8F39", gsize(g))				# positive=green
-		ecols[signs<0] <- "RED"							# negative=red
+		ecols[signs<0] <- "#E41A1C"						# negative=red
 		elty <- rep(1,gsize(g))							# only solid line
 		ewidth <- rep(1,gsize(g))						# same edge width
 	}

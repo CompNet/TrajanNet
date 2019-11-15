@@ -11,7 +11,7 @@
 library("igraph")			# handles graphs
 library("signnet")			# handles signed graphs
 library("graphlayouts")		# additional graph layouts
-#library("ggraph")
+#library("ggraph")			# additional graph plotting features
 library("SDMTools")			# ?
 
 

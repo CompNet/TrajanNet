@@ -1702,3 +1702,7 @@ analyze.network <- function(g)
 		sg0 <- tmp[[2]]
 	}
 }
+
+# ggblock(sg,signed_blockmodel(sg, k=3, annealing=TRUE)$membership,show_blocks=TRUE, show_labels=TRUE)
+
+
