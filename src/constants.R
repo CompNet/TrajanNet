@@ -177,6 +177,8 @@ MEAS_CONNECTIVITY_AVG <- "AverageConnectivity"
 MEAS_STR_STRUCT_BAL <- "StrictStructuralBalance"
 MEAS_GEN_STRUCT_BAL <- "GeneralizedStructuralBalance"
 MEAS_TRI_SIGNED <- "TriangleSigned"
+MEAS_SIGN_CENTR <- "PNindex"
+
 
 
 
@@ -307,3 +309,4 @@ LONG_NAME[MEAS_CONNECTIVITY_AVG] <- "Connectivite moyenne"
 LONG_NAME[MEAS_STR_STRUCT_BAL] <- "Equilibre structurel strict"
 LONG_NAME[MEAS_GEN_STRUCT_BAL] <- "Equilibre structurel généralisé"
 LONG_NAME[MEAS_TRI_SIGNED] <- "Triangles signes"
+LONG_NAME[MEAS_SIGN_CENTR] <- "Centralite signee"

@@ -1334,6 +1334,65 @@ analyze.net.signed.degree <- function(sg, sg0)
 
 
 #############################################################
+# Computes the signed centrality and generates plots and CSV files.
+#
+# sg: signed graph to process.
+# sg0: same graph except the main node is isolated.
+#############################################################
+analyze.net.signed.centrality <- function(sg, sg0)
+{	cat("  Computing signed centrality\n")
+	# possibly create folder
+	centr.folder <- file.path(SIGNED_FOLDER,sg$name,"pnindex")
+	dir.create(path=centr.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(sg, sg0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
+		sg <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# centrality distribution
+		vals <- pn_index(sg, mode="all")
+		custom.hist(vals, name=LONG_NAME[MEAS_SIGN_CENTR], file=file.path(centr.folder,paste0("pnindex_histo",sufx)))
+		
+		# export CSV with centrality values
+		df <- data.frame(V(sg)$name,V(sg)$label,vals)
+		colnames(df) <- c("Name","Label",MEAS_SIGN_CENTR) 
+		write.csv(df, file=file.path(centr.folder,paste0("pnindex_values",sufx,".csv")))
+		
+		# add results to the graph (as attributes) and record
+		V(sg)$PNindex <- vals
+		sg$PNindexAvg <- mean(vals)
+		sg$PNindexStdv <- sd(vals)
+		write.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# plot graph using color for degree
+		custom.gplot(sg,col.att=MEAS_SIGN_CENTR,file=file.path(centr.folder,paste0("pnindex_graph",sufx)))
+#		custom.gplot(sg,col.att=MEAS_SIGN_CENTR)
+		
+		# export CSV with average degree
+		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df[MEAS_SIGN_CENTR, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+		}
+		else
+		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
+			row.names(df) <- c(MEAS_SIGN_CENTR)
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		lst[[i]] <- sg
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
 # Computes the signed triangles, structural balance, and generates 
 # plots and CSV files.
 #
@@ -1513,9 +1572,6 @@ analyze.net.signs <- function(sg, sg0)
 		# graph measures 
 		
 		# add measures to the graph (as attributes) and record
-		sg$StructuralBalance <- bal
-		V(sg)$DegreePos <- pos.deg
-		V(sg)$DegreeNeg <- pos.neg
 		write.graph(graph=g, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# export CSV with graph measures
@@ -1691,13 +1747,18 @@ analyze.network <- function(g)
 #		custom.gplot(sg0)
 		write.graph(graph=sg0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
 		
-		# compute signed degree
-		tmp <- analyze.net.signed.degree(sg, sg0)
-		sg <- tmp[[1]]
-		sg0 <- tmp[[2]]
+#		# compute signed degree
+#		tmp <- analyze.net.signed.degree(sg, sg0)
+#		sg <- tmp[[1]]
+#		sg0 <- tmp[[2]]
+#		
+#		# compute signed triangles
+#		tmp <- analyze.net.signed.triangles(sg, sg0)
+#		sg <- tmp[[1]]
+#		sg0 <- tmp[[2]]
 		
-		# compute signed triangles
-		tmp <- analyze.net.signed.triangles(sg, sg0)
+		# compute signed centrality
+		tmp <- analyze.net.signed.centrality(sg, sg0)
 		sg <- tmp[[1]]
 		sg0 <- tmp[[2]]
 	}
