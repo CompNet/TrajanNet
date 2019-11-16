@@ -200,57 +200,60 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 			connected <- rep(TRUE, gorder(g))
 		else
 			connected <- degree(g)>0
-		# get the attribute values
-		vvals <- get.vertex.attribute(graph=g, name=col.att)
 		
-		# just one attribute
-		if(length(vvals)>0)
-		{	# categorical attribute
-			if(cat.att)
-			{	tmp <- factor(vvals[connected])
-				vcols[connected] <- CAT_COLORS[(as.integer(tmp)-1) %% length(CAT_COLORS) + 1]
-				lgd.txt <- levels(tmp)
-				lgd.col <- CAT_COLORS[(1:length(lgd.txt)-1) %% length(CAT_COLORS) + 1]
-			}
-			# numerical attribute
-			else
-			{	fine = 500 									# granularity of the color gradient
-				pal = colorRampPalette(c("yellow",'red'))	# extreme colors of the gradient
-				finite <- !is.infinite(vvals)
-				vcols[connected & finite] <- pal(fine)[as.numeric(cut(vvals[connected & finite],breaks=fine))]
-				vcols[connected & !finite] <- "#575757"		# infinite values are grey
-				# see https://stackoverflow.com/questions/27004167/coloring-vertexes-according-to-their-centrality
-			}
-		}
-		# several attributes, supposedly binary ones
-		else
-		{	cat.att <- TRUE
-			att.list <- list.vertex.attributes(g)							# list of all vertex attributes
-			atts <- att.list[grepl(att.list,pattern=col.att)]				# look for the ones starting appropriately
-			m <- sapply(atts, function(att) vertex_attr(g, att))			# get attribute values as a matrix
-			are.nas <- apply(m,1,function(r) all(is.na(r)))					# detect individuals with only NAs
-			are.pie <- apply(m,1,function(r) length(r[!is.na(r)])>1)		# detect individuals with several non-NA values
-			uvals <- sort(unique(c(m)))										# get unique attribute values
-			pie.matrix <- NA
-			for(uval in uvals)												# build a column for each of them
-			{	vals <- as.integer(apply(m, 1, function(v) uval %in% v[!is.na(v)]))
-				if(all(is.na(pie.matrix)))
-					pie.matrix <- as.matrix(vals, ncol=1)
+		if(!all(!connected))
+		{	# get the attribute values
+			vvals <- get.vertex.attribute(graph=g, name=col.att)
+			
+			# just one attribute
+			if(length(vvals)>0)
+			{	# categorical attribute
+				if(cat.att)
+				{	tmp <- factor(vvals[connected])
+					vcols[connected] <- CAT_COLORS[(as.integer(tmp)-1) %% length(CAT_COLORS) + 1]
+					lgd.txt <- levels(tmp)
+					lgd.col <- CAT_COLORS[(1:length(lgd.txt)-1) %% length(CAT_COLORS) + 1]
+				}
+				# numerical attribute
 				else
-					pie.matrix <- cbind(pie.matrix, vals)
-				colnames(pie.matrix)[ncol(pie.matrix)] <- uval
+				{	fine = 500 									# granularity of the color gradient
+					pal = colorRampPalette(c("yellow",'red'))	# extreme colors of the gradient
+					finite <- !is.infinite(vvals)
+					vcols[connected & finite] <- pal(fine)[as.numeric(cut(vvals[connected & finite],breaks=fine))]
+					vcols[connected & !finite] <- "#575757"		# infinite values are grey
+					# see https://stackoverflow.com/questions/27004167/coloring-vertexes-according-to-their-centrality
+				}
 			}
-			lgd.txt <- colnames(pie.matrix)
-			if(length(lgd.txt)<=length(CAT_COLORS))
-				lgd.col <- CAT_COLORS[(1:length(lgd.txt)-1) %% length(CAT_COLORS) + 1]
+			# several attributes, supposedly binary ones
 			else
-				lgd.col <- CAT_COLORS_18[(1:length(lgd.txt)-1) %% length(CAT_COLORS_18) + 1]
-			pie.values <- unlist(apply(pie.matrix, 1, function(v) list(v)), recursive=FALSE)
-			pie.values[!are.pie | !connected] <- NA
-			vshapes[are.pie & connected] <- rep("pie",length(which(are.pie)))
-			vcols[are.pie & connected] <- NA
-			vcols[!are.nas & !are.pie & connected] <- apply(pie.matrix[!are.nas & !are.pie & connected,,drop=FALSE], 1, 
-					function(v) lgd.col[which(v>0)])
+			{	cat.att <- TRUE
+				att.list <- list.vertex.attributes(g)							# list of all vertex attributes
+				atts <- att.list[grepl(att.list,pattern=col.att)]				# look for the ones starting appropriately
+				m <- sapply(atts, function(att) vertex_attr(g, att))			# get attribute values as a matrix
+				are.nas <- apply(m,1,function(r) all(is.na(r)))					# detect individuals with only NAs
+				are.pie <- apply(m,1,function(r) length(r[!is.na(r)])>1)		# detect individuals with several non-NA values
+				uvals <- sort(unique(c(m)))										# get unique attribute values
+				pie.matrix <- NA
+				for(uval in uvals)												# build a column for each of them
+				{	vals <- as.integer(apply(m, 1, function(v) uval %in% v[!is.na(v)]))
+					if(all(is.na(pie.matrix)))
+						pie.matrix <- as.matrix(vals, ncol=1)
+					else
+						pie.matrix <- cbind(pie.matrix, vals)
+					colnames(pie.matrix)[ncol(pie.matrix)] <- uval
+				}
+				lgd.txt <- colnames(pie.matrix)
+				if(length(lgd.txt)<=length(CAT_COLORS))
+					lgd.col <- CAT_COLORS[(1:length(lgd.txt)-1) %% length(CAT_COLORS) + 1]
+				else
+					lgd.col <- CAT_COLORS_18[(1:length(lgd.txt)-1) %% length(CAT_COLORS_18) + 1]
+				pie.values <- unlist(apply(pie.matrix, 1, function(v) list(v)), recursive=FALSE)
+				pie.values[!are.pie | !connected] <- NA
+				vshapes[are.pie & connected] <- rep("pie",length(which(are.pie)))
+				vcols[are.pie & connected] <- NA
+				vcols[!are.nas & !are.pie & connected] <- apply(pie.matrix[!are.nas & !are.pie & connected,,drop=FALSE], 1, 
+						function(v) lgd.col[which(v>0)])
+			}
 		}
 	}
 	else
@@ -315,37 +318,40 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 		)
 	}
 	if(hasArg(col.att))
-	{	# categorical attributes
-		if(cat.att)
-		{	legend(
-				title=LONG_NAME[col.att],				# title of the legend box
-				x="bottomleft",							# position
-				legend=lgd.txt,							# text of the legend
-				fill=lgd.col,							# color of the nodes
-				bty="n",								# no box around the legend
-				cex=0.8									# size of the text in the legend
-			)
-		}
-		# numerical attributes
-		else
-		{	width <- 0.05
-			height <- 0.3
-			x1 <- -1
-			x2 <- x1 + width
-			y2 <- -1
-			y1 <- y2 + height
-			leg.loc <- cbind(x=c(x1, x2, x2, x1), y=c(y1, y1, y2, y2))
-			legend.gradient(
-					pnts=leg.loc,
-					cols=pal(25),
-					#limits=format(range(vvals[connected],na.rm=TRUE), digits=2, nsmall=2),	# pb: uses scientific notation when numbers too small
-					limits=sprintf("%.2f", range(vvals[connected & finite],na.rm=TRUE)),
-					title=LONG_NAME[col.att], 
-					cex=0.8
-			)
+	{	if(!all(!connected))
+		{	# categorical attributes
+			if(cat.att)
+			{	legend(
+					title=LONG_NAME[col.att],				# title of the legend box
+					x="bottomleft",							# position
+					legend=lgd.txt,							# text of the legend
+					fill=lgd.col,							# color of the nodes
+					bty="n",								# no box around the legend
+					cex=0.8									# size of the text in the legend
+				)
+			}
+			# numerical attributes
+			else
+			{	width <- 0.05
+				height <- 0.3
+				x1 <- -1
+				x2 <- x1 + width
+				y2 <- -1
+				y1 <- y2 + height
+				leg.loc <- cbind(x=c(x1, x2, x2, x1), y=c(y1, y1, y2, y2))
+				legend.gradient(
+						pnts=leg.loc,
+						cols=pal(25),
+						#limits=format(range(vvals[connected],na.rm=TRUE), digits=2, nsmall=2),	# pb: uses scientific notation when numbers too small
+						limits=sprintf("%.2f", range(vvals[connected & finite],na.rm=TRUE)),
+						title=LONG_NAME[col.att], 
+						cex=0.8
+				)
+			}
 		}
 	}
-	# legend for vertex sizes: https://stackoverflow.com/questions/38451431/add-legend-in-igraph-to-annotate-difference-vertices-size
+	# legend for vertex sizes, if required: 
+	# https://stackoverflow.com/questions/38451431/add-legend-in-igraph-to-annotate-difference-vertices-size
 	if(hasArg(file))
 		dev.off()
 }

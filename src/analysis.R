@@ -212,7 +212,7 @@ analyze.net.eccentricity <- function(g, g0)
 	# export CSV with eccentricity
 	df <- data.frame(V(g0)$name,V(g0)$label,vals)
 	colnames(df) <- c("Name","Label",MEAS_ECCENTRICITY) 
-	write.csv(df, file=file.path(eccentricity.folder,"eccentricity_values.csv"))
+	write.csv(df, file=file.path(eccentricity.folder,"eccentricity_values.csv"), row.names=FALSE)
 	
 	# add eccentricity (as node attributes) to the graph
 	V(g)$Eccentricity0 <- vals
@@ -285,7 +285,7 @@ analyze.net.degree <- function(g, g0)
 		# export CSV with degree
 		df <- data.frame(V(g)$name,V(g)$label,vals)
 		colnames(df) <- c("Name","Label",MEAS_DEGREE) 
-		write.csv(df, file=file.path(degree.folder,paste0("degree_values",sufx,".csv")))
+		write.csv(df, file=file.path(degree.folder,paste0("degree_values",sufx,".csv")), row.names=FALSE)
 		
 		# add results to the graph (as attributes) and record
 		V(g)$Degree <- vals
@@ -344,7 +344,7 @@ analyze.net.eigencentrality <- function(g, g0)
 		# export CSV with Eigencentrality
 		df <- data.frame(V(g)$name,V(g)$label,vals)
 		colnames(df) <- c("Name","Label",MEAS_EIGEN) 
-		write.csv(df, file=file.path(eigen.folder,paste0("eigencentrality_values",sufx,".csv")))
+		write.csv(df, file=file.path(eigen.folder,paste0("eigencentrality_values",sufx,".csv")), row.names=FALSE)
 		
 		# add results to the graph (as attributes) and record
 		V(g)$Eigencentrality <- vals
@@ -403,7 +403,7 @@ analyze.net.betweenness <- function(g, g0)
 		# export CSV with betweenness
 		df <- data.frame(V(g)$name,V(g)$label,vals)
 		colnames(df) <- c("Name","Label",MEAS_BETWEENNESS) 
-		write.csv(df, file=file.path(betweenness.folder,paste0("betweenness_values",sufx,".csv")))
+		write.csv(df, file=file.path(betweenness.folder,paste0("betweenness_values",sufx,".csv")), row.names=FALSE)
 		
 		# add results to the graph (as attributes) and record
 		V(g)$Betweenness <- vals
@@ -462,7 +462,7 @@ analyze.net.closeness <- function(g, g0)
 		# export CSV with closeness
 		df <- data.frame(V(g)$name,V(g)$label,vals)
 		colnames(df) <- c("Name","Label",MEAS_CLOSENESS) 
-		write.csv(df, file=file.path(closeness.folder,paste0("closeness_values",sufx,".csv")))
+		write.csv(df, file=file.path(closeness.folder,paste0("closeness_values",sufx,".csv")), row.names=FALSE)
 		
 		# add results to the graph (as attributes) and record
 		V(g)$Closeness <- vals
@@ -521,7 +521,7 @@ analyze.net.transitivity <- function(g, g0)
 		# export CSV with transitivity
 		df <- data.frame(V(g)$name,V(g)$label,vals)
 		colnames(df) <- c("Name","Label",MEAS_TRANSITIVITY) 
-		write.csv(df, file=file.path(transitivity.folder,paste0("transitivity_values",sufx,".csv")))
+		write.csv(df, file=file.path(transitivity.folder,paste0("transitivity_values",sufx,".csv")), row.names=FALSE)
 		
 		# add results to the graph (as attributes) and record
 		V(g)$Transitivity <- vals
@@ -573,41 +573,69 @@ analyze.net.comstruct <- function(g, g0)
 	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
 		g <- lst[[i]]
 		sufx <- sufxx[i]
-		idx <- which(degree(g)>0)
+		op <- delete_edges(graph=g, edges=which(is.na(E(g)$Polarite) | E(g)$Polarite==ATT_VAL_NEGATIVE))
+		nn <- delete_edges(graph=g, edges=which(E(g)$Polarite==ATT_VAL_NEGATIVE))
+		idx.op <- which(degree(op)>0)
+		idx.nn <- which(degree(nn)>0)
 		
 		# community size distribution
-#		coms <- cluster_optimal(graph=simplify(g))	# much slower, obviously
-#		coms <- cluster_spinglass(graph=simplify(g))
-		coms <- cluster_infomap(graph=simplify(g))	#TODO must remove negative links!!!
-		mbrs <- as.integer(membership(coms))
-		sizes <- table(mbrs[idx]) 
-		custom.barplot(sizes, text=names(sizes), xlab=LONG_NAME[MEAS_COMMUNITY], ylab="Taille", file=file.path(communities.folder,paste0("community_size_bars",sufx)))
+#		coms.op <- cluster_optimal(graph=simplify(op))	# much slower, obviously
+#		coms.op <- cluster_spinglass(graph=simplify(op))
+		coms.op <- cluster_infomap(graph=simplify(op))
+		mbrs.op <- as.integer(membership(coms.op))
+		mbrs.op[-idx.op] <- NA
+		sizes.op <- table(mbrs.op,useNA="ifany")
+		custom.barplot(sizes.op, text=names(sizes.op), xlab=LONG_NAME[MEAS_COMMUNITY_ONLYPOS], ylab="Taille", file=file.path(communities.folder,paste0("onlypos_community_size_bars",sufx)))
+		#
+		coms.nn <- cluster_infomap(graph=simplify(nn))
+		mbrs.nn <- as.integer(membership(coms.nn))
+		mbrs.nn[-idx.nn] <- NA
+		sizes.nn <- table(mbrs.nn,useNA="ifany")
+		custom.barplot(sizes.nn, text=names(sizes.nn), xlab=LONG_NAME[MEAS_COMMUNITY_NONEG], ylab="Taille", file=file.path(communities.folder,paste0("noneg_community_size_bars",sufx)))
 		
 		# export CSV with community membership
-		df <- data.frame(V(g)$name,V(g)$label,mbrs)
-		colnames(df) <- c("Name","Label",MEAS_COMMUNITY) 
-		write.csv(df, file=file.path(communities.folder,paste0("community_membership",sufx,".csv")))
+		df <- data.frame(V(op)$name,V(op)$label,mbrs.op)
+		colnames(df) <- c("Name","Label",MEAS_COMMUNITY_ONLYPOS) 
+		write.csv(df, file=file.path(communities.folder,paste0("onlypos_community_membership",sufx,".csv")), row.names=FALSE)
+		#
+		df <- data.frame(V(nn)$name,V(nn)$label,mbrs.nn)
+		colnames(df) <- c("Name","Label",MEAS_COMMUNITY_NONEG) 
+		write.csv(df, file=file.path(communities.folder,paste0("noneg_community_membership",sufx,".csv")), row.names=FALSE)
 		
 		# add results to the graph (as attributes) and record
-		g <- set_vertex_attr(graph=g,name=MEAS_COMMUNITY,value=mbrs)
-		g <- set_graph_attr(graph=g,name=MEAS_MODULARITY,value=modularity(coms))
-		cat("    Modularity: ",g$Modularity,"\n",sep="")
+		mod.op <- modularity(coms.op)
+		op <- set_vertex_attr(graph=op,name=MEAS_COMMUNITY_ONLYPOS,value=mbrs.op)
+		op <- set_graph_attr(graph=op,name=MEAS_MODULARITY_ONLYPOS,value=mod.op)
+		cat("    Modularity with only positive links: ",mod.op,"\n",sep="")
+		#
+		mod.nn <- modularity(coms.nn)
+		nn <- set_vertex_attr(graph=nn,name=MEAS_COMMUNITY_NONEG,value=mbrs.nn)
+		nn <- set_graph_attr(graph=nn,name=MEAS_MODULARITY_NONEG,value=mod.nn)
+		cat("    Modularity without negative links: ",mod.nn,"\n",sep="")
+		#
+		g <- set_vertex_attr(graph=g,name=MEAS_COMMUNITY_ONLYPOS,value=mbrs.op)
+		g <- set_graph_attr(graph=g,name=MEAS_MODULARITY_ONLYPOS,value=mod.op)
+		g <- set_vertex_attr(graph=g,name=MEAS_COMMUNITY_NONEG,value=mbrs.nn)
+		g <- set_graph_attr(graph=g,name=MEAS_MODULARITY_NONEG,value=mod.nn)
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# plot graph using color for communities
-		custom.gplot(g,col.att=MEAS_COMMUNITY,cat.att=TRUE,file=file.path(communities.folder,paste0("communities_graph",sufx)))
-#		custom.gplot(g,col.att=MEAS_COMMUNITY,cat.att=TRUE)
-		
+		custom.gplot(op,col.att=MEAS_COMMUNITY_ONLYPOS,cat.att=TRUE,file=file.path(communities.folder,paste0("onlypos_communities_graph",sufx)))
+#		custom.gplot(op,col.att=MEAS_COMMUNITY_ONLYPOS,cat.att=TRUE)
+		custom.gplot(nn,col.att=MEAS_COMMUNITY_NONEG,cat.att=TRUE,file=file.path(communities.folder,paste0("noneg_communities_graph",sufx)))
+#		custom.gplot(nn,col.att=MEAS_COMMUNITY_NONEG,cat.att=TRUE)
+
 		# export CSV with modularity
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-			df[MEAS_MODULARITY, ] <- list(Value=g$Modularity, Mean=NA, Stdv=NA)
+			df[MEAS_MODULARITY_ONLYPOS, ] <- list(Value=mod.op, Mean=NA, Stdv=NA)
 		}
 		else
-		{	df <- data.frame(Value=c(g$Modularity),Mean=c(NA),Stdv=c(NA))
-			row.names(df) <- c(MEAS_MODULARITY)
+		{	df <- data.frame(Value=c(mod.op),Mean=c(NA),Stdv=c(NA))
+			row.names(df) <- c(MEAS_MODULARITY_ONLYPOS)
 		}
+		df[MEAS_MODULARITY_NONEG, ] <- list(Value=mod.nn, Mean=NA, Stdv=NA)
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
 		lst[[i]] <- g
@@ -1070,7 +1098,7 @@ analyze.net.articulation <- function(g, g0)
 	# export CSV with articulation
 	df <- data.frame(V(g)$name,V(g)$label,vals)
 	colnames(df) <- c("Name","Label",MEAS_ARTICULATION) 
-	write.csv(df, file=file.path(articulation.folder,paste0("articulation_values.csv")))
+	write.csv(df, file=file.path(articulation.folder,paste0("articulation_values.csv")), row.names=FALSE)
 	
 	# add results to the graph (as attributes) and record
 	V(g)$Articulation <- vals
@@ -1135,7 +1163,7 @@ analyze.net.distance <- function(g, g0)
 		# export CSV with average distance
 		df <- data.frame(V(g)$name,V(g)$label,avg.vals)
 		colnames(df) <- c("Name","Label",MEAS_DISTANCE_AVG) 
-		write.csv(df, file=file.path(distance.folder,paste0("distance_avg_values",sufx,".csv")))
+		write.csv(df, file=file.path(distance.folder,paste0("distance_avg_values",sufx,".csv")), row.names=FALSE)
 		
 		# add results to the graph (as attributes) and record
 		V(g)$AverageDistance <- avg.vals
@@ -1220,7 +1248,7 @@ analyze.net.connectivity <- function(g, g0)
 		# export CSV with average connectivity
 		df <- data.frame(V(g)$name,V(g)$label,avg.vals)
 		colnames(df) <- c("Name","Label",MEAS_CONNECTIVITY_AVG) 
-		write.csv(df, file=file.path(connectivity.folder,paste0("connectivity_avg_values",sufx,".csv")))
+		write.csv(df, file=file.path(connectivity.folder,paste0("connectivity_avg_values",sufx,".csv")), row.names=FALSE)
 		
 		# add results to the graph (as attributes) and record
 		V(g)$AverageConnectivity <- avg.vals
@@ -1294,7 +1322,7 @@ analyze.net.signed.degree <- function(sg, sg0)
 		# export CSV with degree
 		df <- data.frame(V(sg)$name,V(sg)$label,pos.deg,neg.deg)
 		colnames(df) <- c("Name","Label",MEAS_DEGREE_POS,MEAS_DEGREE_NEG) 
-		write.csv(df, file=file.path(degree.folder,paste0("degree_values",sufx,".csv")))
+		write.csv(df, file=file.path(degree.folder,paste0("degree_values",sufx,".csv")), row.names=FALSE)
 		
 		# add results to the graph (as attributes) and record
 		V(sg)$DegreePos <- pos.deg
@@ -1359,7 +1387,7 @@ analyze.net.signed.centrality <- function(sg, sg0)
 		# export CSV with centrality values
 		df <- data.frame(V(sg)$name,V(sg)$label,vals)
 		colnames(df) <- c("Name","Label",MEAS_SIGN_CENTR) 
-		write.csv(df, file=file.path(centr.folder,paste0("pnindex_values",sufx,".csv")))
+		write.csv(df, file=file.path(centr.folder,paste0("pnindex_values",sufx,".csv")), row.names=FALSE)
 		
 		# add results to the graph (as attributes) and record
 		V(sg)$PNindex <- vals
@@ -1426,7 +1454,7 @@ analyze.net.signed.triangles <- function(sg, sg0)
 		# export CSV with triangle counts
 		df <- data.frame(names(counts),counts)
 		colnames(df) <- c("Class","Number") 
-		write.csv(df, file=file.path(triangles.folder,paste0("triangle_values",sufx,".csv")))
+		write.csv(df, file=file.path(triangles.folder,paste0("triangle_values",sufx,".csv")), row.names=FALSE)
 		
 		# compute structural balance
 		str.struct.bal <- (counts["--+"]+counts["+++"])/sum(counts)
@@ -1579,12 +1607,12 @@ analyze.net.corclust <- function(sg, sg0)
 		# export CSV with cluster membership
 		df <- data.frame(V(sg)$name,V(sg)$label,memberships)
 		colnames(df) <- c("Name","Label",MEAS_COR_CLUST) 
-		write.csv(df, file=file.path(corclust.folder,paste0("cluster_membership",sufx,".csv")))
+		write.csv(df, file=file.path(corclust.folder,paste0("cluster_membership",sufx,".csv")), row.names=FALSE)
 		
 		# export CSV with performance as imbalance
 		df <- data.frame(1:gorder(sg),perfs)		
 		colnames(df) <- c("k",MEAS_COR_CLUST) 
-		write.csv(df, file=file.path(corclust.folder,paste0("corclust_imbalance",sufx,".csv")))
+		write.csv(df, file=file.path(corclust.folder,paste0("corclust_imbalance",sufx,".csv")), row.names=FALSE)
 		
 		# add imbalance to stat CSV
 		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
@@ -1613,184 +1641,114 @@ analyze.net.corclust <- function(sg, sg0)
 
 
 #############################################################
-# Compute the measures designed specifically for signed graphs.
-# 
-# sg: signed graph with Trajan.
-# sg0: signed graph without Trajan.
-#
-# returns: both graphs with the result of the computations included
-#		   as attributes.
-#############################################################
-analyze.net.signs <- function(sg, sg0)
-{	cat("  Computing measures on signed graphs\n")
-	graph.folder <- file.path(SIGNED_FOLDER, sg$name)
-	
-	lst <- list(sg, sg0)
-	sufxx <- c("","0")
-	for(i in 1:length(lst))
-	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
-		sg <- lst[[i]]
-		sufx <- sufxx[i]
-		
-		# graph measures 
-		
-		# add measures to the graph (as attributes) and record
-		write.graph(graph=g, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")), format="graphml")
-		
-		# export CSV with graph measures
-		stat.file <- file.path(SIGNED_FOLDER,g$name,"stats.csv")
-		if(file.exists(stat.file))
-		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-			df[MEAS_STRUCT_BAL, ] <- list(Value=bal, Mean=NA, Stdv=NA)
-		}
-		else
-		{	df <- data.frame(Value=bal,Mean=NA,Stdv=NA)
-			row.names(df) <- c(MEAS_STRUCT_BAL)
-		}
-		write.csv(df, file=stat.file, row.names=TRUE)
-		
-		
-		
-		
-		
-		
-		# TODO décomposer comme pour les autres mesures
-		
-		# correlation clustering
-		
-		# generalized block model
-		signed_blockmodel_general(g, blockmat, alpha = 0.5)
-		
-		# signed centrality measure
-		pn_index(g=res$withNAs, mode="all")
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		lst[[i]] <- g
-	}
-	
-	result <- list(withNAs=sg1, withoutNAs=sg2)
-	return(result)
-}
-
-
-
-#############################################################
 # Main method for the graph analysis. Uses a predefined layout.
 # Generates a bunch of plots and CSV files.
 #
-# g: graph to process.
+# og: graph to process.
 #############################################################
-analyze.network <- function(g)
+analyze.network <- function(og)
 {	# set up list of graphs
-#	g.lst <- list()
-#	
-#	# extract various graphs depending on link types
-#	{	g.lst[[GRAPH_TYPE_ALL]] <- clean.links(g, link.types=c(paste0(ATT_EDGE_NAT,"_",ATT_VAL_FAMILY), paste0(ATT_EDGE_NAT,"_",ATT_VAL_FRIEND), paste0(ATT_EDGE_NAT,"_",ATT_VAL_PRO),NA))
-#		g.lst[[GRAPH_TYPE_ALL]]$name <- GRAPH_TYPE_ALL
-#		g.lst[[GRAPH_TYPE_FAMILY]] <- clean.links(g, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_FAMILY))
-#		g.lst[[GRAPH_TYPE_FAMILY]]$name <- GRAPH_TYPE_FAMILY
-#		g.lst[[GRAPH_TYPE_FRIEND]] <- clean.links(g, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_FRIEND))
-#		g.lst[[GRAPH_TYPE_FRIEND]]$name <- GRAPH_TYPE_FRIEND
-#		g.lst[[GRAPH_TYPE_PRO]] <- clean.links(g, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_PRO))
-#		g.lst[[GRAPH_TYPE_PRO]]$name <- GRAPH_TYPE_PRO
-#		g.lst[[GRAPH_TYPE_UNK]] <- clean.links(g, link.types=NA)
-#		g.lst[[GRAPH_TYPE_UNK]]$name <- GRAPH_TYPE_UNK
-#	}
-#	
-#	# process each graph
-#	for(g in g.lst)
-#	{	# g <- g.lst[[1]]
-#		cat("Processing graph '",g$name,"'\n",sep="")
-#		# create graph-specific folder
-#		tmp.folder <- file.path(NET_FOLDER, g$name)
-#		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
-#		
-#		# record graph as a graphml file
-#		write.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
-#		
-#		# plot full graph
-#		custom.gplot(g, file=file.path(tmp.folder,"graph"))
-##		custom.gplot(g)
-#		
-#		# delete trajan's links for better visibility
-#		# TODO maybe better to just draw them using a light color?
-#		g0 <- disconnect.nodes(g, nodes=1)
-#		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
-##		custom.gplot(g0)
-#		write.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
-#		
-#		# compute attribute stats 
-#		# (must be done first, before other results are added as attributes)
-#		tmp <- analyze.net.attributes(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute diameters, eccentricity, radius
-#		tmp <- analyze.net.eccentricity(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute degree
-#		tmp <- analyze.net.degree(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute eigencentrality
-#		tmp <- analyze.net.eigencentrality(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute betweenness
-#		tmp <- analyze.net.betweenness(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute closeness
-#		tmp <- analyze.net.closeness(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute distances
-#		tmp <- analyze.net.distance(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute articulation points
-#		tmp <- analyze.net.articulation(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# detect communities
-#		tmp <- analyze.net.comstruct(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute transitivity
-#		tmp <- analyze.net.transitivity(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute vertex connectivity
-#		tmp <- analyze.net.connectivity(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute assortativity
-#		tmp <- analyze.net.assortativity(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#	}
+	g.lst <- list()
+	
+	# extract various graphs depending on link types
+	{	g.lst[[GRAPH_TYPE_ALL]] <- clean.links(og, link.types=c(paste0(ATT_EDGE_NAT,"_",ATT_VAL_FAMILY), paste0(ATT_EDGE_NAT,"_",ATT_VAL_FRIEND), paste0(ATT_EDGE_NAT,"_",ATT_VAL_PRO),NA))
+		g.lst[[GRAPH_TYPE_ALL]]$name <- GRAPH_TYPE_ALL
+		g.lst[[GRAPH_TYPE_FAMILY]] <- clean.links(og, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_FAMILY))
+		g.lst[[GRAPH_TYPE_FAMILY]]$name <- GRAPH_TYPE_FAMILY
+		g.lst[[GRAPH_TYPE_FRIEND]] <- clean.links(og, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_FRIEND))
+		g.lst[[GRAPH_TYPE_FRIEND]]$name <- GRAPH_TYPE_FRIEND
+		g.lst[[GRAPH_TYPE_PRO]] <- clean.links(og, link.types=paste0(ATT_EDGE_NAT,"_",ATT_VAL_PRO))
+		g.lst[[GRAPH_TYPE_PRO]]$name <- GRAPH_TYPE_PRO
+		g.lst[[GRAPH_TYPE_UNK]] <- clean.links(og, link.types=NA)
+		g.lst[[GRAPH_TYPE_UNK]]$name <- GRAPH_TYPE_UNK
+	}
+	
+	# process each graph
+	for(g in g.lst)
+	{	# g <- g.lst[[1]]
+		cat("Processing graph '",g$name,"'\n",sep="")
+		# create graph-specific folder
+		tmp.folder <- file.path(NET_FOLDER, g$name)
+		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
+		
+		# record graph as a graphml file
+		write.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
+		
+		# plot full graph
+		custom.gplot(g, file=file.path(tmp.folder,"graph"))
+#		custom.gplot(g)
+		
+		# delete trajan's links for better visibility
+		# TODO maybe better to just draw them using a light color?
+		g0 <- disconnect.nodes(g, nodes=1)
+		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
+#		custom.gplot(g0)
+		write.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
+		
+		# compute attribute stats 
+		# (must be done first, before other results are added as attributes)
+		tmp <- analyze.net.attributes(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute diameters, eccentricity, radius
+		tmp <- analyze.net.eccentricity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute degree
+		tmp <- analyze.net.degree(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute eigencentrality
+		tmp <- analyze.net.eigencentrality(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute betweenness
+		tmp <- analyze.net.betweenness(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute closeness
+		tmp <- analyze.net.closeness(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute distances
+		tmp <- analyze.net.distance(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute articulation points
+		tmp <- analyze.net.articulation(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# detect communities
+		tmp <- analyze.net.comstruct(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute transitivity
+		tmp <- analyze.net.transitivity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute vertex connectivity
+		tmp <- analyze.net.connectivity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute assortativity
+		tmp <- analyze.net.assortativity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+	}
 	
 	# extract and process the signed graphs
-	sg.lst <- flatten.signed.graph(g)
+	sg.lst <- flatten.signed.graph(og)
 	for(sg in sg.lst)
 	{	#sg <- sg.lst[[1]]
 		

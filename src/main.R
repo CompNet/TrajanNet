@@ -38,20 +38,20 @@ if(!file.exists(graph.file))
 }
 # load the extracted network
 cat("Loading graph file \"",graph.file,"\"\n",sep="")
-g <- read.network(graph.file)
+og <- read.network(graph.file)
 
 
 
 #############################################################################################
 # retrieve or compute graph layout
-setup.graph.layout(g)
+setup.graph.layout(og)
 
 
 
 
 #############################################################################################
 # analyze the graph
-analyze.network(g)
+analyze.network(og)
 
 
 
