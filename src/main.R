@@ -11,7 +11,7 @@
 library("igraph")			# handles graphs
 library("signnet")			# handles signed graphs
 library("graphlayouts")		# additional graph layouts
-#library("ggraph")			# additional graph plotting features
+library("ggraph")			# additional graph plotting features
 library("SDMTools")			# ?
 
 
@@ -65,5 +65,4 @@ analyze.network(g)
 #############################################################################################
 # Notes
 # - All ;-separated values are in chronological order, but almost no dates are available.
-# - We could merge PolitSenat/DerPolitSenat, same for PolitEques/DerPolitEques.
 #############################################################################################

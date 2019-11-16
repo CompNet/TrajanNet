@@ -578,7 +578,7 @@ analyze.net.comstruct <- function(g, g0)
 		# community size distribution
 #		coms <- cluster_optimal(graph=simplify(g))	# much slower, obviously
 #		coms <- cluster_spinglass(graph=simplify(g))
-		coms <- cluster_infomap(graph=simplify(g))
+		coms <- cluster_infomap(graph=simplify(g))	#TODO must remove negative links!!!
 		mbrs <- as.integer(membership(coms))
 		sizes <- table(mbrs[idx]) 
 		custom.barplot(sizes, text=names(sizes), xlab=LONG_NAME[MEAS_COMMUNITY], ylab="Taille", file=file.path(communities.folder,paste0("community_size_bars",sufx)))
@@ -1482,65 +1482,128 @@ analyze.net.signed.triangles <- function(sg, sg0)
 
 
 #############################################################
-# Compute the structural balance of the signed graph.
+# Partitions the signed specified graph by solving the correlation
+# clustering problem.
 #
 # sg: original signed graph to process.
 # sg0: same graph except the main node is isolated.
 #############################################################
-analyze.net.structbal <- function(sg, sg0)
-{	cat("  Computing structural balance\n")
+analyze.net.corclust <- function(sg, sg0)
+{	cat("  Performing correlation clustering\n")
 	# possibly create folder
-	structbal.folder <- file.path(SIGNED_FOLDER,sg$name,"structbal")
-	dir.create(path=structbal.folder, showWarnings=FALSE, recursive=TRUE)
+	corclust.folder <- file.path(SIGNED_FOLDER,sg$name,"corclust")
+	dir.create(path=corclust.folder, showWarnings=FALSE, recursive=TRUE)
 	
-	lst <- list(g, g0)
+	lst <- list(sg, sg0)
 	sufxx <- c("","0")
 	for(i in 1:length(lst))
 	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
 		sg <- lst[[i]]
 		sufx <- sufxx[i]
-		idx <- which(degree(sg)>0)
 		
-		# compute balance
-		bal <- balance_score(sg)
+		memberships <- NA
+		perfs <- c()
 		
-		# detecting clusters
-		signed_blockmodel(g=res$withNAs, k=2, annealing=TRUE)
+		# try each possible number of clusters
+		for(k in 1:gorder(sg))
+		{	cat("    Performing correlation clustering for k=",k,"\n",sep="")
+			
+			# cluster size distribution
+			tmp <- signed_blockmodel(sg, k=k, annealing=TRUE)
+			mbrs <- tmp$membership
+			perf <- tmp$criterion
+			cat("    Imbalance: ",perf,"\n",sep="")
+			sizes <- table(mbrs) 
+			custom.barplot(sizes, text=names(sizes), xlab=LONG_NAME[MEAS_COR_CLUST], ylab="Taille", file=file.path(corclust.folder,paste0("cluster_size_bars",sufx,"_k",k)))
+			
+			# add to general structures
+			colname <- paste0("k=",k)
+			if(all(is.na(memberships)))
+			{	memberships <- matrix(mbrs,ncol=1)
+				colnames(memberships) <- colname
+			}
+			else
+			{	memberships <- cbind(memberships, mbrs)
+				colnames(memberships)[ncol(memberships)] <- colname
+			}
+			perfs[colname] <- perf
+			
+			# add results to the graph as attributes
+			sg <- set_vertex_attr(graph=sg,name=MEAS_COR_CLUST,value=mbrs)
+			sg <- set_graph_attr(graph=sg,name=MEAS_COR_CLUST,value=perf)
+#			attr_name <- paste0(MEAS_COR_CLUST,"_k",k)
+#			sg <- set_vertex_attr(graph=sg,name=attr_name,value=mbrs)
+#			sg <- set_graph_attr(graph=sg,name=attr_name,value=perf)
+			
+			# plot graph using color for clusters
+			custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE,file=file.path(corclust.folder,paste0("clusters_graph",sufx,"_k",k)))
+#			custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE)
 		
+			# plot block model
+			sg2 <- sg
+			V(sg2)$name <- V(sg2)$label
+			bm.file <- file.path(corclust.folder,paste0("block_model",sufx,"_k",k))
+			if(FORMAT=="pdf")
+				bm.file <- paste0(bm.file,".pdf")
+			else if(FORMAT=="png")
+				bm.file <- paste0(bm.file,".png")
+			ggblock(sg2, mbrs, show_blocks=TRUE, show_labels=TRUE)
+			ggsave(bm.file, width=35, height=25, units="cm")
+		}
 		
-		coms <- cluster_infomap(graph=simplify(g))
-		mbrs <- as.integer(membership(coms))
-		sizes <- table(mbrs[idx]) 
-		custom.barplot(sizes, text=names(sizes), xlab=LONG_NAME[MEAS_COMMUNITY], ylab="Taille", file=file.path(communities.folder,paste0("community_size_bars",sufx)))
+		# restore best partition
+		idx <- which.min(perfs)
+		mbrs <- memberships[,idx]
+		perf <- perfs[idx]
+		sg <- set_vertex_attr(graph=sg,name=MEAS_COR_CLUST,value=mbrs)
+		sg <- set_graph_attr(graph=sg,name=MEAS_COR_CLUST,value=perf)
 		
-		# export CSV with community membership
-		df <- data.frame(V(g)$name,V(g)$label,mbrs)
-		colnames(df) <- c("Name","Label",MEAS_COMMUNITY) 
-		write.csv(df, file=file.path(structbal.folder,paste0("community_membership",sufx,".csv")))
+		# plot best cluster size distribution
+		sizes <- table(memberships[,idx]) 
+		custom.barplot(sizes, text=names(sizes), xlab=LONG_NAME[MEAS_COR_CLUST], ylab="Taille", file=file.path(corclust.folder,paste0("cluster_size_bars",sufx)))
 		
-		# add results to the graph (as attributes) and record
-		g <- set_vertex_attr(graph=g,name=MEAS_COMMUNITY,value=mbrs)
-		g <- set_graph_attr(graph=g,name=MEAS_MODULARITY,value=modularity(coms))
-		cat("    Modularity: ",g$Modularity,"\n",sep="")
-		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		# plot graph using color for best partition
+		custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE,file=file.path(corclust.folder,paste0("clusters_graph",sufx)))
 		
-		# plot graph using color for communities
-		custom.gplot(g,col.att=MEAS_COMMUNITY,cat.att=TRUE,file=file.path(structbal.folder,paste0("communities_graph",sufx)))
-#		custom.gplot(g,col.att=MEAS_COMMUNITY,cat.att=TRUE)
+		# plot best block model
+		sg2 <- sg
+		V(sg2)$name <- V(sg2)$label
+		bm.file <- file.path(corclust.folder,paste0("block_model",sufx))
+		if(FORMAT=="pdf")
+			bm.file <- paste0(bm.file,".pdf")
+		else if(FORMAT=="png")
+			bm.file <- paste0(bm.file,".png")
+		ggblock(sg2, mbrs, show_blocks=TRUE, show_labels=TRUE)
+		ggsave(bm.file, width=35, height=25, units="cm")
 		
-		# export CSV with modularity
-		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		# export CSV with cluster membership
+		df <- data.frame(V(sg)$name,V(sg)$label,memberships)
+		colnames(df) <- c("Name","Label",MEAS_COR_CLUST) 
+		write.csv(df, file=file.path(corclust.folder,paste0("cluster_membership",sufx,".csv")))
+		
+		# export CSV with performance as imbalance
+		df <- data.frame(1:gorder(sg),perfs)		
+		colnames(df) <- c("k",MEAS_COR_CLUST) 
+		write.csv(df, file=file.path(corclust.folder,paste0("corclust_imbalance",sufx,".csv")))
+		
+		# add imbalance to stat CSV
+		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-			df[MEAS_MODULARITY, ] <- list(Value=g$Modularity, Mean=NA, Stdv=NA)
+			df[MEAS_COR_CLUST, ] <- list(Value=min(perfs), Mean=NA, Stdv=NA)
 		}
 		else
-		{	df <- data.frame(Value=c(g$Modularity),Mean=c(NA),Stdv=c(NA))
-			row.names(df) <- c(MEAS_MODULARITY)
+		{	df <- data.frame(Value=c(min(perfs)),Mean=c(NA),Stdv=c(NA))
+			row.names(df) <- c(MEAS_COR_CLUST)
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
-		lst[[i]] <- g
+		# record graph with all its attributes
+#		sg <- delete_vertex_attr(graph=sg,name=MEAS_COR_CLUST)
+#		sg <- delete_graph_attr(graph=sg,name=MEAS_COR_CLUST)
+		write.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		lst[[i]] <- sg
 	}
 	
 	return(lst)
@@ -1747,23 +1810,24 @@ analyze.network <- function(g)
 #		custom.gplot(sg0)
 		write.graph(graph=sg0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
 		
-#		# compute signed degree
-#		tmp <- analyze.net.signed.degree(sg, sg0)
-#		sg <- tmp[[1]]
-#		sg0 <- tmp[[2]]
-#		
-#		# compute signed triangles
-#		tmp <- analyze.net.signed.triangles(sg, sg0)
-#		sg <- tmp[[1]]
-#		sg0 <- tmp[[2]]
+		# compute signed degree
+		tmp <- analyze.net.signed.degree(sg, sg0)
+		sg <- tmp[[1]]
+		sg0 <- tmp[[2]]
+		
+		# compute signed triangles
+		tmp <- analyze.net.signed.triangles(sg, sg0)
+		sg <- tmp[[1]]
+		sg0 <- tmp[[2]]
 		
 		# compute signed centrality
 		tmp <- analyze.net.signed.centrality(sg, sg0)
 		sg <- tmp[[1]]
 		sg0 <- tmp[[2]]
+		
+		# compute correlation clustering
+		tmp <- analyze.net.corclust(sg, sg0)
+		sg <- tmp[[1]]
+		sg0 <- tmp[[2]]
 	}
 }
-
-# ggblock(sg,signed_blockmodel(sg, k=3, annealing=TRUE)$membership,show_blocks=TRUE, show_labels=TRUE)
-
-

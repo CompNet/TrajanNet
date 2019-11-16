@@ -155,6 +155,7 @@ GRAPH_TYPE_UNK <- "unknown"
 
 
 
+
 #############################################################################################
 # measure names
 MEAS_ECCENTRICITY <- "Eccentricity"
@@ -178,6 +179,7 @@ MEAS_STR_STRUCT_BAL <- "StrictStructuralBalance"
 MEAS_GEN_STRUCT_BAL <- "GeneralizedStructuralBalance"
 MEAS_TRI_SIGNED <- "TriangleSigned"
 MEAS_SIGN_CENTR <- "PNindex"
+MEAS_COR_CLUST <- "CorrelationClustering"
 
 
 
@@ -310,3 +312,4 @@ LONG_NAME[MEAS_STR_STRUCT_BAL] <- "Equilibre structurel strict"
 LONG_NAME[MEAS_GEN_STRUCT_BAL] <- "Equilibre structurel généralisé"
 LONG_NAME[MEAS_TRI_SIGNED] <- "Triangles signes"
 LONG_NAME[MEAS_SIGN_CENTR] <- "Centralite signee"
+LONG_NAME[MEAS_COR_CLUST] <- "Factions antagonistes"
