@@ -1542,7 +1542,7 @@ analyze.net.corclust <- function(sg, sg0)
 			perf <- tmp$criterion
 			cat("    Imbalance: ",perf,"\n",sep="")
 			sizes <- table(mbrs) 
-			custom.barplot(sizes, text=names(sizes), xlab=LONG_NAME[MEAS_COR_CLUST], ylab="Taille", file=file.path(corclust.folder,paste0("cluster_size_bars",sufx,"_k",k)))
+#			custom.barplot(sizes, text=names(sizes), xlab=LONG_NAME[MEAS_COR_CLUST], ylab="Taille", file=file.path(corclust.folder,paste0("cluster_size_bars",sufx,"_k",k)))
 			
 			# add to general structures
 			colname <- paste0("k=",k)
@@ -1559,24 +1559,24 @@ analyze.net.corclust <- function(sg, sg0)
 			# add results to the graph as attributes
 			sg <- set_vertex_attr(graph=sg,name=MEAS_COR_CLUST,value=mbrs)
 			sg <- set_graph_attr(graph=sg,name=MEAS_COR_CLUST,value=perf)
-#			attr_name <- paste0(MEAS_COR_CLUST,"_k",k)
-#			sg <- set_vertex_attr(graph=sg,name=attr_name,value=mbrs)
-#			sg <- set_graph_attr(graph=sg,name=attr_name,value=perf)
+			#attr_name <- paste0(MEAS_COR_CLUST,"_k",k)
+			#sg <- set_vertex_attr(graph=sg,name=attr_name,value=mbrs)
+			#sg <- set_graph_attr(graph=sg,name=attr_name,value=perf)
 			
 			# plot graph using color for clusters
-			custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE,file=file.path(corclust.folder,paste0("clusters_graph",sufx,"_k",k)))
-#			custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE)
+#			custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE,file=file.path(corclust.folder,paste0("clusters_graph",sufx,"_k",k)))
+			#custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE)
 		
 			# plot block model
-			sg2 <- sg
-			V(sg2)$name <- V(sg2)$label
-			bm.file <- file.path(corclust.folder,paste0("block_model",sufx,"_k",k))
-			if(FORMAT=="pdf")
-				bm.file <- paste0(bm.file,".pdf")
-			else if(FORMAT=="png")
-				bm.file <- paste0(bm.file,".png")
-			ggblock(sg2, mbrs, show_blocks=TRUE, show_labels=TRUE)
-			ggsave(bm.file, width=35, height=25, units="cm")
+#			sg2 <- sg
+#			V(sg2)$name <- V(sg2)$label
+#			bm.file <- file.path(corclust.folder,paste0("block_model",sufx,"_k",k))
+#			if(FORMAT=="pdf")
+#				bm.file <- paste0(bm.file,".pdf")
+#			else if(FORMAT=="png")
+#				bm.file <- paste0(bm.file,".png")
+#			ggblock(sg2, mbrs, show_blocks=TRUE, show_labels=TRUE)
+#			ggsave(bm.file, width=35, height=25, units="cm")
 		}
 		
 		# restore best partition
