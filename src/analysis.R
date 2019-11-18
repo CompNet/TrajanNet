@@ -129,8 +129,8 @@ flatten.signed.graph <- function(g)
 		}
 	}
 	
-	sg1$name <- "withNAs"
-	sg2$name <- "withoutNAs"
+	sg1$name <- "na-as-positive"
+	sg2$name <- "na-ignored"
 	res <- list(withNAs=sg1, withoutNAs=sg2)
 	return(res)
 }
@@ -585,33 +585,33 @@ analyze.net.comstruct <- function(g, g0)
 		mbrs.op <- as.integer(membership(coms.op))
 		mbrs.op[-idx.op] <- NA
 		sizes.op <- table(mbrs.op,useNA="ifany")
-		custom.barplot(sizes.op, text=names(sizes.op), xlab=LONG_NAME[MEAS_COMMUNITY_ONLYPOS], ylab="Taille", file=file.path(communities.folder,paste0("onlypos_community_size_bars",sufx)))
+		custom.barplot(sizes.op, text=names(sizes.op), xlab=LONG_NAME[MEAS_COMMUNITY_ONLYPOS], ylab="Taille", file=file.path(communities.folder,paste0("na-as-positive_community_size_bars",sufx)))
 		#
 		coms.nn <- cluster_infomap(graph=simplify(nn))
 		mbrs.nn <- as.integer(membership(coms.nn))
 		mbrs.nn[-idx.nn] <- NA
 		sizes.nn <- table(mbrs.nn,useNA="ifany")
-		custom.barplot(sizes.nn, text=names(sizes.nn), xlab=LONG_NAME[MEAS_COMMUNITY_NONEG], ylab="Taille", file=file.path(communities.folder,paste0("noneg_community_size_bars",sufx)))
+		custom.barplot(sizes.nn, text=names(sizes.nn), xlab=LONG_NAME[MEAS_COMMUNITY_NONEG], ylab="Taille", file=file.path(communities.folder,paste0("na-ignored_community_size_bars",sufx)))
 		
 		# export CSV with community membership
 		df <- data.frame(V(op)$name,V(op)$label,mbrs.op)
 		colnames(df) <- c("Name","Label",MEAS_COMMUNITY_ONLYPOS) 
-		write.csv(df, file=file.path(communities.folder,paste0("onlypos_community_membership",sufx,".csv")), row.names=FALSE)
+		write.csv(df, file=file.path(communities.folder,paste0("na-as-positive_community_membership",sufx,".csv")), row.names=FALSE)
 		#
 		df <- data.frame(V(nn)$name,V(nn)$label,mbrs.nn)
 		colnames(df) <- c("Name","Label",MEAS_COMMUNITY_NONEG) 
-		write.csv(df, file=file.path(communities.folder,paste0("noneg_community_membership",sufx,".csv")), row.names=FALSE)
+		write.csv(df, file=file.path(communities.folder,paste0("na-ignored_community_membership",sufx,".csv")), row.names=FALSE)
 		
 		# add results to the graph (as attributes) and record
 		mod.op <- modularity(coms.op)
 		op <- set_vertex_attr(graph=op,name=MEAS_COMMUNITY_ONLYPOS,value=mbrs.op)
 		op <- set_graph_attr(graph=op,name=MEAS_MODULARITY_ONLYPOS,value=mod.op)
-		cat("    Modularity with only positive links: ",mod.op,"\n",sep="")
+		cat("    Modularity when including NAs as positive links: ",mod.op,"\n",sep="")
 		#
 		mod.nn <- modularity(coms.nn)
 		nn <- set_vertex_attr(graph=nn,name=MEAS_COMMUNITY_NONEG,value=mbrs.nn)
 		nn <- set_graph_attr(graph=nn,name=MEAS_MODULARITY_NONEG,value=mod.nn)
-		cat("    Modularity without negative links: ",mod.nn,"\n",sep="")
+		cat("    Modularity when ignoring NAs: ",mod.nn,"\n",sep="")
 		#
 		g <- set_vertex_attr(graph=g,name=MEAS_COMMUNITY_ONLYPOS,value=mbrs.op)
 		g <- set_graph_attr(graph=g,name=MEAS_MODULARITY_ONLYPOS,value=mod.op)
@@ -620,9 +620,9 @@ analyze.net.comstruct <- function(g, g0)
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# plot graph using color for communities
-		custom.gplot(op,col.att=MEAS_COMMUNITY_ONLYPOS,cat.att=TRUE,file=file.path(communities.folder,paste0("onlypos_communities_graph",sufx)))
+		custom.gplot(op,col.att=MEAS_COMMUNITY_ONLYPOS,cat.att=TRUE,file=file.path(communities.folder,paste0("na-as-positive_communities_graph",sufx)))
 #		custom.gplot(op,col.att=MEAS_COMMUNITY_ONLYPOS,cat.att=TRUE)
-		custom.gplot(nn,col.att=MEAS_COMMUNITY_NONEG,cat.att=TRUE,file=file.path(communities.folder,paste0("noneg_communities_graph",sufx)))
+		custom.gplot(nn,col.att=MEAS_COMMUNITY_NONEG,cat.att=TRUE,file=file.path(communities.folder,paste0("na-ignored_communities_graph",sufx)))
 #		custom.gplot(nn,col.att=MEAS_COMMUNITY_NONEG,cat.att=TRUE)
 
 		# export CSV with modularity
@@ -1533,7 +1533,8 @@ analyze.net.corclust <- function(sg, sg0)
 		perfs <- c()
 		
 		# try each possible number of clusters
-		for(k in 1:gorder(sg))
+		kmax <- gorder(sg) # 4
+		for(k in 1:kmax)
 		{	cat("    Performing correlation clustering for k=",k,"\n",sep="")
 			
 			# cluster size distribution
@@ -1610,7 +1611,7 @@ analyze.net.corclust <- function(sg, sg0)
 		write.csv(df, file=file.path(corclust.folder,paste0("cluster_membership",sufx,".csv")), row.names=FALSE)
 		
 		# export CSV with performance as imbalance
-		df <- data.frame(1:gorder(sg),perfs)		
+		df <- data.frame(1:kmax,perfs)		
 		colnames(df) <- c("k",MEAS_COR_CLUST) 
 		write.csv(df, file=file.path(corclust.folder,paste0("corclust_imbalance",sufx,".csv")), row.names=FALSE)
 		

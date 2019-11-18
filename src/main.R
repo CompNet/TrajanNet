@@ -52,20 +52,3 @@ setup.graph.layout(og)
 #############################################################################################
 # analyze the graph
 analyze.network(og)
-
-
-
-
-#############################################################################################
-# TODO
-# comdet/corclust: rename folders as NAaspos and NAignored
-# - Signed nets: consider the evolution of the relationships
-# - Perform sequence analysis
-#   - Cluster analysis based on the sequences, then assortativity of the sequence classes? 
-# - Compute association measures between attributes
-# - Multiplex plot of the different types of links
-#   >> Didn't find an appropriate tool
-#############################################################################################
-# Notes
-# - All ;-separated values are in chronological order, but almost no dates are available.
-#############################################################################################
