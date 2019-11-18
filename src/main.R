@@ -58,10 +58,13 @@ analyze.network(og)
 
 #############################################################################################
 # TODO
-# - Compute association measures between attributes
+# comdet/corclust: rename folders as NAaspos and NAignored
 # - Signed nets: consider the evolution of the relationships
-# - Cluster analysis based on the sequences, then assortativity of the sequence classes? 
-# - Multiplex plot of the different types of links? (didn't find an appropriate tool)
+# - Perform sequence analysis
+#   - Cluster analysis based on the sequences, then assortativity of the sequence classes? 
+# - Compute association measures between attributes
+# - Multiplex plot of the different types of links
+#   >> Didn't find an appropriate tool
 #############################################################################################
 # Notes
 # - All ;-separated values are in chronological order, but almost no dates are available.
