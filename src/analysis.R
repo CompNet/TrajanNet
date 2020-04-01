@@ -455,8 +455,18 @@ analyze.net.closeness <- function(g, g0)
 		g <- lst[[i]]
 		sufx <- sufxx[i]
 		
+		# retrieve giant component, do not compute measure for the rest of the graph
+		components <- clusters(graph=g)
+		giant.comp.id <- which.max(components$csize)
+		giant.comp.nodes <- which(components$membership==giant.comp.id)
+		g.comp <- induced_subgraph(graph=g, giant.comp.nodes)
+		
 		# closeness distribution
-		vals <- suppressWarnings(closeness(graph=g, normalized=TRUE))	# avoid warnings due to graph being disconnected
+			# old version (with all nodes)
+			#vals <- suppressWarnings(closeness(graph=g, normalized=TRUE))	# avoid warnings due to certain graphs being disconnected
+			# new version: only giant component
+			vals <- rep(NA, vcount(g))
+			vals[giant.comp.nodes] <- closeness(graph=g.comp, normalized=TRUE)
 		custom.hist(vals, name=LONG_NAME[MEAS_CLOSENESS], file=file.path(closeness.folder,paste0("closeness_histo",sufx)))
 		
 		# export CSV with closeness
@@ -466,8 +476,8 @@ analyze.net.closeness <- function(g, g0)
 		
 		# add results to the graph (as attributes) and record
 		V(g)$Closeness <- vals
-		g$ClosenessAvg <- mean(vals)
-		g$ClosenessStdv <- sd(vals)
+		g$ClosenessAvg <- mean(vals,na.rm=TRUE)
+		g$ClosenessStdv <- sd(vals,na.rm=TRUE)
 		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
 		
 		# plot graph using color for closeness

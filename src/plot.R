@@ -5,7 +5,7 @@
 #
 # setwd("C:/users/Vincent/Eclipse/workspaces/Networks/TrajanNet")
 # setwd("~/eclipse/workspaces/Networks/TrajanNet")
-# source("src/analysis.R")
+# source("src/plot.R")
 #############################################################################################
 FORMAT <- "png"	# pdf png
 LAYOUT <- NA	# graph layout
@@ -367,38 +367,42 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 # file: (optional) file name, to record the histogram plot.
 #############################################################
 custom.hist <- function(vals, name, file)
-{	if(hasArg(file))
-	{	if(FORMAT=="pdf")
-			pdf(paste0(file,".pdf"), width=25, height=25)
-		else if(FORMAT=="png")
-			png(paste0(file,".png"), width=1024, height=1024)
+{	vals <- vals[!is.na(vals)]
+	if(length(vals)>0)
+	{	if(hasArg(file))
+		{	if(FORMAT=="pdf")
+				pdf(paste0(file,".pdf"), width=25, height=25)
+			else if(FORMAT=="png")
+				png(paste0(file,".png"), width=1024, height=1024)
+		}
+#		par(mar=c(5,3,1,2)+0.1)	# remove the title space Bottom Left Top Right
+		par(mar=c(5.1, 4.1, 4.1, 2.1))
+		hist(
+				vals,			# data
+				col="#ffd6d6",	# bar color
+				main=NA,		# no main title
+				prob=TRUE,		# frenquency density
+				breaks=20,		# number of bars
+				xlab=name,		# x-axis label
+				ylab="Densite"	# y-axis label
+		)
+		lines(
+				density(vals), 	# density estimate
+				lwd=2, 			# line thickness
+				col="RED"		# line color
+		)
+		stripchart(
+				vals, 			# data
+				at=0.02, 		# central position of points (y)
+				pch=21, 		# point shape
+				col="BLACK", 	# point color
+				method="jitter",# noise to avoid overlaps
+				jitter=0.02, 	# noise magnitude
+				add=TRUE		# add to current plot
+		)
+		if(hasArg(file))
+			dev.off()
 	}
-#	par(mar=c(5,3,1,2)+0.1)	# remove the title space Bottom Left Top Right
-	par(mar=c(5.1, 4.1, 4.1, 2.1))
-	hist(
-			vals,			# data
-			col="#ffd6d6",	# bar color
-			main=NA,		# no main title
-			prob=TRUE,		# frenquency density
-			breaks=20,		# number of bars
-			xlab=name		# x-axis label
-	)
-	lines(
-			density(vals), 	# density estimate
-			lwd=2, 			# line thickness
-			col="RED"		# line color
-	)
-	stripchart(
-			vals, 			# data
-			at=0.02, 		# central position of points (y)
-			pch=21, 		# point shape
-			col="BLACK", 	# point color
-			method="jitter",# noise to avoid overlaps
-			jitter=0.02, 	# noise magnitude
-			add=TRUE		# add to current plot
-	)
-	if(hasArg(file))
-		dev.off()
 }
 
 
