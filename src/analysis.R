@@ -168,6 +168,8 @@ disconnect.nodes <- function(g, nodes)
 #
 # g: original graph to process (ignored here).
 # g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.eccentricity <- function(g, g0)
 {	###########################
@@ -264,6 +266,8 @@ analyze.net.eccentricity <- function(g, g0)
 #
 # g: original graph to process.
 # g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.degree <- function(g, g0)
 {	cat("  Computing degree\n")
@@ -323,6 +327,8 @@ analyze.net.degree <- function(g, g0)
 #
 # g: original graph to process.
 # g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.eigencentrality <- function(g, g0)
 {	cat("  Computing Eigencentrality\n")
@@ -382,6 +388,8 @@ analyze.net.eigencentrality <- function(g, g0)
 #
 # g: original graph to process.
 # g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.betweenness <- function(g, g0)
 {	cat("  Computing betweenness\n")
@@ -441,6 +449,8 @@ analyze.net.betweenness <- function(g, g0)
 #
 # g: original graph to process.
 # g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.closeness <- function(g, g0)
 {	cat("  Computing closeness\n")
@@ -510,6 +520,8 @@ analyze.net.closeness <- function(g, g0)
 #
 # g: original graph to process.
 # g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.transitivity <- function(g, g0)
 {	cat("  Computing transitivity\n")
@@ -570,6 +582,8 @@ analyze.net.transitivity <- function(g, g0)
 #
 # g: original graph to process.
 # g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.comstruct <- function(g, g0)
 {	cat("  Detecting community structure\n")
@@ -662,6 +676,8 @@ analyze.net.comstruct <- function(g, g0)
 #
 # g: original graph to process (ignored here).
 # g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.assortativity <- function(g, g0)
 {	cat("  Computing the assortativity\n")
@@ -836,6 +852,8 @@ analyze.net.assortativity <- function(g, g0)
 #
 # g: original graph to process (ignored here).
 # g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.attributes <- function(g, g0)
 {	cat("  Computing nodal attribute stats\n")
@@ -1075,6 +1093,8 @@ analyze.net.attributes <- function(g, g0)
 #
 # g: original graph to process.
 # g0: same graph without the main node (ignored here).
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.articulation <- function(g, g0)
 {	# init 
@@ -1148,6 +1168,8 @@ analyze.net.articulation <- function(g, g0)
 #
 # g: original graph to process.
 # g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.distance <- function(g, g0)
 {	cat("  Computing average distances\n")
@@ -1220,6 +1242,8 @@ analyze.net.distance <- function(g, g0)
 #
 # g: original graph to process.
 # g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.connectivity <- function(g, g0)
 {	cat("  Computing vertex connectivity\n")
@@ -1305,6 +1329,8 @@ analyze.net.connectivity <- function(g, g0)
 #
 # sg: signed graph to process.
 # sg0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.signed.degree <- function(sg, sg0)
 {	cat("  Computing signed degree\n")
@@ -1376,6 +1402,8 @@ analyze.net.signed.degree <- function(sg, sg0)
 #
 # sg: signed graph to process.
 # sg0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.signed.centrality <- function(sg, sg0)
 {	cat("  Computing signed centrality\n")
@@ -1436,6 +1464,8 @@ analyze.net.signed.centrality <- function(sg, sg0)
 #
 # sg: signed graph to process.
 # sg0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.signed.triangles <- function(sg, sg0)
 {	cat("  Computing signed triangles\n")
@@ -1525,6 +1555,8 @@ analyze.net.signed.triangles <- function(sg, sg0)
 #
 # sg: original signed graph to process.
 # sg0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
 #############################################################
 analyze.net.corclust <- function(sg, sg0)
 {	cat("  Performing correlation clustering\n")
@@ -1538,17 +1570,19 @@ analyze.net.corclust <- function(sg, sg0)
 	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
 		sg <- lst[[i]]
 		sufx <- sufxx[i]
+		cnx.ids <- which(degree(sg)>0)
+		cnx.sg <- induced_subgraph(graph=sg, vids=cnx.ids)
 		
 		memberships <- NA
 		perfs <- c()
 		
 		# try each possible number of clusters
-		kmax <- gorder(sg) # 4
+		kmax <- 4#gorder(cnx.sg) # 4
 		for(k in 1:kmax)
 		{	cat("    Performing correlation clustering for k=",k,"\n",sep="")
 			
 			# cluster size distribution
-			tmp <- signed_blockmodel(sg, k=k, annealing=TRUE)
+			tmp <- signed_blockmodel(cnx.sg, k=k, annealing=TRUE)
 			mbrs <- tmp$membership
 			perf <- tmp$criterion
 			cat("    Imbalance: ",perf,"\n",sep="")
@@ -1568,8 +1602,8 @@ analyze.net.corclust <- function(sg, sg0)
 			perfs[colname] <- perf
 			
 			# add results to the graph as attributes
-			sg <- set_vertex_attr(graph=sg,name=MEAS_COR_CLUST,value=mbrs)
-			sg <- set_graph_attr(graph=sg,name=MEAS_COR_CLUST,value=perf)
+#			sg <- set_vertex_attr(graph=sg,name=MEAS_COR_CLUST,value=mbrs)
+#			sg <- set_graph_attr(graph=sg,name=MEAS_COR_CLUST,value=perf)
 			#attr_name <- paste0(MEAS_COR_CLUST,"_k",k)
 			#sg <- set_vertex_attr(graph=sg,name=attr_name,value=mbrs)
 			#sg <- set_graph_attr(graph=sg,name=attr_name,value=perf)
@@ -1592,7 +1626,9 @@ analyze.net.corclust <- function(sg, sg0)
 		
 		# restore best partition
 		idx <- which.min(perfs)
-		mbrs <- memberships[,idx]
+		cnx.mbrs <- memberships[,idx]
+		mbrs <- rep(NA,gorder(sg))
+		mbrs[cnx.ids] <- cnx.mbrs
 		perf <- perfs[idx]
 		sg <- set_vertex_attr(graph=sg,name=MEAS_COR_CLUST,value=mbrs)
 		sg <- set_graph_attr(graph=sg,name=MEAS_COR_CLUST,value=perf)
@@ -1602,31 +1638,42 @@ analyze.net.corclust <- function(sg, sg0)
 		custom.barplot(sizes, text=names(sizes), xlab=LONG_NAME[MEAS_COR_CLUST], ylab="Taille", file=file.path(corclust.folder,paste0("cluster_size_bars",sufx)))
 		
 		# plot graph using color for best partition
-		custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE,file=file.path(corclust.folder,paste0("clusters_graph",sufx)))
-		
+		plot.file <- file.path(corclust.folder,paste0("clusters_graph",sufx))
+		cat("    Plot graph in ",plot.file,"\n",sep="")
+		custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE,file=plot.file)
+		#custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE)
+
 		# plot best block model
-		sg2 <- sg
-		V(sg2)$name <- V(sg2)$label
+		cnx.sg2 <- cnx.sg
+		V(cnx.sg2)$name <- V(cnx.sg2)$label
 		bm.file <- file.path(corclust.folder,paste0("block_model",sufx))
 		if(FORMAT=="pdf")
 			bm.file <- paste0(bm.file,".pdf")
 		else if(FORMAT=="png")
 			bm.file <- paste0(bm.file,".png")
-		ggblock(sg2, mbrs, show_blocks=TRUE, show_labels=TRUE)
+		cat("    Record block model in ",bm.file,"\n",sep="")
+		ggblock(cnx.sg2, cnx.mbrs, show_blocks=TRUE, show_labels=TRUE)
 		ggsave(bm.file, width=35, height=25, units="cm")
 		
 		# export CSV with cluster membership
-		df <- data.frame(V(sg)$name,V(sg)$label,memberships)
+		clust.file <- file.path(corclust.folder,paste0("cluster_membership",sufx,".csv"))
+		cat("    Record cluster membership in ",clust.file,"\n",sep="")
+		memberships2 <- matrix(NA,nrow=gorder(sg),ncol=ncol(memberships))
+		memberships2[cnx.ids,] <- memberships
+		df <- data.frame(V(sg)$name,V(sg)$label,memberships2)
 		colnames(df) <- c("Name","Label",MEAS_COR_CLUST) 
-		write.csv(df, file=file.path(corclust.folder,paste0("cluster_membership",sufx,".csv")), row.names=FALSE)
+		write.csv(df, file=clust.file, row.names=FALSE)
 		
 		# export CSV with performance as imbalance
+		perf.file <- file.path(corclust.folder,paste0("corclust_imbalance",sufx,".csv"))
+		cat("    Record performance in ",perf.file,"\n",sep="")
 		df <- data.frame(1:kmax,perfs)		
 		colnames(df) <- c("k",MEAS_COR_CLUST) 
-		write.csv(df, file=file.path(corclust.folder,paste0("corclust_imbalance",sufx,".csv")), row.names=FALSE)
+		write.csv(df, file=perf.file, row.names=FALSE)
 		
 		# add imbalance to stat CSV
 		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
+		cat("    Update stat file ",stat.file,"\n",sep="")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_COR_CLUST, ] <- list(Value=min(perfs), Mean=NA, Stdv=NA)
@@ -1640,10 +1687,137 @@ analyze.net.corclust <- function(sg, sg0)
 		# record graph with all its attributes
 #		sg <- delete_vertex_attr(graph=sg,name=MEAS_COR_CLUST)
 #		sg <- delete_graph_attr(graph=sg,name=MEAS_COR_CLUST)
-		write.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")), format="graphml")
+		graph.file <- file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml"))
+		cat("    Update graph file ",graph.file,"\n",sep="")
+		write.graph(graph=sg, file=graph.file, format="graphml")
 		
 		lst[[i]] <- sg
 	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
+# Compute the closure of the specified signed graphs, based on the
+# concept of structural balance.
+#
+# sg: original signed graph to process.
+# sg0: same graph except the main node is isolated.
+# poly: mode used to compute the closure.
+# 
+# returns: a list containing both updated graphs.
+#############################################################
+compute.net.signed.closure <- function(sg, sg0, poly)
+{	cat("  Computing graph closures based on structural balance (poly=",poly,")\n")
+	# possibly create folder
+	closure.folder <- file.path(SIGNED_FOLDER,paste0(sg$name,"-closure"))
+	if(poly)
+		closure.folder <- paste0(closure.folder, "-poly")
+	dir.create(path=closure.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(sg, sg0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
+		g <- lst[[i]]
+		g$name <- paste0(g$name,"-closure")
+		if(poly)
+			g$name <- paste0(g$name,"-poly")
+		sufx <- sufxx[i]
+		
+		# complete the graph
+		last.changed <- 0
+		tie <- TRUE
+		it <- 1
+		while(last.changed>0 || tie)
+		{	cat("      Iteration ",it,"\n",sep="")
+			it <- it + 1
+			last.changed <- 0
+			tie <- FALSE
+			
+			# process each pair of nodes
+			node.pairs <- t(combn(x=gorder(g), m=2))
+			for(u in 1:nrow(node.pairs))
+			{	v1 <- node.pairs[u,1]
+				v2 <- node.pairs[u,2]
+				##cat("      Processing couple (",v1,",",v2,")\n",sep="")
+				
+				# only continue if the nodes are disconnected
+				if(!are.connected(g,v1,v2))
+				{	#cat("      Processing couple (",v1,",",v2,")\n",sep="")
+					
+					# get the common neighbors
+					nei1 <- as.integer(neighbors(graph=g, v=v1))
+					nei2 <- as.integer(neighbors(graph=g, v=v2))
+					com.nei <- intersect(nei1,nei2)
+					# provided they have any
+					if(length(com.nei)>0)
+					{	# compute the majority sign for the missing link
+						pos.votes <- 0
+						neg.votes <- 0
+						for(v3 in com.nei)
+						{	#cat("          Neighbor ",v3,": (",v1,",",v3,")=",E(g)[v1 %--% v3]$sign," (",v2,",",v3,")=",E(g)[v2 %--% v3]$sign,"\n",sep="")
+							# both positive
+							if(E(g)[v1 %--% v3]$sign>0 && E(g)[v2 %--% v3]$sign>0)
+							{	pos.votes <- pos.votes + 1
+							}
+							# both negative
+							else if(E(g)[v1 %--% v3]$sign<0 && E(g)[v2 %--% v3]$sign<0)
+							{	pos.votes <- pos.votes + 1
+								if(poly)
+									neg.votes <- neg.votes + 1
+							}
+							# one each
+							else
+							{	neg.votes <- neg.votes + 1
+							}
+						}
+						#cat("          Votes pos=",pos.votes," neg=",neg.votes,"\n",sep="")
+						# add to the graph
+						if(pos.votes>neg.votes)
+						{	#cat("          Add positive link\n",sep="")
+							g <- add_edges(graph=g, edges=c(v1,v2), attr=list(sign=1))
+							last.changed <- last.changed + 1
+							#custom.gplot(g,e.hl=as.integer(E(g)[v1 %--% v2]))
+							#readline()
+						}
+						else if(pos.votes<neg.votes)
+						{	#cat("          Add negative link\n",sep="")
+							g <- add_edges(graph=g, edges=c(v1,v2), attr=list(sign=-1))
+							last.changed <- last.changed + 1
+							#custom.gplot(g,e.hl=as.integer(E(g)[v1 %--% v2]))
+							#readline()
+						}
+						else # tie
+						{	#cat("          Tie (for now) \n",sep="")
+							tie <- last.changed>0
+						}
+					}
+					else
+					{	#cat("        No common neighbor\n",sep="")
+					}
+				}
+				else
+				{	#cat("        Already connected\n",sep="")
+				}
+			}
+			cat("      Link created this iteration: ",last.changed,"\n",sep="")
+		}
+		
+		# plot and record the graph
+		custom.gplot(g, file=file.path(closure.folder,paste0("graph",sufx)))
+		write.graph(graph=g, file=file.path(closure.folder,paste0("graph",sufx,".graphml")), format="graphml")
+		
+		# TODO would be cool to plot the graph using circos
+		
+		lst[[i]] <- g 
+	}
+	
+	# solve correlation clustering
+	lst <- analyze.net.corclust(sg=lst[[1]], sg0=lst[[2]])
 	
 	return(lst)
 }
@@ -1798,5 +1972,9 @@ analyze.network <- function(og)
 		tmp <- analyze.net.corclust(sg, sg0)
 		sg <- tmp[[1]]
 		sg0 <- tmp[[2]]
+		
+		# compute the closure of the network
+		tmp <- compute.net.signed.closure(sg, sg0, poly=FALSE)
+		tmp <- compute.net.signed.closure(sg, sg0, poly=TRUE)
 	}
 }
