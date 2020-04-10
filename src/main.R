@@ -42,6 +42,7 @@ og <- read.network(graph.file)
 
 
 
+
 #############################################################################################
 # retrieve or compute graph layout
 setup.graph.layout(og)

@@ -1577,7 +1577,7 @@ analyze.net.corclust <- function(sg, sg0)
 		perfs <- c()
 		
 		# try each possible number of clusters
-		kmax <- 4#gorder(cnx.sg) # 4
+		kmax <- gorder(cnx.sg) 		# 4
 		for(k in 1:kmax)
 		{	cat("    Performing correlation clustering for k=",k,"\n",sep="")
 			
@@ -1711,7 +1711,7 @@ analyze.net.corclust <- function(sg, sg0)
 # returns: a list containing both updated graphs.
 #############################################################
 compute.net.signed.closure <- function(sg, sg0, poly)
-{	cat("  Computing graph closures based on structural balance (poly=",poly,")\n")
+{	cat("  Computing graph closures based on structural balance (poly=",poly,")\n",sep="")
 	# possibly create folder
 	closure.folder <- file.path(SIGNED_FOLDER,paste0(sg$name,"-closure"))
 	if(poly)
