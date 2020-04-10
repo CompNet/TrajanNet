@@ -1652,7 +1652,7 @@ analyze.net.corclust <- function(sg, sg0)
 		else if(FORMAT=="png")
 			bm.file <- paste0(bm.file,".png")
 		cat("    Record block model in ",bm.file,"\n",sep="")
-		ggblock(cnx.sg2, cnx.mbrs, show_blocks=TRUE, show_labels=TRUE)
+		ggblock(cnx.sg2, cnx.mbrs, show_blocks=TRUE, show_labels=TRUE, cols=c("#E41A1C","#1A8F39"))
 		ggsave(bm.file, width=35, height=25, units="cm")
 		
 		# export CSV with cluster membership
@@ -1792,8 +1792,17 @@ compute.net.signed.closure <- function(sg, sg0, poly)
 							#readline()
 						}
 						else # tie
-						{	#cat("          Tie (for now) \n",sep="")
-							tie <- last.changed>0
+						{	if(!poly || last.changed>0)
+							{	#cat("          Tie (for now) \n",sep="")
+								tie <- last.changed>0
+							}
+							else
+							{	#cat("          Tie, but still adding a positive link (to break it)\n",sep="")
+								g <- add_edges(graph=g, edges=c(v1,v2), attr=list(sign=1))
+								last.changed <- last.changed + 1
+								#custom.gplot(g,e.hl=as.integer(E(g)[v1 %--% v2]))
+								#readline()
+							}
 						}
 					}
 					else
@@ -1803,6 +1812,12 @@ compute.net.signed.closure <- function(sg, sg0, poly)
 				else
 				{	#cat("        Already connected\n",sep="")
 				}
+#if(v1 %in% c(21,22,27,35,46) && v2 %in% c(21,22,27,35,46))
+#{	g2 <- g
+#	V(g2)$label <- 1:gorder(g2)
+#	custom.gplot(g2)
+#	readline()
+#}
 			}
 			cat("      Link created this iteration: ",last.changed,"\n",sep="")
 		}
@@ -1861,13 +1876,13 @@ analyze.network <- function(og)
 		
 		# plot full graph
 		custom.gplot(g, file=file.path(tmp.folder,"graph"))
-#		custom.gplot(g)
+		#custom.gplot(g)
 		
 		# delete trajan's links for better visibility
 		# TODO maybe better to just draw them using a light color?
 		g0 <- disconnect.nodes(g, nodes=1)
 		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
-#		custom.gplot(g0)
+		#custom.gplot(g0)
 		write.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
 		
 		# compute attribute stats 
@@ -1943,14 +1958,14 @@ analyze.network <- function(og)
 		
 		# plot the signed graph
 		custom.gplot(sg, file=file.path(tmp.folder,"graph"))
-#		custom.gplot(sg)
+		#custom.gplot(sg)
 		# record graph as a graphml file
 		write.graph(graph=sg, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
 		
 		# get the version without Trajan
 		sg0 <- disconnect.nodes(sg, nodes=1)
 		custom.gplot(sg0, file=file.path(tmp.folder,"graph0"))
-#		custom.gplot(sg0)
+		#custom.gplot(sg0)
 		write.graph(graph=sg0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
 		
 		# compute signed degree
