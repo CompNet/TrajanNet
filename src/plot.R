@@ -17,10 +17,10 @@ LAYOUT <- NA	# graph layout
 # see http://colorbrewer2.org/#type=qualitative&scheme=Set1&n=9
 CAT_COLORS <- c( 
 	"#E41A1C",	# red
-	"#377EB8",	# blue
 	"#4DAF4A",	# green
-	"#984EA3",	# purple
+	"#377EB8",	# blue
 	"#FF7F00",	# orange
+	"#984EA3",	# purple
 	"#FFFF33",	# yellow
 	"#A65628",	# brown
 	"#F781BF",	# pink
@@ -473,3 +473,66 @@ custom.barplot <- function(vals, text, xlab, ylab, file, ...)
 	if(hasArg(file))
 		dev.off()
 }
+
+
+
+
+#############################################################
+# Graph plot using a circular layout.
+#
+# 
+#############################################################
+
+library(circlize)
+
+# get adjacency matrix
+adj <- as.matrix(get.adjacency(sg0,attr="sign"))
+
+# filter out isolates 
+deg <- apply(adj,1,function(r) sum(abs(r)))
+connected <- which(deg>0)
+adj <- adj[connected,connected]
+
+# setup names
+disp.names <- V(sg0)$name[connected]		# label name
+colnames(adj) <- disp.names
+rownames(adj) <- disp.names
+
+# node colors
+membership <- factor(vertex_attr(sg0,MEAS_COR_CLUST,index=connected))
+vcols <- CAT_COLORS[(as.integer(membership)-1) %% length(CAT_COLORS) + 1 + 2]	# "+2" to avoid red and green as cluster colors
+
+# order nodes
+ordr <- order(membership,1:length(connected))
+#ordr <- 1:gorder(sg)
+
+# order links
+#el <- as_edgelist(sg,names=FALSE)
+#lranks <- order(E(sg)$sign, apply(el,1,min), apply(el,1,max))
+#disp.names[ordr]
+
+# compute link colors
+ecols <- adj
+ecols[which(ecols<0)] <- "#E41A1C"
+ecols[which(ecols>0)] <- "#1A8F39"
+ecols[which(ecols==0)] <- NA
+
+chordDiagram(abs(adj[ordr,ordr]),													# adjacency matrix
+		transparency=0.5, 															# link transparency
+		col=ecols[ordr,ordr],		 												# link color
+#		link.sort=TRUE,																# order (position) of the link, but no control...
+#		link.rank=lranks,															# order of the links, but in z
+		grid.col=vcols[ordr],														# node colors
+		annotationTrack=c("grid"),													# just display the node colors (no names or ticks)
+		preAllocateTracks=list(track.height=max(strwidth(disp.names)))				# allocate room for names (first track)
+)
+circos.track(track.index=1,															# add the names (first track) 
+		panel.fun=function(x, y)
+		{	circos.text(CELL_META$xcenter, CELL_META$ylim[1], 
+					CELL_META$sector.index, facing="clockwise", 
+					niceFacing=TRUE, adj=c(0,0.5))
+		}, 
+		bg.border = NA
+)
+
+# TODO : order links for each node (by sign)

@@ -1,7 +1,7 @@
 #############################################################################################
 # Allows to control the width of circle when plotting graphs with igraph.
 # 
-# Code source by Gábor Csárdi, 2009-09-11, retrieved from
+# Code source by Gabor Csardi, 2009-09-11, retrieved from
 # https://lists.gnu.org/archive/html/igraph-help/2009-09/msg00019.html
 #############################################################################################
 

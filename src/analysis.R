@@ -1577,7 +1577,7 @@ analyze.net.corclust <- function(sg, sg0)
 		perfs <- c()
 		
 		# try each possible number of clusters
-		kmax <- gorder(cnx.sg) 		# 4
+		kmax <- 10		#gorder(cnx.sg)	# faster to fix it
 		for(k in 1:kmax)
 		{	cat("    Performing correlation clustering for k=",k,"\n",sep="")
 			
@@ -1592,13 +1592,10 @@ analyze.net.corclust <- function(sg, sg0)
 			# add to general structures
 			colname <- paste0("k=",k)
 			if(all(is.na(memberships)))
-			{	memberships <- matrix(mbrs,ncol=1)
-				colnames(memberships) <- colname
-			}
+				memberships <- matrix(mbrs,ncol=1)
 			else
-			{	memberships <- cbind(memberships, mbrs)
-				colnames(memberships)[ncol(memberships)] <- colname
-			}
+				memberships <- cbind(memberships, mbrs)
+			colnames(memberships)[ncol(memberships)] <- colname
 			perfs[colname] <- perf
 			
 			# add results to the graph as attributes
