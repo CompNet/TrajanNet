@@ -17,10 +17,10 @@ LAYOUT <- NA	# graph layout
 # see http://colorbrewer2.org/#type=qualitative&scheme=Set1&n=9
 CAT_COLORS <- c( 
 	"#E41A1C",	# red
-	"#4DAF4A",	# green
 	"#377EB8",	# blue
-	"#FF7F00",	# orange
+	"#4DAF4A",	# green
 	"#984EA3",	# purple
+	"#FF7F00",	# orange
 	"#FFFF33",	# yellow
 	"#A65628",	# brown
 	"#F781BF",	# pink
@@ -199,7 +199,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 		if(color.isolates)
 			connected <- rep(TRUE, gorder(g))
 		else
-			connected <- degree(g)>0
+			connected <- igraph::degree(g)>0
 		
 		if(!all(!connected))
 		{	# get the attribute values
@@ -480,59 +480,115 @@ custom.barplot <- function(vals, text, xlab, ylab, file, ...)
 #############################################################
 # Graph plot using a circular layout.
 #
-# 
+# g: the signed graph to plot.
+# sign.order: whether or not to place the links depending on
+#             their sign: first negative, then positive.
+# alt: if TRUE, nodes are plotted as points and links as lines,
+#      instead of bands of various lenghts and rubans, respectively.
+# file: name of the file to plot in (if none, plot on screen).
 #############################################################
-
-library(circlize)
-
-# get adjacency matrix
-adj <- as.matrix(get.adjacency(sg0,attr="sign"))
-
-# filter out isolates 
-deg <- apply(adj,1,function(r) sum(abs(r)))
-connected <- which(deg>0)
-adj <- adj[connected,connected]
-
-# setup names
-disp.names <- V(sg0)$name[connected]		# label name
-colnames(adj) <- disp.names
-rownames(adj) <- disp.names
-
-# node colors
-membership <- factor(vertex_attr(sg0,MEAS_COR_CLUST,index=connected))
-vcols <- CAT_COLORS[(as.integer(membership)-1) %% length(CAT_COLORS) + 1 + 2]	# "+2" to avoid red and green as cluster colors
-
-# order nodes
-ordr <- order(membership,1:length(connected))
-#ordr <- 1:gorder(sg)
-
-# order links
-#el <- as_edgelist(sg,names=FALSE)
-#lranks <- order(E(sg)$sign, apply(el,1,min), apply(el,1,max))
-#disp.names[ordr]
-
-# compute link colors
-ecols <- adj
-ecols[which(ecols<0)] <- "#E41A1C"
-ecols[which(ecols>0)] <- "#1A8F39"
-ecols[which(ecols==0)] <- NA
-
-chordDiagram(abs(adj[ordr,ordr]),													# adjacency matrix
-		transparency=0.5, 															# link transparency
-		col=ecols[ordr,ordr],		 												# link color
-#		link.sort=TRUE,																# order (position) of the link, but no control...
-#		link.rank=lranks,															# order of the links, but in z
-		grid.col=vcols[ordr],														# node colors
-		annotationTrack=c("grid"),													# just display the node colors (no names or ticks)
-		preAllocateTracks=list(track.height=max(strwidth(disp.names)))				# allocate room for names (first track)
-)
-circos.track(track.index=1,															# add the names (first track) 
+plot.circos <- function(g, sign.order=FALSE, alt=FALSE, file)
+{	# remove isolates
+	connected <- which(igraph::degree(g)>0)
+	isg <- induced_subgraph(g, connected)
+	
+	# get adjacency matrix
+	if(alt)
+	{	# if alternative mode, force node degree to be all 2s
+		# in order to have the same width for each node in the plot
+		adj <- matrix(0,nrow=gorder(isg),ncol=gorder(isg))
+		a <- 1:gorder(isg)
+		b <- c(2:gorder(isg),1)
+		for(i in 1:length(a))
+		{	adj[a[i],b[i]] <- 1
+			adj[b[i],a[i]] <- 1
+		}
+	}
+	else
+		# just the regular adjacency matrix
+		adj <- as.matrix(get.adjacency(isg,attr="sign"))
+	
+	# order nodes
+	membership <- factor(vertex_attr(isg,MEAS_COR_CLUST))
+	norder <- order(membership)
+	
+	# node names
+	disp.names <- V(isg)$name		# label name
+	colnames(adj) <- disp.names
+	rownames(adj) <- disp.names
+	
+	# node colors
+	vcols <- c()
+	vcols[disp.names] <- CAT_COLORS[(as.integer(membership)-1) %% length(CAT_COLORS) + 1]
+	
+	# compute link colors
+	ecols <- adj
+	ecols[which(ecols<0)] <- alpha("#E41A1C",0.5)
+	ecols[which(ecols>0)] <- alpha("#1A8F39",0.5)
+	ecols[which(ecols==0)] <- NA
+	
+	if(hasArg(file))
+	{	if(FORMAT=="pdf")
+			pdf(paste0(file,".pdf"), width=25, height=25)
+		else if(FORMAT=="png")
+			png(paste0(file,".png"), width=1024, height=1024)
+	}
+	
+	# build the base graph
+	chordDiagram(abs(adj),													# adjacency matrix
+		symmetric=TRUE,
+		#transparency=0.5, 													# link transparency (doesn't work)
+		col=ecols,		 													# link color
+		#link.sort=TRUE,													# order (position) of the link, but no control...
+		#link.rank=lranks,													# order of the links, but in z
+		link.visible=!sign.order && !alt,									# hide the link (draw them later)
+		order=disp.names[norder],											# order of the node
+		grid.col=vcols,														# node colors
+		annotationTrack=c("grid"),											# just display the node colors (no names or ticks)
+		preAllocateTracks=list(track.height=max(strwidth(disp.names)))		# allocate room for names (first track)
+	)
+	
+	# add the node names
+	circos.track(track.index=1,												# add the names (first track) 
 		panel.fun=function(x, y)
 		{	circos.text(CELL_META$xcenter, CELL_META$ylim[1], 
 					CELL_META$sector.index, facing="clockwise", 
 					niceFacing=TRUE, adj=c(0,0.5))
 		}, 
 		bg.border = NA
-)
-
-# TODO : order links for each node (by sign)
+	)
+	
+	if(sign.order || alt)
+	{	# order links
+		el <- as_edgelist(isg, names=FALSE)
+		lranks <- order(E(isg)$sign, apply(el,1,min), apply(el,1,max))
+		el <- el[lranks,]
+		
+		# add each edge one by one (only way to control order)
+		count <- rep(0,length(connected))
+		for(e in 1:nrow(el))
+		{	v1 <- el[e,1]
+			v2 <- el[e,2]
+#			cat(disp.names[v1]," .. ",adj[v1,v2]," .. ",disp.names[v2],"\n")
+			if(E(isg)[v1 %--% v2]$sign>0)
+				ecol <- alpha("#1A8F39",0.25)
+			else
+				ecol <- alpha("#E41A1C",0.50)
+			if(!alt)
+			{	circos.link(sector.index1=disp.names[v1], point1=c(count[v1],count[v1]+1), 
+					sector.index2=disp.names[v2], point2=c(count[v2],count[v2]+1),
+					col=ecol, border=ecol)
+				count[v1] <- count[v1] + 1
+				count[v2] <- count[v2] + 1
+			}
+			else
+				circos.link(sector.index1=disp.names[v1], point1=c(0.9,1.1), 
+					sector.index2=disp.names[v2], point2=c(0.9,1.1),
+					col=ecol, border=ecol)
+#			readline()
+		}
+	}
+	
+	if(hasArg(file))
+		dev.off()
+}

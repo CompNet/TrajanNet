@@ -283,7 +283,7 @@ analyze.net.degree <- function(g, g0)
 		sufx <- sufxx[i]
 		
 		# degree distribution
-		vals <- degree(g)
+		vals <- igraph::degree(g)
 		custom.hist(vals, name=LONG_NAME[MEAS_DEGREE], file=file.path(degree.folder,paste0("degree_histo",sufx)))
 			
 		# export CSV with degree
@@ -599,8 +599,8 @@ analyze.net.comstruct <- function(g, g0)
 		sufx <- sufxx[i]
 		op <- delete_edges(graph=g, edges=which(is.na(E(g)$Polarite) | E(g)$Polarite==ATT_VAL_NEGATIVE))
 		nn <- delete_edges(graph=g, edges=which(E(g)$Polarite==ATT_VAL_NEGATIVE))
-		idx.op <- which(degree(op)>0)
-		idx.nn <- which(degree(nn)>0)
+		idx.op <- which(igraph::degree(op)>0)
+		idx.nn <- which(igraph::degree(nn)>0)
 		
 		# community size distribution
 #		coms.op <- cluster_optimal(graph=simplify(op))	# much slower, obviously
@@ -1349,9 +1349,9 @@ analyze.net.signed.degree <- function(sg, sg0)
 		pos.deg <- degree_signed(sg, mode="all", type="pos")
 		neg.deg <- degree_signed(sg, mode="all", type="neg")
 #sgg <- delete_edges(sg, which(E(sg)$sign==-1))
-#pos.deg <- degree(sgg)
+#pos.deg <- igraph::degree(sgg)
 #sgg <- delete_edges(sg, which(E(sg)$sign==1))
-#neg.deg <- degree(sgg)
+#neg.deg <- igraph::degree(sgg)
 		custom.hist(pos.deg, name=LONG_NAME[MEAS_DEGREE_POS], file=file.path(degree.folder,paste0("degree_pos_histo",sufx)))
 		custom.hist(neg.deg, name=LONG_NAME[MEAS_DEGREE_NEG], file=file.path(degree.folder,paste0("degree_neg_histo",sufx)))
 		
@@ -1570,14 +1570,14 @@ analyze.net.corclust <- function(sg, sg0)
 	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
 		sg <- lst[[i]]
 		sufx <- sufxx[i]
-		cnx.ids <- which(degree(sg)>0)
+		cnx.ids <- which(igraph::degree(sg)>0)
 		cnx.sg <- induced_subgraph(graph=sg, vids=cnx.ids)
 		
 		memberships <- NA
 		perfs <- c()
 		
 		# try each possible number of clusters
-		kmax <- 10		#gorder(cnx.sg)	# faster to fix it
+		kmax <- gorder(cnx.sg)	# faster to fix it
 		for(k in 1:kmax)
 		{	cat("    Performing correlation clustering for k=",k,"\n",sep="")
 			
@@ -1587,7 +1587,6 @@ analyze.net.corclust <- function(sg, sg0)
 			perf <- tmp$criterion
 			cat("    Imbalance: ",perf,"\n",sep="")
 			sizes <- table(mbrs) 
-#			custom.barplot(sizes, text=names(sizes), xlab=LONG_NAME[MEAS_COR_CLUST], ylab="Taille", file=file.path(corclust.folder,paste0("cluster_size_bars",sufx,"_k",k)))
 			
 			# add to general structures
 			colname <- paste0("k=",k)
@@ -1597,28 +1596,6 @@ analyze.net.corclust <- function(sg, sg0)
 				memberships <- cbind(memberships, mbrs)
 			colnames(memberships)[ncol(memberships)] <- colname
 			perfs[colname] <- perf
-			
-			# add results to the graph as attributes
-#			sg <- set_vertex_attr(graph=sg,name=MEAS_COR_CLUST,value=mbrs)
-#			sg <- set_graph_attr(graph=sg,name=MEAS_COR_CLUST,value=perf)
-			#attr_name <- paste0(MEAS_COR_CLUST,"_k",k)
-			#sg <- set_vertex_attr(graph=sg,name=attr_name,value=mbrs)
-			#sg <- set_graph_attr(graph=sg,name=attr_name,value=perf)
-			
-			# plot graph using color for clusters
-#			custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE,file=file.path(corclust.folder,paste0("clusters_graph",sufx,"_k",k)))
-			#custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE)
-		
-			# plot block model
-#			sg2 <- sg
-#			V(sg2)$name <- V(sg2)$label
-#			bm.file <- file.path(corclust.folder,paste0("block_model",sufx,"_k",k))
-#			if(FORMAT=="pdf")
-#				bm.file <- paste0(bm.file,".pdf")
-#			else if(FORMAT=="png")
-#				bm.file <- paste0(bm.file,".png")
-#			ggblock(sg2, mbrs, show_blocks=TRUE, show_labels=TRUE)
-#			ggsave(bm.file, width=35, height=25, units="cm")
 		}
 		
 		# restore best partition
@@ -1639,7 +1616,13 @@ analyze.net.corclust <- function(sg, sg0)
 		cat("    Plot graph in ",plot.file,"\n",sep="")
 		custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE,file=plot.file)
 		#custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE)
-
+		
+		# export as Circos plots
+		circos.file <- file.path(corclust.folder,paste0("circos_graph",sufx))
+		plot.circos(sg, sign.order=FALSE, alt=FALSE, file=circos.file)
+		circos.file <- file.path(corclust.folder,paste0("circos_alt_graph",sufx))
+		plot.circos(sg, sign.order=FALSE, alt=TRUE, file=circos.file)
+		
 		# plot best block model
 		cnx.sg2 <- cnx.sg
 		V(cnx.sg2)$name <- V(cnx.sg2)$label
@@ -1657,8 +1640,9 @@ analyze.net.corclust <- function(sg, sg0)
 		cat("    Record cluster membership in ",clust.file,"\n",sep="")
 		memberships2 <- matrix(NA,nrow=gorder(sg),ncol=ncol(memberships))
 		memberships2[cnx.ids,] <- memberships
+		colnames(memberships2) <- colnames(memberships)
 		df <- data.frame(V(sg)$name,V(sg)$label,memberships2)
-		colnames(df) <- c("Name","Label",MEAS_COR_CLUST) 
+		colnames(df) <- c("Name","Label",colnames(memberships2)) 
 		write.csv(df, file=clust.file, row.names=FALSE)
 		
 		# export CSV with performance as imbalance
@@ -1822,8 +1806,6 @@ compute.net.signed.closure <- function(sg, sg0, poly)
 		# plot and record the graph
 		custom.gplot(g, file=file.path(closure.folder,paste0("graph",sufx)))
 		write.graph(graph=g, file=file.path(closure.folder,paste0("graph",sufx,".graphml")), format="graphml")
-		
-		# TODO would be cool to plot the graph using circos
 		
 		lst[[i]] <- g 
 	}

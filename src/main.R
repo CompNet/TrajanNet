@@ -13,6 +13,8 @@ library("signnet")			# handles signed graphs
 library("graphlayouts")		# additional graph layouts
 library("ggraph")			# additional graph plotting features
 library("SDMTools")			# ?
+library("scales")			# convert colors
+library("circlize")			# circos-type plots
 
 
 
