@@ -221,6 +221,7 @@ extract.network <- function()
 	# add personal node attributes 
 	V(g)$name <- attr.data[,ATT_NODE_ID]
 	V(g)$label <- attr.data[,ATT_NODE_NAME]
+	V(g)$label0 <- attr.data[,ATT_NODE_NAME_SHORT]
 	
 	# adjust the weird fields possessing a separate last value
 	attr.data[,ATT_NODE_SEN_POL] <- sapply(1:nrow(attr.data), function(r)

@@ -11,7 +11,7 @@ P8,Publius Acilius Attianus,Attianus,NA,NA,NA,Prefet du pretoire,Oui,NA,NA,2,Cil
 P9,Glitius Atilius Agricola,Agricola,Questeur;Edile;Preteur;Consul suffect;Consul,Prefet de la ville,NA,NA,Non,Legat de legion;Legat d'Auguste propreteur,NA,4,Mesie;Dacie;Pannonie;Belgique,Militaire;Militaire;Politico-militaire;Politico-militaire,G2,NA,NA,Non
 P10,Cnaeus Arrius Antonius,Antonius,Consul,NA,Consul,NA,Non,Proconsul,NA,1,Asie,Politico-militaire,G2,NA,Antonins,Non
 P11,Caius Avidius Nigrinus,Nigrinus,Tribun de la plebe;Preteur;Propreteur,Consul suffect,NA,NA,Non,Legat d'Auguste propreteur,NA,3,Grece;Mesie;Dacie,Politique;Politico-militaire;Politico-militaire,G2,Non,Nigrinus,Non
-P12,Lucius Catilius Severus,Severus,Questeur;Tribun de la plebe;Preteur;Propreteur;Consul suffect;Consul,Prefet de la ville,NA,NA,Non,Legat de legion;Legat d'Auguste propreteur,NA,7,Asie;Germanie;Asie;Cappadoce;Armenie;Syrie;Afrique,Politique;Militaire;Politico-militaire;Politico-militaire;Politico-militaire;Politico-militaire;Politico-militaire,G2,Oui,NA,Non
+P12,Lucius Catilius Severus,Catilius,Questeur;Tribun de la plebe;Preteur;Propreteur;Consul suffect;Consul,Prefet de la ville,NA,NA,Non,Legat de legion;Legat d'Auguste propreteur,NA,7,Asie;Germanie;Asie;Cappadoce;Armenie;Syrie;Afrique,Politique;Militaire;Politico-militaire;Politico-militaire;Politico-militaire;Politico-militaire;Politico-militaire,G2,Oui,NA,Non
 P13,Caius Cilnius Procolus,Procolus,Preteur;Propreteur,Consul suffect,NA,NA,Non,Legat de legion;Legat d'Auguste propreteur,NA,3,Dalmatie;Mesie;Dacie,Politico-militaire;Politico-militaire;Militaire,G2,NA,NA,Non
 P14,Tiberius Claudius Livianus,Livianus,NA,NA,NA,Prefet du pretoire,Oui,Legat de legion,NA,2,Dacie;Germanie,Militaire;Militaire,G2,Oui,NA,Non
 P15,Tiberius Claudius Maximus,Maximus,NA,NA,NA,NA,Non,NA,Prefet de cohorte,5,Mesie;Achaie;Dacie;Parthie;Babylone,Militaire;Militaire;Militaire;Militaire;Militaire,G2,Oui,NA,Non
@@ -45,7 +45,7 @@ P42,Sextus Erucius Clarus,Clarus,Questeur;Tribun de la plebe;Preteur;Propreteur,
 P43,Lucius Fabius Iustus,Iustus,Preteur;Propreteur,Consul suffect,NA,NA,Non,Legat d'Auguste propreteur,NA,3,Mesie inferieure;Dacie;Syrie,Politico-militaire;Militaire;Politico-militaire,G3,NA,Pline,Oui
 P44,Quintus Fabius Postumus,Postumus,Preteur;Propreteur,Consul,NA,NA,Non,Legat d'Auguste propreteur,NA,1,Mesie inferieure,Politico-militaire,G3,NA,Regulus,Oui
 P45,Crassus Frugi Licianus,Frugi,NA,Consul suffect,NA,NA,Non,NA,NA,NA,NA,NA,G4,Non,NA,Non
-P46,Titus Haterius Nepos,Nepos,Preteur;Propreteur,Consul,NA,Procuratele,Oui,Legat d'Auguste propreteur,NA,2,Armenie;Arabie,Politique;Politico-militaire,G4,Oui,NA,Non
+P46,Titus Haterius Nepos,Haterius,Preteur;Propreteur,Consul,NA,Procuratele,Oui,Legat d'Auguste propreteur,NA,2,Armenie;Arabie,Politique;Politico-militaire,G4,Oui,NA,Non
 P47,Lucius Herennius Saturnius,Saturnius,Preteur;Propreteur;Consul suffect,Consul,NA,NA,Non,Legat de legion;Legat d'Auguste propreteur;Proconsul,NA,2,Achaie;Mesie superieure,Politico-militaire;Politico-militaire,G3,NA,NA,Non
 P48,Iulius Tiberius Alexander Berenicianus,Alexander,NA,Consul suffect,NA,NA,Oui,Legat de legion,NA,1,Parthie,Militaire,G4,NA,NA,Non
 P49,Lucius Iulius Vestinus,Vestinus,NA,NA,NA,Procuratele,Non,NA,NA,3,Achaie;Syrie;Egypte,Politique;Politique;Personnel,G4,Oui,NA,Non
@@ -56,13 +56,13 @@ P53,Lusius Quietus,Quietus,Preteur;Propreteur,Consul,NA,NA,Oui,Legat de legion;L
 P54,Appius Maximus Santra,Santra,NA,Preteur,NA,NA,NA,Legat de legion,NA,2,Mesopotamie;Parthie,Militaire;Militaire,G4,NA,NA,Non
 P55,Publius Metilius Sabinus Nepos,Nepos,Preteur;Propreteur,Consul suffect,NA,NA,Non,Legat d'Auguste propreteur,NA,1,Pannonie,Politico-militaire,G3,Non,NA,Non
 P56,Lucius Minicius Natalis,Minicius Natalis,Questeur;Tribun de la plebe;Preteur;Propreteur;Consul suffect,Consul,NA,Procuratele,Oui,Legat de legion;Legat d'Auguste propreteur;Proconsul,NA,6,Afrique;Dacie;Mesie;Numidie;Pannonie superieure;Afrique,Politico-militaire;Militaire;Militaire;Militaire;Politico-militaire;Politico-militaire,G3,Non,NA,Oui
-P57,Sosius Papus,Sosius Papus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,G4,Oui,NA,Non
+P57,Sosius Papus,Sosius,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,G4,Oui,NA,Non
 P58,Cnaeus Pinarius Aemilius Cicatricula Pompeius Longinus,Pompeius,Preteur;Propreteur,Consul suffect,NA,NA,Non,Legat de legion;Legat d'Auguste propreteur,NA,3,Mesie superieure;Pannonie;Dacie,Politico-militaire;Politico-militaire;Militaire,G3,Non,NA,Oui
-P59,Alfius Publius Maximus,Publius Maximus,Preteur,Propreteur,NA,NA,NA,Legat d'Auguste propreteur,NA,NA,Pannonie,Politico-militaire,G3,NA,NA,Non
+P59,Alfius Publius Maximus,Publius,Preteur,Propreteur,NA,NA,NA,Legat d'Auguste propreteur,NA,NA,Pannonie,Politico-militaire,G3,NA,NA,Non
 P60,Sextus Quinctilius Valerius Maximus,Valerius,Questeur;Tribun de la plebe;Preteur,Propreteur,NA,Procuratele,Oui,Legat d'Auguste propreteur,Tribun angusticlave,5,Achaie;Mesie;Dacie;Achaie;Asie,Politique;Militaire;Militaire;Politico-militaire;Politique,G3,Oui,NA,Non
 P61,Caius Licinius Voconius Romanus,Voconius,Questeur,Edile,NA,NA,Oui,NA,Tribun angusticlave,1,Tarraconaise,Politique,G3,Oui,Pline,Oui
 P62,Lucius Roscius Caelius Murena,Murena,Tribun de la plebe,Preteur,NA,NA,Non,Legat de legion,NA,1,Dacie,Militaire,G3,NA,NA,Non
-P63,Caius Septicius Clarus,Clarus,NA,NA,NA,Prefet du pretoire,Non,NA,NA,NA,NA,NA,G4,Non,Pline;Septicius Clarus,Non
+P63,Caius Septicius Clarus,Septicius,NA,NA,NA,Prefet du pretoire,Non,NA,NA,NA,NA,NA,G4,Non,Pline;Septicius Clarus,Non
 P64,Servius Sulpicius Similis,Similis,NA,NA,Prefet de l'annone,Prefet du pretoire,Non,NA,NA,1,Egypte,Politique,G3,Oui,NA,Non
 P65,Decimus Terentius Scaurianus,Scaurianus,Preteur;Propreteur,Consul,NA,NA,Non,Legat de legion;Legat d'Auguste propreteur,NA,2,Dacie;Dacie,Militaire;Politico-militaire,G3,NA,NA,Non
-P66,Caius Vibius Maximus,Vibius Maximus,NA,NA,NA,Prefet d'Egypte,Oui,NA,NA,1,Egypte,Politique,G3,NA,Pline,Non
+P66,Caius Vibius Maximus,Vibius,NA,NA,NA,Prefet d'Egypte,Oui,NA,NA,1,Egypte,Politique,G3,NA,Pline,Non

@@ -569,7 +569,7 @@
     <node id="n12">
       <data key="v_name">P12</data>
       <data key="v_label">Lucius Catilius Severus</data>
-      <data key="v_label0">Severus</data>
+      <data key="v_label0">Catilius</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plebe</data>
       <data key="v_PolitSenat3">Preteur</data>
@@ -2031,7 +2031,7 @@
     <node id="n46">
       <data key="v_name">P46</data>
       <data key="v_label">Titus Haterius Nepos</data>
-      <data key="v_label0">Nepos</data>
+      <data key="v_label0">Haterius</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul</data>
@@ -2504,7 +2504,7 @@
     <node id="n57">
       <data key="v_name">P57</data>
       <data key="v_label">Sosius Papus</data>
-      <data key="v_label0">Sosius Papus</data>
+      <data key="v_label0">Sosius</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -2590,7 +2590,7 @@
     <node id="n59">
       <data key="v_name">P59</data>
       <data key="v_label">Alfius Publius Maximus</data>
-      <data key="v_label0">Publius Maximus</data>
+      <data key="v_label0">Publius</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">NA</data>
@@ -2762,7 +2762,7 @@
     <node id="n63">
       <data key="v_name">P63</data>
       <data key="v_label">Caius Septicius Clarus</data>
-      <data key="v_label0">Clarus</data>
+      <data key="v_label0">Septicius</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -2891,7 +2891,7 @@
     <node id="n66">
       <data key="v_name">P66</data>
       <data key="v_label">Caius Vibius Maximus</data>
-      <data key="v_label0">Vibius Maximus</data>
+      <data key="v_label0">Vibius</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>

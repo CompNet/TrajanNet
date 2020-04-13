@@ -26,7 +26,8 @@ DATA_FOLDER <- "data"
 #############################################################################################
 # vertex attribute names
 ATT_NODE_ID <- "Id"
-ATT_NODE_NAME <- "Nom"
+ATT_NODE_NAME <- "NomComp"
+ATT_NODE_NAME_SHORT <- "NomCourt"
 ATT_NODE_SEN_MILIT <- "MilitSenat"
 ATT_NODE_SEN_POL <- "PolitSenat"
 ATT_NODE_SEN_POLDER <- "DerPolitSenat"
@@ -191,7 +192,8 @@ MEAS_COR_CLUST <- "CorrelationClustering"
 # attribute long names
 LONG_NAME <- c()
 LONG_NAME[ATT_NODE_ID] <- "Id"
-LONG_NAME[ATT_NODE_NAME] <- "Nom"
+LONG_NAME[ATT_NODE_NAME] <- "Nom complet"
+LONG_NAME[ATT_NODE_NAME_SHORT] <- "Nom court"
 LONG_NAME[ATT_NODE_SEN_MILIT] <- "Poste militaire senatorial"
 LONG_NAME[ATT_NODE_SEN_POL] <- "Poste politique senatorial connu"
 LONG_NAME[ATT_NODE_SEN_POLDER] <- "Dernier poste politique senatorial"
