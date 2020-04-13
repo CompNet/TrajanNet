@@ -6,6 +6,7 @@
 <!-- Created by igraph -->
   <key id="v_name" for="node" attr.name="name" attr.type="string"/>
   <key id="v_label" for="node" attr.name="label" attr.type="string"/>
+  <key id="v_label0" for="node" attr.name="label0" attr.type="string"/>
   <key id="v_PolitSenat1" for="node" attr.name="PolitSenat1" attr.type="string"/>
   <key id="v_PolitSenat2" for="node" attr.name="PolitSenat2" attr.type="string"/>
   <key id="v_PolitSenat3" for="node" attr.name="PolitSenat3" attr.type="string"/>
@@ -52,6 +53,7 @@
     <node id="n0">
       <data key="v_name">P0</data>
       <data key="v_label">Trajan</data>
+      <data key="v_label0">Trajan</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -94,6 +96,7 @@
     <node id="n1">
       <data key="v_name">P1</data>
       <data key="v_label">Plotine</data>
+      <data key="v_label0">Plotine</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -136,6 +139,7 @@
     <node id="n2">
       <data key="v_name">P2</data>
       <data key="v_label">Hadrien</data>
+      <data key="v_label0">Hadrien</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plebe</data>
       <data key="v_PolitSenat3">Preteur</data>
@@ -178,6 +182,7 @@
     <node id="n3">
       <data key="v_name">P3</data>
       <data key="v_label">Marciana</data>
+      <data key="v_label0">Marciana</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -220,6 +225,7 @@
     <node id="n4">
       <data key="v_name">P4</data>
       <data key="v_label">Matidia</data>
+      <data key="v_label0">Matidia</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -262,6 +268,7 @@
     <node id="n5">
       <data key="v_name">P5</data>
       <data key="v_label">Sabine</data>
+      <data key="v_label0">Sabine</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -304,6 +311,7 @@
     <node id="n6">
       <data key="v_name">P6</data>
       <data key="v_label">Lycormas</data>
+      <data key="v_label0">Lycormas</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -346,6 +354,7 @@
     <node id="n7">
       <data key="v_name">P7</data>
       <data key="v_label">Caius Matidius Patruinus</data>
+      <data key="v_label0">Patruinus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -388,6 +397,7 @@
     <node id="n8">
       <data key="v_name">P8</data>
       <data key="v_label">Publius Acilius Attianus</data>
+      <data key="v_label0">Attianus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -430,6 +440,7 @@
     <node id="n9">
       <data key="v_name">P9</data>
       <data key="v_label">Glitius Atilius Agricola</data>
+      <data key="v_label0">Agricola</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Edile</data>
       <data key="v_PolitSenat3">Preteur</data>
@@ -472,6 +483,7 @@
     <node id="n10">
       <data key="v_name">P10</data>
       <data key="v_label">Cnaeus Arrius Antonius</data>
+      <data key="v_label0">Antonius</data>
       <data key="v_PolitSenat1">Consul</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -514,6 +526,7 @@
     <node id="n11">
       <data key="v_name">P11</data>
       <data key="v_label">Caius Avidius Nigrinus</data>
+      <data key="v_label0">Nigrinus</data>
       <data key="v_PolitSenat1">Tribun de la plebe</data>
       <data key="v_PolitSenat2">Preteur</data>
       <data key="v_PolitSenat3">Propreteur</data>
@@ -556,6 +569,7 @@
     <node id="n12">
       <data key="v_name">P12</data>
       <data key="v_label">Lucius Catilius Severus</data>
+      <data key="v_label0">Severus</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plebe</data>
       <data key="v_PolitSenat3">Preteur</data>
@@ -598,6 +612,7 @@
     <node id="n13">
       <data key="v_name">P13</data>
       <data key="v_label">Caius Cilnius Procolus</data>
+      <data key="v_label0">Procolus</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul suffect</data>
@@ -640,6 +655,7 @@
     <node id="n14">
       <data key="v_name">P14</data>
       <data key="v_label">Tiberius Claudius Livianus</data>
+      <data key="v_label0">Livianus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -682,6 +698,7 @@
     <node id="n15">
       <data key="v_name">P15</data>
       <data key="v_label">Tiberius Claudius Maximus</data>
+      <data key="v_label0">Maximus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -724,6 +741,7 @@
     <node id="n16">
       <data key="v_name">P16</data>
       <data key="v_label">Aulus Cornelius Palma Frontianus</data>
+      <data key="v_label0">Palma</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul</data>
@@ -766,6 +784,7 @@
     <node id="n17">
       <data key="v_name">P17</data>
       <data key="v_label">Publius Cornelius Tacitus</data>
+      <data key="v_label0">Tacite</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul</data>
@@ -808,6 +827,7 @@
     <node id="n18">
       <data key="v_name">P18</data>
       <data key="v_label">Caius Iulius Bassus Quatradus</data>
+      <data key="v_label0">Quatradus</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Preteur</data>
       <data key="v_PolitSenat3">Consul suffect</data>
@@ -850,6 +870,7 @@
     <node id="n19">
       <data key="v_name">P19</data>
       <data key="v_label">Lucius Iulius Ursus Servianus</data>
+      <data key="v_label0">Servianus</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Preteur</data>
       <data key="v_PolitSenat3">Propreteur</data>
@@ -892,6 +913,7 @@
     <node id="n20">
       <data key="v_name">P20</data>
       <data key="v_label">Caius Octavius Tidius Tossianus Javolenus Priscus</data>
+      <data key="v_label0">Javolenus</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul suffect</data>
@@ -934,6 +956,7 @@
     <node id="n21">
       <data key="v_name">P21</data>
       <data key="v_label">Manius Laberius Maximus</data>
+      <data key="v_label0">Laberius</data>
       <data key="v_PolitSenat1">Consul</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -976,6 +999,7 @@
     <node id="n22">
       <data key="v_name">P22</data>
       <data key="v_label">Lucius Licinius Sura</data>
+      <data key="v_label0">Sura</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Consul</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1018,6 +1042,7 @@
     <node id="n23">
       <data key="v_name">P23</data>
       <data key="v_label">Lucius Neratius Priscus</data>
+      <data key="v_label0">Priscus</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Preteur</data>
       <data key="v_PolitSenat3">Propreteur</data>
@@ -1060,6 +1085,7 @@
     <node id="n24">
       <data key="v_name">P24</data>
       <data key="v_label">Cnaeus Octavius Titinius Capito</data>
+      <data key="v_label0">Capito</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1102,6 +1128,7 @@
     <node id="n25">
       <data key="v_name">P25</data>
       <data key="v_label">Pline le Jeune</data>
+      <data key="v_label0">Pline le Jeune</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plebe</data>
       <data key="v_PolitSenat3">Preteur</data>
@@ -1144,6 +1171,7 @@
     <node id="n26">
       <data key="v_name">P26</data>
       <data key="v_label">Caius Pompeius Planta</data>
+      <data key="v_label0">Planta</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1186,6 +1214,7 @@
     <node id="n27">
       <data key="v_name">P27</data>
       <data key="v_label">Lucius Publius Celsus</data>
+      <data key="v_label0">Celsus</data>
       <data key="v_PolitSenat1">Consul suffect</data>
       <data key="v_PolitSenat2">Consul</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1228,6 +1257,7 @@
     <node id="n28">
       <data key="v_name">P28</data>
       <data key="v_label">Marcus Rutilius Luous</data>
+      <data key="v_label0">Rutilius</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1270,6 +1300,7 @@
     <node id="n29">
       <data key="v_name">P29</data>
       <data key="v_label">Luciius Silius Decianus</data>
+      <data key="v_label0">Decianus</data>
       <data key="v_PolitSenat1">Consul suffect</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1312,6 +1343,7 @@
     <node id="n30">
       <data key="v_name">P30</data>
       <data key="v_label">Titus Statilius Crito</data>
+      <data key="v_label0">Crito</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1354,6 +1386,7 @@
     <node id="n31">
       <data key="v_name">P31</data>
       <data key="v_label">Quintus Sosius Senecio</data>
+      <data key="v_label0">Senecio</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Preteur</data>
       <data key="v_PolitSenat3">Propreteur</data>
@@ -1396,6 +1429,7 @@
     <node id="n32">
       <data key="v_name">P32</data>
       <data key="v_label">Titus Spurinna Vestricius</data>
+      <data key="v_label0">Spurinna</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul</data>
@@ -1438,6 +1472,7 @@
     <node id="n33">
       <data key="v_name">P33</data>
       <data key="v_label">Sextus Attius Suburanus Aemilianus</data>
+      <data key="v_label0">Suburanus</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul</data>
@@ -1480,6 +1515,7 @@
     <node id="n34">
       <data key="v_name">P34</data>
       <data key="v_label">Decimus Terentius Gentianus</data>
+      <data key="v_label0">Gentianus</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plebe</data>
       <data key="v_PolitSenat3">Preteur</data>
@@ -1522,6 +1558,7 @@
     <node id="n35">
       <data key="v_name">P35</data>
       <data key="v_label">Marcus Annius Verus</data>
+      <data key="v_label0">Verus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1564,6 +1601,7 @@
     <node id="n36">
       <data key="v_name">P36</data>
       <data key="v_label">Arrianus Maturus</data>
+      <data key="v_label0">Maturus</data>
       <data key="v_PolitSenat1">Consul suffect</data>
       <data key="v_PolitSenat2">Consul</data>
       <data key="v_PolitSenat3">Prefet de la ville</data>
@@ -1606,6 +1644,7 @@
     <node id="n37">
       <data key="v_name">P37</data>
       <data key="v_label">Titus Aurelius Fulvus</data>
+      <data key="v_label0">Fulvus</data>
       <data key="v_PolitSenat1">Consul suffect</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1648,6 +1687,7 @@
     <node id="n38">
       <data key="v_name">P38</data>
       <data key="v_label">Quintus Baebius Macer</data>
+      <data key="v_label0">Macer</data>
       <data key="v_PolitSenat1">Consul</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1690,6 +1730,7 @@
     <node id="n39">
       <data key="v_name">P39</data>
       <data key="v_label">Aulus Caecilius Faustinus</data>
+      <data key="v_label0">Faustinius</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul suffect</data>
@@ -1732,6 +1773,7 @@
     <node id="n40">
       <data key="v_name">P40</data>
       <data key="v_label">Lucius Ceionnus Commodus</data>
+      <data key="v_label0">Commodus</data>
       <data key="v_PolitSenat1">Consul</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1774,6 +1816,7 @@
     <node id="n41">
       <data key="v_name">P41</data>
       <data key="v_label">Caius Claudius Severus</data>
+      <data key="v_label0">Severus</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1815,7 +1858,8 @@
     </node>
     <node id="n42">
       <data key="v_name">P42</data>
-      <data key="v_label">Sextus Erucius Clarus </data>
+      <data key="v_label">Sextus Erucius Clarus</data>
+      <data key="v_label0">Clarus</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plebe</data>
       <data key="v_PolitSenat3">Preteur</data>
@@ -1858,6 +1902,7 @@
     <node id="n43">
       <data key="v_name">P43</data>
       <data key="v_label">Lucius Fabius Iustus</data>
+      <data key="v_label0">Iustus</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul suffect</data>
@@ -1900,6 +1945,7 @@
     <node id="n44">
       <data key="v_name">P44</data>
       <data key="v_label">Quintus Fabius Postumus</data>
+      <data key="v_label0">Postumus</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul</data>
@@ -1942,6 +1988,7 @@
     <node id="n45">
       <data key="v_name">P45</data>
       <data key="v_label">Crassus Frugi Licianus</data>
+      <data key="v_label0">Frugi</data>
       <data key="v_PolitSenat1">Consul suffect</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -1984,6 +2031,7 @@
     <node id="n46">
       <data key="v_name">P46</data>
       <data key="v_label">Titus Haterius Nepos</data>
+      <data key="v_label0">Nepos</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul</data>
@@ -2026,6 +2074,7 @@
     <node id="n47">
       <data key="v_name">P47</data>
       <data key="v_label">Lucius Herennius Saturnius</data>
+      <data key="v_label0">Saturnius</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul suffect</data>
@@ -2068,6 +2117,7 @@
     <node id="n48">
       <data key="v_name">P48</data>
       <data key="v_label">Iulius Tiberius Alexander Berenicianus</data>
+      <data key="v_label0">Alexander</data>
       <data key="v_PolitSenat1">Consul suffect</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -2110,6 +2160,7 @@
     <node id="n49">
       <data key="v_name">P49</data>
       <data key="v_label">Lucius Iulius Vestinus</data>
+      <data key="v_label0">Vestinus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -2152,6 +2203,7 @@
     <node id="n50">
       <data key="v_name">P50</data>
       <data key="v_label">Tiberius Iulius Ferox</data>
+      <data key="v_label0">Ferox</data>
       <data key="v_PolitSenat1">Edile</data>
       <data key="v_PolitSenat2">Consul suffect</data>
       <data key="v_PolitSenat3">Consul</data>
@@ -2194,6 +2246,7 @@
     <node id="n51">
       <data key="v_name">P51</data>
       <data key="v_label">Frontin</data>
+      <data key="v_label0">Frontin</data>
       <data key="v_PolitSenat1">Edile</data>
       <data key="v_PolitSenat2">Consul suffect</data>
       <data key="v_PolitSenat3">Consul</data>
@@ -2236,6 +2289,7 @@
     <node id="n52">
       <data key="v_name">P52</data>
       <data key="v_label">Aulus Larcius Priscus</data>
+      <data key="v_label0">Larcius</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plebe</data>
       <data key="v_PolitSenat3">Preteur</data>
@@ -2278,6 +2332,7 @@
     <node id="n53">
       <data key="v_name">P53</data>
       <data key="v_label">Lusius Quietus</data>
+      <data key="v_label0">Quietus</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul</data>
@@ -2320,6 +2375,7 @@
     <node id="n54">
       <data key="v_name">P54</data>
       <data key="v_label">Appius Maximus Santra</data>
+      <data key="v_label0">Santra</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -2362,6 +2418,7 @@
     <node id="n55">
       <data key="v_name">P55</data>
       <data key="v_label">Publius Metilius Sabinus Nepos</data>
+      <data key="v_label0">Nepos</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul suffect</data>
@@ -2404,6 +2461,7 @@
     <node id="n56">
       <data key="v_name">P56</data>
       <data key="v_label">Lucius Minicius Natalis</data>
+      <data key="v_label0">Minicius Natalis</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plebe</data>
       <data key="v_PolitSenat3">Preteur</data>
@@ -2446,6 +2504,7 @@
     <node id="n57">
       <data key="v_name">P57</data>
       <data key="v_label">Sosius Papus</data>
+      <data key="v_label0">Sosius Papus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -2488,6 +2547,7 @@
     <node id="n58">
       <data key="v_name">P58</data>
       <data key="v_label">Cnaeus Pinarius Aemilius Cicatricula Pompeius Longinus</data>
+      <data key="v_label0">Pompeius</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul suffect</data>
@@ -2530,6 +2590,7 @@
     <node id="n59">
       <data key="v_name">P59</data>
       <data key="v_label">Alfius Publius Maximus</data>
+      <data key="v_label0">Publius Maximus</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">NA</data>
@@ -2572,6 +2633,7 @@
     <node id="n60">
       <data key="v_name">P60</data>
       <data key="v_label">Sextus Quinctilius Valerius Maximus</data>
+      <data key="v_label0">Valerius</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Tribun de la plebe</data>
       <data key="v_PolitSenat3">Preteur</data>
@@ -2614,6 +2676,7 @@
     <node id="n61">
       <data key="v_name">P61</data>
       <data key="v_label">Caius Licinius Voconius Romanus</data>
+      <data key="v_label0">Voconius</data>
       <data key="v_PolitSenat1">Questeur</data>
       <data key="v_PolitSenat2">Edile</data>
       <data key="v_PolitSenat3">NA</data>
@@ -2656,6 +2719,7 @@
     <node id="n62">
       <data key="v_name">P62</data>
       <data key="v_label">Lucius Roscius Caelius Murena</data>
+      <data key="v_label0">Murena</data>
       <data key="v_PolitSenat1">Tribun de la plebe</data>
       <data key="v_PolitSenat2">Preteur</data>
       <data key="v_PolitSenat3">NA</data>
@@ -2698,6 +2762,7 @@
     <node id="n63">
       <data key="v_name">P63</data>
       <data key="v_label">Caius Septicius Clarus</data>
+      <data key="v_label0">Clarus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -2740,6 +2805,7 @@
     <node id="n64">
       <data key="v_name">P64</data>
       <data key="v_label">Servius Sulpicius Similis</data>
+      <data key="v_label0">Similis</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
@@ -2782,6 +2848,7 @@
     <node id="n65">
       <data key="v_name">P65</data>
       <data key="v_label">Decimus Terentius Scaurianus</data>
+      <data key="v_label0">Scaurianus</data>
       <data key="v_PolitSenat1">Preteur</data>
       <data key="v_PolitSenat2">Propreteur</data>
       <data key="v_PolitSenat3">Consul</data>
@@ -2824,6 +2891,7 @@
     <node id="n66">
       <data key="v_name">P66</data>
       <data key="v_label">Caius Vibius Maximus</data>
+      <data key="v_label0">Vibius Maximus</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
       <data key="v_PolitSenat3">NA</data>
