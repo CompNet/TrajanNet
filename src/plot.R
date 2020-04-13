@@ -266,18 +266,24 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 		else if(FORMAT=="png")
 			png(paste0(file,".png"), width=1024, height=1024)
 	}
-	plot(g,
-#		axes=TRUE,
-		layout=LAYOUT,
-		vertex.size=5, 
-		vertex.color=vcols,
-		vertex.pie=pie.values,
-		vertex.pie.color=list(lgd.col),
-		vertex.shape=vshapes,
-		vertex.frame.color=outline.cols,
-		edge.color=ecols,
-		edge.lty=elty,
-		edge.width=ewidth
+	plot(g,										# graph to plot
+#		axes=TRUE,								# whether to draw axes or not
+		layout=LAYOUT,							# layout
+		vertex.size=5, 							# node size
+		vertex.color=vcols,						# node color
+		vertex.pie=pie.values,					# node pie proportions
+		vertex.pie.color=list(lgd.col),			# node pie colors
+		vertex.shape=vshapes,					# node shape
+		vertex.frame.color=outline.cols,		# node border color
+		vertex.label=V(g)$label0,				# node labels
+		vertex.label.cex=1.2,					# label size
+		vertex.label.family="sans",				# font type
+		vertex.label.font=2,					# 1 is plain text, 2 is bold face, 3 is italic, 4 is bold and italic
+		vertex.label.label.dist=0,				# label distance to node center (0=center)
+		vertex.label.color="BLACK",				# label color
+		edge.color=ecols,						# link color
+		edge.lty=elty,							# link type
+		edge.width=ewidth						# link thickness
 	)
 	if(!only.signed)
 	{	legend(
@@ -287,7 +293,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 					ATT_VAL_PRO,ATT_VAL_UNK),
 			col=c("#1A8F39","#9C1699","#C27604","#222222"),	# color of the lines
 			lty=1,											# type of lines
-			lwd=2,											# line thickness
+			lwd=4,											# line thickness
 			bty="n",										# no box around the legend
 			cex=0.8
 		)
@@ -311,7 +317,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 			legend=c(ATT_VAL_POSITIVE,ATT_VAL_NEGATIVE),	# text of the legend
 			col=c("#1A8F39","#E41A1C"),						# color of the lines
 			lty=c(1,1),										# type of lines
-			lwd=2,											# line thickness
+			lwd=4,											# line thickness
 			bty="n",										# no box around the legend
 			cex=0.8,										# size of the text in the legend
 			seg.len=3										# length of the line in the legend
@@ -513,7 +519,7 @@ plot.circos <- function(g, sign.order=FALSE, alt=FALSE, file)
 	norder <- order(membership)
 	
 	# node names
-	disp.names <- V(isg)$name		# label name
+	disp.names <- V(isg)$label0		# label label0 name 
 	colnames(adj) <- disp.names
 	rownames(adj) <- disp.names
 	
