@@ -1559,7 +1559,7 @@ analyze.net.signed.triangles <- function(sg, sg0)
 # returns: a list containing both updated graphs.
 #############################################################
 analyze.net.corclust <- function(sg, sg0)
-{	cat("  Performing correlation clustering\n")
+{	cat("  Performing correlation clustering on ",sg$name,"\n")
 	# possibly create folder
 	corclust.folder <- file.path(SIGNED_FOLDER,sg$name,"corclust")
 	dir.create(path=corclust.folder, showWarnings=FALSE, recursive=TRUE)
@@ -1577,7 +1577,7 @@ analyze.net.corclust <- function(sg, sg0)
 		perfs <- c()
 		
 		# try each possible number of clusters
-		kmax <- gorder(cnx.sg)	# faster to fix it
+		kmax <- 4#gorder(cnx.sg)	# faster to fix it
 		for(k in 1:kmax)
 		{	cat("    Performing correlation clustering for k=",k,"\n",sep="")
 			
@@ -1600,42 +1600,10 @@ analyze.net.corclust <- function(sg, sg0)
 		
 		# restore best partition
 		idx <- which.min(perfs)
-		cnx.mbrs <- memberships[,idx]
-		mbrs <- rep(NA,gorder(sg))
-		mbrs[cnx.ids] <- cnx.mbrs
 		perf <- perfs[idx]
-		sg <- set_vertex_attr(graph=sg,name=MEAS_COR_CLUST,value=mbrs)
-		sg <- set_graph_attr(graph=sg,name=MEAS_COR_CLUST,value=perf)
+		cnx.mbrs <- memberships[,idx]
 		
-		# plot best cluster size distribution
-		sizes <- table(memberships[,idx]) 
-		custom.barplot(sizes, text=names(sizes), xlab=LONG_NAME[MEAS_COR_CLUST], ylab="Taille", file=file.path(corclust.folder,paste0("cluster_size_bars",sufx)))
-		
-		# plot graph using color for best partition
-		plot.file <- file.path(corclust.folder,paste0("clusters_graph",sufx))
-		cat("    Plot graph in ",plot.file,"\n",sep="")
-		custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE,file=plot.file)
-		#custom.gplot(sg,col.att=MEAS_COR_CLUST,cat.att=TRUE)
-		
-		# export as Circos plots
-		circos.file <- file.path(corclust.folder,paste0("circos_graph",sufx))
-		plot.circos(sg, sign.order=FALSE, alt=FALSE, file=circos.file)
-		circos.file <- file.path(corclust.folder,paste0("circos_alt_graph",sufx))
-		plot.circos(sg, sign.order=FALSE, alt=TRUE, file=circos.file)
-		
-		# plot best block model
-		cnx.sg2 <- cnx.sg
-		V(cnx.sg2)$name <- V(cnx.sg2)$label
-		bm.file <- file.path(corclust.folder,paste0("block_model",sufx))
-		if(FORMAT=="pdf")
-			bm.file <- paste0(bm.file,".pdf")
-		else if(FORMAT=="png")
-			bm.file <- paste0(bm.file,".png")
-		cat("    Record block model in ",bm.file,"\n",sep="")
-		ggblock(cnx.sg2, cnx.mbrs, show_blocks=TRUE, show_labels=TRUE, cols=c("#E41A1C","#1A8F39"))
-		ggsave(bm.file, width=35, height=25, units="cm")
-		
-		# export CSV with cluster membership
+		# export CSV with cluster membership for each k
 		clust.file <- file.path(corclust.folder,paste0("cluster_membership",sufx,".csv"))
 		cat("    Record cluster membership in ",clust.file,"\n",sep="")
 		memberships2 <- matrix(NA,nrow=gorder(sg),ncol=ncol(memberships))
@@ -1652,22 +1620,109 @@ analyze.net.corclust <- function(sg, sg0)
 		colnames(df) <- c("k",MEAS_COR_CLUST) 
 		write.csv(df, file=perf.file, row.names=FALSE)
 		
-		# add imbalance to stat CSV
+		# add imbalance to stats CSV
 		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
 		cat("    Update stat file ",stat.file,"\n",sep="")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
-			df[MEAS_COR_CLUST, ] <- list(Value=min(perfs), Mean=NA, Stdv=NA)
+			df[MEAS_COR_CLUST, ] <- list(Value=perf, Mean=NA, Stdv=NA)
 		}
 		else
-		{	df <- data.frame(Value=c(min(perfs)),Mean=c(NA),Stdv=c(NA))
+		{	df <- data.frame(Value=c(perf),Mean=c(NA),Stdv=c(NA))
 			row.names(df) <- c(MEAS_COR_CLUST)
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
+		# look for alternative partitions
+		cat("    Looking for alternative partitions\n",sep="")
+		tries <- 250
+		best.memberships <- matrix(cnx.mbrs, ncol=1)
+		colnames(best.memberships) <- "it=0"
+		for(j in 1:tries)
+		{	cat("      Try (",j,"/",tries,")\n",sep="")
+			
+			# partition the graph another time
+			tmp <- signed_blockmodel(cnx.sg, k=idx, annealing=TRUE)
+			if(tmp$criterion<perf)
+				error("Found a better partition (perf=",tmp$criterion,"), should not happen")
+			else if(tmp$criterion==perf)
+			{	mbrs <- tmp$membership
+				if(mbrs[1]!=1)
+				{	mbrs[mbrs==1] <- 0
+					mbrs[mbrs==2] <- 1
+					mbrs[mbrs==0] <- 2
+				}
+				# look for an equivalent partition on the ones already found
+				already.found <- FALSE
+				it <- 1
+				while(it<=ncol(best.memberships) && !already.found)
+				{	already.found <- compare(comm1=mbrs, comm2=best.memberships[,it], method="nmi")==1
+					it <- it + 1
+				}
+				# if it is new, add it to the matrix
+				if(!already.found)
+				{	cat("        Found a different partition (",ncol(best.memberships),"): ",tmp$criterion," vs ",perf,"\n",sep="")
+					best.memberships <- cbind(best.memberships,mbrs)
+					colnames(best.memberships)[ncol(best.memberships)] <- paste0("it=",j)
+				}
+			}
+		}
+		
+		# adjust partitions to handle isolates
+		best.memberships2 <- matrix(NA, nrow=gorder(sg), ncol=ncol(best.memberships))
+		best.memberships2[cnx.ids,] <- best.memberships
+		colnames(best.memberships2) <- colnames(best.memberships)
+		df <- data.frame(V(sg)$name,V(sg)$label,best.memberships2)
+		colnames(df) <- c("Name","Label",colnames(best.memberships2))
+		if(ncol(best.memberships)>1)
+		{	clust.file <- file.path(corclust.folder,paste0("cluster_membership",sufx,"_alt_best.csv"))
+			cat("    Record alternative cluster membership in ",clust.file,"\n",sep="")
+			write.csv(df, file=clust.file, row.names=FALSE)
+		}
+ 		
+		# record the best partition and its alternatives
+		for(j in 1:ncol(best.memberships2))
+		{	if(j==1 && ncol(best.memberships2)==1)
+				sfx <- ""
+			else
+				sfx <- paste0("_alt",j)
+			vattr <- paste0(MEAS_COR_CLUST,sfx)
+			
+			# add partition to graph as a node attribute
+			sg <- set_vertex_attr(graph=sg,name=vattr,value=best.memberships2[,j])
+			
+			# plot best cluster size distribution
+			sizes <- table(best.memberships2[,j])
+			sizes.file <- file.path(corclust.folder, paste0("cluster_size_bars",sufx,sfx))
+			custom.barplot(sizes, text=names(sizes), xlab=paste0(LONG_NAME[MEAS_COR_CLUST]," (",j,")"), ylab="Taille", file=sizes.file)
+			
+			# plot graph using color for best partition
+			plot.file <- file.path(corclust.folder,paste0("clusters_graph",sufx,sfx))
+			cat("    Plot graph in ",plot.file,"\n",sep="")
+			custom.gplot(sg, col.att=vattr, cat.att=TRUE, file=plot.file)
+			#custom.gplot(sg, col.att=paste0(MEAS_COR_CLUST,sfx), cat.att=TRUE)
+			
+			# export as Circos plots
+			circos.file <- file.path(corclust.folder, paste0("circos_graph", sufx, sfx))
+			plot.circos(sg, att=vattr, sign.order=FALSE, alt=FALSE, file=circos.file)
+			circos.file <- file.path(corclust.folder, paste0("circos_alt_graph", sufx, sfx))
+			plot.circos(sg, att=vattr, sign.order=FALSE, alt=TRUE, file=circos.file)
+			
+			# plot best block model
+			cnx.sg2 <- cnx.sg
+			V(cnx.sg2)$name <- V(cnx.sg2)$label
+			bm.file <- file.path(corclust.folder,paste0("block_model",sufx,sfx))
+			if(FORMAT=="pdf")
+				bm.file <- paste0(bm.file,".pdf")
+			else if(FORMAT=="png")
+				bm.file <- paste0(bm.file,".png")
+			cat("    Record block model in ",bm.file,"\n",sep="")
+			ggblock(cnx.sg2, best.memberships[,j], show_blocks=TRUE, show_labels=TRUE, cols=c("#E41A1C","#1A8F39"))
+			ggsave(bm.file, width=35, height=25, units="cm")
+		}
+		
 		# record graph with all its attributes
-#		sg <- delete_vertex_attr(graph=sg,name=MEAS_COR_CLUST)
-#		sg <- delete_graph_attr(graph=sg,name=MEAS_COR_CLUST)
+		sg <- set_graph_attr(graph=sg,name=MEAS_COR_CLUST,value=perf)
 		graph.file <- file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml"))
 		cat("    Update graph file ",graph.file,"\n",sep="")
 		write.graph(graph=sg, file=graph.file, format="graphml")

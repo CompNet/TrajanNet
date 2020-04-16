@@ -225,33 +225,33 @@ extract.network <- function()
 	
 	# adjust the weird fields possessing a separate last value
 	attr.data[,ATT_NODE_SEN_POL] <- sapply(1:nrow(attr.data), function(r)
-					if(is.na(attr.data[r,ATT_NODE_SEN_POL]))
-					{	if(is.na(attr.data[r,ATT_NODE_SEN_POLDER]))
-							NA
-						else
-							attr.data[r,ATT_NODE_SEN_POLDER]
-					}
-					else
-					{	if(is.na(attr.data[r,ATT_NODE_SEN_POLDER]))
-							attr.data[r,ATT_NODE_SEN_POL]
-						else
-							paste(attr.data[r,ATT_NODE_SEN_POL],attr.data[r,ATT_NODE_SEN_POLDER],sep=";")
-					}
-				)
+		if(is.na(attr.data[r,ATT_NODE_SEN_POL]))
+		{	if(is.na(attr.data[r,ATT_NODE_SEN_POLDER]))
+				NA
+			else
+				attr.data[r,ATT_NODE_SEN_POLDER]
+		}
+		else
+		{	if(is.na(attr.data[r,ATT_NODE_SEN_POLDER]))
+				attr.data[r,ATT_NODE_SEN_POL]
+			else
+				paste(attr.data[r,ATT_NODE_SEN_POL],attr.data[r,ATT_NODE_SEN_POLDER],sep=";")
+		}
+	)
 	attr.data[,ATT_NODE_EQU_POL] <- sapply(1:nrow(attr.data), function(r)
-					if(is.na(attr.data[r,ATT_NODE_EQU_POL]))
-					{	if(is.na(attr.data[r,ATT_NODE_EQU_POLDER]))
-							NA
-						else
-							attr.data[r,ATT_NODE_EQU_POLDER]
-					}
-					else
-					{	if(is.na(attr.data[r,ATT_NODE_EQU_POLDER]))
-							attr.data[r,ATT_NODE_EQU_POL]
-						else
-							paste(attr.data[r,ATT_NODE_EQU_POL],attr.data[r,ATT_NODE_EQU_POLDER],sep=";")
-					}
-				)
+		if(is.na(attr.data[r,ATT_NODE_EQU_POL]))
+		{	if(is.na(attr.data[r,ATT_NODE_EQU_POLDER]))
+				NA
+			else
+				attr.data[r,ATT_NODE_EQU_POLDER]
+		}
+		else
+		{	if(is.na(attr.data[r,ATT_NODE_EQU_POLDER]))
+				attr.data[r,ATT_NODE_EQU_POL]
+			else
+				paste(attr.data[r,ATT_NODE_EQU_POL],attr.data[r,ATT_NODE_EQU_POLDER],sep=";")
+		}
+	)
 	
 	# add tag-type attributes
 	att.names <- c(ATT_NODE_SEN_POL, ATT_NODE_SEN_POLDER, ATT_NODE_SEN_MILIT, 

@@ -19,6 +19,7 @@ DATA_FOLDER <- "data"
 		SIGNED_FOLDER <- file.path(NET_FOLDER,"signed")
 	ATT_FOLDER <- file.path(DATA_FOLDER,"attributes")
 		COMP_FOLDER <- file.path(ATT_FOLDER,"comparisons")
+	SEQ_FOLDER <- file.path(DATA_FOLDER,"sequences")
 		
 
 
@@ -321,3 +322,13 @@ LONG_NAME[MEAS_GEN_STRUCT_BAL] <- "Equilibre structurel généralisé"
 LONG_NAME[MEAS_TRI_SIGNED] <- "Triangles signes"
 LONG_NAME[MEAS_SIGN_CENTR] <- "Centralite signee"
 LONG_NAME[MEAS_COR_CLUST] <- "Factions antagonistes"
+
+
+
+
+#############################################################################################
+# sequence-related names
+SEQ_ID <- "Id"
+SEQ_CAREER <- "Carriere"
+SEQ_IDENTIFIER <- "Identifiant"
+SEQ_POSTE <- "Poste"

@@ -15,7 +15,8 @@ library("ggraph")			# additional graph plotting features
 library("SDMTools")			# ?
 library("scales")			# convert colors
 library("circlize")			# circos-type plots
-
+library("TraMinR")			# sequence analysis
+library('plot.matrix')		# plot matrices
 
 
 
@@ -26,6 +27,7 @@ source("src/constants.R")
 source("src/extraction.R")
 source("src/plot.R")
 source("src/analysis.R")
+source("src/sequences.R")
 source("src/signed_graph_functions.R")
 
 
@@ -53,5 +55,19 @@ setup.graph.layout(og)
 
 
 #############################################################################################
-# analyze the graph
+# perform graph analyze
 analyze.network(og)
+
+
+
+
+#############################################################################################
+# perform sequence analysis
+analyze.sequences()
+
+# TODO
+# - fermeture : 
+#   > faire ça de façon synchrone
+#   > générer les différentes étape (graphiques)
+# - analyse de sequences
+# 3.1: similarité structurelle, pour objectiver un peu ?
