@@ -1,26 +1,25 @@
-Poste,Sphere,Statut,Identifiant,Rang,Localisation
-Questeur,Senatorial,Politique,spol1,1,Rome ou Province
-Edile,Senatorial,Politique,spol2,2,Rome ou Province
-Tribun de la plebe,Senatorial,Politique,spol3,3,Rome ou Province
-Preteur,Senatorial,Politique,spol4,4,Rome ou Province
-Propreteur,Senatorial,Politique,spol5,5,Rome ou Province
-Consul suffect,Senatorial,Politique,spol6,6,Rome
-Consul,Senatorial,Politique,spol7,7,Rome
-Prefet de la ville,Senatorial,Politique,spol8,8,Rome
-Tribun lacticlave,Senatorial,Militaire,smil1,1,Province
-Legat de legion,Senatorial,Militaire,smil2,2,Province
-Legat d'Auguste propreteur,Senatorial,Militaire,smil3,3,Province
-Proconsul,Senatorial,Militaire,smil4,4,Rome ou Province
-Garnison de Rome,Equestre,Militaire,cpol1,1,Rome
-Procuratele,Equestre,Politique,cpol2,2,Rome ou Province
-Prefet de la flotte,Equestre,Politique,cpol3,3,Rome
-Prefet des vigiles,Equestre,Politique,cpol4,4,Rome
-Prefet de l'annone,Equestre,Politique,cpol5,5,Rome
-Prefet d'Egypte,Equestre,Politique,cpol6,6,Egypte
-Prefet du pretoire,Equestre,Politique,cpol7,7,Rome
-Prefet de cohorte,Equestre,Militaire,cmil1,1,Province
-Tribun angusticlave,Equestre,Militaire,cmil2,2,Province
-Prefet d'ailes,Equestre,Militaire,cmil3,3,Province
-Tribun des vigiles,Equestre,Militaire,cmil4,4,Rome
-Tribun d'une cohorte urbaine,Equestre,Militaire,cmil5,5,Rome
-Tribun d'une cohorte pretorienne,Equestre,Militaire,cmil6,6,Rome
+Poste,Sphere,Statut,Identifiant,Rang,Localisation,Couleur
+Questeur,Senatorial,Politique,spol1,1,Rome ou Province,#ffb3b3
+Edile,Senatorial,Politique,spol2,2,Rome ou Province, #ff8080
+Tribun de la plebe,Senatorial,Politique,spol3,3,Rome ou Province,#ff4d4d
+Preteur,Senatorial,Politique,spol4,4,Rome ou Province,#ff1a1a
+Consul suffect,Senatorial,Politique,spol5,5,Rome,#e60000
+Consul,Senatorial,Politique,spol6,6,Rome,#990000
+Prefet de la ville,Senatorial,Politique,spol7,7,Rome,#660000
+Tribun lacticlave,Senatorial,Militaire,smil1,1,Province,#ffccff
+Legat de legion,Senatorial,Militaire,smil2,2,Province,#ff99ff
+Legat d'Auguste propreteur,Senatorial,Militaire,smil3,3,Province,#ff00ff
+Proconsul,Senatorial,Militaire,smil4,4,Rome ou Province,#cc00cc
+Procuratele,Equestre,Politique,cpol1,1,Rome ou Province,#ccccff
+Prefet de la flotte,Equestre,Politique,cpol2,2,Rome,#9999ff
+Prefet des vigiles,Equestre,Politique,cpol3,3,Rome,#6666ff
+Prefet de l'annone,Equestre,Politique,cpol4,4,Rome,#3333ff
+Prefet d'Egypte,Equestre,Politique,cpol5,5,Egypte,#0000e6
+Prefet du pretoire,Equestre,Politique,cpol6,6,Rome,#000099
+Garnison de Rome,Equestre,Militaire,cmil1,1,Rome,#b3ffb3
+Prefet de cohorte,Equestre,Militaire,cmil2,2,Province,#80ff80
+Tribun angusticlave,Equestre,Militaire,cmil3,3,Province,#33ff33
+Prefet d'ailes,Equestre,Militaire,cmil4,4,Province,#00ff00
+Tribun des vigiles,Equestre,Militaire,cmil5,5,Rome,#00cc00
+Tribun d'une cohorte urbaine,Equestre,Militaire,cmil6,6,Rome,#009900
+Tribun d'une cohorte pretorienne,Equestre,Militaire,cmil7,7,Rome,#006600
