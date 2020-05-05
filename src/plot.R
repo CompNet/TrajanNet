@@ -14,19 +14,18 @@ LAYOUT <- NA	# graph layout
 
 
 #############################################################
-# see http://colorbrewer2.org/#type=qualitative&scheme=Set1&n=9
-CAT_COLORS <- c( 
-	"#E41A1C",	# red
-	"#377EB8",	# blue
-	"#4DAF4A",	# green
-	"#984EA3",	# purple
-	"#FF7F00",	# orange
-	"#FFFF33",	# yellow
-	"#A65628",	# brown
-	"#F781BF",	# pink
-	"#999999"	# grey
+CAT_COLORS <- c(	# from Color Brewer, see http://colorbrewer2.org/#type=qualitative&scheme=Set1&n=9 
+	"#E41A1C",		# red
+	"#377EB8",		# blue
+	"#4DAF4A",		# green
+	"#984EA3",		# purple
+	"#FF7F00",		# orange
+	"#FFFF33",		# yellow
+	"#A65628",		# brown
+	"#F781BF",		# pink
+	"#999999"		# grey
 )
-CAT_COLORS_18 <- c(
+CAT_COLORS_18 <- c(							# manual extension of the color brewer palette
 	rgb(228,26,28,maxColorValue=255),		# red
 	rgb(55,126,184,maxColorValue=255),		# light blue
 	rgb(113,219,110,maxColorValue=255),		# light green
@@ -46,34 +45,64 @@ CAT_COLORS_18 <- c(
 	rgb(0,0,255,maxColorValue=255),			# straight blue
 	rgb(0,255,0,maxColorValue=255)			# straight green
 )
-CAT_COLORS_25 <- c(
-	rgb(228,26,28,maxColorValue=255),		# red
-	rgb(55,126,184,maxColorValue=255),		# light blue
-	rgb(113,219,110,maxColorValue=255),		# light green
-	rgb(152,78,163,maxColorValue=255),		# purple
-	rgb(255,127,0,maxColorValue=255),		# orange
-	rgb(166,86,40,maxColorValue=255),		# brown
-	rgb(247,129,191,maxColorValue=255),		# pink
-	rgb(153,153,153,maxColorValue=255),		# light grey
-	rgb(23,89,143,maxColorValue=255),		# dark blue
-	rgb(16,125,12,maxColorValue=255),		# dark green
-	rgb(30,30,30,maxColorValue=255),		# dark grey
-	rgb(255,255,51,maxColorValue=255),		# yellow
-	rgb(143,11,13,maxColorValue=255),		# dark red
-	rgb(0,255,255,maxColorValue=255),		# cyan
-	rgb(14,161,161,maxColorValue=255),		# dark cyan
-	rgb(255,187,120,maxColorValue=255),		# light orange
-	rgb(0,0,255,maxColorValue=255),			# straight blue
-	rgb(0,255,0,maxColorValue=255),			# straight green
-rgb(0,255,0,maxColorValue=255),			# straight green
-rgb(0,255,0,maxColorValue=255),			# straight green
-rgb(0,255,0,maxColorValue=255),			# straight green
-rgb(0,255,0,maxColorValue=255),			# straight green
-rgb(0,255,0,maxColorValue=255),			# straight green
-rgb(0,255,0,maxColorValue=255),			# straight green
-rgb(0,255,0,maxColorValue=255),			# straight green
+CAT_COLOR_22 <- c(	# kelly.colors(22) from package Polychrome
+	"#f2f3f4", 		# white 
+	"#222222", 		# black 
+	"#f3c300", 		# yellow 
+	"#875692", 		# purple 
+	"#f38400", 		# orange 
+	"#a1caf1", 		# lightblue 
+	"#be0032", 		# red 
+	"#c2b280", 		# buff 
+	"#848482", 		# gray 
+	"#008856", 		# green 
+	"#e68fac", 		# purplishpink 
+	"#0067a5", 		# blue 
+	"#f99379", 		# yellowishpink 
+	"#604e97", 		# violet 
+	"#f6a600", 		# orangeyellow 
+	"#b3446c", 		# purplishred 
+	"#dcd300", 		# greenishyellow 
+	"#882d17", 		# reddishbrown 
+	"#8db600", 		# yellowgreen 
+	"#654522", 		# yellowishbrown 
+	"#e25822", 		# reddishorange 
+	"#2b3d26"		# olivegreen
 )
-
+CAT_COLORS_26 <- c(	# green.armytage.colors(26) from package Polychrome
+	"#F0A3FF",		# amethyst 
+	"#0075DC",		# blue
+	"#993F00",		# caramel
+	"#4C005C",		# damson
+	"#191919",		# ebony
+	"#005C31",		# forest
+	"#2BCE48",		# green
+	"#FFCC99", 		# honeydew
+	"#808080",		# iron
+	"#94FFB5",		# jade
+	"#8F7C00",		# khaki
+	"#9DCC00",		# lime
+	"#C20088",		# mallow
+	"#003380",		# navy
+	"#19A405",		# orpiment
+	"#FFA8BB", 		# pink
+	"#426600",		# quagmire 
+	"#FF0010",		# red
+	"#5EF1F2",		# sky
+	"#00998F",		# turquoise
+	"#E0FF66",		# uranium
+	"#100AFF",		# violet
+	"#990000",		# wine
+	"#FFFF80", 		# xanthin
+	"#FFE100",		# yellow
+	"#FF5000"		# zinnia
+)
+CAT_COLORS_32 <- c(	# glasbey.colors(32) from package Polychrome
+	"#FFFFFF", "#0000FF", "#FF0000", "#00FF00", "#000033", "#FF00B6", "#005300", "#FFD300", 
+	"#009FFF", "#9A4D42", "#00FFBE", "#783FC1", "#1F9698", "#FFACFD", "#B1CC71", "#F1085C", 
+	"#FE8F42", "#DD00FF", "#201A01", "#720055", "#766C95", "#02AD24", "#C8FF00", "#886C00", 
+	"#FFB79F", "#858567", "#A10300", "#14F9FF", "#00479E", "#DC5E93", "#93D4FF", "#004CFF"
+)
 
 
 
