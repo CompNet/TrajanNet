@@ -15,7 +15,7 @@ library("ggraph")			# additional graph plotting features
 library("SDMTools")			# ?
 library("scales")			# convert colors
 library("circlize")			# circos-type plots
-library("TraMinR")			# sequence analysis
+library("TraMineR")			# sequence analysis
 library('plot.matrix')		# plot matrices
 
 
@@ -71,3 +71,5 @@ analyze.sequences()
 #   > générer les différentes étape (graphiques)
 # - analyse de sequences
 # 3.1: similarité structurelle, pour objectiver un peu ?
+# - entre les espagnols vs. le reste du graphe
+# - mais aussi homophilie

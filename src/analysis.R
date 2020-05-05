@@ -692,7 +692,7 @@ analyze.net.assortativity <- function(g, g0)
 	# gather regular categorical attributes
 	attrs <- c(ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR,			# relationships
 			ATT_NODE_SEN_POLDER, ATT_NODE_EQU_POLDER,			# last political positions
-			ATT_NODE_LACTICLAVIUS, ATT_NODE_SPANISH)				# misc
+			ATT_NODE_LACTICLAVIUS, ATT_NODE_SPANISH)			# misc
 	for(attr in attrs)
 	{	tmp <- vertex_attr(g0, attr)
 		if(all(is.na(cat.data)))
