@@ -73,3 +73,16 @@ analyze.sequences()
 # 3.1: similarité structurelle, pour objectiver un peu ?
 # - entre les espagnols vs. le reste du graphe
 # - mais aussi homophilie
+
+# TODO séquences
+# - mettre en place les couleurs
+# - calculer les distances b et c
+# - récup les traj mises à jour et faire même chose (dist b c
+# - sortir les clusters (hiérarchique ?)
+# - distance entre chaque séq et les 2 séq types
+# - faire une représentation graphique 2D genre LLE
+
+# TODO
+# - interprétation de la matrice de transition ?
+# - génerer un graphe sur la base de la matrice de transitions ?
+# - ou bien un diagramme alluvial ?
