@@ -27,6 +27,65 @@ create.plot <- function(file)
 
 
 #############################################################
+#############################################################
+build.transition.graph <- function(seq.tab, pos.tab)
+{	# compute the ajacency matrix
+	lst <- strsplit(as.character(seq.tab[,SEQ_CAREER]),";",fixed=TRUE)
+	adj <- matrix(0, nrow=nrow(pos.tab), ncol=nrow(pos.tab), dimnames=list(pos.tab[,SEQ_IDENTIFIER],pos.tab[,SEQ_IDENTIFIER]))
+	size <- rep(0, nrow(pos.tab))
+	names(size) <- pos.tab[,SEQ_IDENTIFIER]
+	for(traj in lst)
+	{	size[traj[1]] <- size[traj[1]] + 1
+		if(length(traj)>1)
+		{	for(i in 2:length(traj))
+			{	size[traj[i]] <- size[traj[i]] + 1
+				adj[traj[i-1],traj[i]] <- adj[traj[i-1],traj[i]] + 1
+			}
+		}
+	}
+	
+	# plot the resulting graph
+	cols <- pos.tab[,SEQ_COLOR]
+	g <- graph_from_adjacency_matrix(
+		adjmatrix=adj,
+		mode ="directed",
+		weighted=TRUE
+	)
+	lay <- layout_with_fr(g)
+	plot.file <- file.path(SEQ_FOLDER, "transition_rates_graph")
+	create.plot(plot.file)
+	plot(g,											# graph to plot
+		layout=lay,									# layout
+		vertex.size=4+1.25*size,					# node size
+		vertex.color=cols,							# node color
+		vertex.label=pos.tab[,SEQ_POSTE],			# node labels
+		vertex.label.cex=1.2,						# label size
+		vertex.label.family="sans",					# font type
+		vertex.label.font=2,						# 1 is plain text, 2 is bold face, 3 is italic, 4 is bold and italic
+		vertex.label.label.dist=0,					# label distance to node center (0=center)
+		vertex.label.color="BLACK",					# label color
+#		edge.color=rgb(0,0,0,max=255,alpha=125),	# edge color
+#		edge.arrow.size=E(g)$weight,				# size of the arrows
+		edge.width=3+3*E(g)$weight					# link thickness
+	)
+	dev.off()
+	
+#	# record layout
+#	lay.file <- file.path(SEQ_FOLDER, "transition_rates_graph_layout.txt")
+#	write.table(x=lay, file=lay.file)
+	
+	# record as graphml file
+	V(g)$fullname <- pos.tab[,SEQ_POSTE]
+	V(g)$weight <- size
+	V(g)$color <- cols
+	graph.file <- file.path(SEQ_FOLDER, "transition_rates_graph.graphml")
+	write.graph(graph=g, file=graph.file, format="graphml")
+}
+
+
+
+
+#############################################################
 # Main method for the sequence analysis.
 #
 # Check 

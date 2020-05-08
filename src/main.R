@@ -76,12 +76,11 @@ analyze.sequences()
 
 # TODO séquences
 # - calculer les distances b et c
-# - récup les traj mises à jour et faire même chose (dist b c
-# - sortir les clusters (hiérarchique ?)
-# - distance entre chaque séq et les 2 séq types
+# - récup les traj mises à jour et faire même chose (dist b c)
+# - sortir les clusters (hiérarchique ?) basés sur les séquences
+# - calculer la distance entre chaque séq et les 2 séq types
 # - faire une représentation graphique 2D genre LLE
 
 # TODO
-# - générer les plots pour les cercles
 # - génerer un graphe sur la base de la matrice de transitions ?
 # - ou bien un diagramme alluvial ?
