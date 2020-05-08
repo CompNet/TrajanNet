@@ -44,6 +44,7 @@ ATT_NODE_TRAV_REAS <- "MotifVoy"
 ATT_NODE_REL_TRAJ <- "RelTrajan"
 ATT_NODE_REL_HADR <- "SoutHadrien"
 ATT_NODE_CIRCLES <- "Cercles"
+ATT_NODE_CIRCLES_VALS <- c("Antonins","Nigrinus","Pline","Regulus","Clarus")
 ATT_NODE_SPANISH <- "Espagnol"
 
 # edge attribute names
@@ -71,6 +72,7 @@ ATT_VAL_CIRCLE_NIGRINUS <- "Cercles_Nigrinus"
 ATT_VAL_CIRCLE_PLINE <- "Cercles_Pline"
 ATT_VAL_CIRCLE_REGULUS <- "Cercles_Regulus"
 ATT_VAL_CIRCLE_CLARUS <- "Cercles_Septicius Clarus"
+ATT_VAL_CIRCLE_VALS <- c(ATT_VAL_CIRCLE_ANTONINS,ATT_VAL_CIRCLE_NIGRINUS,ATT_VAL_CIRCLE_PLINE,ATT_VAL_CIRCLE_REGULUS,ATT_VAL_CIRCLE_CLARUS)
 
 # country values
 ATT_VAL_DEST_ACHA <- "Achaie"

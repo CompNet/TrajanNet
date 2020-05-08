@@ -75,7 +75,6 @@ analyze.sequences()
 # - mais aussi homophilie
 
 # TODO séquences
-# - mettre en place les couleurs
 # - calculer les distances b et c
 # - récup les traj mises à jour et faire même chose (dist b c
 # - sortir les clusters (hiérarchique ?)
@@ -83,6 +82,6 @@ analyze.sequences()
 # - faire une représentation graphique 2D genre LLE
 
 # TODO
-# - interprétation de la matrice de transition ?
+# - générer les plots pour les cercles
 # - génerer un graphe sur la base de la matrice de transitions ?
 # - ou bien un diagramme alluvial ?

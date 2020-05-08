@@ -1,14 +1,14 @@
 Poste,Sphere,Statut,Identifiant,Rang,Localisation,Couleur
 Questeur,Senatorial,Politique,spol1,1,Rome ou Province,#ffb3b3
-Edile,Senatorial,Politique,spol2,2,Rome ou Province, #ff8080
+Edile,Senatorial,Politique,spol2,2,Rome ou Province,#ff8080
 Tribun de la plebe,Senatorial,Politique,spol3,3,Rome ou Province,#ff4d4d
 Preteur,Senatorial,Politique,spol4,4,Rome ou Province,#ff1a1a
 Consul suffect,Senatorial,Politique,spol5,5,Rome,#e60000
 Consul,Senatorial,Politique,spol6,6,Rome,#990000
 Prefet de la ville,Senatorial,Politique,spol7,7,Rome,#660000
-Tribun lacticlave,Senatorial,Militaire,smil1,1,Province,#ffccff
-Legat de legion,Senatorial,Militaire,smil2,2,Province,#ff99ff
-Legat d'Auguste propreteur,Senatorial,Militaire,smil3,3,Province,#ff00ff
+Tribun lacticlave,Senatorial,Militaire,smil1,1,Province,#ffff99
+Legat de legion,Senatorial,Militaire,smil2,2,Province,#ffff00
+Legat d'Auguste propreteur,Senatorial,Militaire,smil3,3,Province,#ff9900
 Proconsul,Senatorial,Militaire,smil4,4,Rome ou Province,#cc00cc
 Procuratele,Equestre,Politique,cpol1,1,Rome ou Province,#ccccff
 Prefet de la flotte,Equestre,Politique,cpol2,2,Rome,#9999ff

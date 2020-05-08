@@ -57,10 +57,11 @@ analyze.sequences <- function()
 	pos.tab <- pos.tab[idx,]
 	
 	# select the correct palette
-	if(nrow(pos.tab)>18)
-		cols <- CAT_COLORS_26
-	else
-		cols <- CAT_COLORS_18
+	#if(nrow(pos.tab)>18)
+	#	cols <- CAT_COLORS_26
+	#else
+	#	cols <- CAT_COLORS_18
+	cols <- pos.tab[,SEQ_COLOR]
 	
 	# break down career sequence
 	ids <- as.character(seq.tab[,SEQ_ID])
@@ -80,13 +81,13 @@ analyze.sequences <- function()
 	)
 	
 	# plot legend apart
-	plot.file <- file.path(SEQ_FOLDER, "caption.")
+	plot.file <- file.path(SEQ_FOLDER, "caption")
 	create.plot(plot.file)
 		seqlegend(sd)
 	dev.off()
 	
 	# all sequences sorted by start state
-	plot.file <- file.path(SEQ_FOLDER, "all_seq.")
+	plot.file <- file.path(SEQ_FOLDER, "all_seq")
 	create.plot(plot.file)
 		seqIplot(sd,						# data
 			sortv="from.start", 			# how to sort the sequences
@@ -104,7 +105,7 @@ analyze.sequences <- function()
 	for(att.name in att.names)
 	{	folder <- file.path(SEQ_ATT_FOLDER, att.name)
 		dir.create(path=folder, showWarnings=FALSE, recursive=TRUE)
-		plot.file <- file.path(folder, "all_seq.")
+		plot.file <- file.path(folder, "all_seq")
 		create.plot(plot.file)
 			seqIplot(sd,						# data
 				group=main.tab[,att.name],		# variable used to group sequences
@@ -118,7 +119,29 @@ analyze.sequences <- function()
 			)
 		dev.off()
 	}
-
+	
+	# specific case of the circles
+	folder <- file.path(SEQ_ATT_FOLDER, ATT_NODE_CIRCLES)
+	dir.create(path=folder, showWarnings=FALSE, recursive=TRUE)
+	circle.str <- as.character(main.tab[,ATT_NODE_CIRCLES])
+	for(i in 1:length(ATT_NODE_CIRCLES_VALS))
+	{	circle <- ATT_NODE_CIRCLES_VALS[i]
+		idx <- which(grepl(circle, circle.str, fixed=TRUE))
+		plot.file <- file.path(folder, paste0(circle,"_seq"))
+		create.plot(plot.file)
+		seqiplot(sd,									# data
+				idxs=idx,								# index of the concerned sequences
+				sortv="from.start", 					# how to sort the sequences
+				with.legend=FALSE,						# whether and where to put the legend ("right")
+				xlab="Chronologie des etats",			# x-axis title
+				ylab="Personnage",						# y-axis title
+				ytlab="id",								# character codes
+				ylas=1,									# orientation of these codes
+				main=LONG_NAME[ATT_VAL_CIRCLE_VALS[i]]	# plot title
+		)
+		dev.off()
+	}
+	
 	# state distribution plot
 	plot.file <- file.path(SEQ_FOLDER, "state_distrib")
 	create.plot(plot.file)
@@ -159,24 +182,26 @@ analyze.sequences <- function()
 	write.table(print(tmp), file.name, quote=FALSE, sep="\t")
 
 	# transition rates
-	plot.file <- file.path(SEQ_FOLDER, "transition_rates")
-	trate.mat <- seqtrate(sd)
-	#idx <- which(sapply(1:nrow(trate.mat), function(i) sum(trate.mat[,i])+sum(trate.mat[i,])>0))
-	#trate.mat <- trate.mat[idx,idx]	# remove empty transitions
-	idxr <- which(apply(trate.mat, 1, sum)>0)
-	idxc <- which(apply(trate.mat, 2, sum)>0)
-	trate.mat <- trate.mat[idxr,idxc]	# remove empty transitions
-	trate.mat[which(trate.mat==0)] <- NA
-	create.plot(plot.file)
-		par(mar=c(5.1, 5.1, 2.6, 4.1))	# margins B L T R 
-		plot(trate.mat,		# matrix
-			col=colorRampPalette(c("yellow",'red')),
-			las=2,
-			xlab=NA,	#"Etat posterieur",
-			ylab=NA,	#"Etat anterieur",
-			main="Taux de transition"
-		)
-	dev.off()
+	sfx <- c("all","nonempty")
+	for(i in 1:length(sfx))
+	{	plot.file <- file.path(SEQ_FOLDER, paste0("transition_rates_",sfx[i]))
+		trate.mat <- seqtrate(sd)
+		idxr <- which(apply(trate.mat, 1, sum)>0)
+		idxc <- which(apply(trate.mat, 2, sum)>0)
+		if(sfx[i]!="all")
+			trate.mat <- trate.mat[idxr,idxc]	# remove empty transitions
+		trate.mat[which(trate.mat==0)] <- NA
+		create.plot(plot.file)
+			par(mar=c(5.1, 5.1, 2.6, 4.1))	# margins B L T R 
+			plot(trate.mat,		# matrix
+				col=colorRampPalette(c("yellow",'red')),
+				las=2,
+				xlab=NA,	#"Etat posterieur",
+				ylab=NA,	#"Etat anterieur",
+				main="Taux de transition"
+			)
+		dev.off()
+	}
 	file.name <- paste0(plot.file, ".txt")
 	write.table(trate.mat, file.name, quote=FALSE, sep="\t")
 	
