@@ -1,68 +1,68 @@
-Id	Carriere	CarriereNA
-P0	NA	
-P1	NA	
-P2	spol1;spol3;spol4;smil2;spol6;smil3	NA;spol2;spol3;spol4;smil2;NA;spol6;smil3
-P3	NA	
-P4	NA	
-P5	NA	
-P6	NA	
-P7	NA	
-P8	cpol6	NA;NA;NA;NA;NA;NA;NA;NA;NA;cpol6
-P9	spol1;spol2;spol4;smil2;spol5;spol6;smil3;spol7	NA;spol1;spol2;spol4;smil2;spol5;spol6;smil3;spol7
-P10	spol6;smil4	NA;NA;NA;NA;NA;NA;NA;spol6;smil4
-P11	spol3;spol4;spol5;smil3	NA;NA;spol3;spol4;NA;spol5;NA;smil3
-P12	spol1;spol3;spol4;smil2;spol5;spol6;smil3;spol7	NA;spol1;NA;spol3;spol4;smil2;spol5;spol6;smil3;spol7
-P13	spol4;smil2;spol5;smil3	NA;NA;NA;NA;spol4;smil2;spol5;smil3
-P14	smil2;cpol6	NA
-P15	cmil2	NA;cmil2
-P16	spol4;spol6;smil3	NA;NA;NA;NA;spol4;NA;NA;spol6;smil3
-P17	spol4;spol6;smil3	NA;NA;NA;NA;spol4;NA;NA;spol6;smil3
-P18	spol1;spol4;smil2;spol5	NA;spol1;NA;NA;spol4;smil2;spol5
-P19	spol1;spol4;spol5;spol6;smil3	NA;spol1;NA;NA;spol4;NAspol5;spol6;smil3
-P20	spol4;smil2;spol5;spol6;smil3;smil4	NA;NA;NA;NA;spol4;smil2;spol5;spol6;smil3;smil4
-P21	cpol1;cpol4;cpol5;cpol6;smil2;spol6;smil3	NA
-P22	spol1;smil2;spol6	NA;spol1;NA;NA;NA;smil2;NA;spol6
-P23	spol1;spol4;spol5;spol6;smil3	NA;spol1;NA;NA;spol4;NA;spol5;spol6;smil3
-P24	cpol3	NA;NA;NA;NA;NA;NA;cpol3
-P25	spol1;spol3;spol4;spol5;spol6;smil3	NA;spol1;NA;spol3;spol4;NA;spol5;spol6;smil3
-P26	cpol1;cpol5	NA;NA;NA;NA;cpol1;NA;NA;NA;cpol5
-P27	spol5;spol6;smil3	NA;NA;NA;NA;NA;NA;spol5;spol6;smil3
-P28	cpol4;cpol5	NA;NA;NA;NA;NA;NA;NA;cpol4;cpol5
-P29	spol5	NA;NA;NA;NA;NA;NA;spol5
-P30	cpol1	NA;NA;NA;NA;cpol1
-P31	spol1;spol4;smil2;spol6;smil3	NA;spol1;NA;NA;spol4;smil2;NA;spol6;smil3
-P32	spol4;spol6;smil3	NA;NA;NA;NA;spol4;NA;NA;spol6;smil3
-P33	cpol1;cpol6;spol4;spol6;smil3	NA
-P34	spol1;spol3;spol4;spol5;smil3	NA;spol1;NA;spol3;spol4;NA;NA;smil3
-P35	NA	
-P36	spol5;spol6;smil3;spol7	NA;NA;NA;NA;NA;NA;spol5;spol6;smil3;spol7
-P37	spol5	NA;NA;NA;NA;NA;NA;spol5
-P38	spol6	NA;NA;NA;NA;NA;NA;NA;spol6
-P39	spol4;spol5;spol6;smil3;smil4	NA;NA;NA;NA;spol4;NA;spol5;spol6;smil3;smil4
-P40	spol6	NA;NA;NA;NA;NA;NA;NA;spol6
-P41	spol4;smil3	NA;NA;NA;NA;spol4;NA;NA;NA;smil3
-P42	spol1;spol3;spol4;smil2;spol6	NA;spol1;NA;spol3;spol4;smil2;NA;spol6
-P43	spol4;spol5;smil3	NA;NA;NA;NA;spol4;NA;spol5;NA;smil3
-P44	spol4;spol6;smil3	NA;NA;NA;NA;spol4;NA;NA;spol6;smil3
-P45	spol5	NA;NA;NA;NA;NA;NA;spol5
-P46	cpol1;spol4;spol6;smil3	NA
-P47	spol4;smil2;spol5;spol6;smil3;smil4	NA;NA;NA;NA;spol4;smil2;spol5;spol6;smil3;smil4
-P48	smil2;spol5	NA;NA;NA;NA;NA;smil2;spol5
-P49	cpol1	NA;NA;NA;NA;cpol1
-P50	spol2;spol5;spol6;smil4	NA;NA;spol2;NA;NA;NA;spol5;spol6;smil4
-P51	spol2;smil2;spol5;spol6;smil4	NA;NA;spol2;NA;NA;smil2;spol5;spol6;smil4
-P52	spol1;spol3;spol4;smil2;spol5;smil3	NA;spol1;NA;spol3;spol4;smil2;spol5;NA;smil3
-P53	spol4;smil2;spol6;smil3	NA;NA;NA;NA;spol4;smil2;NA;spol6;smil3
-P54	spol4;smil2	NA;NA;NA;NA;spol4;smil2
-P55	spol4;spol5;smil3	NA;NA;NA;NA;spol4;NA;spol5;NA;smil3
-P56	cpol1;spol1;spol3;spol4;smil2;spol5;spol6;smil3;smil4	NA
-P57	NA	
-P58	spol4;smil2;spol5;smil3	NA;NA;NA;NA;spol4;smil2;spol5;NA;smil3
-P59	spol4;smil3	NA;NA;NA;NA;spol4;NA;NA;smil3
-P60	cmil3;cpol1;spol1;spol3;spol4;smil3	NA
-P61	cmil3;spol1;spol2	NA
-P62	spol3;spol4;smil2	NA;NA;NA;spol3;spol4;smil2
-P63	cpol6	NA;NA;NA;NA;NA;NA;NA;NA;NA;cpol6
-P64	cpol4;cpol6	NA;NA;NA;NA;NA;NA;NA;cpol4;NA;cpol6
-P65	spol4;smil2;spol6;smil3	NA;NA;NA;NA;spol4;smil2;NA;spol6;smil3
-P66	cpol5	NA;NA;NA;NA;NA;NA;NA;NA;cpol5
+Id,Carriere,CarriereNA
+P0,NA,
+P1,NA,
+P2,spol1;spol3;spol4;smil2;spol6;smil3,NA;spol2;spol3;spol4;smil2;NA;spol6;smil3
+P3,NA,
+P4,NA,
+P5,NA,
+P6,NA,
+P7,NA,
+P8,cpol6,NA;NA;NA;NA;NA;NA;NA;NA;NA;cpol6
+P9,spol1;spol2;spol4;smil2;spol5;spol6;smil3;spol7,NA;spol1;spol2;spol4;smil2;spol5;spol6;smil3;spol7
+P10,spol6;smil4,NA;NA;NA;NA;NA;NA;NA;spol6;smil4
+P11,spol3;spol4;spol5;smil3,NA;NA;spol3;spol4;NA;spol5;NA;smil3
+P12,spol1;spol3;spol4;smil2;spol5;spol6;smil3;spol7,NA;spol1;NA;spol3;spol4;smil2;spol5;spol6;smil3;spol7
+P13,spol4;smil2;spol5;smil3,NA;NA;NA;NA;spol4;smil2;spol5;smil3
+P14,smil2;cpol6,NA
+P15,cmil2,NA;cmil2
+P16,spol4;spol6;smil3,NA;NA;NA;NA;spol4;NA;NA;spol6;smil3
+P17,spol4;spol6;smil3,NA;NA;NA;NA;spol4;NA;NA;spol6;smil3
+P18,spol1;spol4;smil2;spol5,NA;spol1;NA;NA;spol4;smil2;spol5
+P19,spol1;spol4;spol5;spol6;smil3,NA;spol1;NA;NA;spol4;NAspol5;spol6;smil3
+P20,spol4;smil2;spol5;spol6;smil3;smil4,NA;NA;NA;NA;spol4;smil2;spol5;spol6;smil3;smil4
+P21,cpol1;cpol4;cpol5;cpol6;smil2;spol6;smil3,NA
+P22,spol1;smil2;spol6,NA;spol1;NA;NA;NA;smil2;NA;spol6
+P23,spol1;spol4;spol5;spol6;smil3,NA;spol1;NA;NA;spol4;NA;spol5;spol6;smil3
+P24,cpol3,NA;NA;NA;NA;NA;NA;cpol3
+P25,spol1;spol3;spol4;spol5;spol6;smil3,NA;spol1;NA;spol3;spol4;NA;spol5;spol6;smil3
+P26,cpol1;cpol5,NA;NA;NA;NA;cpol1;NA;NA;NA;cpol5
+P27,spol5;spol6;smil3,NA;NA;NA;NA;NA;NA;spol5;spol6;smil3
+P28,cpol4;cpol5,NA;NA;NA;NA;NA;NA;NA;cpol4;cpol5
+P29,spol5,NA;NA;NA;NA;NA;NA;spol5
+P30,cpol1,NA;NA;NA;NA;cpol1
+P31,spol1;spol4;smil2;spol6;smil3,NA;spol1;NA;NA;spol4;smil2;NA;spol6;smil3
+P32,spol4;spol6;smil3,NA;NA;NA;NA;spol4;NA;NA;spol6;smil3
+P33,cpol1;cpol6;spol4;spol6;smil3,NA
+P34,spol1;spol3;spol4;spol5;smil3,NA;spol1;NA;spol3;spol4;NA;NA;smil3
+P35,NA,
+P36,spol5;spol6;smil3;spol7,NA;NA;NA;NA;NA;NA;spol5;spol6;smil3;spol7
+P37,spol5,NA;NA;NA;NA;NA;NA;spol5
+P38,spol6,NA;NA;NA;NA;NA;NA;NA;spol6
+P39,spol4;spol5;spol6;smil3;smil4,NA;NA;NA;NA;spol4;NA;spol5;spol6;smil3;smil4
+P40,spol6,NA;NA;NA;NA;NA;NA;NA;spol6
+P41,spol4;smil3,NA;NA;NA;NA;spol4;NA;NA;NA;smil3
+P42,spol1;spol3;spol4;smil2;spol6,NA;spol1;NA;spol3;spol4;smil2;NA;spol6
+P43,spol4;spol5;smil3,NA;NA;NA;NA;spol4;NA;spol5;NA;smil3
+P44,spol4;spol6;smil3,NA;NA;NA;NA;spol4;NA;NA;spol6;smil3
+P45,spol5,NA;NA;NA;NA;NA;NA;spol5
+P46,cpol1;spol4;spol6;smil3,NA
+P47,spol4;smil2;spol5;spol6;smil3;smil4,NA;NA;NA;NA;spol4;smil2;spol5;spol6;smil3;smil4
+P48,smil2;spol5,NA;NA;NA;NA;NA;smil2;spol5
+P49,cpol1,NA;NA;NA;NA;cpol1
+P50,spol2;spol5;spol6;smil4,NA;NA;spol2;NA;NA;NA;spol5;spol6;smil4
+P51,spol2;smil2;spol5;spol6;smil4,NA;NA;spol2;NA;NA;smil2;spol5;spol6;smil4
+P52,spol1;spol3;spol4;smil2;spol5;smil3,NA;spol1;NA;spol3;spol4;smil2;spol5;NA;smil3
+P53,spol4;smil2;spol6;smil3,NA;NA;NA;NA;spol4;smil2;NA;spol6;smil3
+P54,spol4;smil2,NA;NA;NA;NA;spol4;smil2
+P55,spol4;spol5;smil3,NA;NA;NA;NA;spol4;NA;spol5;NA;smil3
+P56,cpol1;spol1;spol3;spol4;smil2;spol5;spol6;smil3;smil4,NA
+P57,NA,
+P58,spol4;smil2;spol5;smil3,NA;NA;NA;NA;spol4;smil2;spol5;NA;smil3
+P59,spol4;smil3,NA;NA;NA;NA;spol4;NA;NA;smil3
+P60,cmil3;cpol1;spol1;spol3;spol4;smil3,NA
+P61,cmil3;spol1;spol2,NA
+P62,spol3;spol4;smil2,NA;NA;NA;spol3;spol4;smil2
+P63,cpol6,NA;NA;NA;NA;NA;NA;NA;NA;NA;cpol6
+P64,cpol4;cpol6,NA;NA;NA;NA;NA;NA;NA;cpol4;NA;cpol6
+P65,spol4;smil2;spol6;smil3,NA;NA;NA;NA;spol4;smil2;NA;spol6;smil3
+P66,cpol5,NA;NA;NA;NA;NA;NA;NA;NA;cpol5
