@@ -20,7 +20,6 @@ DATA_FOLDER <- "data"
 	ATT_FOLDER <- file.path(DATA_FOLDER,"attributes")
 		COMP_FOLDER <- file.path(ATT_FOLDER,"comparisons")
 	SEQ_FOLDER <- file.path(DATA_FOLDER,"sequences")
-		SEQ_ATT_FOLDER <- file.path(SEQ_FOLDER,"attributes")
 	
 
 
@@ -337,7 +336,9 @@ LONG_NAME[MEAS_COR_CLUST] <- "Factions antagonistes"
 # sequence-related names
 SEQ_ID <- "Id"
 SEQ_CAREER <- "Carriere"
+SEQ_CAREER_NA <- "CarriereNA"
 SEQ_IDENTIFIER <- "Identifiant"
 SEQ_POSTE <- "Poste"
 SEQ_SEQ <- "Sequence"
 SEQ_COLOR <- "Couleur"
+SEQ_MISSING <- "Inconnu"

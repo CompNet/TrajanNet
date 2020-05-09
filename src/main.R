@@ -68,7 +68,7 @@ analyze.sequences()
 # TODO
 # - fermeture : 
 #   > faire ça de façon synchrone
-#   > générer les différentes étape (graphiques)
+#   > générer les différentes étapes (graphiques)
 # - analyse de sequences
 # 3.1: similarité structurelle, pour objectiver un peu ?
 # - entre les espagnols vs. le reste du graphe
@@ -82,5 +82,4 @@ analyze.sequences()
 # - faire une représentation graphique 2D genre LLE
 
 # TODO
-# - génerer un graphe sur la base de la matrice de transitions ?
-# - ou bien un diagramme alluvial ?
+# - génerer un diagramme alluvial sur la base de la matrice de transitions ?
