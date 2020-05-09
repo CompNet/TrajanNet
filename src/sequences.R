@@ -63,14 +63,14 @@ build.transition.graph <- function(seq.tab, pos.tab, folder, seq.col)
 	)
 	
 	# possibly load the layout
-	lay.file <- file.path(folder, "transition_rates_graph_layout.txt")
+	lay.file <- file.path(folder, "transition_graph_layout.txt")
 	if(file.exists(lay.file))
 		lay <- as.matrix(read.table(file=lay.file))
 	else
 		lay <- layout_with_fr(g)
 	
 	# plot the graph
-	plot.file <- file.path(folder, "transition_rates_graph")
+	plot.file <- file.path(folder, "transition_graph")
 	create.plot(plot.file)
 	plot(g,											# graph to plot
 		layout=lay,									# layout
@@ -89,15 +89,95 @@ build.transition.graph <- function(seq.tab, pos.tab, folder, seq.col)
 	dev.off()
 	
 #	# record the layout
-#	lay.file <- file.path(folder, "transition_rates_graph_layout.txt")
+#	lay.file <- file.path(folder, "transition_graph_layout.txt")
 #	write.table(x=lay, file=lay.file)
 	
 	# record the graph as a graphml file
 	V(g)$fullname <- pos.tab[,SEQ_POSTE]
 	V(g)$weight <- size
 	V(g)$color <- cols
-	graph.file <- file.path(folder, "transition_rates_graph.graphml")
+	graph.file <- file.path(folder, "transition_graph.graphml")
 	write.graph(graph=g, file=graph.file, format="graphml")
+}
+
+
+
+
+#############################################################
+# Produces the alluvial diagarms representing the the transition 
+# between positions.
+#
+# seq.tab: table containing the sequences.
+# pos.tab: table containing the postions and their details.
+# folder: output folder.
+# seq.col: name of the column containing the sequences in seq.tab.
+# attr.data: table containing all the attributes of the historical characters.
+#############################################################
+plot.alluvial.diagrams <- function(seq.tab, pos.tab, folder, seq.col, attr.data)
+{	# compute the data frame
+	lst <- strsplit(as.character(seq.tab[,seq.col]),";",fixed=TRUE)
+	nc <- max(sapply(lst,length))
+	mat <- matrix(0, nrow=nrow(seq.tab), ncol=nc, dimnames=list(seq.tab[,SEQ_ID],paste("[",1:nc,"]",sep="")))
+	for(i in 1:length(lst))
+	{	traj <- lst[[i]]
+		traj[traj=="NA"] <- SEQ_MISSING
+		if(length(traj)<nc)
+			traj <- c(traj, rep("NA",nc-length(traj)))
+		mat[i,] <- traj
+	}
+	df <- as.data.frame(mat, levels=levels(c(pos.tab[,SEQ_IDENTIFIER]),"NA"))
+	att.names <- c(ATT_NODE_LACTICLAVIUS, ATT_NODE_TRAV_NBR, ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
+	for(i in 0:length(att.names))
+	{	# setup alluvium colors
+		if(i==0)
+		{	plot.file <- file.path(folder, "transition_alluvial")
+			cols <- "DARKGREY"
+		}
+		else
+		{	plot.file <- file.path(folder, paste0("transition_alluvial_",att.names[i]))
+			cols <- CAT_COLORS[as.integer(attr.data[,att.names[i]])]
+			cols[is.na(attr.data[,att.names[i]])] <- "GREY"
+		}
+		
+		# setup file format
+		if(FORMAT=="pdf")
+			pdf(paste0(plot.file,".pdf"), width=50, height=25)
+		else if(FORMAT=="png")
+			png(paste0(plot.file,".png"), width=2048, height=1024)
+		# draw plot
+		alluvial(df, freq=1,			# data
+			col=cols,					# alluvium fill color
+			border=NA,					# alluvium border color
+			blocks=TRUE,				# whether to draw variable values as rectangles
+			axis_labels=colnames(df),	# time labels
+			cex=1.0						# text size
+		)
+		dev.off()
+	}
+	
+#	# ggalluvial
+##	mat[mat=="NA"] <- NA
+#	df0 <- as.data.frame(mat, levels=levels(c(pos.tab[,SEQ_IDENTIFIER]),"NA"))
+#	colnames(df0) <- paste("t", 1:nc, sep="")
+#	df0 <- cbind(df0, rep(1,nrow(df0)))
+#	colnames(df0)[ncol(df0)] <- "Freq"
+#	df0 <- cbind(attr.data, df0)
+#	ggplot(df0, 
+#			aes(y=Freq, axis1=t1, axis2=t2, axis3=t3, axis4=t4, axis5=t5, axis6=t6, axis7=t7, axis8=t8, axis9=t9)) +
+#		geom_alluvium(aes(fill=Espagnol), width=1/12) +
+#		geom_stratum(width=1/12, fill="black", color="grey") +
+#		geom_label(stat="stratum", infer.label=TRUE) +
+#		scale_x_discrete(limits = c("t1","t2","t3","t4","t5","t6","t7","t8","t9"), expand = c(.05, .05)) +
+#		scale_fill_brewer(type="qual", palette="Set1") +
+#		ggtitle("Carrieres")
+#
+#	ggplot(df0, 
+#			aes(y=Freq, axis1=t1, axis2=t2, axis3=t3, axis4=t4, axis5=t5, axis6=t6, axis7=t7, axis8=t8, axis9=t9)) +
+#		geom_alluvium(width=1/12) +
+#		geom_stratum(width=1/12, fill="black", color="grey") +
+#		geom_label(stat="stratum", infer.label=TRUE) +
+#		scale_x_discrete(limits = c("t1","t2","t3","t4","t5","t6","t7","t8","t9"), expand = c(.05, .05)) +
+#		ggtitle("Carrieres")
 }
 
 
@@ -302,5 +382,6 @@ analyze.sequences <- function()
 		write.table(trate.mat, file.name, quote=FALSE, sep="\t")
 		#print(round(trate.mat),2)
 		build.transition.graph(seq.tab, pos.tab, folder, seq.col)
+		plot.alluvial.diagrams(seq.tab, pos.tab, folder, seq.col, attr.data)
 	}
 }

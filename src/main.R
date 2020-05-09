@@ -17,6 +17,7 @@ library("scales")			# convert colors
 library("circlize")			# circos-type plots
 library("TraMineR")			# sequence analysis
 library('plot.matrix')		# plot matrices
+library('alluvial')			# alluvial diagrams
 
 
 
