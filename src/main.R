@@ -18,6 +18,7 @@ library("circlize")			# circos-type plots
 library("TraMineR")			# sequence analysis
 library('plot.matrix')		# plot matrices
 library('alluvial')			# alluvial diagrams
+library('cluster')			# cluster analysis
 
 
 
@@ -86,4 +87,5 @@ analyze.sequences()
 
 # TODO
 # - séparer sénateurs de chevaliers, une fois confirmé par GV
+# - nouvelles couleurs ?
 
