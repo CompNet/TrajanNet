@@ -201,10 +201,10 @@ analyze.sequences <- function()
 	
 	suffixes <- c("withoutNAs","withNAs")
 	data.cols <- c(SEQ_CAREER, SEQ_CAREER_NA)
-	missing.option <- c("DEL", SEQ_MISSING)
+	missing.option <- c("DEL", NA)
 	for(s in 1:length(suffixes))
-	{	folder <- file.path(SEQ_FOLDER, suffixes[s])
-		dir.create(path=folder, showWarnings=FALSE, recursive=TRUE)
+	{	na.folder <- file.path(SEQ_FOLDER, suffixes[s])
+		dir.create(path=na.folder, showWarnings=FALSE, recursive=TRUE)
 		seq.col <- data.cols[s]
 		
 		# filter out people with no documented career
@@ -223,7 +223,7 @@ analyze.sequences <- function()
 		
 		# possibly add a missing state
 		if(s==2)
-		{	tmp <- data.frame("Inconnu",NA,NA,SEQ_MISSING,NA,NA,"#AAAAAA")
+		{	tmp <- data.frame("Inconnu",NA,NA,"*",NA,NA,"#AAAAAA")
 			colnames(tmp) <- colnames(pos.tab)
 			pos.tab <- rbind(pos.tab, tmp)
 		}
@@ -257,13 +257,13 @@ analyze.sequences <- function()
 		)
 		
 		# plot legend apart
-		plot.file <- file.path(folder, "caption")
+		plot.file <- file.path(na.folder, "caption")
 		create.plot(plot.file)
 			seqlegend(sd)
 		dev.off()
 		
 		# all sequences sorted by start state
-		plot.file <- file.path(folder, "all_seq")
+		plot.file <- file.path(na.folder, "all_seq")
 		create.plot(plot.file)
 			seqIplot(sd,						# data
 				sortv="from.start", 			# how to sort the sequences
@@ -279,7 +279,7 @@ analyze.sequences <- function()
 		# sequences separated depending on a categorical variable
 		att.names <- c(ATT_NODE_LACTICLAVIUS, ATT_NODE_TRAV_NBR, ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
 		for(att.name in att.names)
-		{	att.folder <- file.path(folder, "attributes", att.name)
+		{	att.folder <- file.path(na.folder, "attributes", att.name)
 			dir.create(path=att.folder, showWarnings=FALSE, recursive=TRUE)
 			plot.file <- file.path(att.folder, "all_seq")
 			create.plot(plot.file)
@@ -296,8 +296,8 @@ analyze.sequences <- function()
 			dev.off()
 		}
 		
-		# specific case of the circles
-		circ.folder <- file.path(folder, "attributes", ATT_NODE_CIRCLES)
+		# specific case of the circles attribute
+		circ.folder <- file.path(na.folder, "attributes", ATT_NODE_CIRCLES)
 		dir.create(path=circ.folder, showWarnings=FALSE, recursive=TRUE)
 		circle.str <- as.character(main.tab[,ATT_NODE_CIRCLES])
 		for(i in 1:length(ATT_NODE_CIRCLES_VALS))
@@ -319,7 +319,7 @@ analyze.sequences <- function()
 		}
 		
 		# state distribution plot
-		plot.file <- file.path(folder, "state_distrib")
+		plot.file <- file.path(na.folder, "state_distrib")
 		create.plot(plot.file)
 			seqdplot(sd, 						# data
 				border=NA,						# disable borders 
@@ -340,7 +340,7 @@ analyze.sequences <- function()
 		write.table(tab, file.name, quote=FALSE, sep="\t")
 		
 		# most frequent sequences
-		plot.file <- file.path(folder, "frequent_seq")
+		plot.file <- file.path(na.folder, "frequent_seq")
 		create.plot(plot.file)
 			seqfplot(sd, 						# data
 				idxs=1:20,						# which sequences (ranked by freq) to display
@@ -360,7 +360,7 @@ analyze.sequences <- function()
 		# transition rates
 		sfx <- c("all","nonempty")
 		for(i in 1:length(sfx))
-		{	plot.file <- file.path(folder, paste0("transition_rates_",sfx[i]))
+		{	plot.file <- file.path(na.folder, paste0("transition_rates_",sfx[i]))
 			trate.mat <- seqtrate(sd)
 			idxr <- which(apply(trate.mat, 1, sum)>0)
 			idxc <- which(apply(trate.mat, 2, sum)>0)
@@ -378,10 +378,138 @@ analyze.sequences <- function()
 				)
 			dev.off()
 		}
-		file.name <- paste0(plot.file, ".txt")
+		file.name <- paste0("transition_rates.txt")
 		write.table(trate.mat, file.name, quote=FALSE, sep="\t")
 		#print(round(trate.mat),2)
-		build.transition.graph(seq.tab, pos.tab, folder, seq.col)
-		plot.alluvial.diagrams(seq.tab, pos.tab, folder, seq.col, attr.data)
+		build.transition.graph(seq.tab, pos.tab, na.folder, seq.col)
+		plot.alluvial.diagrams(seq.tab, pos.tab, na.folder, seq.col, attr.data)
+		
+		# compare to sequences of reference
+		
+		# compute clusters of sequences
+		dist.meths <- c(
+			"LCS",			# longest common subsequence
+			"OM"			# optimal matching distance
+		)
+		norm.meths <- c("none","auto")	# normalization methods
+		subcost <- seqsubm(sd, method="CONSTANT", cval=1)	# substitution cost matrix with constant cost 1
+		#subcost <- seqsubm(sd, method="TRATE")				# substitution cost matrix based on transition rates
+		for(dist.meth in dist.meths)
+		{	for(norm.meth in norm.meths)
+			{	# possibly create folder
+				dd.folder <- file.path(na.folder, paste0("dist_",dist.meth), paste0("norm_",norm.meth))
+				dir.create(path=dd.folder, showWarnings=FALSE, recursive=TRUE)
+				
+				# compute distance matrix
+				dd <- seqdist(
+					seqdata=sd,			# data 
+					method=dist.meth,	# distance function 
+					refseq=NULL,		# sequence of reference 
+					norm=norm.meth,		# normalization method 
+					indel=1.0,			# insertion/deletion cost (edit dist)
+					sm=subcost,			# substitution cost matrix (edit dist)
+					with.missing=TRUE	# handle missing values 
+				)
+				colnames(dd) <- ids
+				rownames(dd) <- ids
+				# record it
+				mat.file <- file.path(dd.folder, "distance_matrix.txt")
+				write.table(dd, mat.file, quote=FALSE, sep="\t", col.names=TRUE, row.names=TRUE)
+				
+				# perform cluster analysis
+				dendro <- agnes(dd, diss=TRUE, method="ward")
+#				dendro <- as.dendrogram(dendro)
+				
+				# compute silhouette
+				dend.k <- find_k(dendro, krange=2:(nrow(dd)-1))
+				plot.file <- file.path(dd.folder, "silhouette")
+				create.plot(plot.file)
+					plot(dend.k)
+				dev.off()
+				sil.file <- file.path(dd.folder, "silhouette.txt")
+				sil.res <- cbind(1:(nrow(dd)-1), dend.k$crit)
+				colnames(sil.res) <- c("k", "Silhouette")
+				write.table(sil.res, sil.file, quote=FALSE, sep="\t")
+				
+				# select best cut
+				best.k <- dend.k$nc
+				bestk.file <- file.path(dd.folder, "manual_bestk.txt")
+				if(file.exists(bestk.file))
+					best.k <- read.table(bestk.file)[1,1]
+				best.cut <- cutree(dendro, k=best.k)
+				cut.file <- file.path(dd.folder, "best_cut.txt")
+				write.table(best.cut, cut.file, quote=FALSE, sep="\t", col.names=FALSE)
+				
+				# plot dendrogram
+				cols <- CAT_COLORS[-6]
+				cols <- cols[1:best.k]
+				plot.file <- file.path(dd.folder, "dendrogram")
+				create.plot(plot.file)
+					par(mar=c(5.1, 4.1, 2.1, 2.1))	# margins B L T R 
+					color_branches(as.hclust(dendro), k=best.k, col=cols)  %>%	
+					set("branches_lwd", 2) %>% 
+					color_labels(as.hclust(dendro), k=best.k, col=cols)  %>% 
+					plot(xlab="Personnage", ylab="Dissimilarite inter-clusters")
+					legend(x="topright",legend=paste0("C",1:best.k), fill=cols)
+				dev.off()
+				
+				# plot all sequences by cluster
+				plot.file <- file.path(dd.folder, "all_seq")
+				create.plot(plot.file)
+					par(mar=c(5.1, 4.1, 4.1, 2.1))
+					seqIplot(sd,						# data
+						group=best.cut,					# clusters
+						sortv="from.start", 			# how to sort the sequences
+						with.legend=FALSE,				# whether and where to put the legend ("right")
+						xlab="Chronologie des etats",	# x-axis title
+						ylab="Personnage",				# y-axis title
+						ytlab="id",						# character codes
+						ylas=1,							# orientation of these codes
+						main="Cluster"					# plot title
+					)
+				dev.off()
+				
+				# plot most frequent sequences by cluster
+				plot.file <- file.path(dd.folder, "frequent_seq")
+				create.plot(plot.file)
+					seqfplot(sd, 						# data
+						group=best.cut,					# clusters
+						idxs=1:15,						# which sequences (ranked by freq) to display
+						with.legend=FALSE,				# whether and where to put the legend ("right")
+						yaxis="pct",					# cum=cumulative freq, pct=freq of each seq
+						xlab="Chronologie des etats",	# x-axis title
+						ylab="Frequence (%)",			# y-axis title
+						main="Cluster"					# plot title
+					)
+				dev.off()
+				
+				# plot state distribution by cluster
+				plot.file <- file.path(dd.folder, "state_distrib")
+				create.plot(plot.file)
+					seqdplot(sd, 						# data
+						group=best.cut,					# clusters
+						border=NA,						# disable borders 
+						with.legend=FALSE,				# whether and where to put the legend ("right")
+						xlab="Chronologie des etats",	# x-axis title
+						ylab="Frequence",				# y-axis title
+						main="Cluster"					# plot title
+					)
+				dev.off()
+				
+				# plot typical sequence by cluster
+				plot.file <- file.path(dd.folder, "typical_seq")
+				create.plot(plot.file)
+					seqrplot(sd, 
+						diss=dd,						# dissimilarity matrix
+						group=best.cut,					# clusters
+						border=NA,						# border color
+						with.legend=FALSE,				# whether and where to put the legend ("right")
+						#xlab="Chronologie des etats",	# x-axis title
+						#ylab="Frequence",				# y-axis title
+						main="Cluster"					# plot title
+					)
+				dev.off()
+			}
+		}
 	}
 }
