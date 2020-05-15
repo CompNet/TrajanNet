@@ -73,20 +73,13 @@ analyze.sequences()
 #   > faire ça de façon synchrone
 #   > générer les différentes étapes (graphiques)
 #
-# - analyse de sequences
-#
 # 3.1: similarité structurelle, pour objectiver un peu ?
 # - entre les espagnols vs. le reste du graphe
 # - mais aussi homophilie
 
 # TODO séquences
-# - calculer les distances b et c
-# - récup les traj mises à jour et faire même chose (dist b c)
-# - sortir les clusters (hiérarchique ?) basés sur les séquences
 # - calculer la distance entre chaque séq et les 2 séq types
 # - faire une représentation graphique 2D genre LLE
 
 # TODO
 # - séparer sénateurs de chevaliers, une fois confirmé par GV
-# - nouvelles couleurs ?
-
