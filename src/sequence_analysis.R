@@ -40,7 +40,7 @@ build.transition.graph <- function(seq.tab, pos.tab, folder, seq.col)
 	tr.folder <- file.path(folder, "transitions")
 	
 	# compute the ajacency matrix
-	lst <- strsplit(as.character(seq.tab[,seq.col]),";",fixed=TRUE)
+	lst <- strsplit(seq.tab[,seq.col],";",fixed=TRUE)
 	adj <- matrix(0, nrow=nrow(pos.tab), ncol=nrow(pos.tab), dimnames=list(pos.tab[,SEQ_IDENTIFIER],pos.tab[,SEQ_IDENTIFIER]))
 	size <- rep(0, nrow(pos.tab))
 	names(size) <- pos.tab[,SEQ_IDENTIFIER]
@@ -127,7 +127,7 @@ plot.alluvial.diagrams <- function(seq.tab, pos.tab, folder, seq.col, attr.data)
 	tr.folder <- file.path(folder, "transitions")
 	
 	# compute the data frame
-	lst <- strsplit(as.character(seq.tab[,seq.col]),";",fixed=TRUE)
+	lst <- strsplit(seq.tab[,seq.col],";",fixed=TRUE)
 	nc <- max(sapply(lst,length))
 	mat <- matrix(0, nrow=nrow(seq.tab), ncol=nc, dimnames=list(seq.tab[,SEQ_ID],paste("[",1:nc,"]",sep="")))
 	for(i in 1:length(lst))
@@ -248,23 +248,36 @@ compute.transition.rates <- function(sd, missing.option, folder)
 #
 # seq.col: name of the column containing the sequence to treat.
 # missing.option: option to represent missing values in sequences.
+# add.ref: whether or not to include the reference sequences.
 #
 # returns: a list containing a table with all the date, and a
 #		   a traminer object representing the sequences.
 #############################################################
-prepare.seq.data <- function(seq.col, missing.option)
+prepare.seq.data <- function(seq.col, missing.option, add.ref)
 {	# load attributes
 	attr.file <- file.path(TABLE_FOLDER,"trajan_attributes.csv")
 	attr.data <- read.csv(file=attr.file,header=TRUE,check.names=FALSE)
 	
 	# load seq table
 	seq.file <- file.path(TABLE_FOLDER,"trajan_careers.csv")
-	seq.tab <- read.csv(file=seq.file, header=TRUE, check.names=FALSE)
+	seq.tab <- as.matrix(read.csv(file=seq.file, header=TRUE, check.names=FALSE))
 	
 	# filter out people with no documented career
 	idx <- which(!is.na(seq.tab[,seq.col]))
 	seq.tab <- seq.tab[idx,]
 	attr.data <- attr.data[idx,]
+	
+	# if include reference sequences
+	if(add.ref)
+	{	# load reference sequences
+		ref.file <- file.path(TABLE_FOLDER,"trajan_typical_careers.csv")
+		ref.data <- as.matrix(read.csv(file=ref.file, header=TRUE, check.names=FALSE))
+		# add to data structures
+		seq.tab <- rbind(seq.tab, cbind(ref.data,ref.data[,SEQ_SEQ]))
+		mat <- matrix(NA, nrow=nrow(ref.data), ncol=ncol(attr.data))
+		colnames(mat) <- colnames(attr.data)
+		attr.data <- rbind(attr.data, mat)
+	}
 	
 	# load position table
 	pos.file <- file.path(TABLE_FOLDER,"trajan_positions.csv")
@@ -279,7 +292,7 @@ prepare.seq.data <- function(seq.col, missing.option)
 	cols <- pos.tab[,SEQ_COLOR]
 	
 	# break down career sequence
-	ids <- as.character(seq.tab[,SEQ_ID])
+	ids <- seq.tab[,SEQ_ID]
 	car <- gsub(";", "-", seq.tab[,seq.col])
 	
 	# build the whole table
@@ -435,6 +448,145 @@ generate.main.seq.plots <- function(sd, main.tab, missing.option, folder)
 
 
 #############################################################
+# Compares the sequences of the dataset with two sequences of reference.
+# 
+# main.tab: table containing all the data.
+# ids: codes of the characters.
+# missing.option: option to represent missing values in sequences.
+# folder: main output folder.
+#############################################################
+compare.with.ref.seq <- function(seq.col, missing.option, folder)
+{	# load and convert the sequences
+	tmp <- prepare.seq.data(seq.col, missing.option, add.ref=TRUE)
+#	attr.data <- tmp$attr.data
+#	seq.tab <- tmp$seq.tab
+#	main.tab <- tmp$main.tab
+#	pos.tab <- tmp$pos.tab
+	ids <- tmp$ids
+	sd <- tmp$sd
+	
+	# set up distance functions
+	dist.meths <- c(
+			"LCS",			# longest common subsequence
+			"OM"			# optimal matching distance
+	)
+	
+	# set up normalization methodes
+	norm.meths <- c("none","auto")
+	
+	# set distance parmeters
+	# substitution cost matrix with constant cost 1
+	subcost <- seqsubm(sd,					# data
+		with.missing=is.na(missing.option),	# whether to take missing values into account
+		method="CONSTANT", 					# use constant values
+		cval=1								# constant value is 1
+	)
+	# substitution cost matrix based on transition rates
+	#subcost <- seqsubm(sd, method="TRATE")
+	
+	# position of reference sequences
+	ref.idx <- which(startsWith(ids,"Chevalier") | startsWith(ids,"Senateur"))
+	
+	# process each dissimilarity function
+	for(dist.meth in dist.meths)
+	{	# process each normalization method
+		for(norm.meth in norm.meths)
+		{	# possibly create folder
+			dd.folder <- file.path(folder, paste0("dist_",dist.meth), paste0("norm_",norm.meth))
+			dir.create(path=dd.folder, showWarnings=FALSE, recursive=TRUE)
+			
+			# init distance matrix
+			dd <- matrix(nrow=(length(ids)-length(ref.idx)), ncol=0)
+			rownames(dd) <- ids[1:(length(ids)-length(ref.idx))]
+
+			# compute distances to references
+			for(i in 1:length(ref.idx))
+			{	# compute distance matrix
+				dv <- seqdist(
+					seqdata=sd,			# data 
+					method=dist.meth,	# distance function 
+					refseq=ref.idx[i],	# sequence of reference 
+					norm=norm.meth,		# normalization method 
+					indel=1.0,			# insertion/deletion cost (edit dist)
+					sm=subcost,			# substitution cost matrix (edit dist)
+					with.missing=TRUE	# handle missing values 
+				)
+				dd <- cbind(dd, dv[1:(length(ids)-length(ref.idx))])
+				colnames(dd)[ncol(dd)] <- ids[ref.idx[i]]
+			}
+			
+			# record distance matrix
+			mat.file <- file.path(dd.folder, "refseq_dist.txt")
+			write.table(dd, mat.file, quote=FALSE, sep="\t", col.names=TRUE, row.names=TRUE)
+			
+			# identify the closest ref seq for each character
+			mat <- cbind(
+					ids[1:(length(ids)-length(ref.idx))],
+					ids[ref.idx[apply(dd, 1, which.min)]],
+					apply(dd, 1, min)
+			)
+			colnames(mat) <- c("Id","Carriere type la plus proche","Distance")
+			mat.file <- file.path(dd.folder, "refseq_closest.txt")
+			write.table(mat, mat.file, quote=FALSE, sep="\t", col.names=TRUE, row.names=FALSE)
+			
+			# compute all distances
+			dd <- seqdist(
+				seqdata=sd,			# data 
+				method=dist.meth,	# distance function 
+				refseq=NULL,		# sequence of reference 
+				norm=norm.meth,		# normalization method 
+				indel=1.0,			# insertion/deletion cost (edit dist)
+				sm=subcost,			# substitution cost matrix (edit dist)
+				with.missing=TRUE	# handle missing values 
+			)
+			# plot MDS
+			coords <- cmdscale(dd, eig=FALSE, k=2)
+			coords[ref.idx,1:2] <- coords[ref.idx,1:2] + matrix(runif(2*length(ref.idx), min=0, max=1.5), ncol=2)
+			plot.file <- file.path(dd.folder, "refseq_mds")
+			create.plot(plot.file)
+				par(mar=c(1.1, 1.1, 2.1, 1.1))	# margins B L T R 
+				plot(
+					coords[-ref.idx,1], coords[-ref.idx,2], 
+					xlim=range(coords[,1]), ylim=range(coords[,2]),
+					xlab=NA, ylab=NA,
+					xaxt="n", yaxt="n",
+					main="Sequences et sequences-types"
+				)
+				points(
+					x=coords[ref.idx,1], y=coords[ref.idx,2], 
+					pch=4, lwd=3,
+					col=CAT_COLORS_18[1:length(ref.idx)]
+				)
+				for(i in 1:(length(ids)-length(ref.idx)))
+				{	ref <- which(ids==mat[i,2])
+					segments(
+						x0=coords[i,1], y0=coords[i,2], 
+						x1=coords[ref,1], y1=coords[ref,2],
+						col=CAT_COLORS_18[ref-length(ids)+length(ref.idx)], 
+						lty=3, 
+						lwd=1
+					)
+				}
+				text(
+					coords[-ref.idx,1], coords[-ref.idx,2], 
+					labels=ids[-ref.idx],
+					pos=3
+				)
+				legend(
+					x="bottomleft", 
+					legend=ids[ref.idx], 
+					fill=CAT_COLORS_18[1:length(ref.idx)],
+					title="Sequences-types"
+				)
+			dev.off() 
+		}
+	}
+}
+
+
+
+
+#############################################################
 # Compute inter-sequence dissimilarity, perform cluster analysis
 # and generates the related plots and files.
 #
@@ -524,6 +676,41 @@ cluster.analysis.seq <- function(sd, ids, missing.option, folder)
 				legend(x="topright",legend=paste0("C",1:best.k), fill=cols)
 			dev.off()
 			
+			# plot MDS
+			cols <- CAT_COLORS[-6]
+			coords <- cmdscale(dd, eig=FALSE, k=2)
+			plot.file <- file.path(dd.folder, "clusters_mds")
+			create.plot(plot.file)
+				par(mar=c(1.1, 1.1, 2.1, 1.1))	# margins B L T R 
+				plot(
+					NULL,
+					xlim=range(coords[,1]), ylim=range(coords[,2]),
+					xlab=NA, ylab=NA,
+					xaxt="n", yaxt="n",
+					main="Sequences et clusters"
+				)
+				cls <- sort(unique(best.cut))
+				for(i in cls)
+				{	cls.idx <- which(best.cut==i)
+					points(
+						coords[cls.idx,1], coords[cls.idx,2],
+						pch=16, cex=2,
+						col=cols[i]
+					)
+				}
+				text(
+					coords[,1], coords[,2], 
+					labels=ids,
+					pos=3
+				)
+				legend(
+					x="bottomleft", 
+					legend=paste0("Cluster ",cls), 
+					fill=cols[cls],
+					title="Clusters"
+				)
+			dev.off() 
+			
 			# plot all sequences by cluster
 			plot.file <- file.path(dd.folder, "all_seq")
 			create.plot(plot.file)
@@ -610,7 +797,7 @@ analyze.sequences <- function()
 		missing.option <- missing.options[s]
 		
 		# load and convert the sequences
-		tmp <- prepare.seq.data(seq.col, missing.option)
+		tmp <- prepare.seq.data(seq.col, missing.option, add.ref=FALSE)
 		attr.data <- tmp$attr.data
 		seq.tab <- tmp$seq.tab
 		main.tab <- tmp$main.tab
@@ -629,7 +816,7 @@ analyze.sequences <- function()
 		plot.alluvial.diagrams(seq.tab, pos.tab, na.folder, seq.col, attr.data)
 		
 		# compare to sequences of reference
-		#TODO
+		compare.with.ref.seq(seq.col, missing.option, na.folder)
 		
 		# compute clusters of sequences
 		cluster.analysis.seq(sd, ids, missing.option, na.folder)

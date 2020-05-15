@@ -78,7 +78,6 @@ analyze.sequences()
 # - mais aussi homophilie
 
 # TODO séquences
-# - calculer la distance entre chaque séq et les 2 séq types
 # - faire une représentation graphique 2D genre LLE
 
 # TODO
