@@ -29,8 +29,8 @@ library("dendextend")		# additional dendrogram-related features
 source("src/constants.R")
 source("src/extraction.R")
 source("src/plot.R")
-source("src/analysis.R")
-source("src/sequences.R")
+source("src/graph_analysis.R")
+source("src/sequence_analysis.R")
 source("src/signed_graph_functions.R")
 
 

@@ -1635,35 +1635,37 @@ analyze.net.corclust <- function(sg, sg0)
 		
 		# look for alternative partitions
 		cat("    Looking for alternative partitions\n",sep="")
-		tries <- 250
+		tries <- 0 # 250
 		best.memberships <- matrix(cnx.mbrs, ncol=1)
 		colnames(best.memberships) <- "it=0"
-		for(j in 1:tries)
-		{	cat("      Try (",j,"/",tries,")\n",sep="")
-			
-			# partition the graph another time
-			tmp <- signed_blockmodel(cnx.sg, k=idx, annealing=TRUE)
-			if(tmp$criterion<perf)
-				error("Found a better partition (perf=",tmp$criterion,"), should not happen")
-			else if(tmp$criterion==perf)
-			{	mbrs <- tmp$membership
-				if(mbrs[1]!=1)
-				{	mbrs[mbrs==1] <- 0
-					mbrs[mbrs==2] <- 1
-					mbrs[mbrs==0] <- 2
-				}
-				# look for an equivalent partition on the ones already found
-				already.found <- FALSE
-				it <- 1
-				while(it<=ncol(best.memberships) && !already.found)
-				{	already.found <- compare(comm1=mbrs, comm2=best.memberships[,it], method="nmi")==1
-					it <- it + 1
-				}
-				# if it is new, add it to the matrix
-				if(!already.found)
-				{	cat("        Found a different partition (",ncol(best.memberships),"): ",tmp$criterion," vs ",perf,"\n",sep="")
-					best.memberships <- cbind(best.memberships,mbrs)
-					colnames(best.memberships)[ncol(best.memberships)] <- paste0("it=",j)
+		if(tries>0)
+		{	for(j in 1:tries)
+			{	cat("      Try (",j,"/",tries,")\n",sep="")
+				
+				# partition the graph another time
+				tmp <- signed_blockmodel(cnx.sg, k=idx, annealing=TRUE)
+				if(tmp$criterion<perf)
+					error("Found a better partition (perf=",tmp$criterion,"), should not happen")
+				else if(tmp$criterion==perf)
+				{	mbrs <- tmp$membership
+					if(mbrs[1]!=1)
+					{	mbrs[mbrs==1] <- 0
+						mbrs[mbrs==2] <- 1
+						mbrs[mbrs==0] <- 2
+					}
+					# look for an equivalent partition among the ones already found
+					already.found <- FALSE
+					it <- 1
+					while(it<=ncol(best.memberships) && !already.found)
+					{	already.found <- compare(comm1=mbrs, comm2=best.memberships[,it], method="nmi")==1
+						it <- it + 1
+					}
+					# if it is new, add it to the matrix
+					if(!already.found)
+					{	cat("        Found a different partition (",ncol(best.memberships),"): ",tmp$criterion," vs ",perf,"\n",sep="")
+						best.memberships <- cbind(best.memberships,mbrs)
+						colnames(best.memberships)[ncol(best.memberships)] <- paste0("it=",j)
+					}
 				}
 			}
 		}
