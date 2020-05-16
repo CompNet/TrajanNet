@@ -14,6 +14,9 @@ TrajanNet is free software: you can redistribute it and/or modify it under the t
 
 -----------------------------------------------------------------------
 
+![Trajan's multiplex network](data/nets/preview.png)
+
+
 # Description
 This set of R scripts aims at analyzing a historical dataset describing the relationships between the Roman emperor Trajan and his entourage. It does the following:
 
