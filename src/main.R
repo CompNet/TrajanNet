@@ -1,5 +1,5 @@
 #############################################################################################
-# Main function for loading the raw data and extract the networks.
+# Main function for loading the raw data, extracting the networks, analyzing the sequences.
 # 
 # 01/2019 Vincent Labatut
 #
@@ -76,9 +76,6 @@ analyze.sequences()
 # 3.1: similarité structurelle, pour objectiver un peu ?
 # - entre les espagnols vs. le reste du graphe
 # - mais aussi homophilie
-
-# TODO séquences
-# - faire une représentation graphique 2D genre LLE
 
 # TODO
 # - séparer sénateurs de chevaliers, une fois confirmé par GV
