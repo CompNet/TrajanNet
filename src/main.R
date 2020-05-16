@@ -69,13 +69,4 @@ analyze.network(og)
 analyze.sequences()
 
 # TODO
-# - fermeture : 
-#   > faire ça de façon synchrone
-#   > générer les différentes étapes (graphiques)
-#
-# 3.1: similarité structurelle, pour objectiver un peu ?
-# - entre les espagnols vs. le reste du graphe
-# - mais aussi homophilie
-
-# TODO
 # - séparer sénateurs de chevaliers, une fois confirmé par GV
