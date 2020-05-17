@@ -17,10 +17,10 @@
 # g: graph to record.
 # file: file path.
 #############################################################
-record.graph <- function(g, file)
-{	V(g)$x <- LAYOUT[,1]
-	V(g)$y <- LAYOUT[,2]
-	write.graph(graph=g, file=file, format="graphml")
+record.graph <- function(graph, file)
+{	V(graph)$x <- LAYOUT[,1]
+	V(graph)$y <- LAYOUT[,2]
+	write.graph(graph=graph, file=file, format="graphml")
 }
 
 

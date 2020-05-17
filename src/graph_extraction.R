@@ -5,7 +5,7 @@
 #
 # setwd("C:/users/Vincent/Eclipse/workspaces/Networks/TrajanNet")
 # setwd("~/eclipse/workspaces/Networks/TrajanNet")
-# source("src/extraction.R")
+# source("src/graph_extraction.R")
 #############################################################################################
 
 

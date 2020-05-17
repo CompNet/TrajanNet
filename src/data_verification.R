@@ -5,7 +5,7 @@
 #
 # setwd("C:/users/Vincent/Eclipse/workspaces/Networks/TrajanNet")
 # setwd("~/eclipse/workspaces/Networks/TrajanNet")
-# source("src/verification.R")
+# source("src/data_verification.R")
 #############################################################################################
 # load other scripts
 source("src/constants.R")
