@@ -498,7 +498,7 @@ compare.with.ref.seq <- function(seq.col, missing.option, folder)
 			# init distance matrix
 			dd <- matrix(nrow=(length(ids)-length(ref.idx)), ncol=0)
 			rownames(dd) <- ids[1:(length(ids)-length(ref.idx))]
-
+			
 			# compute distances to references
 			for(i in 1:length(ref.idx))
 			{	# compute distance matrix
@@ -513,6 +513,25 @@ compare.with.ref.seq <- function(seq.col, missing.option, folder)
 				)
 				dd <- cbind(dd, dv[1:(length(ids)-length(ref.idx))])
 				colnames(dd)[ncol(dd)] <- ids[ref.idx[i]]
+			}
+			
+			# plot distance matrix
+			for(i in 1:2)
+			{	plot.file <- file.path(dd.folder, "refseq_dist")
+				if(i==2)
+					plot.file <- paste0(plot.file, "_vals")
+				create.plot(plot.file)
+					par(mar=c(5.4, 5.4, 2.6, 4.1))	# margins B L T R 
+					plot(dd,						# matrix
+						col=colorRampPalette(c("yellow",'red')),
+						digits=if(i==1) NA else 2,	# display values, with 2 decimal digits
+						las=2,
+						breaks=10,
+						xlab=NA,	#"Sequences types",
+						ylab="Sequences des personnages",
+						main="Comparaison entre personnages et carrieres-types"
+					)
+				dev.off()
 			}
 			
 			# record distance matrix
