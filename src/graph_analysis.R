@@ -12,6 +12,21 @@
 
 
 #############################################################
+# Records the graph as a graphml file, including the layout.
+#
+# g: graph to record.
+# file: file path.
+#############################################################
+record.graph <- function(g, file)
+{	V(g)$x <- LAYOUT[,1]
+	V(g)$y <- LAYOUT[,2]
+	write.graph(graph=g, file=file, format="graphml")
+}
+
+
+
+
+#############################################################
 # Transform the received graph so that instead of having multitype
 # links, each type occurrence is represented by a distinct link.
 # Parameter link.types lists the types to retain in the result graph.
@@ -251,9 +266,9 @@ analyze.net.eccentricity <- function(g, g0)
 	
 	###########################
 	# record graph and return it
-	write.graph(graph=g, file=file.path(NET_FOLDER,g$name,"graph.graphml"), format="graphml")
-	write.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,"graph0.graphml"), format="graphml")
-
+	record.graph(g, file.path(NET_FOLDER,g$name,"graph.graphml"))
+	record.graph(g0, file.path(NET_FOLDER,g0$name,"graph0.graphml"))
+	
 	lst <- list(g, g0)
 	return(lst)
 }
@@ -295,7 +310,7 @@ analyze.net.degree <- function(g, g0)
 		V(g)$Degree <- vals
 		g$DegreeAvg <- mean(vals)
 		g$DegreeStdv <- sd(vals)
-		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for degree
 		custom.gplot(g,col.att=MEAS_DEGREE,file=file.path(degree.folder,paste0("degree_graph",sufx)))
@@ -356,7 +371,7 @@ analyze.net.eigencentrality <- function(g, g0)
 		V(g)$Eigencentrality <- vals
 		g$EigencentralityAvg <- mean(vals)
 		g$EigencentralityStdv <- sd(vals)
-		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for Eigencentrality
 		custom.gplot(g,col.att=MEAS_EIGEN,file=file.path(eigen.folder,paste0("eigencentrality_graph",sufx)))
@@ -417,7 +432,7 @@ analyze.net.betweenness <- function(g, g0)
 		V(g)$Betweenness <- vals
 		g$BetweennessAvg <- mean(vals)
 		g$BetweennessStdv <- sd(vals)
-		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for betweenness
 		custom.gplot(g,col.att=MEAS_BETWEENNESS,file=file.path(betweenness.folder,paste0("betweenness_graph",sufx)))
@@ -488,7 +503,7 @@ analyze.net.closeness <- function(g, g0)
 		V(g)$Closeness <- vals
 		g$ClosenessAvg <- mean(vals,na.rm=TRUE)
 		g$ClosenessStdv <- sd(vals,na.rm=TRUE)
-		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for closeness
 		custom.gplot(g,col.att=MEAS_CLOSENESS,file=file.path(closeness.folder,paste0("closeness_graph",sufx)))
@@ -550,7 +565,7 @@ analyze.net.transitivity <- function(g, g0)
 		g$Transitivity <- transitivity(graph=g, type="globalundirected", isolates="zero")
 		g$TransitivityAvg <- mean(vals)
 		g$TransitivityStdv <- sd(vals)
-		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for transitivity
 		custom.gplot(g,col.att=MEAS_TRANSITIVITY,file=file.path(transitivity.folder,paste0("transitivity_graph",sufx)))
@@ -641,7 +656,7 @@ analyze.net.comstruct <- function(g, g0)
 		g <- set_graph_attr(graph=g,name=MEAS_MODULARITY_ONLYPOS,value=mod.op)
 		g <- set_vertex_attr(graph=g,name=MEAS_COMMUNITY_NONEG,value=mbrs.nn)
 		g <- set_graph_attr(graph=g,name=MEAS_MODULARITY_NONEG,value=mod.nn)
-		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for communities
 		custom.gplot(op,col.att=MEAS_COMMUNITY_ONLYPOS,cat.att=TRUE,file=file.path(communities.folder,paste0("na-as-positive_communities_graph",sufx)))
@@ -815,8 +830,8 @@ analyze.net.assortativity <- function(g, g0)
 		g <- set_vertex_attr(graph=g, name=attr, value=vals[i])
 		g0 <- set_vertex_attr(graph=g0, name=attr, value=vals[i])
 	}
-	write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph.graphml")), format="graphml")
-	write.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,paste0("graph0.graphml")), format="graphml")
+	record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph.graphml")))
+	record(graph=g0, file=file.path(NET_FOLDER,g0$name,paste0("graph0.graphml")))
 	
 	# add assortativity to main CSV
 	stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
@@ -1137,8 +1152,8 @@ analyze.net.articulation <- function(g, g0)
 	g0$ArticulationAvg00 <- mean(vals)
 	g$ArticulationAvg <- mean(vals)
 	g0$ArticulationAvg00 <- mean(vals)
-	write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph.graphml")), format="graphml")
-	write.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,paste0("graph0.graphml")), format="graphml")
+	record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph.graphml")))
+	record.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,paste0("graph0.graphml")))
 	
 	# plot graph using color for articulation
 	custom.gplot(g,col.att=MEAS_ARTICULATION,file=file.path(articulation.folder,paste0("articulation_graph")))
@@ -1201,7 +1216,7 @@ analyze.net.distance <- function(g, g0)
 		V(g)$AverageDistance <- avg.vals
 		g$DistanceAvg <- mean(flat.vals)
 		g$DistanceStdv <- sd(flat.vals)
-		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# for each node, plot graph using color for distance
 		for(n in 1:gorder(g))
@@ -1288,7 +1303,7 @@ analyze.net.connectivity <- function(g, g0)
 		V(g)$AverageConnectivity <- avg.vals
 		g$ConnectivityAvg <- mean(flat.vals)
 		g$ConnectivityStdv <- sd(flat.vals)
-		write.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")), format="graphml")
+		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# for each node, plot graph using color for connectivity
 		for(n in 1:gorder(g))
@@ -1367,7 +1382,7 @@ analyze.net.signed.degree <- function(sg, sg0)
 		sg$DegreeNegAvg <- mean(neg.deg)
 		sg$DegreePosStdv <- sd(pos.deg)
 		sg$DegreeNegStdv <- sd(neg.deg)
-		write.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")), format="graphml")
+		record.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for degree
 		custom.gplot(sg,col.att=MEAS_DEGREE_POS,file=file.path(degree.folder,paste0("degree_pos_graph",sufx)))
@@ -1431,7 +1446,7 @@ analyze.net.signed.centrality <- function(sg, sg0)
 		V(sg)$PNindex <- vals
 		sg$PNindexAvg <- mean(vals)
 		sg$PNindexStdv <- sd(vals)
-		write.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")), format="graphml")
+		record.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for degree
 		custom.gplot(sg,col.att=MEAS_SIGN_CENTR,file=file.path(centr.folder,paste0("pnindex_graph",sufx)))
@@ -1503,7 +1518,7 @@ analyze.net.signed.triangles <- function(sg, sg0)
 		# add results to the graph (as attributes) and record
 		sg$StrStructBal <- str.struct.bal
 		sg$GenStructBal <- gen.struct.bal
-		write.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")), format="graphml")
+		record.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")))
 		
 		# export CSV with structural balance values
 		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
@@ -1727,7 +1742,7 @@ analyze.net.corclust <- function(sg, sg0)
 		sg <- set_graph_attr(graph=sg,name=MEAS_COR_CLUST,value=perf)
 		graph.file <- file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml"))
 		cat("    Update graph file ",graph.file,"\n",sep="")
-		write.graph(graph=sg, file=graph.file, format="graphml")
+		record.graph(graph=sg, file=graph.file)
 		
 		lst[[i]] <- sg
 	}
@@ -1862,7 +1877,7 @@ compute.net.signed.closure <- function(sg, sg0, poly)
 		
 		# plot and record the graph
 		custom.gplot(g, file=file.path(closure.folder,paste0("graph",sufx)))
-		write.graph(graph=g, file=file.path(closure.folder,paste0("graph",sufx,".graphml")), format="graphml")
+		record.graph(graph=g, file=file.path(closure.folder,paste0("graph",sufx,".graphml")))
 		
 		lst[[i]] <- g 
 	}
@@ -1908,7 +1923,7 @@ analyze.network <- function(og)
 		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
 		
 		# record graph as a graphml file
-		write.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
+		record.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"))
 		
 		# plot full graph
 		custom.gplot(g, file=file.path(tmp.folder,"graph"))
@@ -1919,7 +1934,7 @@ analyze.network <- function(og)
 		g0 <- disconnect.nodes(g, nodes=1)
 		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
 		#custom.gplot(g0)
-		write.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
+		record.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"))
 		
 		# compute attribute stats 
 		# (must be done first, before other results are added as attributes)
@@ -1996,13 +2011,13 @@ analyze.network <- function(og)
 		custom.gplot(sg, file=file.path(tmp.folder,"graph"))
 		#custom.gplot(sg)
 		# record graph as a graphml file
-		write.graph(graph=sg, file=file.path(tmp.folder,"graph.graphml"), format="graphml")
+		record.graph(graph=sg, file=file.path(tmp.folder,"graph.graphml"))
 		
 		# get the version without Trajan
 		sg0 <- disconnect.nodes(sg, nodes=1)
 		custom.gplot(sg0, file=file.path(tmp.folder,"graph0"))
 		#custom.gplot(sg0)
-		write.graph(graph=sg0, file=file.path(tmp.folder,"graph0.graphml"), format="graphml")
+		record.graph(graph=sg0, file=file.path(tmp.folder,"graph0.graphml"))
 		
 		# compute signed degree
 		tmp <- analyze.net.signed.degree(sg, sg0)

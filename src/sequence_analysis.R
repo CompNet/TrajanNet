@@ -101,7 +101,7 @@ build.transition.graph <- function(seq.tab, pos.tab, folder, seq.col)
 #	lay.file <- file.path(tr.folder, "transition_graph_layout.txt")
 #	write.table(x=lay, file=lay.file)
 	
-	# record the graph as a graphml file
+	# record the transition graph as a graphml file
 	V(g)$fullname <- pos.tab[,SEQ_POSTE]
 	V(g)$weight <- size
 	V(g)$color <- cols

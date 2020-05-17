@@ -155,6 +155,9 @@ setup.graph.layout <- function(g)
 		write.table(x=LAYOUT,file=lay.file)
 	}	
 	
+	# record the layout in the graphml file
+	graph.file <- file.path(NET_FOLDER,"all.graphml")
+	record.graph(f, graph.file)
 }
 
 

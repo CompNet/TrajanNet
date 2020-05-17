@@ -69,4 +69,14 @@ analyze.network(og)
 analyze.sequences()
 
 # TODO
+# sequences:
 # - séparer sénateurs de chevaliers, une fois confirmé par GV
+# partitionnement des graphes signés:
+# - intégrer les résultats de Nejat
+# - CC
+#   - ajouter les partitions (sans les utiliser)
+#   - intégrer les partitions représentatives et les parties coeurs aux graphml et générer les graphiques correspondants
+#   - tenter de générer aussi les block models correspondant (?)
+# - communicabilité
+#   - intégrer les partitions au graphml, générer les graphiques
+#   - tenter de générer aussi les block models correspondant (?)
