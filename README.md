@@ -24,7 +24,7 @@ This set of R scripts aims at analyzing a historical dataset describing the rela
 
 
 # Data
-The raw dataset was manually elaborated by Gaëtane Vallet during her Master's thesis in ancient history. See her thesis (in French) for more information [V'18,V'20].
+The raw dataset was manually elaborated by Gaëtane Vallet during her Master's thesis in ancient history. See her thesis (in French) for more information [V'18,V'20]. The files produced by the scripts (graphs, plots, tables...) can be obtained by executing them, but they are also directly available on Figshare (Complete with DOI).  
 
 
 # Organization
@@ -70,7 +70,7 @@ In order to extract the networks from the raw data, compute the statistics, and 
 2. Set the current directory as the working directory, using `setwd("<my directory>")`.
 3. Run the main script `src/main.R`.
 
-The script will produce a number of files in the subfolders of folder `nets`. They are grouped in subsubfolders, each one corresponding to a specific topological measure (degree, closeness, etc.). 
+The scripts will produce a number of files in the subfolders of folder `nets`. They are grouped in subsubfolders, each one corresponding to a specific topological measure (degree, closeness, etc.). 
 
 The `verification.R` was used to check the consistency of the raw data. The rest of the scripts are just secondary functions called by `main.R`.
 
@@ -91,6 +91,7 @@ The `verification.R` was used to check the consistency of the raw data. The rest
 
 
 # To-do List
+* Add Figshare DOI in readme file.
 * Signed nets: 
   * Consider the evolution of the relationships
   * Synchronous closure, separate the different steps until complete graph
