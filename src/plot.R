@@ -153,11 +153,7 @@ setup.graph.layout <- function(g)
 #		LAYOUT <<- tk_coords(3)
 		
 		write.table(x=LAYOUT,file=lay.file)
-	}	
-	
-	# record the layout in the graphml file
-	graph.file <- file.path(NET_FOLDER,"all.graphml")
-	record.graph(g, graph.file)
+	}
 }
 
 

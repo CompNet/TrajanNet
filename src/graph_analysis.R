@@ -191,10 +191,13 @@ analyze.net.eccentricity <- function(g, g0)
 	# compute diameter
 	cat("  Computing diameter & radius\n")
 	diam <- diameter(g0)					# get the network diameter
+print(diam)
+plot(g)
 	cat("    Diameter=",diam,"\n",sep="")
 	dd <- distances(graph=g0)				# compute all inter-node distances
 	idx <- which(dd==diam, arr.ind=TRUE)	# retrieve pairs of nodes matching the diameter
 	idx <- idx[idx[,1]<idx[,2],,drop=FALSE]	# filter (each pair appears twice due to symmetric matrix)
+print(idx)
 	
 	# possibly create folder
 	diameter.folder <- file.path(NET_FOLDER,g0$name,"diameter")
@@ -831,7 +834,7 @@ analyze.net.assortativity <- function(g, g0)
 		g0 <- set_vertex_attr(graph=g0, name=attr, value=vals[i])
 	}
 	record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph.graphml")))
-	record(graph=g0, file=file.path(NET_FOLDER,g0$name,paste0("graph0.graphml")))
+	record.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,paste0("graph0.graphml")))
 	
 	# add assortativity to main CSV
 	stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")

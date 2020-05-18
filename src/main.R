@@ -41,11 +41,13 @@ graph.file <- file.path(NET_FOLDER,"all.graphml")
 # possibly extract the network from the tables
 if(!file.exists(graph.file))
 {	cat("Graph file \"",graph.file,"\" not found: extracting the network and recording it\n",sep="")
-	extract.network()
+	og <- extract.network()
 }
 # load the extracted network
 cat("Loading graph file \"",graph.file,"\"\n",sep="")
 og <- read.network(graph.file)
+og <- delete_vertex_attr(og, "x")
+og <- delete_vertex_attr(og, "y")
 
 
 

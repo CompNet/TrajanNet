@@ -31,6 +31,8 @@
   <key id="v_DestVoy5" for="node" attr.name="DestVoy5" attr.type="string"/>
   <key id="v_DestVoy6" for="node" attr.name="DestVoy6" attr.type="string"/>
   <key id="v_DestVoy7" for="node" attr.name="DestVoy7" attr.type="string"/>
+  <key id="v_DestVoy8" for="node" attr.name="DestVoy8" attr.type="string"/>
+  <key id="v_DestVoy9" for="node" attr.name="DestVoy9" attr.type="string"/>
   <key id="v_MotifVoy1" for="node" attr.name="MotifVoy1" attr.type="string"/>
   <key id="v_MotifVoy2" for="node" attr.name="MotifVoy2" attr.type="string"/>
   <key id="v_MotifVoy3" for="node" attr.name="MotifVoy3" attr.type="string"/>
@@ -38,6 +40,8 @@
   <key id="v_MotifVoy5" for="node" attr.name="MotifVoy5" attr.type="string"/>
   <key id="v_MotifVoy6" for="node" attr.name="MotifVoy6" attr.type="string"/>
   <key id="v_MotifVoy7" for="node" attr.name="MotifVoy7" attr.type="string"/>
+  <key id="v_MotifVoy8" for="node" attr.name="MotifVoy8" attr.type="string"/>
+  <key id="v_MotifVoy9" for="node" attr.name="MotifVoy9" attr.type="string"/>
   <key id="v_RelTrajan" for="node" attr.name="RelTrajan" attr.type="string"/>
   <key id="v_Cercles1" for="node" attr.name="Cercles1" attr.type="string"/>
   <key id="v_Cercles2" for="node" attr.name="Cercles2" attr.type="string"/>
@@ -45,6 +49,8 @@
   <key id="v_SoutHadrien" for="node" attr.name="SoutHadrien" attr.type="string"/>
   <key id="v_Espagnol" for="node" attr.name="Espagnol" attr.type="string"/>
   <key id="v_NbrVoy" for="node" attr.name="NbrVoy" attr.type="string"/>
+  <key id="v_x" for="node" attr.name="x" attr.type="double"/>
+  <key id="v_y" for="node" attr.name="y" attr.type="double"/>
   <key id="e_Nature_Amicale" for="edge" attr.name="Nature_Amicale" attr.type="string"/>
   <key id="e_Nature_Familiale" for="edge" attr.name="Nature_Familiale" attr.type="string"/>
   <key id="e_Nature_Professionnelle" for="edge" attr.name="Nature_Professionnelle" attr.type="string"/>
@@ -78,6 +84,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -85,6 +93,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">NA</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -92,6 +102,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">NA</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">514.12711161268</data>
+      <data key="v_y">482.308601484527</data>
     </node>
     <node id="n1">
       <data key="v_name">P1</data>
@@ -121,6 +133,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Personnel</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -128,6 +142,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -135,6 +151,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">359</data>
+      <data key="v_y">771</data>
     </node>
     <node id="n2">
       <data key="v_name">P2</data>
@@ -164,6 +182,8 @@
       <data key="v_DestVoy5">Germanie</data>
       <data key="v_DestVoy6">Pannonie</data>
       <data key="v_DestVoy7">Syrie</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Militaire</data>
@@ -171,6 +191,8 @@
       <data key="v_MotifVoy5">Militaire</data>
       <data key="v_MotifVoy6">Militaire</data>
       <data key="v_MotifVoy7">Politico-militaire</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -178,6 +200,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 7</data>
+      <data key="v_x">529.4562592449</data>
+      <data key="v_y">676.011141781097</data>
     </node>
     <node id="n3">
       <data key="v_name">P3</data>
@@ -207,6 +231,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Personnel</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -214,6 +240,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -221,6 +249,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">358</data>
+      <data key="v_y">828</data>
     </node>
     <node id="n4">
       <data key="v_name">P4</data>
@@ -250,6 +280,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Personnel</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -257,6 +289,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -264,6 +298,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">NA</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">300</data>
+      <data key="v_y">917</data>
     </node>
     <node id="n5">
       <data key="v_name">P5</data>
@@ -293,6 +329,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Personnel</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -300,6 +338,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -307,6 +347,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">NA</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">208</data>
+      <data key="v_y">792</data>
     </node>
     <node id="n6">
       <data key="v_name">P6</data>
@@ -336,6 +378,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -343,6 +387,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -350,6 +396,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">264.615122447994</data>
+      <data key="v_y">722.332397062096</data>
     </node>
     <node id="n7">
       <data key="v_name">P7</data>
@@ -379,6 +427,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -386,6 +436,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -393,6 +445,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">NA</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">242</data>
+      <data key="v_y">847</data>
     </node>
     <node id="n8">
       <data key="v_name">P8</data>
@@ -422,6 +476,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Personnel</data>
       <data key="v_MotifVoy2">Politique</data>
       <data key="v_MotifVoy3">NA</data>
@@ -429,6 +485,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -436,6 +494,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 2</data>
+      <data key="v_x">450.763915630712</data>
+      <data key="v_y">854.572753428489</data>
     </node>
     <node id="n9">
       <data key="v_name">P9</data>
@@ -462,23 +522,29 @@
       <data key="v_DestVoy2">Dacie</data>
       <data key="v_DestVoy3">Pannonie</data>
       <data key="v_DestVoy4">Belgique</data>
-      <data key="v_DestVoy5">NA</data>
+      <data key="v_DestVoy5">Gaule cisalpine</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
       <data key="v_MotifVoy4">Politico-militaire</data>
-      <data key="v_MotifVoy5">NA</data>
+      <data key="v_MotifVoy5">Politique</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
       <data key="v_Lacticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
-      <data key="v_NbrVoy"> 4</data>
+      <data key="v_NbrVoy"> 5</data>
+      <data key="v_x">966</data>
+      <data key="v_y">553</data>
     </node>
     <node id="n10">
       <data key="v_name">P10</data>
@@ -508,6 +574,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -515,6 +583,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Antonins</data>
       <data key="v_Cercles2">NA</data>
@@ -522,6 +592,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">229.320927545418</data>
+      <data key="v_y">90.3091698875597</data>
     </node>
     <node id="n11">
       <data key="v_name">P11</data>
@@ -544,20 +616,24 @@
       <data key="v_PolitEques4">NA</data>
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitEques">NA</data>
-      <data key="v_DestVoy1">Grece</data>
-      <data key="v_DestVoy2">Mesie</data>
-      <data key="v_DestVoy3">Dacie</data>
+      <data key="v_DestVoy1">Mesie</data>
+      <data key="v_DestVoy2">Dacie</data>
+      <data key="v_DestVoy3">Achaie</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
-      <data key="v_MotifVoy1">Politique</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
+      <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
       <data key="v_MotifVoy4">NA</data>
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Nigrinus</data>
       <data key="v_Cercles2">NA</data>
@@ -565,6 +641,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
+      <data key="v_x">437</data>
+      <data key="v_y">738</data>
     </node>
     <node id="n12">
       <data key="v_name">P12</data>
@@ -588,12 +666,14 @@
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Asie</data>
-      <data key="v_DestVoy2">Germanie</data>
+      <data key="v_DestVoy2">Germanie inferieure</data>
       <data key="v_DestVoy3">Asie</data>
       <data key="v_DestVoy4">Cappadoce</data>
       <data key="v_DestVoy5">Armenie</data>
       <data key="v_DestVoy6">Syrie</data>
       <data key="v_DestVoy7">Afrique</data>
+      <data key="v_DestVoy8">Bithynie</data>
+      <data key="v_DestVoy9">Parthie</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
@@ -601,13 +681,17 @@
       <data key="v_MotifVoy5">Politico-militaire</data>
       <data key="v_MotifVoy6">Politico-militaire</data>
       <data key="v_MotifVoy7">Politico-militaire</data>
+      <data key="v_MotifVoy8">Personnel</data>
+      <data key="v_MotifVoy9">Militaire</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
       <data key="v_Lacticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
-      <data key="v_NbrVoy"> 7</data>
+      <data key="v_NbrVoy"> 9</data>
+      <data key="v_x">428.167048646307</data>
+      <data key="v_y">386.359109587453</data>
     </node>
     <node id="n13">
       <data key="v_name">P13</data>
@@ -631,12 +715,14 @@
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Dalmatie</data>
-      <data key="v_DestVoy2">Mesie</data>
+      <data key="v_DestVoy2">Mesie superieure</data>
       <data key="v_DestVoy3">Dacie</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
       <data key="v_MotifVoy3">Militaire</data>
@@ -644,6 +730,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -651,6 +739,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
+      <data key="v_x">950.636638027946</data>
+      <data key="v_y">303.560544573805</data>
     </node>
     <node id="n14">
       <data key="v_name">P14</data>
@@ -680,6 +770,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">NA</data>
@@ -687,6 +779,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -694,6 +788,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
+      <data key="v_x">731.203637522181</data>
+      <data key="v_y">558.96615512589</data>
     </node>
     <node id="n15">
       <data key="v_name">P15</data>
@@ -720,23 +816,29 @@
       <data key="v_DestVoy2">Achaie</data>
       <data key="v_DestVoy3">Dacie</data>
       <data key="v_DestVoy4">Parthie</data>
-      <data key="v_DestVoy5">Babylone</data>
+      <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Militaire</data>
       <data key="v_MotifVoy4">Militaire</data>
-      <data key="v_MotifVoy5">Militaire</data>
+      <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
       <data key="v_Lacticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
-      <data key="v_NbrVoy"> 5</data>
+      <data key="v_NbrVoy"> 4</data>
+      <data key="v_x">771.768957415481</data>
+      <data key="v_y">139.954713424208</data>
     </node>
     <node id="n16">
       <data key="v_name">P16</data>
@@ -766,6 +868,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
@@ -773,6 +877,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Nigrinus</data>
       <data key="v_Cercles2">NA</data>
@@ -780,6 +886,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 4</data>
+      <data key="v_x">581</data>
+      <data key="v_y">773</data>
     </node>
     <node id="n17">
       <data key="v_name">P17</data>
@@ -803,26 +911,32 @@
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Asie</data>
-      <data key="v_DestVoy2">NA</data>
+      <data key="v_DestVoy2">Narbonnaise</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy2">Politico-militaire</data>
       <data key="v_MotifVoy3">NA</data>
       <data key="v_MotifVoy4">NA</data>
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">Nigrinus</data>
       <data key="v_Lacticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
-      <data key="v_NbrVoy"> 1</data>
+      <data key="v_NbrVoy"> 2</data>
+      <data key="v_x">129.057465401079</data>
+      <data key="v_y">592.738834981345</data>
     </node>
     <node id="n18">
       <data key="v_name">P18</data>
@@ -852,6 +966,8 @@
       <data key="v_DestVoy5">Galatie</data>
       <data key="v_DestVoy6">Syrie</data>
       <data key="v_DestVoy7">Dacie</data>
+      <data key="v_DestVoy8">Asie</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
@@ -859,13 +975,17 @@
       <data key="v_MotifVoy5">Politico-militaire</data>
       <data key="v_MotifVoy6">Politico-militaire</data>
       <data key="v_MotifVoy7">Politico-militaire</data>
+      <data key="v_MotifVoy8">Politico-militaire</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
       <data key="v_Lacticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
-      <data key="v_NbrVoy"> 7</data>
+      <data key="v_NbrVoy"> 8</data>
+      <data key="v_x">789.808784191516</data>
+      <data key="v_y">497.506004775174</data>
     </node>
     <node id="n19">
       <data key="v_name">P19</data>
@@ -895,6 +1015,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
@@ -902,6 +1024,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
@@ -909,6 +1033,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
+      <data key="v_x">478.500382022975</data>
+      <data key="v_y">636.323189294734</data>
     </node>
     <node id="n20">
       <data key="v_name">P20</data>
@@ -938,6 +1064,8 @@
       <data key="v_DestVoy5">Syrie</data>
       <data key="v_DestVoy6">Afrique</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
@@ -945,6 +1073,8 @@
       <data key="v_MotifVoy5">Politico-militaire</data>
       <data key="v_MotifVoy6">Politico-militaire</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Regulus</data>
       <data key="v_Cercles2">NA</data>
@@ -952,6 +1082,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 6</data>
+      <data key="v_x">115</data>
+      <data key="v_y">399</data>
     </node>
     <node id="n21">
       <data key="v_name">P21</data>
@@ -981,6 +1113,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
       <data key="v_MotifVoy3">Militaire</data>
@@ -988,6 +1122,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -995,6 +1131,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
+      <data key="v_x">833.455790670772</data>
+      <data key="v_y">770.098683579522</data>
     </node>
     <node id="n22">
       <data key="v_name">P22</data>
@@ -1018,26 +1156,32 @@
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Dacie</data>
-      <data key="v_DestVoy2">NA</data>
+      <data key="v_DestVoy2">Taraconnaise</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy2">Personnel</data>
       <data key="v_MotifVoy3">NA</data>
       <data key="v_MotifVoy4">NA</data>
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Antonins</data>
       <data key="v_Cercles2">NA</data>
       <data key="v_Lacticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Oui</data>
-      <data key="v_NbrVoy"> 1</data>
+      <data key="v_NbrVoy"> 2</data>
+      <data key="v_x">600.590874424158</data>
+      <data key="v_y">519.754922408433</data>
     </node>
     <node id="n23">
       <data key="v_name">P23</data>
@@ -1067,6 +1211,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
@@ -1074,6 +1220,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Antonins</data>
       <data key="v_Cercles2">NA</data>
@@ -1081,6 +1229,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
+      <data key="v_x">498.99857598774</data>
+      <data key="v_y">897.677666205712</data>
     </node>
     <node id="n24">
       <data key="v_name">P24</data>
@@ -1110,6 +1260,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1117,6 +1269,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
@@ -1124,6 +1278,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">158.905967675565</data>
+      <data key="v_y">229.414196183204</data>
     </node>
     <node id="n25">
       <data key="v_name">P25</data>
@@ -1153,6 +1309,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1160,6 +1318,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
@@ -1167,6 +1327,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">224</data>
+      <data key="v_y">486</data>
     </node>
     <node id="n26">
       <data key="v_name">P26</data>
@@ -1196,6 +1358,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">Politique</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
@@ -1203,6 +1367,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
@@ -1210,6 +1376,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
+      <data key="v_x">406.837319687364</data>
+      <data key="v_y">111.533116029812</data>
     </node>
     <node id="n27">
       <data key="v_name">P27</data>
@@ -1239,6 +1407,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1246,6 +1416,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Nigrinus</data>
       <data key="v_Cercles2">NA</data>
@@ -1253,10 +1425,12 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
+      <data key="v_x">518.123014262824</data>
+      <data key="v_y">814.465416123755</data>
     </node>
     <node id="n28">
       <data key="v_name">P28</data>
-      <data key="v_label">Marcus Rutilius Luous</data>
+      <data key="v_label">Marcus Rutilius Lupus</data>
       <data key="v_label0">Rutilius</data>
       <data key="v_PolitSenat1">NA</data>
       <data key="v_PolitSenat2">NA</data>
@@ -1282,6 +1456,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1289,6 +1465,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -1296,6 +1474,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">770.890880232913</data>
+      <data key="v_y">818.802281613242</data>
     </node>
     <node id="n29">
       <data key="v_name">P29</data>
@@ -1325,6 +1505,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1332,6 +1514,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -1339,6 +1523,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">967</data>
+      <data key="v_y">357</data>
     </node>
     <node id="n30">
       <data key="v_name">P30</data>
@@ -1368,6 +1554,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Professionnel</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1375,6 +1563,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -1382,6 +1572,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">547.236412284958</data>
+      <data key="v_y">94.7522058541368</data>
     </node>
     <node id="n31">
       <data key="v_name">P31</data>
@@ -1411,6 +1603,8 @@
       <data key="v_DestVoy5">Mesie superieure</data>
       <data key="v_DestVoy6">Dacie</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
@@ -1418,6 +1612,8 @@
       <data key="v_MotifVoy5">Politico-militaire</data>
       <data key="v_MotifVoy6">Militaire</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
@@ -1425,6 +1621,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 6</data>
+      <data key="v_x">359</data>
+      <data key="v_y">460</data>
     </node>
     <node id="n32">
       <data key="v_name">P32</data>
@@ -1454,6 +1652,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1461,6 +1661,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
@@ -1468,6 +1670,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">84</data>
+      <data key="v_y">357</data>
     </node>
     <node id="n33">
       <data key="v_name">P33</data>
@@ -1497,6 +1701,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">Politique</data>
       <data key="v_MotifVoy3">Politique</data>
@@ -1504,6 +1710,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -1511,6 +1719,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 4</data>
+      <data key="v_x">849.268075553563</data>
+      <data key="v_y">402.437143140683</data>
     </node>
     <node id="n34">
       <data key="v_name">P34</data>
@@ -1535,25 +1745,31 @@
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Macedoine</data>
       <data key="v_DestVoy2">Dacie</data>
-      <data key="v_DestVoy3">NA</data>
+      <data key="v_DestVoy3">Egypte</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
-      <data key="v_MotifVoy3">NA</data>
+      <data key="v_MotifVoy3">Politique</data>
       <data key="v_MotifVoy4">NA</data>
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
       <data key="v_Lacticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
-      <data key="v_NbrVoy"> 2</data>
+      <data key="v_NbrVoy"> 3</data>
+      <data key="v_x">848.247204028038</data>
+      <data key="v_y">699.330385682596</data>
     </node>
     <node id="n35">
       <data key="v_name">P35</data>
@@ -1583,6 +1799,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1590,6 +1808,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">Antonins</data>
       <data key="v_Cercles2">NA</data>
@@ -1597,6 +1817,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">309.101761417939</data>
+      <data key="v_y">35.6266050550631</data>
     </node>
     <node id="n36">
       <data key="v_name">P36</data>
@@ -1626,6 +1848,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1633,6 +1857,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
@@ -1640,6 +1866,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">318.355671335977</data>
+      <data key="v_y">536.5571857822</data>
     </node>
     <node id="n37">
       <data key="v_name">P37</data>
@@ -1669,6 +1897,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1676,6 +1906,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -1683,6 +1915,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">667</data>
+      <data key="v_y">116</data>
     </node>
     <node id="n38">
       <data key="v_name">P38</data>
@@ -1712,6 +1946,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1719,6 +1955,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
@@ -1726,6 +1964,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">156</data>
+      <data key="v_y">316</data>
     </node>
     <node id="n39">
       <data key="v_name">P39</data>
@@ -1755,6 +1995,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
@@ -1762,6 +2004,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -1769,6 +2013,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
+      <data key="v_x">683.039515844662</data>
+      <data key="v_y">919.486902829002</data>
     </node>
     <node id="n40">
       <data key="v_name">P40</data>
@@ -1798,6 +2044,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1805,6 +2053,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Antonins</data>
       <data key="v_Cercles2">NA</data>
@@ -1812,6 +2062,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">677.495027385276</data>
+      <data key="v_y">715.936502971453</data>
     </node>
     <node id="n41">
       <data key="v_name">P41</data>
@@ -1835,26 +2087,32 @@
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Arabie</data>
-      <data key="v_DestVoy2">NA</data>
+      <data key="v_DestVoy2">Cappadoce</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
-      <data key="v_MotifVoy2">NA</data>
+      <data key="v_MotifVoy2">Personnel</data>
       <data key="v_MotifVoy3">NA</data>
       <data key="v_MotifVoy4">NA</data>
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
       <data key="v_Lacticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
-      <data key="v_NbrVoy"> 1</data>
+      <data key="v_NbrVoy"> 2</data>
+      <data key="v_x">528</data>
+      <data key="v_y">0</data>
     </node>
     <node id="n42">
       <data key="v_name">P42</data>
@@ -1884,6 +2142,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1891,6 +2151,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -1898,6 +2160,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">325</data>
+      <data key="v_y">363</data>
     </node>
     <node id="n43">
       <data key="v_name">P43</data>
@@ -1923,24 +2187,30 @@
       <data key="v_DestVoy1">Mesie inferieure</data>
       <data key="v_DestVoy2">Dacie</data>
       <data key="v_DestVoy3">Syrie</data>
-      <data key="v_DestVoy4">NA</data>
+      <data key="v_DestVoy4">Lusitanie</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
-      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy4">Personnel</data>
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
       <data key="v_Lacticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Oui</data>
-      <data key="v_NbrVoy"> 3</data>
+      <data key="v_NbrVoy"> 4</data>
+      <data key="v_x">74.2380632775235</data>
+      <data key="v_y">485.532670104483</data>
     </node>
     <node id="n44">
       <data key="v_name">P44</data>
@@ -1970,6 +2240,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -1977,6 +2249,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Regulus</data>
       <data key="v_Cercles2">NA</data>
@@ -1984,6 +2258,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">764.4311268776</data>
+      <data key="v_y">44.9914508881659</data>
     </node>
     <node id="n45">
       <data key="v_name">P45</data>
@@ -2013,6 +2289,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2020,6 +2298,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2027,6 +2307,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">725.248656394343</data>
+      <data key="v_y">853.654263190317</data>
     </node>
     <node id="n46">
       <data key="v_name">P46</data>
@@ -2056,6 +2338,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2063,6 +2347,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2070,6 +2356,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
+      <data key="v_x">856.477960778777</data>
+      <data key="v_y">610.288835203195</data>
     </node>
     <node id="n47">
       <data key="v_name">P47</data>
@@ -2099,6 +2387,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2106,6 +2396,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2113,6 +2405,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
+      <data key="v_x">835</data>
+      <data key="v_y">243</data>
     </node>
     <node id="n48">
       <data key="v_name">P48</data>
@@ -2142,6 +2436,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2149,6 +2445,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2156,6 +2454,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">136</data>
+      <data key="v_y">278</data>
     </node>
     <node id="n49">
       <data key="v_name">P49</data>
@@ -2181,24 +2481,30 @@
       <data key="v_DestVoy1">Achaie</data>
       <data key="v_DestVoy2">Syrie</data>
       <data key="v_DestVoy3">Egypte</data>
-      <data key="v_DestVoy4">NA</data>
+      <data key="v_DestVoy4">Asie</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">Politique</data>
       <data key="v_MotifVoy3">Personnel</data>
-      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy4">Politique</data>
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
       <data key="v_Lacticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
-      <data key="v_NbrVoy"> 3</data>
+      <data key="v_NbrVoy"> 4</data>
+      <data key="v_x">512</data>
+      <data key="v_y">956</data>
     </node>
     <node id="n50">
       <data key="v_name">P50</data>
@@ -2228,6 +2534,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2235,6 +2543,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">Antonins</data>
       <data key="v_Cercles2">NA</data>
@@ -2242,6 +2552,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
+      <data key="v_x">262</data>
+      <data key="v_y">209</data>
     </node>
     <node id="n51">
       <data key="v_name">P51</data>
@@ -2267,24 +2579,30 @@
       <data key="v_DestVoy1">Bretagne</data>
       <data key="v_DestVoy2">Germanie inferieure</data>
       <data key="v_DestVoy3">Asie</data>
-      <data key="v_DestVoy4">NA</data>
+      <data key="v_DestVoy4">Germanie superieure</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
-      <data key="v_MotifVoy4">NA</data>
+      <data key="v_MotifVoy4">Militaire</data>
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
       <data key="v_Lacticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
-      <data key="v_NbrVoy"> 3</data>
+      <data key="v_NbrVoy"> 4</data>
+      <data key="v_x">32</data>
+      <data key="v_y">543</data>
     </node>
     <node id="n52">
       <data key="v_name">P52</data>
@@ -2314,6 +2632,8 @@
       <data key="v_DestVoy5">Betique</data>
       <data key="v_DestVoy6">Narbonnaise</data>
       <data key="v_DestVoy7">Afrique</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Militaire</data>
@@ -2321,6 +2641,8 @@
       <data key="v_MotifVoy5">Politico-militaire</data>
       <data key="v_MotifVoy6">Politico-militaire</data>
       <data key="v_MotifVoy7">Politico-militaire</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2328,6 +2650,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 7</data>
+      <data key="v_x">651</data>
+      <data key="v_y">25</data>
     </node>
     <node id="n53">
       <data key="v_name">P53</data>
@@ -2357,6 +2681,8 @@
       <data key="v_DestVoy5">Mesopotamie</data>
       <data key="v_DestVoy6">Judee</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Politico-militaire</data>
@@ -2364,6 +2690,8 @@
       <data key="v_MotifVoy5">Militaire</data>
       <data key="v_MotifVoy6">Politico-militaire</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2371,6 +2699,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 6</data>
+      <data key="v_x">606.512612664052</data>
+      <data key="v_y">853.802675486924</data>
     </node>
     <node id="n54">
       <data key="v_name">P54</data>
@@ -2400,6 +2730,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2407,6 +2739,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2414,6 +2748,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
+      <data key="v_x">961</data>
+      <data key="v_y">667</data>
     </node>
     <node id="n55">
       <data key="v_name">P55</data>
@@ -2443,6 +2779,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2450,6 +2788,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2457,6 +2797,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">150</data>
+      <data key="v_y">753</data>
     </node>
     <node id="n56">
       <data key="v_name">P56</data>
@@ -2482,17 +2824,21 @@
       <data key="v_DestVoy1">Afrique</data>
       <data key="v_DestVoy2">Dacie</data>
       <data key="v_DestVoy3">Mesie</data>
-      <data key="v_DestVoy4">Numidie</data>
+      <data key="v_DestVoy4">Mauritanie cesarienne</data>
       <data key="v_DestVoy5">Pannonie superieure</data>
-      <data key="v_DestVoy6">Afrique</data>
+      <data key="v_DestVoy6">Taraconnaise</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Militaire</data>
       <data key="v_MotifVoy4">Militaire</data>
       <data key="v_MotifVoy5">Politico-militaire</data>
-      <data key="v_MotifVoy6">Politico-militaire</data>
+      <data key="v_MotifVoy6">Personnel</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2500,6 +2846,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 6</data>
+      <data key="v_x">745.300311446116</data>
+      <data key="v_y">637.986682905097</data>
     </node>
     <node id="n57">
       <data key="v_name">P57</data>
@@ -2529,6 +2877,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2536,6 +2886,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2543,6 +2895,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">709.575742786378</data>
+      <data key="v_y">416.062683093389</data>
     </node>
     <node id="n58">
       <data key="v_name">P58</data>
@@ -2572,6 +2926,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">Politico-militaire</data>
       <data key="v_MotifVoy3">Militaire</data>
@@ -2579,6 +2935,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2586,6 +2944,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 3</data>
+      <data key="v_x">865</data>
+      <data key="v_y">192</data>
     </node>
     <node id="n59">
       <data key="v_name">P59</data>
@@ -2615,6 +2975,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politico-militaire</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2622,6 +2984,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2629,6 +2993,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">895</data>
+      <data key="v_y">114</data>
     </node>
     <node id="n60">
       <data key="v_name">P60</data>
@@ -2654,17 +3020,21 @@
       <data key="v_DestVoy1">Achaie</data>
       <data key="v_DestVoy2">Mesie</data>
       <data key="v_DestVoy3">Dacie</data>
-      <data key="v_DestVoy4">Achaie</data>
+      <data key="v_DestVoy4">Bithynie</data>
       <data key="v_DestVoy5">Asie</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">Militaire</data>
       <data key="v_MotifVoy3">Militaire</data>
-      <data key="v_MotifVoy4">Politico-militaire</data>
+      <data key="v_MotifVoy4">Politique</data>
       <data key="v_MotifVoy5">Politique</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2672,6 +3042,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 5</data>
+      <data key="v_x">665</data>
+      <data key="v_y">377</data>
     </node>
     <node id="n61">
       <data key="v_name">P61</data>
@@ -2701,6 +3073,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2708,6 +3082,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
@@ -2715,6 +3091,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">110</data>
+      <data key="v_y">666</data>
     </node>
     <node id="n62">
       <data key="v_name">P62</data>
@@ -2744,6 +3122,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2751,6 +3131,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2758,6 +3140,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">936</data>
+      <data key="v_y">452</data>
     </node>
     <node id="n63">
       <data key="v_name">P63</data>
@@ -2787,6 +3171,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">NA</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2794,6 +3180,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">Septicius Clarus</data>
@@ -2801,6 +3189,8 @@
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
+      <data key="v_x">243.566615631104</data>
+      <data key="v_y">609.342521372122</data>
     </node>
     <node id="n64">
       <data key="v_name">P64</data>
@@ -2830,6 +3220,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2837,6 +3229,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2844,6 +3238,8 @@
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">358.12784236337</data>
+      <data key="v_y">654.270450477221</data>
     </node>
     <node id="n65">
       <data key="v_name">P65</data>
@@ -2867,19 +3263,23 @@
       <data key="v_DerPolitEques">NA</data>
       <data key="v_MilitEques">NA</data>
       <data key="v_DestVoy1">Dacie</data>
-      <data key="v_DestVoy2">Dacie</data>
+      <data key="v_DestVoy2">Narbonnaise</data>
       <data key="v_DestVoy3">NA</data>
       <data key="v_DestVoy4">NA</data>
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Militaire</data>
-      <data key="v_MotifVoy2">Politico-militaire</data>
+      <data key="v_MotifVoy2">Personnel</data>
       <data key="v_MotifVoy3">NA</data>
       <data key="v_MotifVoy4">NA</data>
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
@@ -2887,6 +3287,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
+      <data key="v_x">437</data>
+      <data key="v_y">66</data>
     </node>
     <node id="n66">
       <data key="v_name">P66</data>
@@ -2916,6 +3318,8 @@
       <data key="v_DestVoy5">NA</data>
       <data key="v_DestVoy6">NA</data>
       <data key="v_DestVoy7">NA</data>
+      <data key="v_DestVoy8">NA</data>
+      <data key="v_DestVoy9">NA</data>
       <data key="v_MotifVoy1">Politique</data>
       <data key="v_MotifVoy2">NA</data>
       <data key="v_MotifVoy3">NA</data>
@@ -2923,6 +3327,8 @@
       <data key="v_MotifVoy5">NA</data>
       <data key="v_MotifVoy6">NA</data>
       <data key="v_MotifVoy7">NA</data>
+      <data key="v_MotifVoy8">NA</data>
+      <data key="v_MotifVoy9">NA</data>
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
@@ -2930,6 +3336,8 @@
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
+      <data key="v_x">350</data>
+      <data key="v_y">289</data>
     </node>
     <edge source="n0" target="n1">
       <data key="e_Nature_Amicale">Non</data>

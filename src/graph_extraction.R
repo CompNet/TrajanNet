@@ -327,13 +327,17 @@ extract.network <- function()
 	
 	
 	############
+	# possibly retrieve layout
+	lay.file <- file.path(NET_FOLDER,"all_layout.txt")
+	if(file.exists(lay.file))
+		LAYOUT <<- as.matrix(read.table(file=lay.file))
+	
 	# record graph
 	graph.file <- file.path(NET_FOLDER,"all.graphml")
 	cat("Recording graph in",graph.file,"\n")
 #	con <- file(description=graph.file, open="wb", encoding="UTF8")
 #	write.graph(graph=g,file=con,format="graphml")
-	write.graph(graph=g,file=graph.file,format="graphml")
-	
+	record.graph(graph=g, file=graph.file)
 	
 	return(g)
 }
