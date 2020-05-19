@@ -95,7 +95,7 @@ The `verification.R` was used to check the consistency of the raw data. The rest
 * Signed nets: 
   * Consider the evolution of the relationships
   * Synchronous closure, separate the different steps until complete graph
-* Structural similarity between spanish / the rest (and other attributes)
+* Structural similarity between spaniards / the rest (and other attributes)
 * Multiplex plot of the different types of links (Didn't find an appropriate tool)
 
 

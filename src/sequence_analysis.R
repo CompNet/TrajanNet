@@ -687,6 +687,25 @@ cluster.analysis.seq <- function(sd, ids, missing.option, folder)
 			)
 			colnames(dd) <- ids
 			rownames(dd) <- ids
+			# plot it
+			for(i in 1:2)
+			{	plot.file <- file.path(dd.folder, "distance_matrix")
+				if(i==2)
+					plot.file <- paste0(plot.file,"_vals")
+				create.plot(plot.file)
+					par(mar=c(3.4, 3.4, 2.6, 4.1))	# margins B L T R 
+					plot(dd,						# matrix
+						col=colorRampPalette(c("yellow",'red')),
+						digits=if(i==1) NA else 2,	# display values (2=with 2 decimal digits)
+						las=2,
+						breaks=10,
+						xlab=NA,
+						ylab=NA,
+						cex=0.5,
+						main="Dissimilarites entre sequences de personnages"
+					)
+				dev.off()
+			}
 			# record it
 			mat.file <- file.path(dd.folder, "distance_matrix.txt")
 			write.table(dd, mat.file, quote=FALSE, sep="\t", col.names=TRUE, row.names=TRUE)
@@ -726,6 +745,27 @@ cluster.analysis.seq <- function(sd, ids, missing.option, folder)
 					color_labels(as.hclust(dendro), k=best.k, col=cols)  %>% 
 					plot(xlab="Personnage", ylab="Dissimilarite inter-clusters")
 				legend(x="topright",legend=paste0("C",1:best.k), fill=cols)
+			dev.off()
+			
+			# plot distance matrix with clusters
+			ord <- dendro$order
+			cls <- best.cut[ord]
+			pos <- c(which(cls - c(0,cls[-length(cls)]) != 0), length(cls)+1) - 0.5
+			rec <- cbind(pos[-length(pos)], pos[-1], length(ord)-pos[-length(pos)]+1, length(ord)-pos[-1]+1)
+			plot.file <- file.path(dd.folder, "clusters_distmat")
+			create.plot(plot.file)
+			par(mar=c(3.4, 3.4, 2.6, 4.1))	# margins B L T R 
+				plot(dd[ord,ord],						# matrix
+					col=colorRampPalette(c("yellow",'red')),
+					digits=NA,
+					las=2,
+					breaks=10,
+					xlab=NA,
+					ylab=NA,
+					cex=0.5,
+					main="Dissimilarites entre sequences de personnages"
+				)
+				rect(xleft=rec[,1], ybottom=rec[,3], xright=rec[,2], ytop=rec[,4], lwd=4)
 			dev.off()
 			
 			# plot MDS

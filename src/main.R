@@ -79,4 +79,3 @@ analyze.sequences()
 #   - problème de numérotation des noeuds, qui ne matche pas l'ordre original
 
 # séparer chev et sénateurs (graphe, matrice de trans)
-# plot matrice dist séq
