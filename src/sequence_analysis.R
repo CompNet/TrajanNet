@@ -334,38 +334,61 @@ prepare.seq.data <- function(seq.col, missing.option, add.ref)
 # main.tab: table containing all the data.
 # missing.option: option to represent missing values in sequences.
 # folder: main output folder.
+# att.name: attribute of interest, or none to process all the sequences.
 #############################################################
-generate.main.seq.plots <- function(sd, main.tab, missing.option, folder)
-{	# plot legend apart
-	plot.file <- file.path(folder, "caption")
+generate.main.seq.plots <- function(sd, main.tab, missing.option, folder, att.name)
+{	# setup output folder and other parameters
+	flag.circ <- FALSE
+	if(hasArg(att.name))
+	{	seq.folder <- file.path(folder, "attributes", att.name)
+		dir.create(path=seq.folder, showWarnings=FALSE, recursive=TRUE)
+		if(att.name==ATT_NODE_CIRCLES)
+		{	flag.circ <- TRUE
+			circle.str <- as.character(main.tab[,ATT_NODE_CIRCLES])
+			group <- NULL
+		}
+		else
+		{	group <- main.tab[,att.name]
+		}
+	}
+	else
+	{	seq.folder <- folder
+		group <- NULL
+	}
+	
+	# plot legend apart
+	plot.file <- file.path(seq.folder, "caption")
 	create.plot(plot.file)
 		seqlegend(sd)
 	dev.off()
 	
-	# all sequences sorted by start state
-	plot.file <- file.path(folder, "all_seq")
-	create.plot(plot.file)
-		seqIplot(sd,							# data
-			sortv="from.start", 				# how to sort the sequences
-			with.legend=FALSE,					# whether and where to put the legend ("right")
-			with.missing=is.na(missing.option),	# whether to take missing states into account
-			xlab="Chronologie des etats",		# x-axis title
-			ylab="Personnage",					# y-axis title
-			ytlab="id",							# character codes
-			ylas=1,								# orientation of these codes
-			main="Ensemble des sequences"		# plot title
-		)
-	dev.off()
+	# init counter
+	if(flag.circ)
+		i <- 1
+	else
+		i <- length(ATT_NODE_CIRCLES_VALS)
 	
-	# sequences separated depending on a categorical variable
-	att.names <- c(ATT_NODE_LACTICLAVIUS, ATT_NODE_TRAV_NBR, ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
-	for(att.name in att.names)
-	{	att.folder <- file.path(folder, "attributes", att.name)
-		dir.create(path=att.folder, showWarnings=FALSE, recursive=TRUE)
-		plot.file <- file.path(att.folder, "all_seq")
+	# possibly repeat for each circle (otherwise, loop only once)
+	while(i<=length(ATT_NODE_CIRCLES_VALS))
+	{	# plot all sequences sorted by start state
+		if(flag.circ)
+		{	circle <- ATT_NODE_CIRCLES_VALS[i]
+			idx <- which(grepl(circle, circle.str, fixed=TRUE))
+			plot.file <- file.path(seq.folder, paste0(circle,"_seq"))
+			main.title <- LONG_NAME[ATT_VAL_CIRCLE_VALS[i]]
+		}
+		else
+		{	plot.file <- file.path(seq.folder, "all_seq")
+			idx <- 1:nrow(main.tab)
+			if(hasArg(att.name))
+				main.title <- LONG_NAME[att.name]
+			else
+				main.title <- "Ensemble des sequences"
+		}
 		create.plot(plot.file)
 			seqIplot(sd,							# data
-				group=main.tab[,att.name],			# variable used to group sequences
+				idxs=idx,							# index of the concerned sequences
+				group=group,						# variable used to group sequences, or NULL for none
 				sortv="from.start", 				# how to sort the sequences
 				with.legend=FALSE,					# whether and where to put the legend ("right")
 				with.missing=is.na(missing.option),	# whether to take missing states into account
@@ -373,75 +396,85 @@ generate.main.seq.plots <- function(sd, main.tab, missing.option, folder)
 				ylab="Personnage",					# y-axis title
 				ytlab="id",							# character codes
 				ylas=1,								# orientation of these codes
-				main=LONG_NAME[att.name]			# plot title
+				main=main.title						# plot title
 			)
 		dev.off()
-	}
-	
-	# specific case of the circles attribute
-	circ.folder <- file.path(folder, "attributes", ATT_NODE_CIRCLES)
-	dir.create(path=circ.folder, showWarnings=FALSE, recursive=TRUE)
-	circle.str <- as.character(main.tab[,ATT_NODE_CIRCLES])
-	for(i in 1:length(ATT_NODE_CIRCLES_VALS))
-	{	circle <- ATT_NODE_CIRCLES_VALS[i]
-		idx <- which(grepl(circle, circle.str, fixed=TRUE))
-		plot.file <- file.path(circ.folder, paste0(circle,"_seq"))
+		
+		# state distribution plot
+		if(flag.circ)
+		{	plot.file <- file.path(seq.folder, paste0(circle,"_state_distrib"))
+			main.title <- LONG_NAME[ATT_VAL_CIRCLE_VALS[i]]
+		}
+		else
+		{	plot.file <- file.path(seq.folder, "state_distrib")
+			if(hasArg(att.name))
+				main.title <- LONG_NAME[att.name]
+			else
+				main.title <- "Distribution des etats"
+		}
 		create.plot(plot.file)
-			seqiplot(sd,								# data
-				idxs=idx,								# index of the concerned sequences
-				sortv="from.start", 					# how to sort the sequences
-				with.legend=FALSE,						# whether and where to put the legend ("right")
-				with.missing=is.na(missing.option),		# whether to take missing states into account
-				xlab="Chronologie des etats",			# x-axis title
-				ylab="Personnage",						# y-axis title
-				ytlab="id",								# character codes
-				ylas=1,									# orientation of these codes
-				main=LONG_NAME[ATT_VAL_CIRCLE_VALS[i]]	# plot title
+			par(mar=c(5.1, 4.1, 4.1, 2.1))	# Bottom Left Top Right
+			seqdplot(sd[idx,], 						# data
+				group=group,						# variable used to group sequences, or NULL for none
+				border=NA,							# disable borders 
+				with.legend=FALSE,					# whether and where to put the legend ("right")
+				with.missing=is.na(missing.option),	# whether to take missing states into account
+				xlab="Chronologie des etats",		# x-axis title
+				ylab="Frequence",					# y-axis title
+				main=main.title						# plot title
 			)
 		dev.off()
+		# record corresponding data
+		if(flag.circ || !hasArg(att.name))
+		{	tmp <- seqstatd(sd[idx,])
+			#print(tmp)
+			file.name <- paste0(plot.file, "_frequencies.txt")
+			write.table(tmp$Frequencies, file.name, quote=FALSE, sep="\t")
+			file.name <- paste0(plot.file, "_states.txt")
+			tab <- cbind(tmp$ValidStates,tmp$Entropy)
+			colnames(tab) <- c("ValidStates","Entropy")
+			write.table(tab, file.name, quote=FALSE, sep="\t")
+		}
+		
+		# most frequent sequences
+		if(flag.circ)
+		{	plot.file <- file.path(seq.folder, paste0(circle,"_frequent_seq"))
+			main.title <- LONG_NAME[ATT_VAL_CIRCLE_VALS[i]]
+		}
+		else
+		{	plot.file <- file.path(seq.folder, "frequent_seq")
+			if(hasArg(att.name))
+			{	main.title <- LONG_NAME[att.name]
+#				tt <- table(main.tab[,att.name])
+#				vals <- names(tt)[which(tt==1)]
+#				idx <- idx[!(main.tab[idx,att.name] %in% vals)]
+			}
+			else
+				main.title <- "Sequences frequentes"
+		}
+		create.plot(plot.file)
+			# some cases cause an error with axis, but the plot is still produced (could not find the exact cause)
+			tryCatch(seqfplot(sd[idx,],				# data
+				idxs=1:20,							# which sequences (ranked by freq) to display
+				group=group,						# variable used to group sequences, or NULL for none
+				with.legend=FALSE,					# whether and where to put the legend ("right")
+				with.missing=is.na(missing.option),	# whether to take missing states into account
+				yaxis="pct",						# cum=cumulative freq, pct=freq of each seq
+				xlab="Chronologie des etats",		# x-axis title
+				ylab="Frequence (%)",				# y-axis title
+				main=main.title						# plot title
+			),error=function(e) {})
+		dev.off()
+		# record corresponding data
+		if(flag.circ || !hasArg(att.name))
+		{	tmp <- seqtab(sd[idx,], idxs=0)
+			#print(tmp)
+			file.name <- paste0(plot.file, "_list.txt")
+			write.table(print(tmp), file.name, quote=FALSE, sep="\t")
+		}
+		
+		i <- i + 1
 	}
-	
-	# state distribution plot
-	plot.file <- file.path(folder, "state_distrib")
-	create.plot(plot.file)
-		par(mar=c(5.1, 4.1, 4.1, 2.1))	# Bottom Left Top Right
-		seqdplot(sd, 							# data
-			border=NA,							# disable borders 
-			with.legend=FALSE,					# whether and where to put the legend ("right")
-			with.missing=is.na(missing.option),	# whether to take missing states into account
-			xlab="Chronologie des etats",		# x-axis title
-			ylab="Frequence",					# y-axis title
-			main="Distribution des etats"		# plot title
-		)
-	dev.off()
-	# record corresponding data
-	tmp <- seqstatd(sd)
-	#print(tmp)
-	file.name <- paste0(plot.file, "_frequencies.txt")
-	write.table(tmp$Frequencies, file.name, quote=FALSE, sep="\t")
-	file.name <- paste0(plot.file, "_states.txt")
-	tab <- cbind(tmp$ValidStates,tmp$Entropy)
-	colnames(tab) <- c("ValidStates","Entropy")
-	write.table(tab, file.name, quote=FALSE, sep="\t")
-	
-	# most frequent sequences
-	plot.file <- file.path(folder, "frequent_seq")
-	create.plot(plot.file)
-		seqfplot(sd, 							# data
-			idxs=1:20,							# which sequences (ranked by freq) to display
-			with.legend=FALSE,					# whether and where to put the legend ("right")
-			with.missing=is.na(missing.option),	# whether to take missing states into account
-			yaxis="pct",						# cum=cumulative freq, pct=freq of each seq
-			xlab="Chronologie des etats",		# x-axis title
-			ylab="Frequence (%)",				# y-axis title
-			main="Sequences frequentes"			# plot title
-		)
-	dev.off()
-	# corresponding data
-	tmp <- seqtab(sd, idxs=0)
-	#print(tmp)
-	file.name <- paste0(plot.file, "_list.txt")
-	write.table(print(tmp), file.name, quote=FALSE, sep="\t")
 }
 
 
@@ -811,6 +844,7 @@ analyze.sequences <- function()
 	missing.options <- c("DEL", NA)
 	for(s in 1:length(suffixes))
 	{	na.folder <- file.path(SEQ_FOLDER, suffixes[s])
+		cat("  Processing folder ",na.folder,"\n",sep="")
 		dir.create(path=na.folder, showWarnings=FALSE, recursive=TRUE)
 		seq.col <- data.cols[s]
 		missing.option <- missing.options[s]
@@ -826,6 +860,11 @@ analyze.sequences <- function()
 		
 		# generate standard sequence plots
 		generate.main.seq.plots(sd, main.tab, missing.option, na.folder)
+		att.names <- c(ATT_NODE_LACTICLAVIUS, ATT_NODE_TRAV_NBR, ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR, ATT_NODE_SPANISH, ATT_NODE_CIRCLES)
+		for(att.name in att.names)
+		{	cat("    Processing attribute ",att.name,"\n",sep="")
+			generate.main.seq.plots(sd, main.tab, missing.option, na.folder, att.name)
+		}
 			
 		# compute and plot transition rates
 		compute.transition.rates(sd, missing.option, na.folder)

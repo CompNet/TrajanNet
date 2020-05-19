@@ -204,16 +204,18 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 		elty[!is.na(polarity) 
 				& polarity==ATT_VAL_NEGATIVE] <- 3		# negative=dotted
 		elty[is.na(polarity)] <- 5						# unknown=long-dashed
-		# set edge width
-		ewidth <- rep(1,gsize(g))
 	}
 	else
 	{	signs <- edge_attr(g,ATT_EDGE_SIGN)
 		ecols <- rep("#1A8F39", gsize(g))				# positive=green
 		ecols[signs<0] <- "#E41A1C"						# negative=red
 		elty <- rep(1,gsize(g))							# only solid line
-		ewidth <- rep(1,gsize(g))						# same edge width
 	}
+	# set edge width
+	if(is.null(E(g)$weight))							# if no weight:
+		ewidth <- rep(1,gsize(g))						# same edge width
+	else
+		ewidth <- E(g)$weight							# otherwise, use them
 	
 	# possibly change the color of the highlighted path
 	if(hasArg(paths))
@@ -233,7 +235,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 					outline.cols[v] <- "RED"
 					idx <- as.integer(E(g)[u %--% v])
 					ecols[idx] <- "RED"
-					ewidth[idx] <- 2
+					ewidth[idx] <- 2*ewidth[idx]
 				}
 			}
 			outline.cols[v] <- "RED"

@@ -1570,6 +1570,11 @@ analyze.net.signed.triangles <- function(sg, sg0)
 #############################################################
 # Partitions the signed specified graph by solving the correlation
 # clustering problem.
+# 
+# Edit: it turns out there are many optimal solutions to CC. We
+# therefore compute the whole solution space externally, using
+# an exact method, and identify classes of solutions which are
+# then loaded by this function, and included in the data and plots.
 #
 # sg: original signed graph to process.
 # sg0: same graph except the main node is isolated.
@@ -1595,7 +1600,7 @@ analyze.net.corclust <- function(sg, sg0)
 		perfs <- c()
 		
 		# try each possible number of clusters
-		kmax <- 4#gorder(cnx.sg)	# faster to fix it
+		kmax <- 10#gorder(cnx.sg)	# faster to fix it
 		for(k in 1:kmax)
 		{	cat("    Performing correlation clustering for k=",k,"\n",sep="")
 			
@@ -1741,8 +1746,71 @@ analyze.net.corclust <- function(sg, sg0)
 			ggsave(bm.file, width=35, height=25, units="cm")
 		}
 		
+		# add best solution to graph as node attribute
+		sg <- set_graph_attr(graph=sg,name=paste0(MEAS_COR_CLUST,"_sol"),value=perf)
+		
+		# the full solution space is handled externally
+		ext.folder <- file.path(SIGNED_FOLDER, sg$name, "corclust_ext")
+		if(file.exists(ext.folder))
+		{	cat("  Dealing with the full solution space (handled externally)\n",sep="")
+			
+			bn <- c("core", "representative")
+			at <- c("core", "repr")
+			core.all <- TRUE
+			for(k in 1:length(bn))
+			{	# setup file and vertex attribute names
+				if(core.all)
+				{	j <- 0
+					bn.file <- paste0(bn[k], sufx,"_all")
+					vattr <-  paste0(MEAS_COR_CLUST,"_",at[k],"_all")
+				}
+				else
+				{	j <- 1
+					bn.file <- paste0(bn[k], sufx,"_class",j)	
+					vattr <-  paste0(MEAS_COR_CLUST,"_",at[k],"_class",j)					
+				}
+				cat("    Processing ",bn.file,"\n",sep="")
+				
+				# process each class separately (and core overall)
+				while(file.exists(file.path(ext.folder, paste0(bn.file,".txt"))))
+				{	# read the tab file
+					tab.file <- file.path(ext.folder, paste0(bn.file,".txt"))
+					vals <- c(as.matrix(read.table(tab.file, header=FALSE, sep="\t", quote="")))
+					sg <- set_vertex_attr(graph=sg, name=vattr, value=vals)
+					
+					# plot graph using color for partition
+					plot.file <- file.path(ext.folder, paste0(bn.file,"_graph"))
+					custom.gplot(sg, col.att=vattr, cat.att=TRUE, file=plot.file)
+					
+					# export as Circos plots
+					circos.file <- file.path(ext.folder, paste0(bn.file,"_circos"))
+					plot.circos(sg, att=vattr, sign.order=FALSE, alt=FALSE, file=circos.file)
+					circos.file <- file.path(ext.folder, paste0(bn.file,"_circos_alt"))
+					plot.circos(sg, att=vattr, sign.order=FALSE, alt=TRUE, file=circos.file)
+					
+					# plot as block model
+					sg2 <- delete_vertices(sg, which(is.na(vals)))					
+					V(sg2)$name <- V(sg2)$label
+					bm.file <- file.path(ext.folder,paste0(bn.file,"_block_model"))
+					if(FORMAT=="pdf")
+						bm.file <- paste0(bm.file,".pdf")
+					else if(FORMAT=="png")
+						bm.file <- paste0(bm.file,".png")
+					ggblock(sg2, vals[!is.na(vals)], show_blocks=TRUE, show_labels=TRUE, cols=c("#E41A1C","#1A8F39"))
+					ggsave(bm.file, width=35, height=25, units="cm")
+					
+					# update file/attribute names
+					j <- j + 1
+					bn.file <- paste0(bn[k], sufx,"_class",j)	
+					vattr <-  paste0(MEAS_COR_CLUST,"_",at[k],"_class",j)
+					cat("    Processing ",bn.file,"\n",sep="")
+				}
+			
+				core.all <- FALSE
+			}
+		}
+		
 		# record graph with all its attributes
-		sg <- set_graph_attr(graph=sg,name=MEAS_COR_CLUST,value=perf)
 		graph.file <- file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml"))
 		cat("    Update graph file ",graph.file,"\n",sep="")
 		record.graph(graph=sg, file=graph.file)
@@ -1752,6 +1820,108 @@ analyze.net.corclust <- function(sg, sg0)
 	
 	return(lst)
 }
+
+
+
+
+#############################################################
+# The communicability matrix is computed and partitioned externally
+# using correlation clustering. Then, this function loads the 
+# results in order to generate the appropriate files.
+#
+# sg: original signed graph to process.
+# sg0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
+#############################################################
+analyze.net.communicability <- function(sg, sg0)
+{	cat("  Performing communicability-based correlation clustering on ",sg$name,"\n")
+	# possibly create folder
+	com.folder <- file.path(SIGNED_FOLDER, sg$name, "communicability")
+	dir.create(path=com.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(sg, sg0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
+		sg <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# load the communicability graph (computed based on the original graph)
+		graph.file <- file.path(com.folder, paste0("ext",sufx,".graphml"))
+		g <- read.graph(file=graph.file, format="graphml")
+		
+		# remove attributes
+		for(name in graph_attr_names(g))
+			g <- delete_graph_attr(g, name)
+		for(name in vertex_attr_names(g))
+			g <- delete_vertex_attr(g, name)
+		
+		# add attributes
+		for(name in graph_attr_names(sg))
+			g <- set_graph_attr(g, name, value=graph_attr(sg,name))
+		for(name in vertex_attr_names(sg))
+			g <- set_vertex_attr(g, name, value=vertex_attr(sg,name))
+		E(g)$sign <- sign(E(g)$weight)
+		E(g)$weight <- abs(E(g)$weight)
+		
+		# load the optimal CC partition found for this communicability graph
+		tab.file <- file.path(com.folder, paste0("ext",sufx,"_membership.txt"))
+		vals <- c(as.matrix(read.table(tab.file, header=FALSE, sep="\t", quote="")))
+		
+		# update graphs with this attribute
+		vattr <-  paste0(MEAS_COR_CLUST,"_Communicability")
+		g <- set_vertex_attr(graph=g, name=vattr, value=vals)
+		sg <- set_vertex_attr(graph=sg, name=vattr, value=vals)
+		
+		# plot graph using color for partition
+		plot.file <- file.path(com.folder, paste0("clusters_graph",sufx))
+		custom.gplot(sg, col.att=vattr, cat.att=TRUE, file=plot.file)
+		plot.file <- file.path(com.folder, paste0("clusters_graph",sufx,"_com"))
+		custom.gplot(g, col.att=vattr, cat.att=TRUE, file=plot.file)
+		
+		# export as Circos plots
+		circos.file <- file.path(com.folder, paste0("circos_graph",sufx))
+		plot.circos(sg, att=vattr, sign.order=FALSE, alt=FALSE, file=circos.file)
+		circos.file <- file.path(com.folder, paste0("circos_alt_graph",sufx))
+		plot.circos(sg, att=vattr, sign.order=FALSE, alt=TRUE, file=circos.file)
+		circos.file <- file.path(com.folder, paste0("circos_graph",sufx,"_com"))
+		plot.circos(g, att=vattr, sign.order=FALSE, alt=FALSE, file=circos.file)
+		circos.file <- file.path(com.folder, paste0("circos_alt_graph",sufx,"_com"))
+		plot.circos(g, att=vattr, sign.order=FALSE, alt=TRUE, file=circos.file)
+		
+		# plot as block model
+		sg2 <- delete_vertices(sg, which(is.na(vals)))					
+		V(sg2)$name <- V(sg2)$label
+		bm.file <- file.path(com.folder,paste0("block_model",sufx))
+		if(FORMAT=="pdf")
+			bm.file <- paste0(bm.file,".pdf")
+		else if(FORMAT=="png")
+			bm.file <- paste0(bm.file,".png")
+		ggblock(sg2, vals[!is.na(vals)], show_blocks=TRUE, show_labels=TRUE, cols=c("#E41A1C","#1A8F39"))
+		ggsave(bm.file, width=35, height=25, units="cm")
+		#
+		g2 <- delete_vertices(g, which(is.na(vals)))					
+		V(g2)$name <- V(g2)$label
+		bm.file <- file.path(com.folder,paste0("block_model",sufx,"_com"))
+		if(FORMAT=="pdf")
+			bm.file <- paste0(bm.file,".pdf")
+		else if(FORMAT=="png")
+			bm.file <- paste0(bm.file,".png")
+		ggblock(g2, vals[!is.na(vals)], show_blocks=TRUE, show_labels=TRUE, cols=c("#E41A1C","#1A8F39"))
+		ggsave(bm.file, width=35, height=25, units="cm")
+		
+		# record graph with all its attributes
+		graph.file <- file.path(SIGNED_FOLDER, sg$name, paste0("graph",sufx,".graphml"))
+		record.graph(graph=sg, file=graph.file)
+		graph.file <- file.path(com.folder, paste0("graph",sufx,"_com.graphml"))
+		record.graph(graph=g, file=graph.file)
+		
+		lst[[i]] <- sg
+	}
+	return(lst)
+}
+# tenir compte des poids dans les plots graph + circos
 
 
 
@@ -1917,89 +2087,89 @@ analyze.network <- function(og)
 		g.lst[[GRAPH_TYPE_UNK]]$name <- GRAPH_TYPE_UNK
 	}
 	
-	# process each graph
-	for(g in g.lst)
-	{	# g <- g.lst[[1]]
-		cat("Processing graph '",g$name,"'\n",sep="")
-		# create graph-specific folder
-		tmp.folder <- file.path(NET_FOLDER, g$name)
-		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
-		
-		# record graph as a graphml file
-		record.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"))
-		
-		# plot full graph
-		custom.gplot(g, file=file.path(tmp.folder,"graph"))
-		#custom.gplot(g)
-		
-		# delete trajan's links for better visibility
-		# TODO maybe better to just draw them using a light color?
-		g0 <- disconnect.nodes(g, nodes=1)
-		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
-		#custom.gplot(g0)
-		record.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"))
-		
-		# compute attribute stats 
-		# (must be done first, before other results are added as attributes)
-		tmp <- analyze.net.attributes(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute diameters, eccentricity, radius
-		tmp <- analyze.net.eccentricity(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute degree
-		tmp <- analyze.net.degree(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute eigencentrality
-		tmp <- analyze.net.eigencentrality(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute betweenness
-		tmp <- analyze.net.betweenness(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute closeness
-		tmp <- analyze.net.closeness(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute distances
-		tmp <- analyze.net.distance(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute articulation points
-		tmp <- analyze.net.articulation(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# detect communities
-		tmp <- analyze.net.comstruct(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute transitivity
-		tmp <- analyze.net.transitivity(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute vertex connectivity
-		tmp <- analyze.net.connectivity(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-		
-		# compute assortativity
-		tmp <- analyze.net.assortativity(g, g0)
-		g <- tmp[[1]]
-		g0 <- tmp[[2]]
-	}
+#	# process each graph
+#	for(g in g.lst)
+#	{	# g <- g.lst[[1]]
+#		cat("Processing graph '",g$name,"'\n",sep="")
+#		# create graph-specific folder
+#		tmp.folder <- file.path(NET_FOLDER, g$name)
+#		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
+#		
+#		# record graph as a graphml file
+#		record.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"))
+#		
+#		# plot full graph
+#		custom.gplot(g, file=file.path(tmp.folder,"graph"))
+#		#custom.gplot(g)
+#		
+#		# delete trajan's links for better visibility
+#		# TODO maybe better to just draw them using a light color?
+#		g0 <- disconnect.nodes(g, nodes=1)
+#		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
+#		#custom.gplot(g0)
+#		record.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"))
+#		
+#		# compute attribute stats 
+#		# (must be done first, before other results are added as attributes)
+#		tmp <- analyze.net.attributes(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute diameters, eccentricity, radius
+#		tmp <- analyze.net.eccentricity(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute degree
+#		tmp <- analyze.net.degree(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute eigencentrality
+#		tmp <- analyze.net.eigencentrality(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute betweenness
+#		tmp <- analyze.net.betweenness(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute closeness
+#		tmp <- analyze.net.closeness(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute distances
+#		tmp <- analyze.net.distance(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute articulation points
+#		tmp <- analyze.net.articulation(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# detect communities
+#		tmp <- analyze.net.comstruct(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute transitivity
+#		tmp <- analyze.net.transitivity(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute vertex connectivity
+#		tmp <- analyze.net.connectivity(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#		
+#		# compute assortativity
+#		tmp <- analyze.net.assortativity(g, g0)
+#		g <- tmp[[1]]
+#		g0 <- tmp[[2]]
+#	}
 	
 	# extract and process the signed graphs
 	sg.lst <- flatten.signed.graph(og)
@@ -2037,8 +2207,13 @@ analyze.network <- function(og)
 		sg <- tmp[[1]]
 		sg0 <- tmp[[2]]
 		
-		# compute correlation clustering
+		# compute correlation clustering (CC)
 		tmp <- analyze.net.corclust(sg, sg0)
+		sg <- tmp[[1]]
+		sg0 <- tmp[[2]]
+		
+		# compute CC on communicability graph
+		tmp <- analyze.net.communicability(sg, sg0)
 		sg <- tmp[[1]]
 		sg0 <- tmp[[2]]
 		
