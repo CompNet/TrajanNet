@@ -36,77 +36,95 @@ create.plot <- function(file)
 # seq.col: name of the column containing the sequences in seq.tab.
 #############################################################
 build.transition.graph <- function(seq.tab, pos.tab, folder, seq.col)
-{	# output folder
-	tr.folder <- file.path(folder, "transitions")
-	
-	# compute the ajacency matrix
-	lst <- strsplit(seq.tab[,seq.col],";",fixed=TRUE)
-	adj <- matrix(0, nrow=nrow(pos.tab), ncol=nrow(pos.tab), dimnames=list(pos.tab[,SEQ_IDENTIFIER],pos.tab[,SEQ_IDENTIFIER]))
-	size <- rep(0, nrow(pos.tab))
-	names(size) <- pos.tab[,SEQ_IDENTIFIER]
-	for(traj in lst)
-	{	traj[traj=="NA"] <- "*"
-		size[traj[1]] <- size[traj[1]] + 1
-		if(length(traj)>1)
-		{	for(i in 2:length(traj))
-			{	if(traj[i]!=traj[i-1])
-				{	size[traj[i]] <- size[traj[i]] + 1
-					adj[traj[i-1],traj[i]] <- adj[traj[i-1],traj[i]] + 1
+{	prfx <- c("","s","c")
+	sufx <- c("", "/sphere_senateurs", "/sphere_chevaliers")
+	for(j in 1:length(sufx))
+	{	# output folder
+		tr.folder <- file.path(folder, paste0("transitions", sufx[j]))
+		
+		# select sequences
+		lst <- strsplit(seq.tab[,seq.col],";",fixed=TRUE)
+		if(j==1)
+			idx <- 1:length(lst)
+		else
+			idx <- which(sapply(1:length(lst), function(r) all(lst[[r]]=="NA" | startsWith(lst[[r]],prfx[j]))))
+		lst <- lst[idx]
+		
+		# select positions
+		pos <- names(table(unlist(lst)))
+		if("NA" %in% pos)
+			pos <- c(pos[pos!="NA"],"*")
+		pos.idx <- sort(match(pos,pos.tab[,SEQ_IDENTIFIER]))
+		pos <- pos.tab[pos.idx,SEQ_IDENTIFIER]
+		
+		# compute the ajacency matrix
+		adj <- matrix(0, nrow=length(pos), ncol=length(pos), dimnames=list(pos,pos))
+		size <- rep(0, length(pos))
+		names(size) <- pos
+		for(traj in lst)
+		{	traj[traj=="NA"] <- "*"
+			size[traj[1]] <- size[traj[1]] + 1
+			if(length(traj)>1)
+			{	for(i in 2:length(traj))
+				{	if(traj[i]!=traj[i-1])
+					{	size[traj[i]] <- size[traj[i]] + 1
+						adj[traj[i-1],traj[i]] <- adj[traj[i-1],traj[i]] + 1
+					}
 				}
 			}
 		}
-	}
-	
-	if("*" %in% names(size))
-	{	names(size)[names(size)=="*"] <- SEQ_MISSING
-		colnames(adj)[colnames(adj)=="*"] <- SEQ_MISSING		
-		rownames(adj)[rownames(adj)=="*"] <- SEQ_MISSING		
-	}
-	
-	# build the graph based on the adjacency matrix
-	cols <- pos.tab[,SEQ_COLOR]
-	g <- graph_from_adjacency_matrix(
-		adjmatrix=adj,
-		mode ="directed",
-		weighted=TRUE
-	)
-	
-	# possibly load the layout
-	lay.file <- file.path(tr.folder, "transition_graph_layout.txt")
-	if(file.exists(lay.file))
-		lay <- as.matrix(read.table(file=lay.file))
-	else
-		lay <- layout_with_fr(g)
-	
-	# plot the graph
-	plot.file <- file.path(tr.folder, "transition_graph")
-	create.plot(plot.file)
-		plot(g,											# graph to plot
-			layout=lay,									# layout
-			vertex.size=4+1.25*size,					# node size
-			vertex.color=cols,							# node color
-			vertex.label=pos.tab[,SEQ_POSTE],			# node labels
-			vertex.label.cex=1.2,						# label size
-			vertex.label.family="sans",					# font type
-			vertex.label.font=2,						# 1 is plain text, 2 is bold face, 3 is italic, 4 is bold and italic
-			vertex.label.label.dist=0,					# label distance to node center (0=center)
-			vertex.label.color="BLACK",					# label color
-#			edge.color=rgb(0,0,0,max=255,alpha=125),	# edge color
-#			edge.arrow.size=E(g)$weight,				# size of the arrows
-			edge.width=3+3*E(g)$weight					# link thickness
+		
+		if("*" %in% names(size))
+		{	names(size)[names(size)=="*"] <- SEQ_MISSING
+			colnames(adj)[colnames(adj)=="*"] <- SEQ_MISSING		
+			rownames(adj)[rownames(adj)=="*"] <- SEQ_MISSING		
+		}
+		
+		# build the graph based on the adjacency matrix
+		cols <- pos.tab[pos.idx,SEQ_COLOR]
+		g <- graph_from_adjacency_matrix(
+			adjmatrix=adj,
+			mode ="directed",
+			weighted=TRUE
 		)
-	dev.off()
-	
-#	# record the layout
-#	lay.file <- file.path(tr.folder, "transition_graph_layout.txt")
-#	write.table(x=lay, file=lay.file)
-	
-	# record the transition graph as a graphml file
-	V(g)$fullname <- pos.tab[,SEQ_POSTE]
-	V(g)$weight <- size
-	V(g)$color <- cols
-	graph.file <- file.path(tr.folder, "transition_graph.graphml")
-	write.graph(graph=g, file=graph.file, format="graphml")
+		
+		# possibly load the layout
+		lay.file <- file.path(tr.folder, "transition_graph_layout.txt")
+		if(file.exists(lay.file))
+			lay <- as.matrix(read.table(file=lay.file))
+		else
+			lay <- layout_with_fr(g)
+		
+		# plot the graph
+		plot.file <- file.path(tr.folder, "transition_graph")
+		create.plot(plot.file)
+			plot(g,											# graph to plot
+				layout=lay,									# layout
+				vertex.size=4+1.25*size,					# node size
+				vertex.color=cols,							# node color
+				vertex.label=pos.tab[pos.idx,SEQ_POSTE],	# node labels
+				vertex.label.cex=1.2,						# label size
+				vertex.label.family="sans",					# font type
+				vertex.label.font=2,						# 1 is plain text, 2 is bold face, 3 is italic, 4 is bold and italic
+				vertex.label.label.dist=0,					# label distance to node center (0=center)
+				vertex.label.color="BLACK",					# label color
+#				edge.color=rgb(0,0,0,max=255,alpha=125),	# edge color
+#				edge.arrow.size=E(g)$weight,				# size of the arrows
+				edge.width=3+3*E(g)$weight					# link thickness
+			)
+		dev.off()
+		
+		# record the layout
+		if(!file.exists(lay.file))
+			write.table(x=lay, file=lay.file)
+		
+		# record the transition graph as a graphml file
+		V(g)$fullname <- pos.tab[pos.idx,SEQ_POSTE]
+		V(g)$weight <- size
+		V(g)$color <- cols
+		graph.file <- file.path(tr.folder, "transition_graph.graphml")
+		write.graph(graph=g, file=graph.file, format="graphml")
+	}
 }
 
 
@@ -140,33 +158,47 @@ plot.alluvial.diagrams <- function(seq.tab, pos.tab, folder, seq.col, attr.data)
 	df <- as.data.frame(mat, levels=levels(c(pos.tab[,SEQ_IDENTIFIER]),"NA"))
 	
 	# plot the alluvial diagrams
+	prfx <- c("","s","c")
+	sufx <- c("", "sphere_senateurs/", "sphere_chevaliers/")
 	att.names <- c(ATT_NODE_LACTICLAVIUS, ATT_NODE_TRAV_NBR, ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
-	for(i in 0:length(att.names))
-	{	# setup alluvium colors
-		if(i==0)
-		{	plot.file <- file.path(tr.folder, "transition_alluvial")
-			cols <- "DARKGREY"
+	for(j in 1:length(sufx))
+	{	for(i in 0:length(att.names))
+		{	# select sequences
+			if(j==1)
+				idx <- 1:nrow(df)
+			else
+			{	mdf <- as.matrix(df)
+				mdf[mdf=="NA"] <- NA
+				idx <- which(sapply(1:nrow(df), function(r) all(is.na(mdf[r,]) | startsWith(mdf[r,],prfx[j]))))
+			}
+			
+			# setup alluvium colors
+			if(i==0)
+			{	plot.file <- file.path(tr.folder, paste0(sufx[j],"transition_alluvial"))
+				cols <- "DARKGREY"
+			}
+			else
+			{	plot.file <- file.path(tr.folder, paste0(sufx[j],"transition_alluvial_",att.names[i]))
+				cols <- CAT_COLORS[as.integer(attr.data[,att.names[i]])]
+				cols[is.na(attr.data[,att.names[i]])] <- "GREY"
+				cols <- cols[idx]
+			}
+			
+			# setup file format
+			if(FORMAT=="pdf")
+				pdf(paste0(plot.file,".pdf"), width=50, height=25)
+			else if(FORMAT=="png")
+				png(paste0(plot.file,".png"), width=2048, height=1024)
+			# draw plot (tryCatch to hide some warnings)
+			suppressWarnings(alluvial(df[idx,], freq=1,		# data
+				col=cols,									# alluvium fill color
+				border=NA,									# alluvium border color
+				blocks=TRUE,								# whether to draw variable values as rectangles
+				axis_labels=colnames(df),					# time labels
+				cex=1.0										# text size
+			))
+			dev.off()
 		}
-		else
-		{	plot.file <- file.path(tr.folder, paste0("transition_alluvial_",att.names[i]))
-			cols <- CAT_COLORS[as.integer(attr.data[,att.names[i]])]
-			cols[is.na(attr.data[,att.names[i]])] <- "GREY"
-		}
-		
-		# setup file format
-		if(FORMAT=="pdf")
-			pdf(paste0(plot.file,".pdf"), width=50, height=25)
-		else if(FORMAT=="png")
-			png(paste0(plot.file,".png"), width=2048, height=1024)
-		# draw plot
-		alluvial(df, freq=1,			# data
-			col=cols,					# alluvium fill color
-			border=NA,					# alluvium border color
-			blocks=TRUE,				# whether to draw variable values as rectangles
-			axis_labels=colnames(df),	# time labels
-			cex=1.0						# text size
-		)
-		dev.off()
 	}
 	
 #	# ggalluvial
