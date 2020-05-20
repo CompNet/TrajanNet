@@ -138,6 +138,8 @@ plot.alluvial.diagrams <- function(seq.tab, pos.tab, folder, seq.col, attr.data)
 		mat[i,] <- traj
 	}
 	df <- as.data.frame(mat, levels=levels(c(pos.tab[,SEQ_IDENTIFIER]),"NA"))
+	
+	# plot the alluvial diagrams
 	att.names <- c(ATT_NODE_LACTICLAVIUS, ATT_NODE_TRAV_NBR, ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
 	for(i in 0:length(att.names))
 	{	# setup alluvium colors
@@ -205,10 +207,10 @@ plot.alluvial.diagrams <- function(seq.tab, pos.tab, folder, seq.col, attr.data)
 compute.transition.rates <- function(sd, missing.option, folder)
 {	# output folder
 	tr.folder <- file.path(folder, "transitions")
+	dir.create(path=tr.folder, showWarnings=FALSE, recursive=TRUE)
 	
 	# consider two types of transition matrices, by removing empty rows/cols
 	sfx <- c("all","nonempty")
-	
 	for(i in 1:length(sfx))
 	{	# compute transition matrix
 		trate.mat <- seqtrate(sd,				# data
@@ -216,28 +218,69 @@ compute.transition.rates <- function(sd, missing.option, folder)
 		)		
 		idxr <- which(apply(trate.mat, 1, sum)>0)
 		idxc <- which(apply(trate.mat, 2, sum)>0)
-		if(sfx[i]!="all")
-			trate.mat <- trate.mat[idxr,idxc]	# remove empty transitions
 		trate.mat[which(trate.mat==0)] <- NA
 		
 		# plot transition matrix
-		plot.file <- file.path(tr.folder, paste0("transition_rates_",sfx[i]))
-		create.plot(plot.file)
-			par(mar=c(5.4, 5.4, 2.6, 4.1))	# margins B L T R 
-			plot(trate.mat,		# matrix
-				col=colorRampPalette(c("yellow",'red')),
-				las=2,
-				xlab=NA,	#"Etat posterieur",
-				ylab=NA,	#"Etat anterieur",
-				main="Taux de transition"
-			)
-		dev.off()
+		ssfx <- c("","_vals")
+		for(j in 1:length(ssfx))
+		{	plot.file <- file.path(tr.folder, paste0("transition_rates_",sfx[i],ssfx[j]))
+			create.plot(plot.file)
+				par(mar=c(5.4, 5.4, 2.6, 4.1))	# margins B L T R 
+				plot(if(sfx[i]=="all") trate.mat else trate.mat[idxr,idxc],		# matrix
+					col=colorRampPalette(c("yellow",'red')),					# colors
+					digits=if(j==1) NA else 2,									# display values, with 2 decimal digits
+					las=2,														# labels orientation
+					xlab=NA,	#"Etat posterieur",								# x axis title
+					ylab=NA,	#"Etat anterieur",								# y axis title
+					main="Taux de transition"									# main title
+				)
+			dev.off()
+		}
 	}
 	
 	# record transition rates
 	file.name <- file.path(tr.folder, paste0("transition_rates.txt"))
 	write.table(trate.mat, file.name, quote=FALSE, sep="\t")
 	#print(round(trate.mat),2)
+	
+	# plot knights and senators separately
+	sfx <- c("[s", "[c")
+	sfx.n <- c("senateurs", "chevaliers")
+	sfx.p <- c("senatoriaux", "equestres")
+	for(i in 1:length(sfx))
+	{	# filter and renormalize matrix
+		idx <- which(startsWith(rownames(trate.mat),sfx[i]))
+		mat <- trate.mat[idx,idx]
+		mat[is.na(mat)] <- 0
+		sums <- t(sapply(apply(mat, 1, sum), function(val) rep(val, ncol(mat)))) 
+		mat <- mat / sums
+		mat[is.nan(mat) | mat==0] <- NA
+		
+		# plot resulting matrix
+		ssfx <- c("","_vals")
+		for(j in 1:length(ssfx))
+		{	sp.folder <- file.path(tr.folder, paste0("sphere_",sfx.n[i]))
+			dir.create(path=sp.folder, showWarnings=FALSE, recursive=TRUE)
+			
+			plot.file <- file.path(sp.folder, paste0("transition_rates",ssfx[j]))
+			create.plot(plot.file)
+				par(mar=c(5.4, 5.4, 2.6, 4.1))	# margins B L T R 
+				plot(mat,														# matrix
+					col=colorRampPalette(c("yellow",'red')),					# colors
+					digits=if(j==1) NA else 2,									# display values, with 2 decimal digits
+					las=2,														# labels orientation
+					xlab=NA,	#"Etat posterieur",								# x axis title
+					ylab=NA,	#"Etat anterieur",								# y axis title
+					main=paste0("Taux de transition internes ",sfx.p[i])		# main title
+				)
+			dev.off()
+			
+			# record transition rates
+			file.name <- file.path(sp.folder, paste0("transition_rates.txt"))
+			write.table(mat, file.name, quote=FALSE, sep="\t")
+			#print(round(trate.mat),2)
+		}
+	}
 }
 
 
