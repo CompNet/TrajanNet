@@ -213,9 +213,8 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 	}
 	# set edge width
 	if(is.null(E(g)$weight))							# if no weight:
-		ewidth <- rep(1,gsize(g))						# same edge width
-	else
-		ewidth <- E(g)$weight							# otherwise, use them
+		E(g)$weight <- rep(1,gsize(g))					# same edge width
+	ewidth <- E(g)$weight
 	
 	# possibly change the color of the highlighted path
 	if(hasArg(paths))
@@ -235,7 +234,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 					outline.cols[v] <- "RED"
 					idx <- as.integer(E(g)[u %--% v])
 					ecols[idx] <- "RED"
-					ewidth[idx] <- 2*ewidth[idx]
+					ewidth[idx] <- 2*E(g)$weight[idx]
 				}
 			}
 			outline.cols[v] <- "RED"
@@ -246,7 +245,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 	# possibly highlight certain links
 	if(hasArg(e.hl))
 	{	if(length(e.hl)>0)
-			ewidth[e.hl] <- ewidth[e.hl]*3
+			ewidth[e.hl] <- E(g)$weight[e.hl]*3
 	}
 	
 	# vertex color
@@ -324,7 +323,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 			png(paste0(file,".png"), width=1024, height=1024)
 	}
 	plot(g,										# graph to plot
-#		axes=TRUE,								# whether to draw axes or not
+		#axes=TRUE,								# whether to draw axes or not
 		layout=LAYOUT,							# layout
 		vertex.size=5, 							# node size
 		vertex.color=vcols,						# node color
@@ -332,7 +331,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 		vertex.pie.color=list(lgd.col),			# node pie colors
 		vertex.shape=vshapes,					# node shape
 		vertex.frame.color=outline.cols,		# node border color
-#		vertex.label=V(g)$label0,				# node short labels
+		#vertex.label=V(g)$label0,				# node short labels
 		vertex.label=V(g)$label,				# node long labels
 		vertex.label.cex=1.2,					# label size
 		vertex.label.family="sans",				# font type

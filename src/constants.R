@@ -45,6 +45,7 @@ ATT_NODE_REL_HADR <- "SoutHadrien"
 ATT_NODE_CIRCLES <- "Cercles"
 ATT_NODE_CIRCLES_VALS <- c("Antonins","Nigrinus","Pline","Regulus","Clarus")
 ATT_NODE_SPANISH <- "Espagnol"
+ATT_NODE_IMAGE <- "Image"
 
 # edge attribute names
 ATT_EDGE_ID1 <- "Id1"

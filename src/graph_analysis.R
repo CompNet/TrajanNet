@@ -191,13 +191,10 @@ analyze.net.eccentricity <- function(g, g0)
 	# compute diameter
 	cat("  Computing diameter & radius\n")
 	diam <- diameter(g0)					# get the network diameter
-print(diam)
-plot(g)
 	cat("    Diameter=",diam,"\n",sep="")
 	dd <- distances(graph=g0)				# compute all inter-node distances
 	idx <- which(dd==diam, arr.ind=TRUE)	# retrieve pairs of nodes matching the diameter
 	idx <- idx[idx[,1]<idx[,2],,drop=FALSE]	# filter (each pair appears twice due to symmetric matrix)
-print(idx)
 	
 	# possibly create folder
 	diameter.folder <- file.path(NET_FOLDER,g0$name,"diameter")
@@ -206,11 +203,13 @@ print(idx)
 	# plot diameter
 	diam.paths <- lapply(1:nrow(idx), function(r) all_shortest_paths(graph=g0, from=idx[r,1], to=idx[r,2])$res)
 	for(pp in 1:length(diam.paths))
-	{	custom.gplot(g0, paths=diam.paths[[pp]], file=file.path(diameter.folder,paste0("diam_graph0_",pp)))
+	{	cat("      Plotting diameter ",pp,"/",length(diam.paths),"\n",sep="")
+		custom.gplot(g0, paths=diam.paths[[pp]], file=file.path(diameter.folder,paste0("diam_graph0_",pp)))
 		
 		q <- 1
 		for(p in 1:length(diam.paths[[pp]]))
-		{	if(p==1 || !all(diam.paths[[pp]][[p]]==diam.paths[[pp]][[p-1]]))
+		{	cat("        Plotting diameter ",p,"/",length(diam.paths[[pp]]),"\n",sep="")
+			if(p==1 || !all(diam.paths[[pp]][[p]]==diam.paths[[pp]][[p-1]]))
 			{	custom.gplot(g0, paths=diam.paths[[pp]][[p]], file=file.path(diameter.folder,paste0("diam_graph0_",pp,"_",q)))
 				q <- q + 1
 			}
@@ -1034,7 +1033,7 @@ analyze.net.attributes <- function(g, g0)
 		}
 		
 		# plot the graph using colors for attribute values
-		cat("    Graph-plottig attribute \"",attr,"\"\n",sep="")
+		cat("    Graph-plotting attribute \"",attr,"\"\n",sep="")
 		# with trajan
 		gg <- set_vertex_attr(graph=g, name=attr, value=cat.data[,i])
 		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(graph.folder,paste0(attr,"_graph")))
@@ -1086,7 +1085,7 @@ analyze.net.attributes <- function(g, g0)
 	# plot the graph using colors for attribute values
 	for(i in 1:ncol(num.data))
 	{	attr <- colnames(num.data)[i]
-		cat("    Plottig attribute \"",attr,"\"\n",sep="")
+		cat("    Plotting attribute \"",attr,"\"\n",sep="")
 		# with trajan
 		gg <- set_vertex_attr(graph=g, name=attr, value=num.data[,i])
 		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE,file=file.path(graph.folder,paste0(attr,"_graph")))
@@ -1776,6 +1775,13 @@ analyze.net.corclust <- function(sg, sg0)
 				{	# read the tab file
 					tab.file <- file.path(ext.folder, paste0(bn.file,".txt"))
 					vals <- c(as.matrix(read.table(tab.file, header=FALSE, sep="\t", quote="")))
+					
+					# set singletons to NA and renumber factions
+					tt <- table(vals)
+					singl <- as.integer(names(tt)[which(tt<=1)])
+					vals[which(vals %in% singl)] <- NA
+					
+					# add membership to graph
 					sg <- set_vertex_attr(graph=sg, name=vattr, value=vals)
 					
 					# plot graph using color for partition
@@ -1835,7 +1841,7 @@ analyze.net.corclust <- function(sg, sg0)
 # returns: a list containing both updated graphs.
 #############################################################
 analyze.net.communicability <- function(sg, sg0)
-{	cat("  Performing communicability-based correlation clustering on ",sg$name,"\n")
+{	cat("  Performing communicability-based correlation clustering on ",sg$name,"\n", sep="")
 	# possibly create folder
 	com.folder <- file.path(SIGNED_FOLDER, sg$name, "communicability")
 	dir.create(path=com.folder, showWarnings=FALSE, recursive=TRUE)
@@ -1868,6 +1874,11 @@ analyze.net.communicability <- function(sg, sg0)
 		# load the optimal CC partition found for this communicability graph
 		tab.file <- file.path(com.folder, paste0("ext",sufx,"_membership.txt"))
 		vals <- c(as.matrix(read.table(tab.file, header=FALSE, sep="\t", quote="")))
+		
+		# set singletons to NA and renumber factions
+		tt <- table(vals)
+		singl <- as.integer(names(tt)[which(tt<=1)])
+		vals[which(vals %in% singl)] <- NA
 		
 		# update graphs with this attribute
 		vattr <-  paste0(MEAS_COR_CLUST,"_Communicability")
@@ -2087,89 +2098,89 @@ analyze.network <- function(og)
 		g.lst[[GRAPH_TYPE_UNK]]$name <- GRAPH_TYPE_UNK
 	}
 	
-#	# process each graph
-#	for(g in g.lst)
-#	{	# g <- g.lst[[1]]
-#		cat("Processing graph '",g$name,"'\n",sep="")
-#		# create graph-specific folder
-#		tmp.folder <- file.path(NET_FOLDER, g$name)
-#		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
-#		
-#		# record graph as a graphml file
-#		record.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"))
-#		
-#		# plot full graph
-#		custom.gplot(g, file=file.path(tmp.folder,"graph"))
-#		#custom.gplot(g)
-#		
-#		# delete trajan's links for better visibility
-#		# TODO maybe better to just draw them using a light color?
-#		g0 <- disconnect.nodes(g, nodes=1)
-#		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
-#		#custom.gplot(g0)
-#		record.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"))
-#		
-#		# compute attribute stats 
-#		# (must be done first, before other results are added as attributes)
-#		tmp <- analyze.net.attributes(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute diameters, eccentricity, radius
-#		tmp <- analyze.net.eccentricity(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute degree
-#		tmp <- analyze.net.degree(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute eigencentrality
-#		tmp <- analyze.net.eigencentrality(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute betweenness
-#		tmp <- analyze.net.betweenness(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute closeness
-#		tmp <- analyze.net.closeness(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute distances
-#		tmp <- analyze.net.distance(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute articulation points
-#		tmp <- analyze.net.articulation(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# detect communities
-#		tmp <- analyze.net.comstruct(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute transitivity
-#		tmp <- analyze.net.transitivity(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute vertex connectivity
-#		tmp <- analyze.net.connectivity(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#		
-#		# compute assortativity
-#		tmp <- analyze.net.assortativity(g, g0)
-#		g <- tmp[[1]]
-#		g0 <- tmp[[2]]
-#	}
+	# process each graph
+	for(g in g.lst)
+	{	# g <- g.lst[[1]]
+		cat("Processing graph '",g$name,"'\n",sep="")
+		# create graph-specific folder
+		tmp.folder <- file.path(NET_FOLDER, g$name)
+		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
+		
+		# record graph as a graphml file
+		record.graph(graph=g, file=file.path(tmp.folder,"graph.graphml"))
+		
+		# plot full graph
+		custom.gplot(g, file=file.path(tmp.folder,"graph"))
+		#custom.gplot(g)
+		
+		# delete trajan's links for better visibility
+		# TODO maybe better to just draw them using a light color?
+		g0 <- disconnect.nodes(g, nodes=1)
+		custom.gplot(g0, file=file.path(tmp.folder,"graph0"))
+		#custom.gplot(g0)
+		record.graph(graph=g0, file=file.path(tmp.folder,"graph0.graphml"))
+		
+		# compute attribute stats 
+		# (must be done first, before other results are added as attributes)
+		tmp <- analyze.net.attributes(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute diameters, eccentricity, radius
+		tmp <- analyze.net.eccentricity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute degree
+		tmp <- analyze.net.degree(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute eigencentrality
+		tmp <- analyze.net.eigencentrality(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute betweenness
+		tmp <- analyze.net.betweenness(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute closeness
+		tmp <- analyze.net.closeness(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute distances
+		tmp <- analyze.net.distance(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute articulation points
+		tmp <- analyze.net.articulation(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# detect communities
+		tmp <- analyze.net.comstruct(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute transitivity
+		tmp <- analyze.net.transitivity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute vertex connectivity
+		tmp <- analyze.net.connectivity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute assortativity
+		tmp <- analyze.net.assortativity(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+	}
 	
 	# extract and process the signed graphs
 	sg.lst <- flatten.signed.graph(og)
