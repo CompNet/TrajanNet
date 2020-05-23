@@ -222,7 +222,7 @@ extract.network <- function()
 	V(g)$name <- attr.data[,ATT_NODE_ID]
 	V(g)$label <- attr.data[,ATT_NODE_NAME]
 	V(g)$label0 <- attr.data[,ATT_NODE_NAME_SHORT]
-	V(g)$image <- attr.data[,ATT_NODE_IMAGE]
+	V(g)$Image <- attr.data[,ATT_NODE_IMAGE]
 	
 	# adjust the weird fields possessing a separate last value
 	attr.data[,ATT_NODE_SEN_POL] <- sapply(1:nrow(attr.data), function(r)
