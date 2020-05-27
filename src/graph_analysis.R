@@ -1599,7 +1599,7 @@ analyze.net.corclust <- function(sg, sg0)
 		perfs <- c()
 		
 		# try each possible number of clusters
-		kmax <- gorder(cnx.sg)	# faster to fix it
+		kmax <- gorder(cnx.sg)	# faster to fix it, e.g. to 10
 		for(k in 1:kmax)
 		{	cat("    Performing correlation clustering for k=",k,"\n",sep="")
 			
