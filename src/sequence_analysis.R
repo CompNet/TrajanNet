@@ -449,12 +449,14 @@ generate.main.seq.plots <- function(sd, main.tab, missing.option, folder, att.na
 		if(flag.circ)
 		{	circle <- ATT_NODE_CIRCLES_VALS[i]
 			idx <- which(grepl(circle, circle.str, fixed=TRUE))
+			sortv <- NULL	# NOTE "from.start" for parameter sortv is apparently incompatible with paramete ridxs
 			plot.file <- file.path(seq.folder, paste0(circle,"_seq"))
 			main.title <- LONG_NAME[ATT_VAL_CIRCLE_VALS[i]]
 		}
 		else
 		{	plot.file <- file.path(seq.folder, "all_seq")
 			idx <- 1:nrow(main.tab)
+			sortv <- "from.start"
 			if(hasArg(att.name))
 				main.title <- LONG_NAME[att.name]
 			else
@@ -464,7 +466,7 @@ generate.main.seq.plots <- function(sd, main.tab, missing.option, folder, att.na
 			seqIplot(sd,							# data
 				idxs=idx,							# index of the concerned sequences
 				group=group,						# variable used to group sequences, or NULL for none
-				sortv="from.start", 				# how to sort the sequences
+				sortv=sortv,		 				# how to sort the sequences
 				with.legend=FALSE,					# whether and where to put the legend ("right")
 				with.missing=is.na(missing.option),	# whether to take missing states into account
 				xlab="Chronologie des etats",		# x-axis title

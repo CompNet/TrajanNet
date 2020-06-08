@@ -69,13 +69,3 @@ analyze.network(og)
 #############################################################################################
 # perform sequence analysis
 analyze.sequences()
-
-# TODO
-# sequences:
-# - séparer sénateurs de chevaliers, une fois confirmé par GV
-#
-# partitionnement des graphes signés:
-# - communicabilité
-#   - problème de numérotation des noeuds, qui ne matche pas l'ordre original
-
-# séparer chev et sénateurs (graphe, matrice de trans)
