@@ -135,7 +135,7 @@ read.network <- function(graph.file)
 
 	# get vertex attributes
 	att.list <- vertex_attr_names(g) 
-	bool.list <- c(ATT_NODE_LACTICLAVIUS, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
+	bool.list <- c(ATT_NODE_LATICLAVIUS, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
 	int.list <- c(ATT_NODE_TRAV_NBR)
 	
 	# convert vertex attributes
@@ -272,7 +272,7 @@ extract.network <- function()
 #	}
 	
 	# add single boolean attributes (as strings, to handle NAs)
-	att.names <- c(ATT_NODE_LACTICLAVIUS, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
+	att.names <- c(ATT_NODE_LATICLAVIUS, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
 	for(att.name in att.names)
 	{	cat("  Processing single boolean node attribute ",att.name,"\n",sep="")
 		vals <- attr.data[,att.name]

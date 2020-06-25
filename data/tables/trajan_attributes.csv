@@ -1,4 +1,4 @@
-Id,NomComp,NomCourt,PolitSenat,DerPolitSenat,PolitEques,DerPolitEques,Lacticlavius,MilitSenat,MilitEques,NbrVoy,DestVoy,MotifVoy,RelTrajan,SoutHadrien,Cercles,Espagnol,Image
+Id,NomComp,NomCourt,PolitSenat,DerPolitSenat,PolitEques,DerPolitEques,Laticlavius,MilitSenat,MilitEques,NbrVoy,DestVoy,MotifVoy,RelTrajan,SoutHadrien,Cercles,Espagnol,Image
 P0,Trajan,Trajan,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,P0.png
 P1,Plotine,Plotine,NA,NA,NA,NA,Non,NA,NA,1,Syrie,Personnel,G1,Oui,NA,Oui,P1.png
 P2,Hadrien,Hadrien,Questeur;Tribun de la plebe;Preteur,Consul,NA,NA,Non,Legat de legion;Legat d'Auguste propreteur,NA,7,Germanie;Mesie;Pannonie;Dacie;Germanie;Pannonie;Syrie,Militaire;Militaire;Militaire;Militaire;Militaire;Militaire;Politico-militaire,G1,Non,NA,Oui,P2.png

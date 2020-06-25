@@ -54,13 +54,13 @@ cat(ATT_NODE_EQU_POLDER,":\n",sep="");print(u.vals);cat("\n")
 m <- cbind(attr.data[,ATT_NODE_SEN_POLDER],attr.data[,ATT_NODE_EQU_POLDER],
 		(is.na(attr.data[,ATT_NODE_SEN_POLDER]) & is.na(attr.data[,ATT_NODE_EQU_POLDER])) 
 				| xor(is.na(attr.data[,ATT_NODE_SEN_POLDER]),is.na(attr.data[,ATT_NODE_EQU_POLDER])),
-		attr.data[,ATT_NODE_LACTICLAVIUS]
+		attr.data[,ATT_NODE_LATICLAVIUS]
 	)
 cat("Comparison Polit:\n");print(m);cat("\n")
 
 # unique values in Adelectio after splitting multiple values
-u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_LACTICLAVIUS], split=";"))))
-cat(ATT_NODE_LACTICLAVIUS,":\n",sep="");print(u.vals);cat("\n")
+u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_LATICLAVIUS], split=";"))))
+cat(ATT_NODE_LATICLAVIUS,":\n",sep="");print(u.vals);cat("\n")
 
 # unique values in MilitSenat after splitting multiple values
 u.vals <- sort(unique(unlist(strsplit(x=attr.data[,ATT_NODE_SEN_MILIT], split=";"))))
@@ -74,7 +74,7 @@ cat(ATT_NODE_EQU_MILIT,":\n",sep="");print(u.vals);cat("\n")
 m <- cbind(attr.data[,ATT_NODE_SEN_MILIT],attr.data[,ATT_NODE_EQU_MILIT],
 		(is.na(attr.data[,ATT_NODE_SEN_MILIT]) & is.na(attr.data[,ATT_NODE_EQU_MILIT])) 
 				| xor(is.na(attr.data[,ATT_NODE_SEN_MILIT]),is.na(attr.data[,ATT_NODE_EQU_MILIT])),
-		attr.data[,ATT_NODE_LACTICLAVIUS]
+		attr.data[,ATT_NODE_LATICLAVIUS]
 )
 cat("Comparison Milit:\n");print(m);cat("\n")
 

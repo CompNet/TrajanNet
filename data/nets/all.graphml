@@ -46,7 +46,7 @@
   <key id="v_RelTrajan" for="node" attr.name="RelTrajan" attr.type="string"/>
   <key id="v_Cercles1" for="node" attr.name="Cercles1" attr.type="string"/>
   <key id="v_Cercles2" for="node" attr.name="Cercles2" attr.type="string"/>
-  <key id="v_Lacticlavius" for="node" attr.name="Lacticlavius" attr.type="string"/>
+  <key id="v_Laticlavius" for="node" attr.name="Laticlavius" attr.type="string"/>
   <key id="v_SoutHadrien" for="node" attr.name="SoutHadrien" attr.type="string"/>
   <key id="v_Espagnol" for="node" attr.name="Espagnol" attr.type="string"/>
   <key id="v_NbrVoy" for="node" attr.name="NbrVoy" attr.type="string"/>
@@ -100,7 +100,7 @@
       <data key="v_RelTrajan">NA</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">NA</data>
+      <data key="v_Laticlavius">NA</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">NA</data>
       <data key="v_NbrVoy">NA</data>
@@ -150,7 +150,7 @@
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 1</data>
@@ -200,7 +200,7 @@
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 7</data>
@@ -250,7 +250,7 @@
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 1</data>
@@ -300,7 +300,7 @@
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">NA</data>
       <data key="v_NbrVoy"> 1</data>
@@ -350,7 +350,7 @@
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">NA</data>
       <data key="v_NbrVoy"> 1</data>
@@ -400,7 +400,7 @@
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
@@ -450,7 +450,7 @@
       <data key="v_RelTrajan">G1</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">NA</data>
       <data key="v_NbrVoy">NA</data>
@@ -500,7 +500,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 2</data>
@@ -550,7 +550,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 5</data>
@@ -600,7 +600,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Antonins</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
@@ -650,7 +650,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Nigrinus</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
@@ -700,7 +700,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 9</data>
@@ -750,7 +750,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
@@ -800,7 +800,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
@@ -850,7 +850,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 4</data>
@@ -900,7 +900,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Nigrinus</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 4</data>
@@ -950,7 +950,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">Nigrinus</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
@@ -1000,7 +1000,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 8</data>
@@ -1050,7 +1050,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
@@ -1100,7 +1100,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Regulus</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 6</data>
@@ -1150,7 +1150,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
@@ -1200,7 +1200,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Antonins</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 2</data>
@@ -1250,7 +1250,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Antonins</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
@@ -1300,7 +1300,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
@@ -1350,7 +1350,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
@@ -1400,7 +1400,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
@@ -1450,7 +1450,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Nigrinus</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
@@ -1500,7 +1500,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
@@ -1550,7 +1550,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
@@ -1600,7 +1600,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
@@ -1650,7 +1650,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 6</data>
@@ -1700,7 +1700,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
@@ -1750,7 +1750,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 4</data>
@@ -1800,7 +1800,7 @@
       <data key="v_RelTrajan">G2</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
@@ -1850,7 +1850,7 @@
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">Antonins</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy">NA</data>
@@ -1900,7 +1900,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
@@ -1950,7 +1950,7 @@
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
@@ -2000,7 +2000,7 @@
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
@@ -2050,7 +2050,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 3</data>
@@ -2100,7 +2100,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Antonins</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
@@ -2150,7 +2150,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
@@ -2200,7 +2200,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
@@ -2250,7 +2250,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 4</data>
@@ -2300,7 +2300,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Regulus</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 1</data>
@@ -2350,7 +2350,7 @@
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
@@ -2400,7 +2400,7 @@
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
@@ -2450,7 +2450,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
@@ -2500,7 +2500,7 @@
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
@@ -2550,7 +2550,7 @@
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 4</data>
@@ -2600,7 +2600,7 @@
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">Antonins</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
@@ -2650,7 +2650,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 4</data>
@@ -2700,7 +2700,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 7</data>
@@ -2750,7 +2750,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 6</data>
@@ -2800,7 +2800,7 @@
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">NA</data>
+      <data key="v_Laticlavius">NA</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
@@ -2850,7 +2850,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
@@ -2900,7 +2900,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 6</data>
@@ -2950,7 +2950,7 @@
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">NA</data>
+      <data key="v_Laticlavius">NA</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
@@ -3000,7 +3000,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 3</data>
@@ -3050,7 +3050,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">NA</data>
+      <data key="v_Laticlavius">NA</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
@@ -3100,7 +3100,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 5</data>
@@ -3150,7 +3150,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Oui</data>
       <data key="v_NbrVoy"> 1</data>
@@ -3200,7 +3200,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
@@ -3250,7 +3250,7 @@
       <data key="v_RelTrajan">G4</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">Septicius Clarus</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Non</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy">NA</data>
@@ -3300,7 +3300,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">Oui</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>
@@ -3350,7 +3350,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">NA</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Non</data>
+      <data key="v_Laticlavius">Non</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 2</data>
@@ -3400,7 +3400,7 @@
       <data key="v_RelTrajan">G3</data>
       <data key="v_Cercles1">Pline</data>
       <data key="v_Cercles2">NA</data>
-      <data key="v_Lacticlavius">Oui</data>
+      <data key="v_Laticlavius">Oui</data>
       <data key="v_SoutHadrien">NA</data>
       <data key="v_Espagnol">Non</data>
       <data key="v_NbrVoy"> 1</data>

@@ -160,7 +160,7 @@ plot.alluvial.diagrams <- function(seq.tab, pos.tab, folder, seq.col, attr.data)
 	# plot the alluvial diagrams
 	prfx <- c("","s","c")
 	sufx <- c("", "sphere_senateurs/", "sphere_chevaliers/")
-	att.names <- c(ATT_NODE_LACTICLAVIUS, ATT_NODE_TRAV_NBR, ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
+	att.names <- c(ATT_NODE_LATICLAVIUS, ATT_NODE_TRAV_NBR, ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR, ATT_NODE_SPANISH)
 	for(j in 1:length(sufx))
 	{	for(i in 0:length(att.names))
 		{	# select sequences
@@ -977,7 +977,7 @@ analyze.sequences <- function()
 		
 		# generate standard sequence plots
 		generate.main.seq.plots(sd, main.tab, missing.option, na.folder)
-		att.names <- c(ATT_NODE_LACTICLAVIUS, ATT_NODE_TRAV_NBR, ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR, ATT_NODE_SPANISH, ATT_NODE_CIRCLES)
+		att.names <- c(ATT_NODE_LATICLAVIUS, ATT_NODE_TRAV_NBR, ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR, ATT_NODE_SPANISH, ATT_NODE_CIRCLES)
 		for(att.name in att.names)
 		{	cat("    Processing attribute ",att.name,"\n",sep="")
 			generate.main.seq.plots(sd, main.tab, missing.option, na.folder, att.name)
