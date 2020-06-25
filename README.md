@@ -96,9 +96,9 @@ The `verification.R` was used to check the consistency of the raw data. The rest
   * Consider the evolution of the relationships
   * Synchronous closure, separate the different steps until complete graph
 * Structural similarity between spaniards / the rest (and other attributes)
-* Multiplex plot of the different types of links (Didn't find an appropriate tool)
+* Multiplex plot of the different types of links (didn't find an appropriate tool)
 
 
 # References
-* **[V'20]** Vallet, G. *Les princes et les hommes : carrières et réseaux dans l’entourage de Trajan de 98 à 118 après J.-C.*, G. Second part of the Master's thesis, Avignon University, Human and Social Sciences Faculty, History Department, Avignon, France.
+* **[V'20]** Vallet, G. *Les princes et les hommes : carrières et réseaux dans l’entourage de Trajan de 98 à 118 après J.-C.*, Second part of the Master's thesis, Avignon University, Human and Social Sciences Faculty, History Department, Avignon, France.
 * **[V'18]** Vallet, G. *L'entourage de Trajan : étude prosopographique de l'entourage du prince de 98-117 apr. J.-C.*, First part of the Master's thesis, Avignon University, Human and Social Sciences Faculty, History Department, Avignon, France.
