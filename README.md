@@ -55,6 +55,8 @@ Here are the folders composing the project:
 
 
 # Installation
+You just need to install `R` and the required packages:
+
 1. Install the [`R` language](https://www.r-project.org/)
 2. Download this project from GitHub and unzip.
 3. Install the required packages: 
