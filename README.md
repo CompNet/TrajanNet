@@ -62,7 +62,7 @@ You just need to install `R` and the required packages:
 3. Install the required packages: 
    1. Open the `R` console.
    2. Set the current directory as the working directory, using `setwd("<my directory>")`.
-   3. Run the install script `src/install_packages.R`.
+   3. Run the install script `src/install.R`.
 
 
 # Use

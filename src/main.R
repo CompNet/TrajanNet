@@ -26,12 +26,12 @@ library("dendextend")		# additional dendrogram-related features
 
 #############################################################################################
 # load auxiliary scripts
-source("src/constants.R")
-source("src/graph_extraction.R")
-source("src/graph_analysis.R")
-source("src/plot.R")
-source("src/sequence_analysis.R")
-source("src/signed_graph_functions.R")
+source("src/common/constants.R")
+source("src/graphs/graph_extraction.R")
+source("src/graphs/graph_analysis.R")
+source("src/graphs/signed_graph_functions.R")
+source("src/common/plot.R")
+source("src/sequences/sequence_analysis.R")
 
 
 
