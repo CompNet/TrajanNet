@@ -613,13 +613,13 @@ compare.with.ref.seq <- function(seq.col, missing.option, folder)
 			for(i in 1:length(ref.idx))
 			{	# compute distance matrix
 				dv <- seqdist(
-					seqdata=sd,			# data 
-					method=dist.meth,	# distance function 
-					refseq=ref.idx[i],	# sequence of reference 
-					norm=norm.meth,		# normalization method 
-					indel=1.0,			# insertion/deletion cost (edit dist)
-					sm=subcost,			# substitution cost matrix (edit dist)
-					with.missing=TRUE	# handle missing values 
+					seqdata=sd,							# data 
+					method=dist.meth,					# distance function 
+					refseq=ref.idx[i],					# sequence of reference 
+					norm=norm.meth,						# normalization method 
+					indel=1.0,							# insertion/deletion cost (edit dist)
+					sm=subcost,							# substitution cost matrix (edit dist)
+					with.missing=is.na(missing.option)	# handle missing values 
 				)
 				dd <- cbind(dd, dv[1:(length(ids)-length(ref.idx))])
 				colnames(dd)[ncol(dd)] <- ids[ref.idx[i]]
@@ -754,13 +754,13 @@ cluster.analysis.seq <- function(sd, ids, missing.option, folder)
 			
 			# compute distance matrix
 			dd <- seqdist(
-				seqdata=sd,			# data 
-				method=dist.meth,	# distance function 
-				refseq=NULL,		# sequence of reference 
-				norm=norm.meth,		# normalization method 
-				indel=1.0,			# insertion/deletion cost (edit dist)
-				sm=subcost,			# substitution cost matrix (edit dist)
-				with.missing=TRUE	# handle missing values 
+				seqdata=sd,							# data 
+				method=dist.meth,					# distance function 
+				refseq=NULL,						# sequence of reference 
+				norm=norm.meth,						# normalization method 
+				indel=1.0,							# insertion/deletion cost (edit dist)
+				sm=subcost,							# substitution cost matrix (edit dist)
+				with.missing=is.na(missing.option)	# handle missing values 
 			)
 			colnames(dd) <- ids
 			rownames(dd) <- ids
