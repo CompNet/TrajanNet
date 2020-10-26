@@ -8,6 +8,7 @@ TrajanNet is free software: you can redistribute it and/or modify it under the t
 
 * Lab site: http://lia.univ-avignon.fr/
 * GitHub repo: https://github.com/CompNet/TrajanNet
+* Data: https://doi.org/10.6084/m9.figshare.13143104
 * Contact: Vincent Labatut <vincent.labatut@univ-avignon.fr>
 
 -----------------------------------------------------------------------
@@ -24,7 +25,7 @@ This set of R scripts aims at analyzing a historical dataset describing the rela
 
 
 # Data
-The raw dataset was manually elaborated by Gaëtane Vallet during her Master's thesis in ancient history. See her thesis (in French) for more information [V'18,V'20]. The files produced by the scripts (graphs, plots, tables...) can be obtained by executing them, but they are also directly available on Figshare (Complete with DOI).  
+The raw dataset was manually elaborated by Gaëtane Vallet during her Master's thesis in ancient history. See her thesis (in French) for more information [V'18,V'20]. The files produced by the scripts (graphs, plots, tables...) can be obtained by executing them, but they are also directly available on [Figshare](https://doi.org/10.6084/m9.figshare.13143104).
 
 
 # Organization
@@ -93,7 +94,6 @@ The `verification.R` was used to check the consistency of the raw data. The rest
 
 
 # To-do List
-* Add Figshare DOI in readme file.
 * Signed nets: 
   * Consider the evolution of the relationships
   * Synchronous closure, separate the different steps until complete graph
