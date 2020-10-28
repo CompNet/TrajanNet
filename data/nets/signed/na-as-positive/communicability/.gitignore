@@ -1,4 +1,6 @@
 *
 !.gitignore
 !ext_membership.txt
+!ext.graphml
 !ext0_membership.txt
+!ext0.graphml
