@@ -335,7 +335,7 @@ custom.gplot <- function(g, paths, col.att, cat.att=FALSE, v.hl, e.hl, color.iso
 		vertex.label=V(g)$label,				# node long labels
 		vertex.label.cex=1.2,					# label size
 		vertex.label.family="sans",				# font type
-		vertex.label.font=1,					# 1 is plain text, 2 is bold face, 3 is italic, 4 is bold and italic
+		vertex.label.font=2,					# 1 is plain text, 2 is bold face, 3 is italic, 4 is bold and italic
 		vertex.label.label.dist=0,				# label distance to node center (0=center)
 		vertex.label.color="BLACK",				# label color
 		edge.color=ecols,						# link color
