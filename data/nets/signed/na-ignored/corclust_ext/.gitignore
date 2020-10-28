@@ -1,0 +1,10 @@
+*
+!.gitignore
+!_partitions_(64).zip
+!_partitions0_(1).zip
+!core_all.txt
+!core_class1.txt
+!core0_all.txt
+!core0_class1.txt
+!representative_class1.txt
+!representative0_class1.txt
