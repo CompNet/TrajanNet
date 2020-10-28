@@ -1595,12 +1595,21 @@ analyze.net.corclust <- function(sg, sg0)
 		cnx.ids <- which(igraph::degree(sg)>0)
 		cnx.sg <- induced_subgraph(graph=sg, vids=cnx.ids)
 		
-		memberships <- NA
+		# init perf variables with k=1
+		k <- 1
+		cat("    Performing correlation clustering for k=",k,"\n",sep="")
+		mbrs <- rep(1,gorder(cnx.sg))
+		perf <- length(which(E(sg)$sign==-1))
+		cat("    Imbalance: ",perf,"\n",sep="")
+		colname <- paste0("k=",k)
+		memberships <- matrix(mbrs, ncol=1)
+		colnames(memberships)[ncol(memberships)] <- colname
 		perfs <- c()
+		perfs[colname] <- perf
 		
 		# try each possible number of clusters
 		kmax <- gorder(cnx.sg)	# faster to fix it, e.g. to 10
-		for(k in 1:kmax)
+		for(k in 2:kmax)
 		{	cat("    Performing correlation clustering for k=",k,"\n",sep="")
 			
 			# cluster size distribution
@@ -1608,14 +1617,10 @@ analyze.net.corclust <- function(sg, sg0)
 			mbrs <- tmp$membership
 			perf <- tmp$criterion
 			cat("    Imbalance: ",perf,"\n",sep="")
-			sizes <- table(mbrs) 
 			
 			# add to general structures
 			colname <- paste0("k=",k)
-			if(all(is.na(memberships)))
-				memberships <- matrix(mbrs,ncol=1)
-			else
-				memberships <- cbind(memberships, mbrs)
+			memberships <- cbind(memberships, mbrs)
 			colnames(memberships)[ncol(memberships)] <- colname
 			perfs[colname] <- perf
 		}
@@ -2102,6 +2107,7 @@ analyze.network <- function(og)
 	for(g in g.lst)
 	{	# g <- g.lst[[1]]
 		cat("Processing graph '",g$name,"'\n",sep="")
+		
 		# create graph-specific folder
 		tmp.folder <- file.path(NET_FOLDER, g$name)
 		dir.create(path=tmp.folder, showWarnings=FALSE, recursive=TRUE)
@@ -2183,10 +2189,10 @@ analyze.network <- function(og)
 	}
 	
 	# extract and process the signed graphs
-	cat("Processing signed graphs\n",sep="")
 	sg.lst <- flatten.signed.graph(og)
 	for(sg in sg.lst)
 	{	#sg <- sg.lst[[1]]
+		cat("Processing graph '",sg$name,"'\n",sep="")
 		
 		# create graph-specific folder
 		tmp.folder <- file.path(SIGNED_FOLDER, sg$name)
