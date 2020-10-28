@@ -2183,6 +2183,7 @@ analyze.network <- function(og)
 	}
 	
 	# extract and process the signed graphs
+	cat("Processing signed graphs\n",sep="")
 	sg.lst <- flatten.signed.graph(og)
 	for(sg in sg.lst)
 	{	#sg <- sg.lst[[1]]
