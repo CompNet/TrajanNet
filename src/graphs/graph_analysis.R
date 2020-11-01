@@ -178,6 +178,61 @@ disconnect.nodes <- function(g, nodes)
 
 
 #############################################################
+# Computes basic statistics to describe the specified graphs.
+#
+# g: original graph to process (ignored here).
+# g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
+#############################################################
+analyze.net.basic <- function(g, g0)
+{	lst <- list(g, g0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
+		g <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		# compute values
+		dens <- edge_density(graph=simplify(graph=g, remove.multiple=TRUE, remove.loops=TRUE))
+		n.nodes <- gorder(g)
+		n.links <- gsize(g)
+		
+		# export CSV with degree
+		df <- data.frame(V(g)$name,V(g)$label,vals)
+		colnames(df) <- c("Name","Label",MEAS_DEGREE) 
+		write.csv(df, file=file.path(degree.folder,paste0("degree_values",sufx,".csv")), row.names=FALSE)
+		
+		# add results to the graph (as attributes) and record
+		g$Density <- dens
+		g$NbrNodes <- n.nodes
+		g$NbrLinks <- n.links
+		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
+		
+		# export CSV with average degree
+		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df[MEAS_DENSITY, ] <- list(Value=dens, Mean=NA, Stdv=NA)
+			df[MEAS_NBR_NODES, ] <- list(Value=n.nodes, Mean=NA, Stdv=NA)
+			df[MEAS_NBR_LINKS, ] <- list(Value=n.links, Mean=NA, Stdv=NA)
+		}
+		else
+		{	df <- data.frame(Value=c(dens, n.nodes, n.links),Mean=c(NA,NA,NA),Stdv=c(NA,NA,NA))
+			row.names(df) <- c(MEAS_DENSITY, MEAS_NBR_NODES, MEAS_NBR_LINKS)
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		lst[[i]] <- g
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
 # Computes the diameter, the corresponding paths, and plots them.
 # Same thing for radius and eccentricity.
 #
@@ -2132,7 +2187,7 @@ analyze.network <- function(og)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
 		
-		# compute diameters, eccentricity, radius
+		# compute diameters, eccentricity, radius, etc
 		tmp <- analyze.net.eccentricity(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
