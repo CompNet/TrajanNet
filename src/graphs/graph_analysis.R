@@ -691,22 +691,22 @@ analyze.net.comstruct <- function(g, g0)
 		# export CSV with community membership
 		df <- data.frame(V(op)$name,V(op)$label,mbrs.op)
 		colnames(df) <- c("Name","Label",MEAS_COMMUNITY_ONLYPOS) 
-		write.csv(df, file=file.path(communities.folder,paste0("na-as-positive_community_membership",sufx,".csv")), row.names=FALSE)
+		write.csv(df, file=file.path(communities.folder,paste0("only-positive_community_membership",sufx,".csv")), row.names=FALSE)
 		#
 		df <- data.frame(V(nn)$name,V(nn)$label,mbrs.nn)
 		colnames(df) <- c("Name","Label",MEAS_COMMUNITY_NONEG) 
-		write.csv(df, file=file.path(communities.folder,paste0("na-ignored_community_membership",sufx,".csv")), row.names=FALSE)
+		write.csv(df, file=file.path(communities.folder,paste0("non-negative_community_membership",sufx,".csv")), row.names=FALSE)
 		
 		# add results to the graph (as attributes) and record
 		mod.op <- modularity(coms.op)
 		op <- set_vertex_attr(graph=op,name=MEAS_COMMUNITY_ONLYPOS,value=mbrs.op)
 		op <- set_graph_attr(graph=op,name=MEAS_MODULARITY_ONLYPOS,value=mod.op)
-		cat("    Modularity when including NAs as positive links: ",mod.op,"\n",sep="")
+		cat("    Modularity when ignoring NAs: ",mod.op,"\n",sep="")
 		#
 		mod.nn <- modularity(coms.nn)
 		nn <- set_vertex_attr(graph=nn,name=MEAS_COMMUNITY_NONEG,value=mbrs.nn)
 		nn <- set_graph_attr(graph=nn,name=MEAS_MODULARITY_NONEG,value=mod.nn)
-		cat("    Modularity when ignoring NAs: ",mod.nn,"\n",sep="")
+		cat("    Modularity when including NAs as positive links: ",mod.nn,"\n",sep="")
 		#
 		g <- set_vertex_attr(graph=g,name=MEAS_COMMUNITY_ONLYPOS,value=mbrs.op)
 		g <- set_graph_attr(graph=g,name=MEAS_MODULARITY_ONLYPOS,value=mod.op)
@@ -715,9 +715,9 @@ analyze.net.comstruct <- function(g, g0)
 		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for communities
-		custom.gplot(op, col.att=MEAS_COMMUNITY_ONLYPOS, cat.att=TRUE, file=file.path(communities.folder,paste0("na-as-positive_communities_graph",sufx)))
+		custom.gplot(op, col.att=MEAS_COMMUNITY_ONLYPOS, cat.att=TRUE, file=file.path(communities.folder,paste0("only-positive_communities_graph",sufx)))
 #		custom.gplot(op, col.att=MEAS_COMMUNITY_ONLYPOS, cat.att=TRUE)
-		custom.gplot(nn, col.att=MEAS_COMMUNITY_NONEG, cat.att=TRUE, file=file.path(communities.folder,paste0("na-ignored_communities_graph",sufx)))
+		custom.gplot(nn, col.att=MEAS_COMMUNITY_NONEG, cat.att=TRUE, file=file.path(communities.folder,paste0("non-negative_communities_graph",sufx)))
 #		custom.gplot(nn, col.att=MEAS_COMMUNITY_NONEG, cat.att=TRUE)
 
 		# export CSV with modularity
