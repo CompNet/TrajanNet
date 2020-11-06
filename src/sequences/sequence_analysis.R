@@ -746,9 +746,13 @@ cluster.analysis.seq <- function(sd, ids, missing.option, folder)
 	
 	# process each dissimilarity function
 	for(dist.meth in dist.meths)
-	{	# process each normalization method
+	{	cat("    Processing distance function ",dist.meth,"\n",sep="")
+		
+		# process each normalization method
 		for(norm.meth in norm.meths)
-		{	# possibly create folder
+		{	cat("      Processing normalization method ",norm.meth,"\n",sep="")
+			
+			# possibly create folder
 			dd.folder <- file.path(folder, paste0("dist_",dist.meth), paste0("norm_",norm.meth))
 			dir.create(path=dd.folder, showWarnings=FALSE, recursive=TRUE)
 			
