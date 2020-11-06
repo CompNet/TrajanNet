@@ -198,18 +198,13 @@ analyze.net.basic <- function(g, g0)
 		n.nodes <- gorder(g)
 		n.links <- gsize(g)
 		
-		# export CSV with degree
-		df <- data.frame(V(g)$name,V(g)$label,vals)
-		colnames(df) <- c("Name","Label",MEAS_DEGREE) 
-		write.csv(df, file=file.path(degree.folder,paste0("degree_values",sufx,".csv")), row.names=FALSE)
-		
-		# add results to the graph (as attributes) and record
+		# add values to the graph (as attributes) and record
 		g$Density <- dens
 		g$NbrNodes <- n.nodes
 		g$NbrLinks <- n.links
 		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
-		# export CSV with average degree
+		# export CSV with values
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
@@ -370,8 +365,9 @@ analyze.net.degree <- function(g, g0)
 		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for degree
-		custom.gplot(g,col.att=MEAS_DEGREE,file=file.path(degree.folder,paste0("degree_graph",sufx)))
-#		custom.gplot(g,col.att=MEAS_DEGREE)
+		custom.gplot(g, col.att=MEAS_DEGREE, file=file.path(degree.folder,paste0("degree_graph",sufx,"_col")))
+#		custom.gplot(g, col.att=MEAS_DEGREE)
+		custom.gplot(g, size.att=MEAS_DEGREE, file=file.path(degree.folder,paste0("degree_graph",sufx,"_size")))
 		
 		# export CSV with average degree
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
@@ -431,8 +427,9 @@ analyze.net.eigencentrality <- function(g, g0)
 		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for Eigencentrality
-		custom.gplot(g,col.att=MEAS_EIGEN,file=file.path(eigen.folder,paste0("eigencentrality_graph",sufx)))
-#		custom.gplot(g,col.att=MEAS_EIGEN)
+		custom.gplot(g, col.att=MEAS_EIGEN, file=file.path(eigen.folder,paste0("eigencentrality_graph",sufx,"_col")))
+#		custom.gplot(g, col.att=MEAS_EIGEN)
+		custom.gplot(g, size.att=MEAS_EIGEN, file=file.path(eigen.folder,paste0("eigencentrality_graph",sufx,"_size")))
 		
 		# export CSV with average Eigencentrality
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
@@ -492,8 +489,9 @@ analyze.net.betweenness <- function(g, g0)
 		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for betweenness
-		custom.gplot(g,col.att=MEAS_BETWEENNESS,file=file.path(betweenness.folder,paste0("betweenness_graph",sufx)))
-#		custom.gplot(g,col.att=MEAS_BETWEENNESS)
+		custom.gplot(g, col.att=MEAS_BETWEENNESS, file=file.path(betweenness.folder,paste0("betweenness_graph",sufx,"_col")))
+#		custom.gplot(g, col.att=MEAS_BETWEENNESS)
+		custom.gplot(g, size.att=MEAS_BETWEENNESS, file=file.path(betweenness.folder,paste0("betweenness_graph",sufx,"_size")))
 		
 		# export CSV with average betweenness
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
@@ -563,8 +561,9 @@ analyze.net.closeness <- function(g, g0)
 		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for closeness
-		custom.gplot(g,col.att=MEAS_CLOSENESS,file=file.path(closeness.folder,paste0("closeness_graph",sufx)))
-#		custom.gplot(g,col.att=MEAS_CLOSENESS)
+		custom.gplot(g, col.att=MEAS_CLOSENESS, file=file.path(closeness.folder,paste0("closeness_graph",sufx,"_col")))
+#		custom.gplot(g, col.att=MEAS_CLOSENESS)
+		custom.gplot(g, size.att=MEAS_CLOSENESS, file=file.path(closeness.folder,paste0("closeness_graph",sufx,"_size")))
 		
 		# export CSV with average closeness
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
@@ -625,8 +624,8 @@ analyze.net.transitivity <- function(g, g0)
 		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for transitivity
-		custom.gplot(g,col.att=MEAS_TRANSITIVITY,file=file.path(transitivity.folder,paste0("transitivity_graph",sufx)))
-#		custom.gplot(g,col.att=MEAS_TRANSITIVITY)
+		custom.gplot(g, col.att=MEAS_TRANSITIVITY, file=file.path(transitivity.folder,paste0("transitivity_graph",sufx)))
+#		custom.gplot(g, col.att=MEAS_TRANSITIVITY)
 		
 		# export CSV with average transitivity
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
@@ -716,10 +715,10 @@ analyze.net.comstruct <- function(g, g0)
 		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for communities
-		custom.gplot(op,col.att=MEAS_COMMUNITY_ONLYPOS,cat.att=TRUE,file=file.path(communities.folder,paste0("na-as-positive_communities_graph",sufx)))
-#		custom.gplot(op,col.att=MEAS_COMMUNITY_ONLYPOS,cat.att=TRUE)
-		custom.gplot(nn,col.att=MEAS_COMMUNITY_NONEG,cat.att=TRUE,file=file.path(communities.folder,paste0("na-ignored_communities_graph",sufx)))
-#		custom.gplot(nn,col.att=MEAS_COMMUNITY_NONEG,cat.att=TRUE)
+		custom.gplot(op, col.att=MEAS_COMMUNITY_ONLYPOS, cat.att=TRUE, file=file.path(communities.folder,paste0("na-as-positive_communities_graph",sufx)))
+#		custom.gplot(op, col.att=MEAS_COMMUNITY_ONLYPOS, cat.att=TRUE)
+		custom.gplot(nn, col.att=MEAS_COMMUNITY_NONEG, cat.att=TRUE, file=file.path(communities.folder,paste0("na-ignored_communities_graph",sufx)))
+#		custom.gplot(nn, col.att=MEAS_COMMUNITY_NONEG, cat.att=TRUE)
 
 		# export CSV with modularity
 		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
@@ -1091,12 +1090,12 @@ analyze.net.attributes <- function(g, g0)
 		cat("    Graph-plotting attribute \"",attr,"\"\n",sep="")
 		# with trajan
 		gg <- set_vertex_attr(graph=g, name=attr, value=cat.data[,i])
-		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(graph.folder,paste0(attr,"_graph")))
-#		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE)
+		custom.gplot(gg, col.att=attr, cat.att=TRUE, color.isolates=TRUE, file=file.path(graph.folder,paste0(attr,"_graph")))
+#		custom.gplot(gg, col.att=attr, cat.att=TRUE, color.isolates=TRUE)
 		# without trajan
 		gg <- set_vertex_attr(graph=g0, name=attr, value=cat.data[,i])
-		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE,file=file.path(graph.folder,paste0(attr,"_graph0")))
-#		custom.gplot(gg,col.att=attr,cat.att=TRUE,color.isolates=TRUE)
+		custom.gplot(gg, col.att=attr, cat.att=TRUE, color.isolates=TRUE, file=file.path(graph.folder,paste0(attr,"_graph0")))
+#		custom.gplot(gg, col.att=attr, cat.att=TRUE, color.isolates=TRUE)
 	}
 	
 	#############################
@@ -1143,12 +1142,12 @@ analyze.net.attributes <- function(g, g0)
 		cat("    Plotting attribute \"",attr,"\"\n",sep="")
 		# with trajan
 		gg <- set_vertex_attr(graph=g, name=attr, value=num.data[,i])
-		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE,file=file.path(graph.folder,paste0(attr,"_graph")))
-#		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE)
+		custom.gplot(gg, col.att=attr, cat.att=FALSE, color.isolates=TRUE, file=file.path(graph.folder,paste0(attr,"_graph")))
+#		custom.gplot(gg, col.att=attr, cat.att=FALSE, color.isolates=TRUE)
 		# without trajan
 		gg <- set_vertex_attr(graph=g0, name=attr, value=num.data[,i])
-		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE,file=file.path(graph.folder,paste0(attr,"_graph0")))
-#		custom.gplot(gg,col.att=attr,cat.att=FALSE,color.isolates=TRUE)
+		custom.gplot(gg, col.att=attr, cat.att=FALSE, color.isolates=TRUE, file=file.path(graph.folder,paste0(attr,"_graph0")))
+#		custom.gplot(gg, col.att=attr, cat.att=FALSE, color.isolates=TRUE)
 	}
 	
 	#############################
@@ -1213,8 +1212,8 @@ analyze.net.articulation <- function(g, g0)
 	record.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,paste0("graph0.graphml")))
 	
 	# plot graph using color for articulation
-	custom.gplot(g,col.att=MEAS_ARTICULATION,file=file.path(articulation.folder,paste0("articulation_graph")))
-#	custom.gplot(g,col.att=MEAS_ARTICULATION)
+	custom.gplot(g, col.att=MEAS_ARTICULATION, file=file.path(articulation.folder,paste0("articulation_graph")))
+#	custom.gplot(g, col.att=MEAS_ARTICULATION)
 	
 	# export CSV with average articulation
 	stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
@@ -1283,7 +1282,7 @@ analyze.net.distance <- function(g, g0)
 				cat("    NOT plotting graph for node #",nname,", as all values are infinite\n",sep="")
 			else
 			{	cat("    Plotting graph for node #",nname,"\n",sep="")
-				custom.gplot(g,col.att=MEAS_DISTANCE,v.hl=n,file=file.path(distance.folder,paste0("distance_graph",sufx,"_",nname)))
+				custom.gplot(g, col.att=MEAS_DISTANCE, v.hl=n, file=file.path(distance.folder,paste0("distance_graph",sufx,"_",nname)))
 			}
 			g <- delete_vertex_attr(graph=g, name=MEAS_DISTANCE)
 		}
@@ -1370,7 +1369,7 @@ analyze.net.connectivity <- function(g, g0)
 				cat("    NOT plotting graph for node #",nname,", as all values are zero\n",sep="")
 			else
 			{	cat("    Plotting graph for node #",nname,"\n",sep="")
-				custom.gplot(g,col.att=MEAS_CONNECTIVITY,v.hl=n,file=file.path(connectivity.folder,paste0("connectivity_graph",sufx,"_",nname)))
+				custom.gplot(g, col.att=MEAS_CONNECTIVITY, v.hl=n, file=file.path(connectivity.folder,paste0("connectivity_graph",sufx,"_",nname)))
 			}
 			g <- delete_vertex_attr(graph=g, name="Connectivity")
 		}
@@ -1442,10 +1441,10 @@ analyze.net.signed.degree <- function(sg, sg0)
 		record.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for degree
-		custom.gplot(sg,col.att=MEAS_DEGREE_POS,file=file.path(degree.folder,paste0("degree_pos_graph",sufx)))
-#		custom.gplot(sg,col.att=MEAS_DEGREE_POS)
-		custom.gplot(sg,col.att=MEAS_DEGREE_NEG,file=file.path(degree.folder,paste0("degree_neg_graph",sufx)))
-#		custom.gplot(sg,col.att=MEAS_DEGREE_NEG)
+		custom.gplot(sg, col.att=MEAS_DEGREE_POS, file=file.path(degree.folder,paste0("degree_pos_graph",sufx)))
+#		custom.gplot(sg, col.att=MEAS_DEGREE_POS)
+		custom.gplot(sg, col.att=MEAS_DEGREE_NEG, file=file.path(degree.folder,paste0("degree_neg_graph",sufx)))
+#		custom.gplot(sg, col.att=MEAS_DEGREE_NEG)
 		
 		# export CSV with average degree
 		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
@@ -1506,8 +1505,8 @@ analyze.net.signed.centrality <- function(sg, sg0)
 		record.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")))
 		
 		# plot graph using color for degree
-		custom.gplot(sg,col.att=MEAS_SIGN_CENTR,file=file.path(centr.folder,paste0("pnindex_graph",sufx)))
-#		custom.gplot(sg,col.att=MEAS_SIGN_CENTR)
+		custom.gplot(sg, col.att=MEAS_SIGN_CENTR, file=file.path(centr.folder,paste0("pnindex_graph",sufx)))
+#		custom.gplot(sg, col.att=MEAS_SIGN_CENTR)
 		
 		# export CSV with average degree
 		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
@@ -1597,8 +1596,8 @@ analyze.net.signed.triangles <- function(sg, sg0)
 			imb.edges <- c(get.edge.ids(sg,triangles[tri,1:2]),
 					get.edge.ids(sg,triangles[tri,2:3]),
 					get.edge.ids(sg,triangles[tri,c(3,1)]))
-			custom.gplot(sg,e.hl=imb.edges,file=file.path(triangles.folder,paste0("triangles_str_imb_graph",sufx,"_",t)))
-#			custom.gplot(sg,e.hl=imb.edges)
+			custom.gplot(sg, e.hl=imb.edges, file=file.path(triangles.folder,paste0("triangles_str_imb_graph",sufx,"_",t)))
+#			custom.gplot(sg, e.hl=imb.edges)
 		}
 		
 		# plot graph with generalized unbalanced triangles
@@ -1608,8 +1607,8 @@ analyze.net.signed.triangles <- function(sg, sg0)
 			imb.edges <- c(get.edge.ids(sg,triangles[tri,1:2]),
 					get.edge.ids(sg,triangles[tri,2:3]),
 					get.edge.ids(sg,triangles[tri,c(3,1)]))
-			custom.gplot(sg,e.hl=imb.edges,file=file.path(triangles.folder,paste0("triangles_gen_imb_graph",sufx,"_",t)))
-#			custom.gplot(sg,e.hl=imb.edges)
+			custom.gplot(sg, e.hl=imb.edges, file=file.path(triangles.folder,paste0("triangles_gen_imb_graph",sufx,"_",t)))
+#			custom.gplot(sg, e.hl=imb.edges)
 		}
 		
 		lst[[i]] <- sg
@@ -2078,14 +2077,14 @@ compute.net.signed.closure <- function(sg, sg0, poly)
 						{	#cat("          Add positive link\n",sep="")
 							g <- add_edges(graph=g, edges=c(v1,v2), attr=list(sign=1))
 							last.changed <- last.changed + 1
-							#custom.gplot(g,e.hl=as.integer(E(g)[v1 %--% v2]))
+							#custom.gplot(g, e.hl=as.integer(E(g)[v1 %--% v2]))
 							#readline()
 						}
 						else if(pos.votes<neg.votes)
 						{	#cat("          Add negative link\n",sep="")
 							g <- add_edges(graph=g, edges=c(v1,v2), attr=list(sign=-1))
 							last.changed <- last.changed + 1
-							#custom.gplot(g,e.hl=as.integer(E(g)[v1 %--% v2]))
+							#custom.gplot(g, e.hl=as.integer(E(g)[v1 %--% v2]))
 							#readline()
 						}
 						else # tie
@@ -2097,7 +2096,7 @@ compute.net.signed.closure <- function(sg, sg0, poly)
 							{	#cat("          Tie, but still adding a positive link (to break it)\n",sep="")
 								g <- add_edges(graph=g, edges=c(v1,v2), attr=list(sign=1))
 								last.changed <- last.changed + 1
-								#custom.gplot(g,e.hl=as.integer(E(g)[v1 %--% v2]))
+								#custom.gplot(g, e.hl=as.integer(E(g)[v1 %--% v2]))
 								#readline()
 							}
 						}
@@ -2184,6 +2183,11 @@ analyze.network <- function(og)
 		# compute attribute stats 
 		# (must be done first, before other results are added as attributes)
 		tmp <- analyze.net.attributes(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute basic stats (density, etc)
+		tmp <- analyze.net.basic(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
 		
