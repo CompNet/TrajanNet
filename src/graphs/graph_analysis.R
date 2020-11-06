@@ -753,161 +753,167 @@ analyze.net.comstruct <- function(g, g0)
 analyze.net.assortativity <- function(g, g0)
 {	cat("  Computing the assortativity\n")
 	
-	# retrieve the list of vertex attributes
-	att.list <- list.vertex.attributes(g0)
-	
-	#############################
-	# deal with categorical attributes
-	cat.data <- NA
-	
-	# gather regular categorical attributes
-	attrs <- c(ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR,			# relationships
-			ATT_NODE_SEN_POLDER, ATT_NODE_EQU_POLDER,			# last political positions
-			ATT_NODE_LATICLAVIUS, ATT_NODE_SPANISH)				# misc
-	for(attr in attrs)
-	{	tmp <- vertex_attr(g0, attr)
-		if(all(is.na(cat.data)))
-			cat.data <- matrix(as.integer(factor(tmp)),ncol=1)
-		else
-			cat.data <- cbind(cat.data, as.integer(factor(tmp)))
-		colnames(cat.data)[ncol(cat.data)] <- attr
-	}
-	
-	# convert tag-type attributes
-	attrs <- c(ATT_NODE_SEN_POL, ATT_NODE_SEN_MILIT,			# senatorial positions
-			ATT_NODE_EQU_POL, ATT_NODE_EQU_MILIT,				# equestrian positions
-			ATT_NODE_TRAV_DEST, ATT_NODE_TRAV_REAS,				# travels
-			ATT_NODE_CIRCLES)									# circles
-	for(attr in attrs)
-	{	tmp <- att.list[grepl(att.list,pattern=attr)]
-		m <- sapply(tmp, function(att) vertex_attr(g0, att))
-		uvals <- sort(unique(c(m)))
-		for(uval in uvals)
-		{	cat.data <- cbind(cat.data, as.integer(factor(apply(m, 1, function(v) uval %in% v[!is.na(v)]))))
-			colnames(cat.data)[ncol(cat.data)] <- paste(attr,uval,sep="_")
-		}
-	}
-	
-	# compute the assortativity for all categorical attributes
-	vals <- c()
-	for(i in 1:ncol(cat.data))
-	{	# compute the assortativity
-		attr <- colnames(cat.data)[i]
+	lst <- list(g, g0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
+		g <- lst[[i]]
+		sufx <- sufxx[i]
 		
-		# if there are some NAs
-		if(any(is.na(cat.data[,i])))
-		{	# explicitly represent them as a class
-			cd <- cat.data[,i]
-			cd[is.na(cd)] <- max(cd,na.rm=TRUE) + 1
-			ass <- assortativity_nominal(graph=g0, types=cd)
-			cat("    Assortativity for attribute \"",attr,"\" when representing NAs by 0: ",ass,"\n",sep="")
-			vals <- c(vals, ass)
-			names(vals)[length(vals)] <- paste(attr,"_explicitNA",sep="")
-			# ignore them
-			cd <- cat.data[,i]
-			cd <- cd[!is.na(cd)]
-			if(length(cd)>1)
-			{	gg <- delete_vertices(g, which(is.na(cat.data[,i])))
-				ass <- assortativity_nominal(graph=gg, types=cd)
-			}
+		# retrieve the list of vertex attributes
+		att.list <- list.vertex.attributes(g)
+		
+		#############################
+		# deal with categorical attributes
+		cat.data <- NA
+		
+		# gather regular categorical attributes
+		attrs <- c(ATT_NODE_REL_TRAJ, ATT_NODE_REL_HADR,			# relationships
+				ATT_NODE_SEN_POLDER, ATT_NODE_EQU_POLDER,			# last political positions
+				ATT_NODE_LATICLAVIUS, ATT_NODE_SPANISH)				# misc
+		for(attr in attrs)
+		{	tmp <- vertex_attr(g, attr)
+			if(all(is.na(cat.data)))
+				cat.data <- matrix(as.integer(factor(tmp)),ncol=1)
 			else
-				ass <- NA
-			cat("    Assortativity for attribute \"",attr,"\" when ignoring NAs: ",ass,"\n",sep="")
-			vals <- c(vals, ass)
-			names(vals)[length(vals)] <- paste(attr,"_noNA",sep="")
+				cat.data <- cbind(cat.data, as.integer(factor(tmp)))
+			colnames(cat.data)[ncol(cat.data)] <- attr
 		}
 		
-		# no NA at all
-		else
-		{	ass <- assortativity_nominal(graph=g0, types=cat.data[,i])
-			cat("    Assortativity for attribute \"",attr,"\": ",ass,"\n",sep="")
-			vals <- c(vals, ass)
-			names(vals)[length(vals)] <- attr
-		}
-	}
-	
-	#############################
-	# deal with numerical attributes
-	num.data <- NA
-	
-	# gather regular numerical attributes
-	attrs <- c(ATT_NODE_TRAV_NBR)					# number of travels
-	for(attr in attrs)
-	{	tmp <- vertex_attr(g0, attr)
-		if(all(is.na(num.data)))
-			num.data <- matrix(tmp,ncol=1)
-		else
-			num.data <- cbind(num.data, tmp)
-		colnames(num.data)[ncol(num.data)] <- attr
-	}
-	
-	# compute the assortativity for all numerical attributes
-	for(i in 1:ncol(num.data))
-	{	# compute the assortativity
-		attr <- colnames(num.data)[i]
-		
-		# if there are some NAs
-		if(any(is.na(num.data[,i])))
-		{	# explicitly represent them as zeroes
-			cd <- num.data[,i]
-			cd[is.na(cd)] <- 0
-			ass <- assortativity(graph=g0, types1=cd)
-			cat("    Assortativity for attribute \"",attr,"\" when replacing NAs by 0: ",ass,"\n",sep="")
-			vals <- c(vals, ass)
-			names(vals)[length(vals)] <- paste(attr,"_explicitNA",sep="")
-			# ignore them
-			cd <- num.data[,i]
-			cd <- cd[!is.na(cd)]
-			if(length(cd)>1)
-			{	gg <- delete_vertices(g, which(is.na(num.data[,i])))
-				ass <- assortativity(graph=gg, types1=cd)
+		# convert tag-type attributes
+		attrs <- c(ATT_NODE_SEN_POL, ATT_NODE_SEN_MILIT,			# senatorial positions
+				ATT_NODE_EQU_POL, ATT_NODE_EQU_MILIT,				# equestrian positions
+				ATT_NODE_TRAV_DEST, ATT_NODE_TRAV_REAS,				# travels
+				ATT_NODE_CIRCLES)									# circles
+		for(attr in attrs)
+		{	tmp <- att.list[grepl(att.list,pattern=attr)]
+			m <- sapply(tmp, function(att) vertex_attr(g, att))
+			uvals <- sort(unique(c(m)))
+			for(uval in uvals)
+			{	cat.data <- cbind(cat.data, as.integer(factor(apply(m, 1, function(v) uval %in% v[!is.na(v)]))))
+				colnames(cat.data)[ncol(cat.data)] <- paste(attr,uval,sep="_")
 			}
+		}
+		
+		# compute the assortativity for all categorical attributes
+		vals <- c()
+		for(i in 1:ncol(cat.data))
+		{	# compute the assortativity
+			attr <- colnames(cat.data)[i]
+			
+			# if there are some NAs
+			if(any(is.na(cat.data[,i])))
+			{	# explicitly represent them as a class
+				cd <- cat.data[,i]
+				cd[is.na(cd)] <- max(cd,na.rm=TRUE) + 1
+				ass <- assortativity_nominal(graph=g, types=cd)
+				cat("      Assortativity for attribute \"",attr,"\" when representing NAs by 0: ",ass,"\n",sep="")
+				vals <- c(vals, ass)
+				names(vals)[length(vals)] <- paste(attr,sufx,"_explicitNA",sep="")
+				# ignore them
+				cd <- cat.data[,i]
+				cd <- cd[!is.na(cd)]
+				if(length(cd)>1)
+				{	gg <- delete_vertices(g, which(is.na(cat.data[,i])))
+					ass <- assortativity_nominal(graph=gg, types=cd)
+				}
+				else
+					ass <- NA
+				cat("      Assortativity for attribute \"",attr,"\" when ignoring NAs: ",ass,"\n",sep="")
+				vals <- c(vals, ass)
+				names(vals)[length(vals)] <- paste(attr,sufx,"_noNA",sep="")
+			}
+			
+			# no NA at all
 			else
-				ass <- NA
-			cat("    Assortativity for attribute \"",attr,"\" when ignoring NAs: ",ass,"\n",sep="")
-			vals <- c(vals, ass)
-			names(vals)[length(vals)] <- paste(attr,"_noNA",sep="")
+			{	ass <- assortativity_nominal(graph=g, types=cat.data[,i])
+				cat("      Assortativity for attribute \"",attr,"\": ",ass,"\n",sep="")
+				vals <- c(vals, ass)
+				names(vals)[length(vals)] <- paste0(attr,sufx)
+			}
 		}
-		# no NA at all
-		else
-		{	ass <- assortativity(graph=g0, types1=num.data[,i])
-			cat("    Assortativity for attribute \"",attr,"\": ",ass,"\n",sep="")
-			vals <- c(vals, ass)
-			names(vals)[length(vals)] <- attr
+		
+		#############################
+		# deal with numerical attributes
+		num.data <- NA
+		
+		# gather regular numerical attributes
+		attrs <- c(ATT_NODE_TRAV_NBR)					# number of travels
+		for(attr in attrs)
+		{	tmp <- vertex_attr(g, attr)
+			if(all(is.na(num.data)))
+				num.data <- matrix(tmp,ncol=1)
+			else
+				num.data <- cbind(num.data, tmp)
+			colnames(num.data)[ncol(num.data)] <- attr
 		}
-	}
-	
-	#############################
-	# record the results
-	
-	# add results to the graph (as attributes) and record
-	for(i in 1:length(vals))
-	{	attr <- names(vals)[i]
-		g <- set_vertex_attr(graph=g, name=attr, value=vals[i])
-		g0 <- set_vertex_attr(graph=g0, name=attr, value=vals[i])
-	}
-	record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph.graphml")))
-	record.graph(graph=g0, file=file.path(NET_FOLDER,g0$name,paste0("graph0.graphml")))
-	
-	# add assortativity to main CSV
-	stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
-	if(file.exists(stat.file))
-	{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+		
+		# compute the assortativity for all numerical attributes
+		for(i in 1:ncol(num.data))
+		{	# compute the assortativity
+			attr <- colnames(num.data)[i]
+			
+			# if there are some NAs
+			if(any(is.na(num.data[,i])))
+			{	# explicitly represent them as zeroes
+				cd <- num.data[,i]
+				cd[is.na(cd)] <- 0
+				ass <- assortativity(graph=g, types1=cd)
+				cat("      Assortativity for attribute \"",attr,"\" when replacing NAs by 0: ",ass,"\n",sep="")
+				vals <- c(vals, ass)
+				names(vals)[length(vals)] <- paste(attr,sufx,"_explicitNA",sep="")
+				# ignore them
+				cd <- num.data[,i]
+				cd <- cd[!is.na(cd)]
+				if(length(cd)>1)
+				{	gg <- delete_vertices(g, which(is.na(num.data[,i])))
+					ass <- assortativity(graph=gg, types1=cd)
+				}
+				else
+					ass <- NA
+				cat("      Assortativity for attribute \"",attr,"\" when ignoring NAs: ",ass,"\n",sep="")
+				vals <- c(vals, ass)
+				names(vals)[length(vals)] <- paste0(attr,sufx,"_noNA")
+			}
+			# no NA at all
+			else
+			{	ass <- assortativity(graph=g, types1=num.data[,i])
+				cat("      Assortativity for attribute \"",attr,"\": ",ass,"\n",sep="")
+				vals <- c(vals, ass)
+				names(vals)[length(vals)] <- paste0(attr,sufx)
+			}
+		}
+		
+		#############################
+		# record the results
+		
+		# add results to the graph (as attributes) and record
 		for(i in 1:length(vals))
 		{	attr <- names(vals)[i]
-			df[attr, ] <- list(Value=vals[i], Mean=NA, Stdv=NA)
+			g <- set_vertex_attr(graph=g, name=attr, value=vals[i])
 		}
-	}
-	else
-	{	df <- data.frame(Value=c(vals[i]),Mean=c(NA),Stdv=c(NA))
-		row.names(df) <- c(names(vals)[1])
-		for(i in 2:length(vals))
-		{	attr <- names(vals)[i]
-			df[attr, ] <- list(Value=vals[i], Mean=NA, Stdv=NA)
-		}
+		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
+		# add assortativity to main CSV
+		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			for(i in 1:length(vals))
+			{	attr <- names(vals)[i]
+				df[attr, ] <- list(Value=vals[i], Mean=NA, Stdv=NA)
+			}
+		}
+		else
+		{	df <- data.frame(Value=c(vals[i]),Mean=c(NA),Stdv=c(NA))
+			row.names(df) <- c(names(vals)[1])
+			for(i in 2:length(vals))
+			{	attr <- names(vals)[i]
+				df[attr, ] <- list(Value=vals[i], Mean=NA, Stdv=NA)
+			}
+			
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
 	}
-	write.csv(df, file=stat.file, row.names=TRUE)
 	
 	#############################
 	# assortativity over
