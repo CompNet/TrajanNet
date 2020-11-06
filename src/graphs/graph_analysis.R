@@ -205,7 +205,7 @@ analyze.net.basic <- function(g, g0)
 		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# export CSV with values
-		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_DENSITY, ] <- list(Value=dens, Mean=NA, Stdv=NA)
@@ -303,7 +303,7 @@ analyze.net.eccentricity <- function(g, g0)
 	cat("    Radius=",rad,"\n",sep="")
 	
 	# export CSV with radius and diameter
-	stat.file <- file.path(NET_FOLDER,g0$name,"stats.csv")
+	stat.file <- file.path(NET_FOLDER,g0$name,"stats0.csv")
 	if(file.exists(stat.file))
 	{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 		df[MEAS_DIAMETER, ] <- list(Value=diam, Mean=NA, Stdv=NA)
@@ -370,7 +370,7 @@ analyze.net.degree <- function(g, g0)
 		custom.gplot(g, size.att=MEAS_DEGREE, file=file.path(degree.folder,paste0("degree_graph",sufx,"_size")))
 		
 		# export CSV with average degree
-		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_DEGREE, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
@@ -432,7 +432,7 @@ analyze.net.eigencentrality <- function(g, g0)
 		custom.gplot(g, size.att=MEAS_EIGEN, file=file.path(eigen.folder,paste0("eigencentrality_graph",sufx,"_size")))
 		
 		# export CSV with average Eigencentrality
-		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_EIGEN, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
@@ -494,7 +494,7 @@ analyze.net.betweenness <- function(g, g0)
 		custom.gplot(g, size.att=MEAS_BETWEENNESS, file=file.path(betweenness.folder,paste0("betweenness_graph",sufx,"_size")))
 		
 		# export CSV with average betweenness
-		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_BETWEENNESS, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
@@ -566,7 +566,7 @@ analyze.net.closeness <- function(g, g0)
 		custom.gplot(g, size.att=MEAS_CLOSENESS, file=file.path(closeness.folder,paste0("closeness_graph",sufx,"_size")))
 		
 		# export CSV with average closeness
-		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_CLOSENESS, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
@@ -628,7 +628,7 @@ analyze.net.transitivity <- function(g, g0)
 #		custom.gplot(g, col.att=MEAS_TRANSITIVITY)
 		
 		# export CSV with average transitivity
-		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_TRANSITIVITY, ] <- list(Value=g$Transitivity, Mean=mean(vals), Stdv=sd(vals))
@@ -721,7 +721,7 @@ analyze.net.comstruct <- function(g, g0)
 #		custom.gplot(nn, col.att=MEAS_COMMUNITY_NONEG, cat.att=TRUE)
 
 		# export CSV with modularity
-		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_MODULARITY_ONLYPOS, ] <- list(Value=mod.op, Mean=NA, Stdv=NA)
@@ -895,7 +895,7 @@ analyze.net.assortativity <- function(g, g0)
 		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
 		
 		# add assortativity to main CSV
-		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			for(i in 1:length(vals))
@@ -1294,7 +1294,7 @@ analyze.net.distance <- function(g, g0)
 		}
 		
 		# export CSV with average distance
-		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_DISTANCE, ] <- list(Value=NA, Mean=mean(flat.vals), Stdv=sd(flat.vals))
@@ -1381,7 +1381,7 @@ analyze.net.connectivity <- function(g, g0)
 		}
 		
 		# export CSV with average connectivity
-		stat.file <- file.path(NET_FOLDER,g$name,"stats.csv")
+		stat.file <- file.path(NET_FOLDER,g$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_CONNECTIVITY, ] <- list(Value=NA, Mean=mean(flat.vals), Stdv=sd(flat.vals))
@@ -1453,7 +1453,7 @@ analyze.net.signed.degree <- function(sg, sg0)
 #		custom.gplot(sg, col.att=MEAS_DEGREE_NEG)
 		
 		# export CSV with average degree
-		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
+		stat.file <- file.path(SIGNED_FOLDER,sg$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_DEGREE_POS, ] <- list(Value=NA, Mean=mean(pos.deg), Stdv=sd(pos.deg))
@@ -1515,7 +1515,7 @@ analyze.net.signed.centrality <- function(sg, sg0)
 #		custom.gplot(sg, col.att=MEAS_SIGN_CENTR)
 		
 		# export CSV with average degree
-		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
+		stat.file <- file.path(SIGNED_FOLDER,sg$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_SIGN_CENTR, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
@@ -1583,7 +1583,7 @@ analyze.net.signed.triangles <- function(sg, sg0)
 		record.graph(graph=sg, file=file.path(SIGNED_FOLDER,sg$name,paste0("graph",sufx,".graphml")))
 		
 		# export CSV with structural balance values
-		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
+		stat.file <- file.path(SIGNED_FOLDER,sg$name,paste0("stats",sufx,".csv"))
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
 			df[MEAS_STR_STRUCT_BAL, ] <- list(Value=str.struct.bal, Mean=NA, Stdv=NA)
@@ -1708,7 +1708,7 @@ analyze.net.corclust <- function(sg, sg0)
 		write.csv(df, file=perf.file, row.names=FALSE)
 		
 		# add imbalance to stats CSV
-		stat.file <- file.path(SIGNED_FOLDER,sg$name,"stats.csv")
+		stat.file <- file.path(SIGNED_FOLDER,sg$name,paste0("stats",sufx,".csv"))
 		cat("    Update stat file ",stat.file,"\n",sep="")
 		if(file.exists(stat.file))
 		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
