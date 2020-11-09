@@ -55,6 +55,7 @@ og <- delete_vertex_attr(og, "y")
 #############################################################################################
 # retrieve or compute graph layout
 setup.graph.layout(og)
+#custom.gplot(og, file="test.pdf")
 
 
 
