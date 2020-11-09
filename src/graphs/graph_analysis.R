@@ -607,9 +607,6 @@ analyze.net.closeness.harm <- function(g, g0)
 		g <- lst[[i]]
 		sufx <- sufxx[i]
 		
-		giant.comp.nodes <- which(components$membership==giant.comp.id)
-		g.comp <- induced_subgraph(graph=g, giant.comp.nodes)
-		
 		# harmonic closeness distribution
 		vals <- harmonic_centrality(x=g)	# TODO should we normalize?
 		vals[is.nan(vals)] <- NA
