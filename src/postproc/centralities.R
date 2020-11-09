@@ -40,7 +40,8 @@ source("src/sequences/sequence_analysis.R")
 #############################################################################################
 # load data
 relations <- c(GRAPH_TYPE_ALL, GRAPH_TYPE_FAMILY, GRAPH_TYPE_FRIEND, GRAPH_TYPE_PRO)
-measures <- c(MEAS_DEGREE, MEAS_EIGEN, MEAS_BETWEENNESS, MEAS_CLOSENESS)
+measures <- c(MEAS_DEGREE, MEAS_EIGEN, MEAS_BETWEENNESS, MEAS_CLOSENESS_HARM)	# MEAS_CLOSENESS
+folders <- sapply(measures,tolower);folders[4] <- "closeness_harm"
 
 attr.file <- file.path(TABLE_FOLDER,"trajan_attributes.csv")
 atts <- as.matrix(read.csv(file=attr.file,header=TRUE,check.names=FALSE))
@@ -55,7 +56,7 @@ col <- 1
 names <- c()
 for(relation in relations)
 {	for(measure in measures)
-	{	file <- file.path(NET_FOLDER, relation, tolower(measure), paste0(tolower(measure),"_values0.csv"))
+	{	file <- file.path(NET_FOLDER, relation, folders[measure], paste0(folders[measure],"_values0.csv"))
 		tab <- read.csv(file=file, header=TRUE, check.names=FALSE)
 		names <- c(names, paste0(relation,":",measure))
 		data[,col] <- tab[,measure]

@@ -523,7 +523,7 @@ analyze.net.betweenness <- function(g, g0)
 # returns: a list containing both updated graphs.
 #############################################################
 analyze.net.closeness <- function(g, g0)
-{	cat("  Computing closeness\n")
+{	cat("  Computing arithmetic closeness\n")
 	# possibly create folder
 	closeness.folder <- file.path(NET_FOLDER,g$name,"closeness")
 	dir.create(path=closeness.folder, showWarnings=FALSE, recursive=TRUE)
@@ -574,6 +574,72 @@ analyze.net.closeness <- function(g, g0)
 		else
 		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
 			row.names(df) <- c(MEAS_CLOSENESS)
+		}
+		write.csv(df, file=stat.file, row.names=TRUE)
+		
+		lst[[i]] <- g
+	}
+	
+	return(lst)
+}
+
+
+
+
+#############################################################
+# Computes harmonic closeness and generates plots and CSV files.
+#
+# g: original graph to process.
+# g0: same graph except the main node is isolated.
+# 
+# returns: a list containing both updated graphs.
+#############################################################
+analyze.net.closeness.harm <- function(g, g0)
+{	cat("  Computing harmonic closeness\n")
+	# possibly create folder
+	closeness.folder <- file.path(NET_FOLDER,g$name,"closeness_harm")
+	dir.create(path=closeness.folder, showWarnings=FALSE, recursive=TRUE)
+	
+	lst <- list(g, g0)
+	sufxx <- c("","0")
+	for(i in 1:length(lst))
+	{	cat("    Processing graph ",i,"/",length(lst),"\n",sep="")
+		g <- lst[[i]]
+		sufx <- sufxx[i]
+		
+		giant.comp.nodes <- which(components$membership==giant.comp.id)
+		g.comp <- induced_subgraph(graph=g, giant.comp.nodes)
+		
+		# harmonic closeness distribution
+		vals <- harmonic_centrality(x=g)	# TODO should we normalize?
+		vals[is.nan(vals)] <- NA
+		custom.hist(vals, name=LONG_NAME[MEAS_CLOSENESS_HARM], file=file.path(closeness.folder,paste0("closeness_harm_histo",sufx)))
+		
+		# export CSV with closeness
+		df <- data.frame(V(g)$name,V(g)$label,vals)
+		colnames(df) <- c("Name","Label",MEAS_CLOSENESS_HARM) 
+		write.csv(df, file=file.path(closeness.folder,paste0("closeness_harm_values",sufx,".csv")), row.names=FALSE)
+		
+		# add results to the graph (as attributes) and record
+		V(g)$ClosenessHarm <- vals
+		g$ClosenessHarmAvg <- mean(vals,na.rm=TRUE)
+		g$ClosenessHarmStdv <- sd(vals,na.rm=TRUE)
+		record.graph(graph=g, file=file.path(NET_FOLDER,g$name,paste0("graph",sufx,".graphml")))
+		
+		# plot graph using color for harmonic closeness
+		custom.gplot(g, col.att=MEAS_CLOSENESS_HARM, file=file.path(closeness.folder,paste0("closeness_harm_graph",sufx,"_col")))
+#		custom.gplot(g, col.att=MEAS_CLOSENESS_HARM)
+		custom.gplot(g, size.att=MEAS_CLOSENESS_HARM, file=file.path(closeness.folder,paste0("closeness_harm_graph",sufx,"_size")))
+		
+		# export CSV with average harmonic closeness
+		stat.file <- file.path(NET_FOLDER,g$name,paste0("stats",sufx,".csv"))
+		if(file.exists(stat.file))
+		{	df <- read.csv(file=stat.file,header=TRUE,row.names=1)
+			df[MEAS_CLOSENESS_HARM, ] <- list(Value=NA, Mean=mean(vals), Stdv=sd(vals))
+		}
+		else
+		{	df <- data.frame(Value=c(NA),Mean=c(mean(vals)),Stdv=c(sd(vals)))
+			row.names(df) <- c(MEAS_CLOSENESS_HARM)
 		}
 		write.csv(df, file=stat.file, row.names=TRUE)
 		
@@ -2219,6 +2285,11 @@ analyze.network <- function(og)
 		
 		# compute closeness
 		tmp <- analyze.net.closeness(g, g0)
+		g <- tmp[[1]]
+		g0 <- tmp[[2]]
+		
+		# compute harmonic closeness
+		tmp <- analyze.net.closeness.harm(g, g0)
 		g <- tmp[[1]]
 		g0 <- tmp[[2]]
 		
