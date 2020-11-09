@@ -4,7 +4,7 @@
 # 01/2019 Vincent Labatut
 #
 # setwd("C:/users/Vincent/Eclipse/workspaces/Networks/TrajanNet")
-# setwd("~/eclipse/workspaces/Networks/NetVotes")
+# setwd("~/eclipse/workspaces/Networks/TrajanNet")
 # source("src/main.R")
 #############################################################################################
 # load libraries
