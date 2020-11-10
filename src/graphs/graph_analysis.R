@@ -608,7 +608,7 @@ analyze.net.closeness.harm <- function(g, g0)
 		sufx <- sufxx[i]
 		
 		# harmonic closeness distribution
-		vals <- harmonic_centrality(x=g)/gorder(g)
+		vals <- harmonic_centrality(x=g)/(length(which(igraph::degree(g)>0))-1)
 		vals[is.nan(vals)] <- NA
 		custom.hist(vals, name=LONG_NAME[MEAS_CLOSENESS_HARM], file=file.path(closeness.folder,paste0("closeness_harm_histo",sufx)))
 		
