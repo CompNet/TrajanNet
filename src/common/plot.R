@@ -358,126 +358,128 @@ custom.gplot <- function(g, paths, col.att, size.att, cat.att=FALSE, v.hl, e.hl,
 		vsizes <- 5
 	
 	# main plot
-	if(hasArg(file))
-	{	if(FORMAT=="pdf")
-			pdf(paste0(file,".pdf"), width=15, height=15)
-		else if(FORMAT=="png")
-			png(paste0(file,".png"), width=1024, height=1024)
-	}
-	plot(g,										# graph to plot
-		#axes=TRUE,								# whether to draw axes or not
-		layout=LAYOUT,							# layout
-		vertex.size=vsizes,						# node size
-		vertex.color=vcols,						# node color
-		vertex.pie=pie.values,					# node pie proportions
-		vertex.pie.color=list(lgd.col),			# node pie colors
-		vertex.shape=vshapes,					# node shape
-		vertex.frame.color=outline.cols,		# node border color
-		#vertex.label=V(g)$label0,				# node short labels
-		vertex.label=V(g)$label,				# node long labels
-		vertex.label.cex=1.2,					# label size
-		vertex.label.family="sans",				# font type
-		vertex.label.font=2,					# 1 is plain text, 2 is bold face, 3 is italic, 4 is bold and italic
-		vertex.label.label.dist=0,				# label distance to node center (0=center)
-		vertex.label.color="BLACK",				# label color
-		edge.color=ecols,						# link color
-		edge.lty=elty,							# link type
-		edge.width=ewidth						# link thickness
-	)
-	if(!only.signed)
-	{	legend(
-			title="Nature de la relation",					# title of the legend box
-			x="topright",									# position
-			legend=c(ATT_VAL_FRIEND,ATT_VAL_FAMILY,			# text of the legend
-					ATT_VAL_PRO,ATT_VAL_UNK),
-			col=c("#1A8F39","#9C1699","#C27604","#222222"),	# color of the lines
-			lty=1,											# type of lines
-			lwd=4,											# line thickness
-			bty="n",										# no box around the legend
-			cex=0.8
+	for(fformat in FORMAT)
+	{	if(hasArg(file))
+		{	if(fformat=="pdf")
+				pdf(paste0(file,".pdf"), width=15, height=15)
+			else if(fformat=="png")
+				png(paste0(file,".png"), width=1024, height=1024)
+		}
+		plot(g,										# graph to plot
+			#axes=TRUE,								# whether to draw axes or not
+			layout=LAYOUT,							# layout
+			vertex.size=vsizes,						# node size
+			vertex.color=vcols,						# node color
+			vertex.pie=pie.values,					# node pie proportions
+			vertex.pie.color=list(lgd.col),			# node pie colors
+			vertex.shape=vshapes,					# node shape
+			vertex.frame.color=outline.cols,		# node border color
+			#vertex.label=V(g)$label0,				# node short labels
+			vertex.label=V(g)$label,				# node long labels
+			vertex.label.cex=1.2,					# label size
+			vertex.label.family="sans",				# font type
+			vertex.label.font=2,					# 1 is plain text, 2 is bold face, 3 is italic, 4 is bold and italic
+			vertex.label.label.dist=0,				# label distance to node center (0=center)
+			vertex.label.color="BLACK",				# label color
+			edge.color=ecols,						# link color
+			edge.lty=elty,							# link type
+			edge.width=ewidth						# link thickness
 		)
-# TODO		legend(
-#			title="Polarite de la relation",				# title of the legend box
-#			x="bottomright",								# position
-#			legend=c(ATT_VAL_POSITIVE,ATT_VAL_NEGATIVE,		# text of the legend
-#					ATT_VAL_UNK),
-#			col="BLACK",									# color of the lines
-#			lty=c(1,3,5),									# type of lines
-#			lwd=2,											# line thickness
-#			bty="n",										# no box around the legend
-#			cex=0.8,										# size of the text in the legend
-#			seg.len=3										# length of the line in the legend
-#		)
-	}
-	else
-	{	legend(
-			title="Polarite de la relation",				# title of the legend box
-			x="bottomright",								# position
-			legend=c(ATT_VAL_POSITIVE,ATT_VAL_NEGATIVE),	# text of the legend
-			col=c("#1A8F39","#E41A1C"),						# color of the lines
-			lty=c(1,1),										# type of lines
-			lwd=4,											# line thickness
-			bty="n",										# no box around the legend
-			cex=0.8,										# size of the text in the legend
-			seg.len=3										# length of the line in the legend
-		)
-	}
-	if(hasArg(col.att))
-	{	if(!all(!connected))
-		{	# categorical attributes
-			if(cat.att)
-			{	legend(
-					title=LONG_NAME[col.att],				# title of the legend box
-					x="bottomleft",							# position
-					legend=lgd.txt,							# text of the legend
-					fill=lgd.col,							# color of the nodes
-					bty="n",								# no box around the legend
-					cex=0.8									# size of the text in the legend
-				)
-			}
-			# numerical attributes
-			else
-			{	width <- 0.05
-				height <- 0.3
-				x1 <- -1
-				x2 <- x1 + width
-				y2 <- -1
-				y1 <- y2 + height
-				leg.loc <- cbind(x=c(x1, x2, x2, x1), y=c(y1, y1, y2, y2))
-				legend.gradient(
-						pnts=leg.loc,
-						cols=pal(25),
-						#limits=format(range(vvals[connected],na.rm=TRUE), digits=2, nsmall=2),	# pb: uses scientific notation when numbers too small
-						limits=sprintf("%.2f", range(vvals[connected & finite],na.rm=TRUE)),
-						title=LONG_NAME[col.att], 
-						cex=0.8
-				)
+		if(!only.signed)
+		{	legend(
+				title="Nature de la relation",					# title of the legend box
+				x="topright",									# position
+				legend=c(ATT_VAL_FRIEND,ATT_VAL_FAMILY,			# text of the legend
+						ATT_VAL_PRO,ATT_VAL_UNK),
+				col=c("#1A8F39","#9C1699","#C27604","#222222"),	# color of the lines
+				lty=1,											# type of lines
+				lwd=4,											# line thickness
+				bty="n",										# no box around the legend
+				cex=0.8
+			)
+# TODO			legend(
+#				title="Polarite de la relation",				# title of the legend box
+#				x="bottomright",								# position
+#				legend=c(ATT_VAL_POSITIVE,ATT_VAL_NEGATIVE,		# text of the legend
+#						ATT_VAL_UNK),
+#				col="BLACK",									# color of the lines
+#				lty=c(1,3,5),									# type of lines
+#				lwd=2,											# line thickness
+#				bty="n",										# no box around the legend
+#				cex=0.8,										# size of the text in the legend
+#				seg.len=3										# length of the line in the legend
+#			)
+		}
+		else
+		{	legend(
+				title="Polarite de la relation",				# title of the legend box
+				x="bottomright",								# position
+				legend=c(ATT_VAL_POSITIVE,ATT_VAL_NEGATIVE),	# text of the legend
+				col=c("#1A8F39","#E41A1C"),						# color of the lines
+				lty=c(1,1),										# type of lines
+				lwd=4,											# line thickness
+				bty="n",										# no box around the legend
+				cex=0.8,										# size of the text in the legend
+				seg.len=3										# length of the line in the legend
+			)
+		}
+		if(hasArg(col.att))
+		{	if(!all(!connected))
+			{	# categorical attributes
+				if(cat.att)
+				{	legend(
+						title=LONG_NAME[col.att],				# title of the legend box
+						x="bottomleft",							# position
+						legend=lgd.txt,							# text of the legend
+						fill=lgd.col,							# color of the nodes
+						bty="n",								# no box around the legend
+						cex=0.8									# size of the text in the legend
+					)
+				}
+				# numerical attributes
+				else
+				{	width <- 0.05
+					height <- 0.3
+					x1 <- -1
+					x2 <- x1 + width
+					y2 <- -1
+					y1 <- y2 + height
+					leg.loc <- cbind(x=c(x1, x2, x2, x1), y=c(y1, y1, y2, y2))
+					legend.gradient(
+							pnts=leg.loc,
+							cols=pal(25),
+							#limits=format(range(vvals[connected],na.rm=TRUE), digits=2, nsmall=2),	# pb: uses scientific notation when numbers too small
+							limits=sprintf("%.2f", range(vvals[connected & finite],na.rm=TRUE)),
+							title=LONG_NAME[col.att], 
+							cex=0.8
+					)
+				}
 			}
 		}
+		# legend for vertex sizes, if required: 
+		# https://stackoverflow.com/questions/38451431/add-legend-in-igraph-to-annotate-difference-vertices-size
+		if(hasArg(size.att))
+		{	legend.bubble(
+				x="topleft",					# position of the legend
+				title=LONG_NAME[size.att],		# title of the legend box
+				z=max(cuts),					# largest size
+				maxradius=max(cuts.scale/200),	# scaled radius of the largest bubble
+				n=cut.nbr,						# number of bubbles
+				round=if(must.round) 0 else 2,	# number of decimal places
+				bty="n",						# box (o=default, n=none)
+				mab=1.2,						# margin between largest bubble and box
+				bg=NULL, 						# background color of the box
+				inset=0, 						# inset distance from margin
+				pch=21, 						# symbol used to plot
+				pt.bg=NULL, 					# symbol background color
+				txt.cex=0.5, 					# text size
+				txt.col=NULL, 					# text color
+				font = NULL						# text font
+			)
+		}
+		if(hasArg(file))
+			dev.off()
 	}
-	# legend for vertex sizes, if required: 
-	# https://stackoverflow.com/questions/38451431/add-legend-in-igraph-to-annotate-difference-vertices-size
-	if(hasArg(size.att))
-	{	legend.bubble(
-			x="topleft",					# position of the legend
-			title=LONG_NAME[size.att],		# title of the legend box
-			z=max(cuts),					# largest size
-			maxradius=max(cuts.scale/200),	# scaled radius of the largest bubble
-			n=cut.nbr,						# number of bubbles
-			round=if(must.round) 0 else 2,	# number of decimal places
-			bty="n",						# box (o=default, n=none)
-			mab=1.2,						# margin between largest bubble and box
-			bg=NULL, 						# background color of the box
-			inset=0, 						# inset distance from margin
-			pch=21, 						# symbol used to plot
-			pt.bg=NULL, 					# symbol background color
-			txt.cex=0.5, 					# text size
-			txt.col=NULL, 					# text color
-			font = NULL						# text font
-		)
-	}
-	if(hasArg(file))
-		dev.off()
 }
 
 
@@ -493,39 +495,41 @@ custom.gplot <- function(g, paths, col.att, size.att, cat.att=FALSE, v.hl, e.hl,
 custom.hist <- function(vals, name, file)
 {	vals <- vals[!is.na(vals)]
 	if(length(vals)>0)
-	{	if(hasArg(file))
-		{	if(FORMAT=="pdf")
-				pdf(paste0(file,".pdf"), width=25, height=25)
-			else if(FORMAT=="png")
-				png(paste0(file,".png"), width=1024, height=1024)
+	{	for(fformat in FORMAT)
+		{	if(hasArg(file))
+			{	if(fformat=="pdf")
+					pdf(paste0(file,".pdf"), width=25, height=25)
+				else if(fformat=="png")
+					png(paste0(file,".png"), width=1024, height=1024)
+			}
+#			par(mar=c(5,3,1,2)+0.1)	# remove the title space Bottom Left Top Right
+			par(mar=c(5.1, 4.1, 4.1, 2.1))
+			hist(
+					vals,			# data
+					col="#ffd6d6",	# bar color
+					main=NA,		# no main title
+					prob=TRUE,		# frenquency density
+					breaks=20,		# number of bars
+					xlab=name,		# x-axis label
+					ylab="Densite"	# y-axis label
+			)
+			lines(
+					density(vals), 	# density estimate
+					lwd=2, 			# line thickness
+					col="RED"		# line color
+			)
+			stripchart(
+					vals, 			# data
+					at=0.02, 		# central position of points (y)
+					pch=21, 		# point shape
+					col="BLACK", 	# point color
+					method="jitter",# noise to avoid overlaps
+					jitter=0.02, 	# noise magnitude
+					add=TRUE		# add to current plot
+			)
+			if(hasArg(file))
+				dev.off()
 		}
-#		par(mar=c(5,3,1,2)+0.1)	# remove the title space Bottom Left Top Right
-		par(mar=c(5.1, 4.1, 4.1, 2.1))
-		hist(
-				vals,			# data
-				col="#ffd6d6",	# bar color
-				main=NA,		# no main title
-				prob=TRUE,		# frenquency density
-				breaks=20,		# number of bars
-				xlab=name,		# x-axis label
-				ylab="Densite"	# y-axis label
-		)
-		lines(
-				density(vals), 	# density estimate
-				lwd=2, 			# line thickness
-				col="RED"		# line color
-		)
-		stripchart(
-				vals, 			# data
-				at=0.02, 		# central position of points (y)
-				pch=21, 		# point shape
-				col="BLACK", 	# point color
-				method="jitter",# noise to avoid overlaps
-				jitter=0.02, 	# noise magnitude
-				add=TRUE		# add to current plot
-		)
-		if(hasArg(file))
-			dev.off()
 	}
 }
 
@@ -547,55 +551,58 @@ custom.barplot <- function(vals, text, xlab, ylab, file, ...)
 	if(length(idx)>0)
 		text[idx] <- ATT_VAL_UNK0
 	wide <- length(text) > 8
-	if(hasArg(file))
-	{	if(FORMAT=="pdf")
-			pdf(paste0(file,".pdf"), width=25, height=25)
-		else if(FORMAT=="png")
-			png(paste0(file,".png"), width=1024, height=1024)
+	
+	for(fformat in FORMAT)
+	{	if(hasArg(file))
+		{	if(FORMAT=="pdf")
+				pdf(paste0(file,".pdf"), width=25, height=25)
+			else if(FORMAT=="png")
+				png(paste0(file,".png"), width=1024, height=1024)
+		}
+#		par(mar=c(5,3,1,2)+0.1)	# remove the title space Bottom Left Top Right
+		if(wide)
+			par(mar=c(9, 4, 1, 0)+0.1)
+		else
+			par(mar=c(5, 4, 1, 0)+0.1)
+		if(length(dim(vals))<=1)
+		{	barplot(
+				height=vals,				# data
+				names.arg=text,				# bar names
+				col="#ffd6d6",				# bar color
+				main=NA,					# no main title
+				xlab=if(wide) NA else xlab,	# x-axis label
+				ylab=ylab,					# y-axis label
+				las=if(wide) 2 else 0,		# vertical label if too many bars
+				...
+			)
+		}
+		else
+		{	barcols <- CAT_COLORS[(1:nrow(vals)-1) %% length(CAT_COLORS)+1]
+			barplot(
+				height=vals,				# data
+				names.arg=text,				# bar names
+				beside=TRUE,				# grouped bars
+				col=barcols,				# bar colors
+				main=NA,					# no main title
+				xlab=if(wide) NA else xlab,	# x-axis label
+				ylab=ylab,					# y-axis label
+				las=if(wide) 2 else 0,		# vertical label if too many bars
+				...
+			)
+			text2 <- rownames(vals)
+			idx <- which(is.na(text2))
+			if(length(idx)>0)
+				text2[idx] <- ATT_VAL_UNK0
+			legend(
+				x="topleft",
+				fill=barcols,
+				title=names(dimnames(vals))[1],
+				legend=text2
+			)
+		}
+		if(hasArg(file))
+			dev.off()
 	}
-#	par(mar=c(5,3,1,2)+0.1)	# remove the title space Bottom Left Top Right
-	if(wide)
-		par(mar=c(9, 4, 1, 0)+0.1)
-	else
-		par(mar=c(5, 4, 1, 0)+0.1)
-	if(length(dim(vals))<=1)
-	{	barplot(
-			height=vals,				# data
-			names.arg=text,				# bar names
-			col="#ffd6d6",				# bar color
-			main=NA,					# no main title
-			xlab=if(wide) NA else xlab,	# x-axis label
-			ylab=ylab,					# y-axis label
-			las=if(wide) 2 else 0,		# vertical label if too many bars
-			...
-		)
-	}
-	else
-	{	barcols <- CAT_COLORS[(1:nrow(vals)-1) %% length(CAT_COLORS)+1]
-		barplot(
-			height=vals,				# data
-			names.arg=text,				# bar names
-			beside=TRUE,				# grouped bars
-			col=barcols,				# bar colors
-			main=NA,					# no main title
-			xlab=if(wide) NA else xlab,	# x-axis label
-			ylab=ylab,					# y-axis label
-			las=if(wide) 2 else 0,		# vertical label if too many bars
-			...
-		)
-		text2 <- rownames(vals)
-		idx <- which(is.na(text2))
-		if(length(idx)>0)
-			text2[idx] <- ATT_VAL_UNK0
-		legend(
-			x="topleft",
-			fill=barcols,
-			title=names(dimnames(vals))[1],
-			legend=text2
-		)
-	}
-	if(hasArg(file))
-		dev.off()
 }
 
 
@@ -652,70 +659,72 @@ plot.circos <- function(g, att, sign.order=FALSE, alt=FALSE, file)
 	ecols[which(ecols>0)] <- alpha("#1A8F39",0.5)
 	ecols[which(ecols==0)] <- NA
 	
-	if(hasArg(file))
-	{	if(FORMAT=="pdf")
-			pdf(paste0(file,".pdf"), width=25, height=25)
-		else if(FORMAT=="png")
-			png(paste0(file,".png"), width=1024, height=1024)
-	}
-	
-	# build the base graph
-	chordDiagram(abs(adj),													# adjacency matrix
-		symmetric=TRUE,
-		#transparency=0.5, 													# link transparency (doesn't work)
-		col=ecols,		 													# link color
-		#link.sort=TRUE,													# order (position) of the link, but no control...
-		#link.rank=lranks,													# order of the links, but in z
-		link.visible=!sign.order && !alt,									# hide the link (draw them later)
-		order=disp.names[norder],											# order of the node
-		grid.col=vcols,														# node colors
-		annotationTrack=c("grid"),											# just display the node colors (no names or ticks)
-		preAllocateTracks=list(track.height=max(strwidth(disp.names)))		# allocate room for names (first track)
-	)
-	
-	# add the node names
-	circos.track(track.index=1,												# add the names (first track) 
-		panel.fun=function(x, y)
-		{	circos.text(CELL_META$xcenter, CELL_META$ylim[1], 
-					CELL_META$sector.index, facing="clockwise", 
-					niceFacing=TRUE, adj=c(0,0.5))
-		}, 
-		bg.border = NA
-	)
-	
-	if(sign.order || alt)
-	{	# order links
-		el <- as_edgelist(isg, names=FALSE)
-		lranks <- order(E(isg)$sign, apply(el,1,min), apply(el,1,max))
-		el <- el[lranks,]
-		
-		# add each edge one by one (only way to control order)
-		count <- rep(0,length(connected))
-		for(e in 1:nrow(el))
-		{	v1 <- el[e,1]
-			v2 <- el[e,2]
-#			cat(disp.names[v1]," .. ",adj[v1,v2]," .. ",disp.names[v2],"\n")
-			if(E(isg)[v1 %--% v2]$sign>0)
-				ecol <- alpha("#1A8F39",0.25)
-			else
-				ecol <- alpha("#E41A1C",0.50)
-			if(!alt)
-			{	circos.link(sector.index1=disp.names[v1], point1=c(count[v1],count[v1]+1), 
-					sector.index2=disp.names[v2], point2=c(count[v2],count[v2]+1),
-					col=ecol, border=ecol)
-				count[v1] <- count[v1] + 1
-				count[v2] <- count[v2] + 1
-			}
-			else
-				circos.link(sector.index1=disp.names[v1], point1=c(0.9,1.1), 
-					sector.index2=disp.names[v2], point2=c(0.9,1.1),
-					col=ecol, border=ecol)
-#			readline()
+	for(fformat in FORMAT)
+	{	if(hasArg(file))
+		{	if(FORMAT=="pdf")
+				pdf(paste0(file,".pdf"), width=25, height=25)
+			else if(FORMAT=="png")
+				png(paste0(file,".png"), width=1024, height=1024)
 		}
+		
+		# build the base graph
+		chordDiagram(abs(adj),													# adjacency matrix
+			symmetric=TRUE,
+			#transparency=0.5, 													# link transparency (doesn't work)
+			col=ecols,		 													# link color
+			#link.sort=TRUE,													# order (position) of the link, but no control...
+			#link.rank=lranks,													# order of the links, but in z
+			link.visible=!sign.order && !alt,									# hide the link (draw them later)
+			order=disp.names[norder],											# order of the node
+			grid.col=vcols,														# node colors
+			annotationTrack=c("grid"),											# just display the node colors (no names or ticks)
+			preAllocateTracks=list(track.height=max(strwidth(disp.names)))		# allocate room for names (first track)
+		)
+		
+		# add the node names
+		circos.track(track.index=1,												# add the names (first track) 
+			panel.fun=function(x, y)
+			{	circos.text(CELL_META$xcenter, CELL_META$ylim[1], 
+						CELL_META$sector.index, facing="clockwise", 
+						niceFacing=TRUE, adj=c(0,0.5))
+			}, 
+			bg.border = NA
+		)
+		
+		if(sign.order || alt)
+		{	# order links
+			el <- as_edgelist(isg, names=FALSE)
+			lranks <- order(E(isg)$sign, apply(el,1,min), apply(el,1,max))
+			el <- el[lranks,]
+			
+			# add each edge one by one (only way to control order)
+			count <- rep(0,length(connected))
+			for(e in 1:nrow(el))
+			{	v1 <- el[e,1]
+				v2 <- el[e,2]
+#				cat(disp.names[v1]," .. ",adj[v1,v2]," .. ",disp.names[v2],"\n")
+				if(E(isg)[v1 %--% v2]$sign>0)
+					ecol <- alpha("#1A8F39",0.25)
+				else
+					ecol <- alpha("#E41A1C",0.50)
+				if(!alt)
+				{	circos.link(sector.index1=disp.names[v1], point1=c(count[v1],count[v1]+1), 
+						sector.index2=disp.names[v2], point2=c(count[v2],count[v2]+1),
+						col=ecol, border=ecol)
+					count[v1] <- count[v1] + 1
+					count[v2] <- count[v2] + 1
+				}
+				else
+					circos.link(sector.index1=disp.names[v1], point1=c(0.9,1.1), 
+						sector.index2=disp.names[v2], point2=c(0.9,1.1),
+						col=ecol, border=ecol)
+#				readline()
+			}
+		}
+		
+		if(hasArg(file))
+			dev.off()
 	}
-	
-	if(hasArg(file))
-		dev.off()
 }
 
 
