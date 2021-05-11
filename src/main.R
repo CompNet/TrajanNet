@@ -62,7 +62,7 @@ setup.graph.layout(og)
 
 
 #############################################################################################
-# perform graph analyze
+# perform graph analysis
 analyze.network(og)
 
 
