@@ -107,15 +107,13 @@ CAT_COLORS_32 <- c(	# glasbey.colors(32) from package Polychrome
 
 
 #############################################################
-# Displays the specified graph in an appropriate way, taking
-# into account the previously set link and node attributes.
+# Setups the layout of the specified graph and records it at 
+# the specified path. If the file already exists, then just
+# loads it.
 #
-# g: graph to plot.
-# paths: (optional) paths to highlight while plotting. This parameter
-# 		 is either a list of integer vectors (node sequences), or
-# 		 an integer vector if there is only one path to plot.
-# vvals: (optional) vertex values, used to determine node color.
-# file: (optional) file name, to record the plot.
+# g: graph concerned by the layout.
+#
+# returns: graph layout.
 #############################################################
 setup.graph.layout <- function(g)
 {
