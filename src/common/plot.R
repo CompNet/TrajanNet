@@ -113,7 +113,7 @@ CAT_COLORS_32 <- c(	# glasbey.colors(32) from package Polychrome
 #
 # g: graph concerned by the layout.
 #############################################################
-setup.graph.layout <- function(g)
+setup.graph.layout <- function(g)	
 {
 	# try to use ego-network layout, but not appropriate here
 #	p1 <- ggraph(g, layout="focus", v=1) +
