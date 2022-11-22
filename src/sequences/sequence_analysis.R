@@ -57,7 +57,7 @@ build.transition.graph <- function(seq.tab, pos.tab, folder, seq.col)
 		pos.idx <- sort(match(pos,pos.tab[,SEQ_IDENTIFIER]))
 		pos <- pos.tab[pos.idx,SEQ_IDENTIFIER]
 		
-		# compute the ajacency matrix
+		# compute the adjacency matrix
 		adj <- matrix(0, nrow=length(pos), ncol=length(pos), dimnames=list(pos,pos))
 		size <- rep(0, length(pos))
 		names(size) <- pos
