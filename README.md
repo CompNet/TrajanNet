@@ -8,7 +8,7 @@ TrajanNet is free software: you can redistribute it and/or modify it under the t
 
 * Lab site: http://lia.univ-avignon.fr/
 * GitHub repo: https://github.com/CompNet/TrajanNet
-* Data: https://doi.org/10.6084/m9.figshare.13143104
+* Data: https://doi.org/10.5281/zenodo.6814111
 * Contact: Vincent Labatut <vincent.labatut@univ-avignon.fr>
 
 -----------------------------------------------------------------------
@@ -18,14 +18,24 @@ TrajanNet is free software: you can redistribute it and/or modify it under the t
 
 # Description
 This set of R scripts aims at analyzing a historical dataset describing the relationships between the Roman emperor Trajan and his entourage. It does the following:
-
 1. Extracts various networks based on some tabular data containing individual and relational attributes.
 2. Computes a number of statistics and generates the corresponding plots, for both the tables and graphs.
 3. Performs a sequence analysis of certain chronological attributes.
 
+If you use these scripts or the associated data, please cite the reference [[V'20](#references)]:
+```
+@MastersThesis{Vallet2020,
+  author      = {Vallet, Gaëtane},
+  title       = {Les princes et les hommes : carrières et réseaux dans l'entourage de Trajan de 98 à 118 après J.-C.},
+  year        = {2020},
+  type        = {MA Thesis},
+  institution = {Avignon University},
+}
+```
+
 
 # Data
-The raw dataset was manually elaborated by Gaëtane Vallet during her Master's thesis in ancient history. See her thesis (in French) for more information [V'18,V'20]. The files produced by the scripts (graphs, plots, tables...) can be obtained by executing them, but they are also directly available on [Figshare](https://doi.org/10.6084/m9.figshare.13143104).
+The raw dataset was manually elaborated by Gaëtane Vallet during her Master's thesis in ancient history. See her thesis (in French) for more information [[V'18](#references), [V'20](#references)]. The files produced by the scripts (graphs, plots, tables...) can be obtained by executing them, but they are also directly available on [Zenodo](https://doi.org/10.5281/zenodo.6814111).
 
 
 # Organization
@@ -57,7 +67,6 @@ Here are the folders composing the project:
 
 # Installation
 You just need to install `R` and the required packages:
-
 1. Install the [`R` language](https://www.r-project.org/)
 2. Download this project from GitHub and unzip.
 3. Install the required packages: 
@@ -68,7 +77,6 @@ You just need to install `R` and the required packages:
 
 # Use
 In order to extract the networks from the raw data, compute the statistics, and generate the plots:
-
 1. Open the `R` console.
 2. Set the current directory as the working directory, using `setwd("<my directory>")`.
 3. Run the main script `src/main.R`.
